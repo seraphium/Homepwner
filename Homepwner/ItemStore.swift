@@ -24,6 +24,16 @@ class ItemStore  {
         }
     }
     
+    func MoveItemAtIndex( fromIndex: Int, toIndex: Int) {
+        if fromIndex == toIndex {
+            return ;
+        }
+        let movedItem = allItems[fromIndex]
+        allItems.removeAtIndex(fromIndex)
+        allItems.insert(movedItem, atIndex: toIndex)
+        
+    }
+    
     
 }
 

@@ -22,6 +22,8 @@ class ItemsViewController : UITableViewController {
         
     }
     
+    //tableview related override
+    //////////////
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         return itemStore.allItems.count + 1
     }
@@ -50,6 +52,12 @@ class ItemsViewController : UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
+    }
+    /////////////
+    
     
     
     @IBAction func addNewItem(sender: AnyObject) {
