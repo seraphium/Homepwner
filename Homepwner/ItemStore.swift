@@ -11,11 +11,6 @@ import UIKit
 class ItemStore  {
     var allItems = [Item]()
     
-    init() {
-        for _ in 0..<5 {
-            CreateItem()
-            }
-    }
     
     func CreateItem() -> Item {
         let newItem = Item(random: true)
@@ -23,6 +18,11 @@ class ItemStore  {
         return newItem
     }
     
+    func RemoveItem( item: Item) {
+        if let index = allItems.indexOf(item) {
+            allItems.removeAtIndex(index)
+        }
+    }
     
     
 }

@@ -40,11 +40,42 @@ class ItemsViewController : UITableViewController {
             cell.detailTextLabel?.text = nil
         }
         
-        
         return cell
-        
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let item = itemStore.allItems[indexPath.row]
+            itemStore.RemoveItem(item)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
+    
+    @IBAction func addNewItem(sender: AnyObject) {
+       let newItem = itemStore.CreateItem()
+        if let index = itemStore.allItems.indexOf(newItem) {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
         
     }
+    
+    
+    @IBAction func toggleEditingMode(sender : AnyObject) {
+        if editing {
+            sender.setTitle("Edit", forState: .Normal)
+            setEditing(false, animated: true)
+        } else {
+            sender.setTitle("Done", forState: .Normal)
+            setEditing(true, animated: true)
+        }
+    }
+    
+    
+    
+    
+    
     
     
 }
