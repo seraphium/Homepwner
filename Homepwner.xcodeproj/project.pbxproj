@@ -14,6 +14,7 @@
 		4B3A8DF71C847018005B1DE5 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */; };
 		4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF81C8470F2005B1DE5 /* Item.swift */; };
 		4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */; };
+		4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD8CD4C1C8F209200B38916 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		4B3A8DF81C8470F2005B1DE5 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		4BD8CD4C1C8F209200B38916 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				4B3A8DED1C846DDF005B1DE5 /* LaunchScreen.storyboard */,
 				4B3A8DF01C846DDF005B1DE5 /* Info.plist */,
 				4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */,
+				4BD8CD4C1C8F209200B38916 /* ItemCell.swift */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */,
 				4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */,
 				4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */,
+				4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +297,7 @@
 				4B3A8DF51C846DDF005B1DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
