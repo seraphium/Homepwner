@@ -33,12 +33,24 @@ class ItemsViewController : UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
+        //update cell font
+        cell.updateLabels()
+        
         let item = itemStore.allItems[indexPath.row]
        
         cell.nameLabel.text = item.name
         cell.serialNumberLabel.text = item.serialNumber
         cell.valueLabel.text =  "\(item.valueInDollars)"
         
+        //update cell color
+        if (item.valueInDollars > 50){
+            
+            cell.valueLabel.textColor = UIColor.redColor()
+        }
+        else{
+            cell.valueLabel.textColor = UIColor.greenColor()
+            
+        }
         return cell
        
     }
