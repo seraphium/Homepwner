@@ -43,7 +43,7 @@ class ItemsViewController : UITableViewController {
         cell.valueLabel.text =  "\(item.valueInDollars)"
         
         //update cell color
-        if (item.valueInDollars > 50){
+        if (item.valueInDollars  > 50){
             
             cell.valueLabel.textColor = UIColor.redColor()
         }
@@ -80,7 +80,19 @@ class ItemsViewController : UITableViewController {
     /////////////
     
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowItem" {
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destinationViewController as! DetailViewController
+                detailViewController.item = item
+                
+            }
+            
+        }
+        
+        
+    }
     @IBAction func addNewItem(sender: AnyObject) {
        let newItem = itemStore.CreateItem()
         if let index = itemStore.allItems.indexOf(newItem) {
