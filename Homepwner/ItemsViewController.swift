@@ -14,6 +14,7 @@ class ItemsViewController : UITableViewController {
     
     var imageStore : ImageStore!
     
+    // MARK: - initializer
     required init?(coder aDecoder: NSCoder){
         //set default edit mode button
         super.init(coder : aDecoder)
@@ -21,6 +22,7 @@ class ItemsViewController : UITableViewController {
         
     }
     
+    // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -36,8 +38,7 @@ class ItemsViewController : UITableViewController {
         
     }
     
-    //tableview related override
-    //////////////
+    //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         return itemStore.allItems.count
     }
@@ -94,9 +95,9 @@ class ItemsViewController : UITableViewController {
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
-    /////////////
+  
     
-    
+  //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //pass the value to the detailed view
         if segue.identifier == "ShowItem" {
@@ -112,6 +113,8 @@ class ItemsViewController : UITableViewController {
         
         
     }
+    
+    //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
        let newItem = itemStore.CreateItem()
         if let index = itemStore.allItems.indexOf(newItem) {
