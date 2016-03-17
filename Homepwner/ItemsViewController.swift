@@ -11,19 +11,23 @@ import UIKit
 class ItemsViewController : UITableViewController {
     var itemStore : ItemStore!
     
+    required init?(coder aDecoder: NSCoder){
+        //set default edit mode button
+        super.init(coder : aDecoder)
+        navigationItem.leftBarButtonItem = editButtonItem()
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        //refresh the table data if changed in detailed view
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //get the height of the status bar
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left : 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+ 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         
@@ -86,6 +90,7 @@ class ItemsViewController : UITableViewController {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //pass the value to the detailed view
         if segue.identifier == "ShowItem" {
             if let row = tableView.indexPathForSelectedRow?.row {
                 let item = itemStore.allItems[row]
@@ -106,21 +111,6 @@ class ItemsViewController : UITableViewController {
         }
         
     }
-    
-    
-    @IBAction func toggleEditingMode(sender : AnyObject) {
-        if editing {
-            sender.setTitle("Edit", forState: .Normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", forState: .Normal)
-            setEditing(true, animated: true)
-        }
-    }
-    
-    
-    
-    
     
     
     
