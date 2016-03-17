@@ -18,6 +18,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     @IBOutlet var dateLabel: UILabel!
     
     @IBOutlet var imageView: UIImageView!
+    
     @IBAction func takePicture(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         
@@ -38,11 +39,15 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         view.endEditing(true)
     }
 
+    
+    
     var item:Item! {
         didSet {
             navigationItem.title = item.name
         }
     }
+    
+    var imageStore: ImageStore!
     
     let numberFormatter : NSNumberFormatter = {
         let formatter = NSNumberFormatter()
@@ -90,6 +95,9 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //get image from info directory
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //put image into cache
+        imageStore.setImage(image, forKey: item.itemKey)
         
         //put the image into imageview
         imageView.image = image

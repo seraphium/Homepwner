@@ -9,7 +9,10 @@
 import UIKit
 
 class ItemsViewController : UITableViewController {
+    
     var itemStore : ItemStore!
+    
+    var imageStore : ImageStore!
     
     required init?(coder aDecoder: NSCoder){
         //set default edit mode button
@@ -96,6 +99,8 @@ class ItemsViewController : UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destinationViewController as! DetailViewController
                 detailViewController.item = item
+                ß
+                detailViewController.imageStore = imageStore
                 
             }
             

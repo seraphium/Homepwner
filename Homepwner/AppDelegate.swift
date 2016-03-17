@@ -17,11 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Create Item Store
         let itemStore = ItemStore()
+        
+        //Create Image Store
+        let imageStore =  ImageStore()
+        
         //Access the ItemsViewController and set its datasource
         let navController = window!.rootViewController as! UINavigationController
         let itemsController = navController.topViewController as! ItemsViewController
         itemsController.itemStore = itemStore
-        
+        itemsController.imageStore = imageStore
         return true
     }
 
