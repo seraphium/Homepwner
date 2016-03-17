@@ -8,12 +8,30 @@
 
 import UIKit
 
-class DetailViewController : UIViewController, UITextFieldDelegate {
+class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate
+{
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialField: UITextField!
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
+    
+    @IBOutlet var imageView: UIImageView!
+    @IBAction func takePicture(sender: UIBarButtonItem) {
+        let imagePicker = UIImagePickerController()
+        
+        //see if camera supported, if not , pick from library
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            imagePicker.sourceType  = .Camera
+        }
+        else {
+            imagePicker.sourceType = .PhotoLibrary
+        }
+        
+        imagePicker.delegate = self
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
     
     @IBAction func backgroundTapped(sender: AnyObject) {
         
@@ -67,9 +85,27 @@ class DetailViewController : UIViewController, UITextFieldDelegate {
         } else {
             item.valueInDollars = 0
         }
-        
-    
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //get image from info directory
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //put the image into imageview
+        imageView.image = image
+        
+        //take imagePicker off screen
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
