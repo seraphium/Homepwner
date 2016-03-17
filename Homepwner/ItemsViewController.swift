@@ -99,7 +99,6 @@ class ItemsViewController : UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destinationViewController as! DetailViewController
                 detailViewController.item = item
-                ß
                 detailViewController.imageStore = imageStore
                 
             }
