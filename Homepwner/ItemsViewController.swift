@@ -77,9 +77,14 @@ class ItemsViewController : UITableViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             ac.addAction(cancelAction)
             let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
-                self.itemStore.RemoveItem(item)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
+            //remove from item store
+            self.itemStore.RemoveItem(item)
+            //remove the item from image cache
+            self.imageStore.deleteImageForKey(item.itemKey)
+            //delete from tableview
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                
+                
             })
             ac.addAction(deleteAction)
             presentViewController(ac, animated: true, completion: nil)

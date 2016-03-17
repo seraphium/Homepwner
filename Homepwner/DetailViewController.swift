@@ -72,6 +72,12 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
         
+        //get the image key
+        let key = item.itemKey
+        //if there is associated image , display it on image view
+        let imageToDisplay = imageStore.imageForKey(key)
+        imageView.image = imageToDisplay
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
