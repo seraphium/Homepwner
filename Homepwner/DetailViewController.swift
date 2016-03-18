@@ -19,6 +19,12 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     
     @IBOutlet var imageView: UIImageView!
     
+    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+
+        view.endEditing(true)
+        
+    }
+    
     @IBAction func takePicture(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         
@@ -32,11 +38,6 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    @IBAction func backgroundTapped(sender: AnyObject) {
-        
-        view.endEditing(true)
     }
 
     
@@ -111,14 +112,6 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         //take imagePicker off screen
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
