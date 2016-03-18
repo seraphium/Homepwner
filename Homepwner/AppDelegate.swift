@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //display bundle path
+        print (NSBundle.mainBundle().bundlePath)
+        
         //Create Image Store
         let imageStore =  ImageStore()
         
