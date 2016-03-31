@@ -14,6 +14,15 @@ class ItemsViewController : UITableViewController {
     
     var imageStore : ImageStore!
     
+    
+    let dateFormatter : NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .NoStyle
+        return formatter
+    }()
+    
+    
     // MARK: - initializer
     required init?(coder aDecoder: NSCoder){
         //set default edit mode button
@@ -52,18 +61,18 @@ class ItemsViewController : UITableViewController {
         let item = itemStore.allItems[indexPath.row]
        
         cell.nameLabel.text = item.name
-        cell.serialNumberLabel.text = item.serialNumber
-        cell.valueLabel.text =  "\(item.valueInDollars)"
+        cell.detailLabel.text = item.detail
+        cell.dateToNotifyLabel.text = dateFormatter.stringFromDate(item.dateToNotify)
         
-        //update cell color
-        if (item.valueInDollars  > 50){
+    //TODO: update cell color according to notify date remaining
+      /*  if (item.valueInDollars  > 50){
             
             cell.valueLabel.textColor = UIColor.redColor()
         }
         else{
             cell.valueLabel.textColor = UIColor.greenColor()
             
-        }
+        }*/
         return cell
        
     }
@@ -116,7 +125,7 @@ class ItemsViewController : UITableViewController {
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
-       let newItem = itemStore.CreateItem()
+       let newItem = itemStore.CreateItem(random: false)
         if let index = itemStore.allItems.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)

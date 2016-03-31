@@ -11,20 +11,20 @@ import UIKit
 
 class Item: NSObject, NSCoding {
     var name : String
-    var valueInDollars : Int
-    var serialNumber : String?
+    var detail : String?
+    var dateToNotify : NSDate
     let dateCreated : NSDate
     let itemKey : String
-    init(name: String, serialNumber: String?, valueInDollars : Int){
+    init(name: String, detail: String?, dateToNotify : NSDate){
         self.name = name
-        self.valueInDollars = valueInDollars
-        self.serialNumber = serialNumber
+        self.detail = detail
+        self.dateToNotify = dateToNotify
         self.dateCreated = NSDate()
         self.itemKey = NSUUID().UUIDString
         super.init()
     }
     
-    convenience init(random : Bool = false) {
+    convenience init(random : Bool = false, dateToNotify: NSDate) {
         if random {
             let adjective = ["Fluffy", "Rusty", "Shiny"]
             let nouns = ["Bear", "Spork", "Mac"]
@@ -33,13 +33,12 @@ class Item: NSObject, NSCoding {
             idx = arc4random_uniform(UInt32(nouns.count))
             let randomNouns = nouns[Int(idx)]
             let randomName = "\(randomAdjective) \(randomNouns)"
-            let randomValue  = Int(arc4random_uniform(100))
             let randomSerialNumber = NSUUID().UUIDString.componentsSeparatedByString("-").first!
             
-            self.init(name: randomName, serialNumber: randomSerialNumber, valueInDollars: randomValue)
+            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify)
             
         } else{
-            self.init(name: "", serialNumber: nil, valueInDollars: 0)
+            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify)
         }
     }
     
@@ -47,8 +46,8 @@ class Item: NSObject, NSCoding {
         aCoder.encodeObject(name, forKey: "name")
         aCoder.encodeObject(dateCreated, forKey: "dateCreated")
         aCoder.encodeObject(itemKey, forKey: "itemKey")
-        aCoder.encodeObject(serialNumber, forKey: "serialNumber")
-        aCoder.encodeInteger(valueInDollars, forKey: "valueInDollars")
+        aCoder.encodeObject(detail, forKey: "detail")
+        aCoder.encodeObject(dateToNotify, forKey: "dateToNotify")
 
     }
     
@@ -56,9 +55,9 @@ class Item: NSObject, NSCoding {
         name = aDecoder.decodeObjectForKey("name") as! String
         dateCreated = aDecoder.decodeObjectForKey("dateCreated") as! NSDate
         itemKey = aDecoder.decodeObjectForKey("itemKey") as! String
-        serialNumber = aDecoder.decodeObjectForKey("serialNumber") as! String?
+        detail = aDecoder.decodeObjectForKey("detail") as! String?
         name = aDecoder.decodeObjectForKey("name") as! String
-        valueInDollars = aDecoder.decodeIntegerForKey("valueInDollars")
+        dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate
         
         super.init()
     }

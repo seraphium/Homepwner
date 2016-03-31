@@ -13,8 +13,8 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
 {
     
     @IBOutlet var nameField: UITextField!
-    @IBOutlet var serialField: UITextField!
-    @IBOutlet var valueField: UITextField!
+    @IBOutlet var detailField: UITextField!
+    @IBOutlet var dateToNotifyField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     
     @IBOutlet var imageView: UIImageView!
@@ -61,7 +61,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .NoStyle
+        formatter.timeStyle = .MediumStyle
         return formatter
     }()
     
@@ -69,8 +69,8 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         super.viewWillAppear(animated)
         
         nameField.text = item.name
-        serialField.text = item.serialNumber
-        valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
+        detailField.text = item.detail
+        dateToNotifyField.text = dateFormatter.stringFromDate(item.dateToNotify)
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
         
         //get the image key
@@ -89,14 +89,9 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         
         //pass back the changed value
         item.name = nameField.text ?? ""
-        item.serialNumber = serialField.text
+        item.detail = detailField.text
         
-        if let valueText = valueField.text,
-            value =  numberFormatter.numberFromString(valueText) {
-                item.valueInDollars = value.integerValue
-        } else {
-            item.valueInDollars = 0
-        }
+      
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

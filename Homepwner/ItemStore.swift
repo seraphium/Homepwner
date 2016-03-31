@@ -26,8 +26,8 @@ class ItemStore  {
     }
     
     
-    func CreateItem() -> Item {
-        let newItem = Item(random: true)
+    func CreateItem(random random: Bool) -> Item {
+        let newItem = Item(random: random, dateToNotify: NSDate())
         allItems.append(newItem)
         return newItem
     }
