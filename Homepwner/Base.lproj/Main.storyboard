@@ -22,56 +22,54 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGP-p5-uOx">
-                                            <rect key="frame" x="13" y="8" width="40" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hB-Y6-qXF">
                                             <rect key="frame" x="542" y="22" width="40" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNJ-4P-pCE">
-                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
+                                            <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingChanged" id="3OO-PF-8mz"/>
+                                            </connections>
+                                        </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" id="2TH-bp-oi4"/>
+                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="DCY-7S-j4n"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="9hB-Y6-qXF" secondAttribute="trailing" constant="10" id="LrF-Tq-BIf"/>
+                                        <constraint firstItem="9hB-Y6-qXF" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="100" id="XM9-zD-m7w">
+                                            <variation key="widthClass=compact" constant="50"/>
+                                        </constraint>
                                         <constraint firstItem="9hB-Y6-qXF" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="YmL-Qb-Y8J"/>
-                                        <constraint firstItem="ZNJ-4P-pCE" firstAttribute="leading" secondItem="lGP-p5-uOx" secondAttribute="leading" id="fxN-S1-fgD"/>
-                                        <constraint firstAttribute="bottom" secondItem="ZNJ-4P-pCE" secondAttribute="bottom" constant="8" id="o9x-0K-fZL"/>
-                                        <constraint firstItem="lGP-p5-uOx" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" constant="5" id="oCd-qt-LiO"/>
-                                        <constraint firstItem="lGP-p5-uOx" firstAttribute="top" secondItem="NPT-jZ-EYc" secondAttribute="topMargin" id="roC-yr-eHK"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="ZNJ-4P-pCE"/>
+                                            <exclude reference="pI1-lq-X5F"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="fxN-S1-fgD"/>
-                                            <exclude reference="o9x-0K-fZL"/>
+                                            <exclude reference="2TH-bp-oi4"/>
+                                            <exclude reference="DCY-7S-j4n"/>
+                                            <exclude reference="XM9-zD-m7w"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
                                         <mask key="subviews">
-                                            <include reference="ZNJ-4P-pCE"/>
+                                            <include reference="pI1-lq-X5F"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="fxN-S1-fgD"/>
-                                            <include reference="o9x-0K-fZL"/>
+                                            <include reference="2TH-bp-oi4"/>
+                                            <include reference="DCY-7S-j4n"/>
+                                            <include reference="XM9-zD-m7w"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateToNotifyLabel" destination="9hB-Y6-qXF" id="myS-L3-yYK"/>
-                                    <outlet property="detailLabel" destination="ZNJ-4P-pCE" id="M3G-9a-Zgg"/>
-                                    <outlet property="nameLabel" destination="lGP-p5-uOx" id="xek-IV-NiM"/>
+                                    <outlet property="dateToNotifyLabel" destination="9hB-Y6-qXF" id="j41-1L-S5S"/>
+                                    <outlet property="textField" destination="pI1-lq-X5F" id="ki9-Yd-rbU"/>
                                     <segue destination="KFS-tu-DQv" kind="show" identifier="ShowItem" id="oJ1-Db-yaP"/>
                                 </connections>
                             </tableViewCell>

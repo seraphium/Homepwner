@@ -9,21 +9,17 @@
 import UIKit
 
 class ItemCell : UITableViewCell {
-    @IBOutlet var nameLabel : UILabel!
-    @IBOutlet var detailLabel : UILabel!
-    @IBOutlet var dateToNotifyLabel : UILabel!
-    var valueInDollar : Int!
+    
+    @IBOutlet weak var textField: UITextField!
+
+    @IBOutlet weak var dateToNotifyLabel: UILabel!
     
     func updateLabels(){
         
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        nameLabel.font = bodyFont
-        dateToNotifyLabel.font = bodyFont
+        textField.font = bodyFont
         
-        let caption1Font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
-        detailLabel.font = caption1Font
-
         
     }
     

@@ -60,8 +60,7 @@ class ItemsViewController : UITableViewController {
         
         let item = itemStore.allItems[indexPath.row]
        
-        cell.nameLabel.text = item.name
-        cell.detailLabel.text = item.detail
+        cell.textField.text = item.name
         cell.dateToNotifyLabel.text = dateFormatter.stringFromDate(item.dateToNotify)
         
     //TODO: update cell color according to notify date remaining
@@ -105,6 +104,16 @@ class ItemsViewController : UITableViewController {
         itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
   
+    
+    @IBAction func cellEditingEnd(sender: UITextField) {
+        let cell = sender.superview?.superview as! ItemCell
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        let item = itemStore.allItems[indexPath.row]
+        item.name = sender.text!
+        
+    }
+    
+    
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
