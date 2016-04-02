@@ -12,7 +12,6 @@ class ItemCell : UITableViewCell {
     
     @IBOutlet weak var textField: UITextField!
 
-    @IBOutlet weak var dateToNotifyLabel: UILabel!
     
     func updateLabels(){
         

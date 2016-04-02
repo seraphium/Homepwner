@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -22,29 +23,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hB-Y6-qXF">
-                                            <rect key="frame" x="542" y="22" width="40" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
                                             <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingChanged" id="3OO-PF-8mz"/>
+                                                <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingDidEnd" id="Qlp-q9-omp"/>
                                             </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" id="2TH-bp-oi4"/>
                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="DCY-7S-j4n"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="9hB-Y6-qXF" secondAttribute="trailing" constant="10" id="LrF-Tq-BIf"/>
-                                        <constraint firstItem="9hB-Y6-qXF" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="100" id="XM9-zD-m7w">
-                                            <variation key="widthClass=compact" constant="50"/>
-                                        </constraint>
-                                        <constraint firstItem="9hB-Y6-qXF" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="YmL-Qb-Y8J"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
@@ -53,7 +43,6 @@
                                         <mask key="constraints">
                                             <exclude reference="2TH-bp-oi4"/>
                                             <exclude reference="DCY-7S-j4n"/>
-                                            <exclude reference="XM9-zD-m7w"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
@@ -63,12 +52,10 @@
                                         <mask key="constraints">
                                             <include reference="2TH-bp-oi4"/>
                                             <include reference="DCY-7S-j4n"/>
-                                            <include reference="XM9-zD-m7w"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateToNotifyLabel" destination="9hB-Y6-qXF" id="j41-1L-S5S"/>
                                     <outlet property="textField" destination="pI1-lq-X5F" id="ki9-Yd-rbU"/>
                                     <segue destination="KFS-tu-DQv" kind="show" identifier="ShowItem" id="oJ1-Db-yaP"/>
                                 </connections>
@@ -77,6 +64,7 @@
                         <connections>
                             <outlet property="dataSource" destination="OmN-gi-ltQ" id="Byv-Kx-z8c"/>
                             <outlet property="delegate" destination="OmN-gi-ltQ" id="cH6-pc-7Ir"/>
+                            <outletCollection property="gestureRecognizers" destination="bfj-HP-hee" appends="YES" id="sx3-gS-h2H"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Homepwner" id="2nj-M0-rBk">
@@ -88,6 +76,11 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPg-mP-y0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="bfj-HP-hee">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="OmN-gi-ltQ" id="jf3-NT-MFy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="399" y="716"/>
         </scene>

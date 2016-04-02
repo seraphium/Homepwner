@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsViewController : UITableViewController {
+class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     var itemStore : ItemStore!
     
@@ -39,6 +39,12 @@ class ItemsViewController : UITableViewController {
         tableView.reloadData()
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        //clear the first responder (keyboard)
+        view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -61,7 +67,6 @@ class ItemsViewController : UITableViewController {
         let item = itemStore.allItems[indexPath.row]
        
         cell.textField.text = item.name
-        cell.dateToNotifyLabel.text = dateFormatter.stringFromDate(item.dateToNotify)
         
     //TODO: update cell color according to notify date remaining
       /*  if (item.valueInDollars  > 50){
@@ -74,6 +79,18 @@ class ItemsViewController : UITableViewController {
         }*/
         return cell
        
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        if (editing) {
+            view.endEditing(true)
+        }
+        super.setEditing(editing, animated: animated)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //no normal selection
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -105,15 +122,24 @@ class ItemsViewController : UITableViewController {
     }
   
     
+    @IBAction func detailButtonClicked(sender: UIButton) {
+            let cell = sender.superview?.superview as! ItemCell
+            let indexPath = self.tableView.indexPathForCell(cell)!
+            tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+    }
+    
     @IBAction func cellEditingEnd(sender: UITextField) {
         let cell = sender.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
         let item = itemStore.allItems[indexPath.row]
         item.name = sender.text!
-        
+        sender.resignFirstResponder()
     }
     
     
+    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -128,8 +154,16 @@ class ItemsViewController : UITableViewController {
             }
             
         }
-        
-        
+    
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "ShowItem" {
+            if editing {
+                return false
+            }
+        }
+        return true
     }
     
     //MARK: - other actions
@@ -143,5 +177,12 @@ class ItemsViewController : UITableViewController {
     }
     
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+
     
 }
