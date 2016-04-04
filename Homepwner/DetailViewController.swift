@@ -19,6 +19,42 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     
     @IBOutlet var imageView: UIImageView!
     
+    var datePicker : UIDatePicker!
+
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        datePicker = UIDatePicker()
+        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.date = NSDate() //initial value
+       
+
+    }
+    
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField.tag != 123 {
+            if  datePicker.superview != nil {
+                datePicker.removeFromSuperview()
+            }
+            return true
+        }
+
+        nameField.resignFirstResponder()
+        detailField.resignFirstResponder()
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
+            (alertAction) -> Void in
+            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(self.datePicker.date)
+            })
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.view.addSubview(datePicker)
+        self.presentViewController(alertController, animated:true, completion: nil)
+    
+        return false;
+    }
+    
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
 
         view.endEditing(true)
@@ -62,6 +98,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
         formatter.timeStyle = .MediumStyle
+        formatter.locale = NSLocale(localeIdentifier: "zh_CN")
         return formatter
     }()
     
@@ -72,6 +109,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         detailField.text = item.detail
         dateToNotifyField.text = dateFormatter.stringFromDate(item.dateToNotify)
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
+        
         
         //get the image key
         let key = item.itemKey
@@ -90,6 +128,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         //pass back the changed value
         item.name = nameField.text ?? ""
         item.detail = detailField.text
+        item.dateToNotify = dateFormatter.dateFromString(dateToNotifyField.text!)!
         
       
     }
