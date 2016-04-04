@@ -43,10 +43,11 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
 
         nameField.resignFirstResponder()
         detailField.resignFirstResponder()
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
             (alertAction) -> Void in
-            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(self.datePicker.date)
+            let selectedDateTime = self.datePicker.date;
+            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(selectedDateTime)
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
