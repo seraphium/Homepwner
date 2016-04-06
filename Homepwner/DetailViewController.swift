@@ -32,6 +32,27 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
 
     }
     
+    func scheduleNotifyForDate(date: NSDate, withTitle title: String, withBody body:String){
+        let app = UIApplication.sharedApplication()
+        //clear all old notify
+        let oldNotify = app.scheduledLocalNotifications
+        if oldNotify?.count > 0{
+            app.cancelAllLocalNotifications()
+        }
+        
+        let newNotify = UILocalNotification()
+        newNotify.fireDate = date
+        newNotify.timeZone = NSTimeZone.defaultTimeZone()
+        newNotify.repeatInterval = NSCalendarUnit(rawValue: 0)
+        newNotify.soundName = UILocalNotificationDefaultSoundName
+        newNotify.alertTitle = title
+        newNotify.alertBody = body
+        
+        app.scheduleLocalNotification(newNotify)
+        
+        
+        
+    }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField.tag != 123 {
@@ -48,6 +69,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
             (alertAction) -> Void in
             let selectedDateTime = self.datePicker.date;
             self.dateToNotifyField.text = self.dateFormatter.stringFromDate(selectedDateTime)
+            self.scheduleNotifyForDate(selectedDateTime, withTitle: self.nameField.text!, withBody: self.detailField.text!)
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
