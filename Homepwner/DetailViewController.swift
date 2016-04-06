@@ -42,14 +42,15 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         
         let newNotify = UILocalNotification()
         newNotify.fireDate = date
-        newNotify.timeZone = NSTimeZone.defaultTimeZone()
-        newNotify.repeatInterval = NSCalendarUnit(rawValue: 0)
+        newNotify.timeZone = NSTimeZone.localTimeZone()
+        newNotify.repeatInterval = NSCalendarUnit.Day
         newNotify.soundName = UILocalNotificationDefaultSoundName
         newNotify.alertTitle = title
         newNotify.alertBody = body
-        
+        newNotify.alertAction = "OK"
+        newNotify.applicationIconBadgeNumber = 1
         app.scheduleLocalNotification(newNotify)
-        
+       // app.presentLocalNotificationNow(newNotify)
         
         
     }
@@ -131,8 +132,6 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         nameField.text = item.name
         detailField.text = item.detail
         dateToNotifyField.text = dateFormatter.stringFromDate(item.dateToNotify)
-        dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
-        
         
         //get the image key
         let key = item.itemKey
