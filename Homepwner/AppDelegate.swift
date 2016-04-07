@@ -17,9 +17,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         if (UIApplication.instancesRespondToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))) {
-                
+            
+            let userAction1 = UIMutableUserNotificationAction()
+            userAction1.identifier = "userAction1"
+            userAction1.title = "Finished"
+            userAction1.activationMode = .Background
+            userAction1.authenticationRequired = true
+            
+            let userAction2 = UIMutableUserNotificationAction()
+            userAction2.identifier = "userAction2"
+            userAction2.title = "Detail"
+            userAction2.activationMode = .Foreground
+            userAction2.authenticationRequired = true
+            
+       /*     let userAction3 = UIMutableUserNotificationAction()
+            userAction3.identifier = "userAction2"
+            userAction3.title = "Ignore"
+            userAction3.activationMode = .Background
+            userAction3.authenticationRequired = true
+            userAction3.destructive = true*/
+            
+            let userCategory = UIMutableUserNotificationCategory()
+            userCategory.identifier = "MyNotification"
+            userCategory.setActions([userAction1, userAction2], forContext: .Minimal)
+
+          //  application.registerForRemoteNotifications()
             application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound],
-                categories: nil))
+                categories: NSSet(array: [userCategory]) as? Set<UIUserNotificationCategory>))
+            
+          
         }
         
         //Create Image Store
@@ -33,6 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        print ("identifier=\(identifier)")
+        
+        
+        completionHandler()
+    }
+    
+    
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         print("received local notification")
