@@ -30,20 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userAction2.activationMode = .Foreground
             userAction2.authenticationRequired = true
             
-       /*     let userAction3 = UIMutableUserNotificationAction()
+           let userAction3 = UIMutableUserNotificationAction()
             userAction3.identifier = "userAction2"
             userAction3.title = "Ignore"
             userAction3.activationMode = .Background
             userAction3.authenticationRequired = true
-            userAction3.destructive = true*/
+            userAction3.destructive = true
             
             let userCategory = UIMutableUserNotificationCategory()
             userCategory.identifier = "MyNotification"
-            userCategory.setActions([userAction1, userAction2], forContext: .Minimal)
+            userCategory.setActions([userAction1, userAction3], forContext: .Minimal)
+            userCategory.setActions([userAction1, userAction2, userAction3], forContext: .Default)
 
           //  application.registerForRemoteNotifications()
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound],
-                categories: NSSet(array: [userCategory]) as? Set<UIUserNotificationCategory>))
+            let setting = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound],
+                                                     categories: NSSet(array: [userCategory]) as? Set<UIUserNotificationCategory>)
+            application.registerUserNotificationSettings(setting)
             
           
         }
@@ -60,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        
         print ("identifier=\(identifier)")
         
         
@@ -70,19 +73,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         print("received local notification")
-        let title = notification.alertTitle
-        let body = notification.alertBody
         
-        //TODO: deprecated "UIAlertView"
-        let alert = UIAlertView()
-        
-        alert.title = title!
-        alert.message = body!
-        alert.addButtonWithTitle(notification.alertAction!)
-        alert.cancelButtonIndex = 0
-        alert.show()
-        
-        
+       let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
+            (alertAction) -> Void in
+           
+            })
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        let navController = window!.rootViewController as! UINavigationController
+        let topController = navController.topViewController
+        topController!.presentViewController(alertController, animated: true, completion: nil)
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -105,8 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        application.cancelAllLocalNotifications()
-        application.applicationIconBadgeNumber = 0
+       // application.cancelAllLocalNotifications()
+        //application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {

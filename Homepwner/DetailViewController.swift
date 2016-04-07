@@ -47,7 +47,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         newNotify.soundName = UILocalNotificationDefaultSoundName
         newNotify.alertTitle = title
         newNotify.alertBody = body
-        //newNotify.alertAction = "OK"
+        newNotify.alertAction = "OK"
         newNotify.applicationIconBadgeNumber = 1
         newNotify.category = "MyNotification"
         app.scheduleLocalNotification(newNotify)
