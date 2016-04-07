@@ -19,19 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (UIApplication.instancesRespondToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))) {
             
             let userAction1 = UIMutableUserNotificationAction()
-            userAction1.identifier = "userAction1"
+            userAction1.identifier = "finished"
             userAction1.title = "Finished"
             userAction1.activationMode = .Background
             userAction1.authenticationRequired = true
             
             let userAction2 = UIMutableUserNotificationAction()
-            userAction2.identifier = "userAction2"
+            userAction2.identifier = "detail"
             userAction2.title = "Detail"
             userAction2.activationMode = .Foreground
             userAction2.authenticationRequired = true
             
            let userAction3 = UIMutableUserNotificationAction()
-            userAction3.identifier = "userAction2"
+            userAction3.identifier = "ignore"
             userAction3.title = "Ignore"
             userAction3.activationMode = .Background
             userAction3.authenticationRequired = true
@@ -61,9 +61,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func showNotificationAlertController(forNotification notification: UILocalNotification)
+    {
+        let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Finish", style: .Default) {
+            (alertAction) -> Void in
+            
+            })
+        
+        alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel, handler: nil))
+        let navController = window!.rootViewController as! UINavigationController
+        let topController = navController.topViewController
+        topController!.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         
         print ("identifier=\(identifier)")
+        if let identify = identifier {
+            switch identify {
+            case "finished":
+                print ("finished")
+                application.cancelLocalNotification(notification)
+                application.applicationIconBadgeNumber -= 1
+            case "detail":
+                showNotificationAlertController(forNotification: notification)
+            case "ignore":
+                print ("Ignore")
+            default:
+                print ("others")
+            }
+        }
         
         
         completionHandler()
@@ -74,15 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         print("received local notification")
         
-       let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
-            (alertAction) -> Void in
-           
-            })
-        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-        let navController = window!.rootViewController as! UINavigationController
-        let topController = navController.topViewController
-        topController!.presentViewController(alertController, animated: true, completion: nil)
+       showNotificationAlertController(forNotification: notification)
     }
     
     func applicationWillResignActive(application: UIApplication) {
