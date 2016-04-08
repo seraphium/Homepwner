@@ -73,11 +73,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func notificationHandleDetail(application: UIApplication, forNotification notification: UILocalNotification) {
        //todo: present detail view controller
         let navController = window!.rootViewController as! UINavigationController
-        for vc in navController.viewControllers {
-            if vc.isKindOfClass(DetailViewController) {
-                navController.popToViewController(vc, animated: true)
-            }
-        }
+        var detailVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("detailVC") as! DetailViewController
+        
+        /*
+        let item = itemStore.allItems[row]
+        detailViewController.item = item
+        detailViewController.imageStore = imageStore
+        */
+        navController.pushViewController(detailVC, animated: true)
     }
     
 
