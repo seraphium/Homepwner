@@ -64,15 +64,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         itemsController.imageStore = imageStore
         return true
     }
+    
+    func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
+        application.cancelLocalNotification(notification)
+        application.applicationIconBadgeNumber -= 1
+    }
+    
+    func notificationHandleDetail(application: UIApplication, forNotification notification: UILocalNotification) {
+       //todo: present detail view controller
+        let navController = window!.rootViewController as! UINavigationController
+        for vc in navController.viewControllers {
+            if vc.isKindOfClass(DetailViewController) {
+                navController.popToViewController(vc, animated: true)
+            }
+        }
+    }
+    
 
-    func showNotificationAlertController(forNotification notification: UILocalNotification)
+    func showNotificationAlertController(application:UIApplication, forNotification notification: UILocalNotification)
     {
         let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Finish", style: .Default) {
             (alertAction) -> Void in
-            
+                self.notificationHandleFinish(application, forNotification: notification)
             })
-        
+        alertController.addAction(UIAlertAction(title: "Detail", style: .Default) {
+            (alertAction) -> Void in
+                self.notificationHandleDetail(application, forNotification: notification)
+            })
+
         alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel, handler: nil))
         let navController = window!.rootViewController as! UINavigationController
         let topController = navController.topViewController
@@ -89,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 application.cancelLocalNotification(notification)
                 application.applicationIconBadgeNumber -= 1
             case "detail":
-                showNotificationAlertController(forNotification: notification)
+                showNotificationAlertController(application, forNotification: notification)
             case "ignore":
                 print ("Ignore")
             default:
@@ -106,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         print("received local notification")
         
-       showNotificationAlertController(forNotification: notification)
+       showNotificationAlertController(application, forNotification: notification)
     }
     
     func applicationWillResignActive(application: UIApplication) {
