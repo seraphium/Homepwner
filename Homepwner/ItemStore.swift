@@ -25,6 +25,14 @@ class ItemStore  {
         }
     }
     
+    func getItem(itemKey: String) -> Item? {
+        for item in allItems {
+            if item.itemKey == itemKey {
+                return item
+            }
+        }
+        return nil
+    }
     
     func CreateItem(random random: Bool) -> Item {
         let newItem = Item(random: random, dateToNotify: NSDate())

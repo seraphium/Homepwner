@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homepwner/AppDelegate.swift"
-            timestampString = "481727254.123976"
+            timestampString = "481892886.124433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homepwner/AppDelegate.swift"
-            timestampString = "481820364.934616"
+            timestampString = "481893964.338306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "application(_:didReceiveLocalNotification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -89,13 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Homepwner/AppDelegate.swift"
-            timestampString = "481820364.934616"
+            filePath = "Homepwner/DetailViewController.swift"
+            timestampString = "481893068.974863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "notificationHandleDetail(_:forNotification:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "scheduleNotifyForDate(_:onItem:withTitle:withBody:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,13 +106,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homepwner/AppDelegate.swift"
-            timestampString = "481820353.932255"
+            timestampString = "481894026.578821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "notificationHandleDetail(_:forNotification:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Homepwner.AppDelegate.notificationHandleDetail (__ObjC.UIApplication, forNotification : __ObjC.UILocalNotification) -&gt; ()"
+                  moduleName = "Homepwner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackiezhang/Dev/Homepwner/Homepwner/AppDelegate.swift"
+                  timestampString = "481894026.582474"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "1664">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Homepwner.AppDelegate.notificationHandleDetail (__ObjC.UIApplication, forNotification : __ObjC.UILocalNotification) -&gt; ()"
+                  moduleName = "Homepwner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackiezhang/Dev/Homepwner/Homepwner/AppDelegate.swift"
+                  timestampString = "481894026.582663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "1805">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

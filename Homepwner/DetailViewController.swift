@@ -32,7 +32,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
 
     }
     
-    func scheduleNotifyForDate(date: NSDate, withTitle title: String, withBody body:String){
+    func scheduleNotifyForDate(date: NSDate, onItem item: Item, withTitle title: String, withBody body:String){
         let app = UIApplication.sharedApplication()
         //clear all old notify
         let oldNotify = app.scheduledLocalNotifications
@@ -50,6 +50,10 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         newNotify.alertAction = "OK"
         newNotify.applicationIconBadgeNumber = 1
         newNotify.category = "MyNotification"
+        
+        var userInfo : [NSObject:AnyObject] = [NSObject:AnyObject]()
+        userInfo["itemKey"] = item.itemKey
+        newNotify.userInfo = userInfo
         app.scheduleLocalNotification(newNotify)
        // app.presentLocalNotificationNow(newNotify)
         
@@ -71,7 +75,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
             (alertAction) -> Void in
             let selectedDateTime = self.datePicker.date;
             self.dateToNotifyField.text = self.dateFormatter.stringFromDate(selectedDateTime)
-            self.scheduleNotifyForDate(selectedDateTime, withTitle: self.nameField.text!, withBody: self.detailField.text!)
+            self.scheduleNotifyForDate(selectedDateTime, onItem: self.item, withTitle: self.nameField.text!, withBody: self.detailField.text!)
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)

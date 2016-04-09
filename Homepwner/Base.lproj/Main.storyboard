@@ -171,9 +171,6 @@
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="248" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="djB-C5-gVo">
                                         <rect key="frame" x="0.0" y="114" width="560" height="362"/>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="114" width="360" height="362"/>
-                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <gestureRecognizers/>

@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let itemStore = ItemStore()
-
+    let imageStore =  ImageStore()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
     
@@ -54,8 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           
         }
         
-        //Create Image Store
-        let imageStore =  ImageStore()
+
         
         //Access the ItemsViewController and set its datasource
         let navController = window!.rootViewController as! UINavigationController
@@ -73,17 +73,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func notificationHandleDetail(application: UIApplication, forNotification notification: UILocalNotification) {
        //todo: present detail view controller
         let navController = window!.rootViewController as! UINavigationController
-        var detailVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("detailVC") as! DetailViewController
+        let detailVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("detailVC") as! DetailViewController
         
-        /*
-        let item = itemStore.allItems[row]
-        detailViewController.item = item
-        detailViewController.imageStore = imageStore
-        */
-        navController.pushViewController(detailVC, animated: true)
+        var userInfo = notification.userInfo!
+        let key = userInfo["itemKey"] as! String
+        if let item = itemStore.getItem(key){
+            detailVC.item = item
+            detailVC.imageStore = imageStore
+            navController.pushViewController(detailVC, animated: true)
+        }
+
     }
     
-
     func showNotificationAlertController(application:UIApplication, forNotification notification: UILocalNotification)
     {
         let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
