@@ -17,7 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-    
+        
+        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] {
+            showNotificationAlertController(application, forNotification: notification as! UILocalNotification)
+
+        }
+        
         if (UIApplication.instancesRespondToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))) {
             
             //TODO: should add response to local notification here

@@ -36,8 +36,13 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         let app = UIApplication.sharedApplication()
         //clear all old notify
         let oldNotify = app.scheduledLocalNotifications
-        if oldNotify?.count > 0{
-            app.cancelAllLocalNotifications()
+        
+        //cancel the old notify for this item
+        for notif in oldNotify! {
+            let itemKey =  notif.userInfo!["itemKey"] as! String
+            if itemKey == item.itemKey {
+                app.cancelLocalNotification(notif)
+            }
         }
         
         let newNotify = UILocalNotification()
@@ -73,9 +78,17 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
             (alertAction) -> Void in
-            let selectedDateTime = self.datePicker.date;
-            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(selectedDateTime)
-            self.scheduleNotifyForDate(selectedDateTime, onItem: self.item, withTitle: self.nameField.text!, withBody: self.detailField.text!)
+            //trunc date by set sec to 0
+            let date = self.datePicker.date
+            var minuteDate : NSDate?
+            NSCalendar.currentCalendar().rangeOfUnit(NSCalendarUnit.Minute,
+                startDate: &minuteDate,
+                interval: nil,
+                forDate: date)
+            
+            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(minuteDate!)
+            
+            self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.nameField.text!, withBody: self.detailField.text!)
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
