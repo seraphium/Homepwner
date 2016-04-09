@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PlaceHolder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
                                             <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -32,27 +31,42 @@
                                                 <outlet property="delegate" destination="OmN-gi-ltQ" id="xR2-VS-4Td"/>
                                             </connections>
                                         </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <state key="normal" title="Done"/>
+                                            <variation key="widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="341" y="18" width="46" height="30"/>
+                                            </variation>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" id="2TH-bp-oi4"/>
+                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" constant="5" id="5dB-mo-5Gw"/>
                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="DCY-7S-j4n"/>
+                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="XbQ-79-Yh5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="DyM-aN-Dht" secondAttribute="trailing" constant="5" id="uko-mW-fZl"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="pI1-lq-X5F"/>
+                                            <exclude reference="DyM-aN-Dht"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="2TH-bp-oi4"/>
+                                            <exclude reference="5dB-mo-5Gw"/>
                                             <exclude reference="DCY-7S-j4n"/>
+                                            <exclude reference="XbQ-79-Yh5"/>
+                                            <exclude reference="uko-mW-fZl"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="pI1-lq-X5F"/>
+                                            <include reference="DyM-aN-Dht"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="2TH-bp-oi4"/>
+                                            <include reference="5dB-mo-5Gw"/>
                                             <include reference="DCY-7S-j4n"/>
+                                            <include reference="XbQ-79-Yh5"/>
+                                            <include reference="uko-mW-fZl"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
