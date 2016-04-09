@@ -53,9 +53,33 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "unDone"
+        case 1:
+            return "Done"
+        default:
+            return ""
+        }
+    }
+    
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
-        return itemStore.allItems.count
+        switch section {
+        case 0:
+            return itemStore.allItems.count
+        case 1:
+            return 5
+        default:
+            return 0
+        }
+
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -64,9 +88,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         //update cell font
         cell.updateLabels()
         
-        let item = itemStore.allItems[indexPath.row]
-       
-        cell.textField.text = item.name
+        switch indexPath.section {
+        case 0:
+            let item = itemStore.allItems[indexPath.row]
+            cell.textField.text = item.name
+        case 1:
+            cell.textField.text = "done"
+        default:
+            break;
+        }
+
         
     //TODO: update cell color according to notify date remaining
       /*  if (item.valueInDollars  > 50){
