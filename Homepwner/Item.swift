@@ -15,12 +15,14 @@ class Item: NSObject, NSCoding {
     var dateToNotify : NSDate
     let dateCreated : NSDate
     let itemKey : String
+    var finished: Bool
     init(name: String, detail: String?, dateToNotify : NSDate){
         self.name = name
         self.detail = detail
         self.dateToNotify = dateToNotify
         self.dateCreated = NSDate()
         self.itemKey = NSUUID().UUIDString
+        self.finished = false
         super.init()
     }
     
@@ -48,6 +50,7 @@ class Item: NSObject, NSCoding {
         aCoder.encodeObject(itemKey, forKey: "itemKey")
         aCoder.encodeObject(detail, forKey: "detail")
         aCoder.encodeObject(dateToNotify, forKey: "dateToNotify")
+        aCoder.encodeObject(finished, forKey: "finished")
 
     }
     
@@ -58,7 +61,7 @@ class Item: NSObject, NSCoding {
         detail = aDecoder.decodeObjectForKey("detail") as! String?
         name = aDecoder.decodeObjectForKey("name") as! String
         dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate
-        
+        finished = aDecoder.decodeBoolForKey("finished")
         super.init()
     }
     

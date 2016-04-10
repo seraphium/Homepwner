@@ -70,11 +70,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
+        var finishedCount : Int = 0
+        var unFinishedCount : Int = 0
+        for item in itemStore.allItems {
+            if item.finished == true {
+                finishedCount += 1
+            } else {
+                unFinishedCount += 1
+            }
+        }
         switch section {
         case 0:
-            return itemStore.allItems.count
+            return finishedCount
         case 1:
-            return 5
+            return unFinishedCount
         default:
             return 0
         }

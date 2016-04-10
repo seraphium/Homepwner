@@ -73,6 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
         application.cancelLocalNotification(notification)
         application.applicationIconBadgeNumber -= 1
+        var userInfo = notification.userInfo!
+        let key = userInfo["itemKey"] as! String
+        if let item = itemStore.getItem(key){
+            item.finished = true
+        }
     }
     
     func notificationHandleDetail(application: UIApplication, forNotification notification: UILocalNotification) {
@@ -117,6 +122,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print ("finished")
                 application.cancelLocalNotification(notification)
                 application.applicationIconBadgeNumber -= 1
+                var userInfo = notification.userInfo!
+                let key = userInfo["itemKey"] as! String
+                if let item = itemStore.getItem(key){
+                    item.finished = true
+                }
+
             case "detail":
                 showNotificationAlertController(application, forNotification: notification)
             case "ignore":
