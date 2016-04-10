@@ -16,17 +16,17 @@ class Item: NSObject, NSCoding {
     let dateCreated : NSDate
     let itemKey : String
     var finished: Bool
-    init(name: String, detail: String?, dateToNotify : NSDate){
+    init(name: String, detail: String?, dateToNotify : NSDate, finished: Bool){
         self.name = name
         self.detail = detail
         self.dateToNotify = dateToNotify
         self.dateCreated = NSDate()
         self.itemKey = NSUUID().UUIDString
-        self.finished = false
+        self.finished = finished
         super.init()
     }
     
-    convenience init(random : Bool = false, dateToNotify: NSDate) {
+    convenience init(random : Bool = false, dateToNotify: NSDate, finished: Bool) {
         if random {
             let adjective = ["Fluffy", "Rusty", "Shiny"]
             let nouns = ["Bear", "Spork", "Mac"]
@@ -37,10 +37,10 @@ class Item: NSObject, NSCoding {
             let randomName = "\(randomAdjective) \(randomNouns)"
             let randomSerialNumber = NSUUID().UUIDString.componentsSeparatedByString("-").first!
             
-            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify)
+            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify, finished: finished)
             
         } else{
-            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify)
+            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify, finished: finished)
         }
     }
     

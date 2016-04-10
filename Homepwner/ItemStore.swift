@@ -9,57 +9,96 @@
 import UIKit
 
 class ItemStore  {
-    var allItems = [Item]()
-    
-    //archive path to save items
-    let itemArchiveURL : NSURL = {
+    var allItemsUnDone = [Item]()
+    var allItemsDone = [Item]()
+
+    //archive path to save undone items
+    let unDoneItemArchiveURL : NSURL = {
         let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let documentDirectory = documentDirectories.first!
-        return  documentDirectory.URLByAppendingPathComponent("items.archive")
+        return  documentDirectory.URLByAppendingPathComponent("itemsundone.archive")
+        
+    }()
+    
+    //archive path to save undone items
+    let doneItemArchiveURL : NSURL = {
+        let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let documentDirectory = documentDirectories.first!
+        return  documentDirectory.URLByAppendingPathComponent("itemsdone.archive")
         
     }()
     
     init() {
-        if let archivedItems =  NSKeyedUnarchiver.unarchiveObjectWithFile(itemArchiveURL.path!) as? [Item] {
-            allItems += archivedItems
+        if let archivedItemsUnDone =  NSKeyedUnarchiver.unarchiveObjectWithFile(unDoneItemArchiveURL.path!) as? [Item] {
+            allItemsUnDone += archivedItemsUnDone
         }
+        if let archivedItemsDone =  NSKeyedUnarchiver.unarchiveObjectWithFile(doneItemArchiveURL.path!) as? [Item] {
+            allItemsDone += archivedItemsDone
+        }
+        
     }
     
-    func getItem(itemKey: String) -> Item? {
-        for item in allItems {
-            if item.itemKey == itemKey {
-                return item
+    func getItem(itemKey: String, finished: Bool) -> Item? {
+        if finished {
+            for item in allItemsDone {
+                if item.itemKey == itemKey {
+                    return item
+                }
+            }
+        }
+        else {
+            for item in allItemsUnDone {
+                if item.itemKey == itemKey {
+                    return item
+                }
             }
         }
         return nil
     }
     
-    func CreateItem(random random: Bool) -> Item {
-        let newItem = Item(random: random, dateToNotify: NSDate())
-        allItems.append(newItem)
+    func CreateItem(random random: Bool, finished: Bool) -> Item {
+        let newItem = Item(random: random, dateToNotify: NSDate(), finished: finished)
+        if (finished){
+            allItemsDone.append(newItem)
+        } else {
+            allItemsUnDone.append(newItem)
+        }
         return newItem
     }
     
     func RemoveItem( item: Item) {
-        if let index = allItems.indexOf(item) {
-            allItems.removeAtIndex(index)
+        if let index = allItemsUnDone.indexOf(item) {
+            allItemsUnDone.removeAtIndex(index)
+        } else if let index = allItemsDone.indexOf(item){
+            allItemsDone.removeAtIndex(index)
         }
     }
     
-    func MoveItemAtIndex( fromIndex: Int, toIndex: Int) {
+    func MoveItemAtIndex( fromIndex: Int, toIndex: Int, finished: Bool) {
         if fromIndex == toIndex {
             return ;
         }
-        let movedItem = allItems[fromIndex]
-        allItems.removeAtIndex(fromIndex)
-        allItems.insert(movedItem, atIndex: toIndex)
+        var items : [Item]
+        if (finished) {
+            items = allItemsDone
+            } else {
+            items = allItemsUnDone
+        }
+        let movedItem = items[fromIndex]
+        items.removeAtIndex(fromIndex)
+        items.insert(movedItem, atIndex: toIndex)
+
         
     }
     
     //save to file
     func saveChanges() -> Bool {
-        print ("saving items to \(itemArchiveURL.path!)")
-        return  NSKeyedArchiver.archiveRootObject(allItems, toFile: itemArchiveURL.path!)
+        print ("saving items to \(unDoneItemArchiveURL.path!)")
+        print ("saving items to \(doneItemArchiveURL.path!)")
+
+        return  NSKeyedArchiver.archiveRootObject(allItemsUnDone, toFile: unDoneItemArchiveURL.path!)
+        return  NSKeyedArchiver.archiveRootObject(allItemsDone, toFile: doneItemArchiveURL.path!)
+
     }
     
 }

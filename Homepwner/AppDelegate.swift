@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber -= 1
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
-        if let item = itemStore.getItem(key){
+        if let item = itemStore.getItem(key, finished: false){
             item.finished = true
         }
     }
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
-        if let item = itemStore.getItem(key){
+        if let item = itemStore.getItem(key, finished: false){
             detailVC.item = item
             detailVC.imageStore = imageStore
             navController.pushViewController(detailVC, animated: true)
@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 application.applicationIconBadgeNumber -= 1
                 var userInfo = notification.userInfo!
                 let key = userInfo["itemKey"] as! String
-                if let item = itemStore.getItem(key){
+                if let item = itemStore.getItem(key, finished: false){
                     item.finished = true
                 }
 

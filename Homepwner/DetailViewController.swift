@@ -139,7 +139,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
         formatter.locale = NSLocale(localeIdentifier: "zh_CN")
         return formatter
     }()

@@ -18,7 +18,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .NoStyle
+        formatter.timeStyle = .ShortStyle
         return formatter
     }()
     
@@ -70,20 +70,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
-        var finishedCount : Int = 0
-        var unFinishedCount : Int = 0
-        for item in itemStore.allItems {
-            if item.finished == true {
-                finishedCount += 1
-            } else {
-                unFinishedCount += 1
-            }
-        }
         switch section {
         case 0:
-            return finishedCount
+            return itemStore.allItemsUnDone.count
         case 1:
-            return unFinishedCount
+            return itemStore.allItemsDone.count
         default:
             return 0
         }
@@ -99,7 +90,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
         switch indexPath.section {
         case 0:
-            let item = itemStore.allItems[indexPath.row]
+            let item = itemStore.allItemsUnDone[indexPath.row]
             cell.textField.text = item.name
         case 1:
             cell.textField.text = "done"
@@ -135,7 +126,15 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let item = itemStore.allItems[indexPath.row]
+            var item : Item
+            if (indexPath.section == 0)
+            {
+                item = itemStore.allItemsUnDone[indexPath.row]
+            } else {
+                item = itemStore.allItemsDone[indexPath.row]
+
+            }
+            
             let title = "Delete \(item.name)?"
             let message = "Are you sure you want to delete this item?"
             
@@ -158,7 +157,15 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        if (sourceIndexPath.section == destinationIndexPath.section){
+            if (sourceIndexPath.section == 0)
+            {
+                itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row, finished: false)
+            } else
+            {
+                itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row, finished: true)
+            }
+        }
     }
   
     
@@ -171,7 +178,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     @IBAction func cellEditingEnd(sender: UITextField) {
         let cell = sender.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
-        let item = itemStore.allItems[indexPath.row]
+        var item : Item
+        if (indexPath.section == 0)
+        {
+            item = itemStore.allItemsUnDone[indexPath.row]
+        } else {
+            item = itemStore.allItemsDone[indexPath.row]
+
+        }
         item.name = sender.text!
         sender.resignFirstResponder()
     }
@@ -186,7 +200,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         //pass the value to the detailed view
         if segue.identifier == "ShowItem" {
             if let row = tableView.indexPathForSelectedRow?.row {
-                let item = itemStore.allItems[row]
+                var item : Item
+                if (tableView.indexPathForSelectedRow?.section == 0)
+                {
+                    item = itemStore.allItemsUnDone[row]
+                } else {
+                    item = itemStore.allItemsDone[row]
+                }
                 let detailViewController = segue.destinationViewController as! DetailViewController
                 detailViewController.item = item
                 detailViewController.imageStore = imageStore
@@ -208,8 +228,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
-       let newItem = itemStore.CreateItem(random: false)
-        if let index = itemStore.allItems.indexOf(newItem) {
+       let newItem = itemStore.CreateItem(random: false, finished: false)
+        if let index = itemStore.allItemsUnDone.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
