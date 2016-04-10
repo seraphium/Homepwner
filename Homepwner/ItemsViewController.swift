@@ -93,7 +93,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             let item = itemStore.allItemsUnDone[indexPath.row]
             cell.textField.text = item.name
         case 1:
-            cell.textField.text = "done"
+            let item = itemStore.allItemsDone[indexPath.row]
+            cell.textField.text = item.name
         default:
             break;
         }
@@ -160,10 +161,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         if (sourceIndexPath.section == destinationIndexPath.section){
             if (sourceIndexPath.section == 0)
             {
-                itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row, finished: false)
-            } else
-            {
-                itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row, finished: true)
+                itemStore.MoveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row, finishing: false)
             }
         }
     }
@@ -193,6 +191,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    
+    
+    @IBAction func itemDoneClicked(sender: UIButton) {
+        let cell = sender.superview?.superview as! ItemCell
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        if (indexPath.section == 0)
+        {
+            let item = itemStore.allItemsUnDone[indexPath.row]
+            item.finished = true
+            let destIndexPath = itemStore.allItemsDone.count
+            itemStore.MoveItemAtIndex(indexPath.row, toIndex: destIndexPath, finishing: true)
+            tableView.reloadData()
+        }
+        
     }
     
   //MARK: - segue actions

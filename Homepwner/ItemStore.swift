@@ -74,20 +74,21 @@ class ItemStore  {
         }
     }
     
-    func MoveItemAtIndex( fromIndex: Int, toIndex: Int, finished: Bool) {
-        if fromIndex == toIndex {
+    func MoveItemAtIndex( fromIndex: Int, toIndex: Int, finishing: Bool) {
+        if finishing == false && (fromIndex == toIndex) {
             return ;
         }
-        var items : [Item]
-        if (finished) {
-            items = allItemsDone
-            } else {
-            items = allItemsUnDone
-        }
-        let movedItem = items[fromIndex]
-        items.removeAtIndex(fromIndex)
-        items.insert(movedItem, atIndex: toIndex)
+        let item = allItemsUnDone[fromIndex]
+        allItemsUnDone.removeAtIndex(fromIndex)
+        if (finishing == true) {
+            allItemsDone.insert(item, atIndex: toIndex)
 
+        } else {
+            allItemsUnDone.insert(item, atIndex: toIndex)
+        }
+
+        
+       
         
     }
     
@@ -96,9 +97,9 @@ class ItemStore  {
         print ("saving items to \(unDoneItemArchiveURL.path!)")
         print ("saving items to \(doneItemArchiveURL.path!)")
 
-        return  NSKeyedArchiver.archiveRootObject(allItemsUnDone, toFile: unDoneItemArchiveURL.path!)
-        return  NSKeyedArchiver.archiveRootObject(allItemsDone, toFile: doneItemArchiveURL.path!)
-
+        let res = NSKeyedArchiver.archiveRootObject(allItemsUnDone, toFile: unDoneItemArchiveURL.path!)
+        let res2 = NSKeyedArchiver.archiveRootObject(allItemsDone, toFile: doneItemArchiveURL.path!)
+        return res && res2
     }
     
 }
