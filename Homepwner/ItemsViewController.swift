@@ -200,9 +200,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         if (indexPath.section == 0)
         {
             let item = itemStore.allItemsUnDone[indexPath.row]
-            item.finished = true
-            let destIndexPath = itemStore.allItemsDone.count
-            itemStore.MoveItemAtIndex(indexPath.row, toIndex: destIndexPath, finishing: true)
+            itemStore.finishItem(item)
             tableView.reloadData()
         }
         

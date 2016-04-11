@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
         if let item = itemStore.getItem(key, finished: false){
-            item.finished = true
+            itemStore.finishItem(item)
         }
     }
     
@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 var userInfo = notification.userInfo!
                 let key = userInfo["itemKey"] as! String
                 if let item = itemStore.getItem(key, finished: false){
-                    item.finished = true
+                    itemStore.finishItem(item)
                 }
 
             case "detail":

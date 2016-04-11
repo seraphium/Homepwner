@@ -64,19 +64,43 @@
 		4B3A8DE31C846DDF005B1DE5 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				4B7995801CBB3B7600DEACB0 /* Views */,
+				4B79957F1CBB3B6000DEACB0 /* Models */,
+				4B79957E1CBB3B4D00DEACB0 /* ViewControllers */,
 				4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */,
 				4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */,
-				4B3A8DF81C8470F2005B1DE5 /* Item.swift */,
-				4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */,
 				4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */,
 				4B3A8DED1C846DDF005B1DE5 /* LaunchScreen.storyboard */,
 				4B3A8DF01C846DDF005B1DE5 /* Info.plist */,
-				4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */,
-				4BD8CD4C1C8F209200B38916 /* ItemCell.swift */,
-				4BBB65BA1C99A71000DB1DDE /* DetailViewController.swift */,
-				4BB29B3B1C9A9672006E1BB8 /* ImageStore.swift */,
 			);
 			path = Homepwner;
+			sourceTree = "<group>";
+		};
+		4B79957E1CBB3B4D00DEACB0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */,
+				4BBB65BA1C99A71000DB1DDE /* DetailViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4B79957F1CBB3B6000DEACB0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B3A8DF81C8470F2005B1DE5 /* Item.swift */,
+				4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */,
+				4BB29B3B1C9A9672006E1BB8 /* ImageStore.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4B7995801CBB3B7600DEACB0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4BD8CD4C1C8F209200B38916 /* ItemCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

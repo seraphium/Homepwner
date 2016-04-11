@@ -87,9 +87,15 @@ class ItemStore  {
             allItemsUnDone.insert(item, atIndex: toIndex)
         }
 
-        
-       
-        
+    }
+    
+    func finishItem(item : Item){
+        item.finished = true
+        let destIndexPath = self.allItemsDone.count
+        if let sourceIndex = self.allItemsUnDone.indexOf(item) {
+            self.MoveItemAtIndex(sourceIndex, toIndex: destIndexPath, finishing: true)
+
+        }
     }
     
     //save to file
