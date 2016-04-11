@@ -61,7 +61,7 @@ class Item: NSObject, NSCoding {
         detail = aDecoder.decodeObjectForKey("detail") as! String?
         name = aDecoder.decodeObjectForKey("name") as! String
         dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate?
-        finished = aDecoder.decodeBoolForKey("finished")
+        finished = aDecoder.decodeObjectForKey("finished") as! Bool
         super.init()
     }
     

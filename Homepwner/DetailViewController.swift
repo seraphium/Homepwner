@@ -154,7 +154,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
             dateString = dateFormatter.stringFromDate(date)
 
         } else {
-            dateString = ""
+            dateString = "Please select date"
         }
         dateToNotifyField.text = dateString
         //get the image key

@@ -88,6 +88,7 @@ class ItemStore  {
         }
 
     }
+
     
     func finishItemNotification(notification : UILocalNotification) {
         var userInfo = notification.userInfo!
@@ -98,7 +99,7 @@ class ItemStore  {
             app.cancelLocalNotification(notification)
             app.applicationIconBadgeNumber -= 1
         }
-
+        
     }
     
     func finishNotificationForItem(item: Item) {
@@ -122,6 +123,8 @@ class ItemStore  {
     
     func finishItem(item : Item){
         item.finished = true
+        item.dateToNotify = nil
+
         let destIndexPath = self.allItemsDone.count
         if let sourceIndex = self.allItemsUnDone.indexOf(item) {
             self.MoveItemAtIndex(sourceIndex, toIndex: destIndexPath, finishing: true)

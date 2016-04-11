@@ -17,10 +17,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="65" id="vfd-qt-dG2" customClass="ItemCell" customModule="Homepwner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PlaceHolder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
@@ -39,10 +39,31 @@
                                                 <action selector="itemDoneClicked:" destination="OmN-gi-ltQ" eventType="touchUpInside" id="Ixq-NK-1Hq"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="151" id="qCc-Fy-pQk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="qCc-Fy-pQk"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="qCc-Fy-pQk"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leadingMargin" constant="5" id="5dB-mo-5Gw"/>
-                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="DCY-7S-j4n"/>
+                                        <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" constant="-5" id="DCY-7S-j4n"/>
+                                        <constraint firstItem="mOm-8y-faD" firstAttribute="top" secondItem="pI1-lq-X5F" secondAttribute="bottom" id="Mok-oD-flg"/>
+                                        <constraint firstItem="mOm-8y-faD" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="leading" constant="10" id="Nrc-R0-bpt"/>
                                         <constraint firstItem="DyM-aN-Dht" firstAttribute="centerY" secondItem="NPT-jZ-EYc" secondAttribute="centerY" id="XbQ-79-Yh5"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="DyM-aN-Dht" secondAttribute="trailing" constant="5" id="uko-mW-fZl"/>
                                     </constraints>
@@ -50,10 +71,13 @@
                                         <mask key="subviews">
                                             <exclude reference="pI1-lq-X5F"/>
                                             <exclude reference="DyM-aN-Dht"/>
+                                            <exclude reference="mOm-8y-faD"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="5dB-mo-5Gw"/>
                                             <exclude reference="DCY-7S-j4n"/>
+                                            <exclude reference="Mok-oD-flg"/>
+                                            <exclude reference="Nrc-R0-bpt"/>
                                             <exclude reference="XbQ-79-Yh5"/>
                                             <exclude reference="uko-mW-fZl"/>
                                         </mask>
@@ -62,10 +86,13 @@
                                         <mask key="subviews">
                                             <include reference="pI1-lq-X5F"/>
                                             <include reference="DyM-aN-Dht"/>
+                                            <include reference="mOm-8y-faD"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="5dB-mo-5Gw"/>
                                             <include reference="DCY-7S-j4n"/>
+                                            <include reference="Mok-oD-flg"/>
+                                            <include reference="Nrc-R0-bpt"/>
                                             <include reference="XbQ-79-Yh5"/>
                                             <include reference="uko-mW-fZl"/>
                                         </mask>
@@ -73,6 +100,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="doneButton" destination="DyM-aN-Dht" id="2PS-NU-L9N"/>
+                                    <outlet property="notifyDateLabel" destination="mOm-8y-faD" id="eox-VG-rkJ"/>
                                     <outlet property="textField" destination="pI1-lq-X5F" id="ki9-Yd-rbU"/>
                                     <segue destination="KFS-tu-DQv" kind="show" identifier="ShowItem" id="oJ1-Db-yaP"/>
                                 </connections>

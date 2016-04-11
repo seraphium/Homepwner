@@ -82,6 +82,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
@@ -99,10 +103,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
 
             cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
+            if let dateNotify = item.dateToNotify {
+                cell.notifyDateLabel.text = dateFormatter.stringFromDate(dateNotify)
+            }
         case 1:
             cell.updateLabels(true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
             cell.textField.text = item.name
+            cell.notifyDateLabel.text = ""
         default:
             break;
         }
