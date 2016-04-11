@@ -86,13 +86,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         //update cell font
-        cell.updateLabels()
         
         switch indexPath.section {
         case 0:
+            var expired = false
             let item = itemStore.allItemsUnDone[indexPath.row]
+            if let date = item.dateToNotify {
+                if date.earlierDate(NSDate()) == item.dateToNotify {
+                    expired = true
+                }
+            }
+
+            cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
         case 1:
+            cell.updateLabels(true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
             cell.textField.text = item.name
         default:
@@ -200,7 +208,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         if (indexPath.section == 0)
         {
             let item = itemStore.allItemsUnDone[indexPath.row]
-            itemStore.finishItem(item)
+            itemStore.finishNotificationForItem(item)
             tableView.reloadData()
         }
         

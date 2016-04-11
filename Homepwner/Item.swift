@@ -12,11 +12,11 @@ import UIKit
 class Item: NSObject, NSCoding {
     var name : String
     var detail : String?
-    var dateToNotify : NSDate
+    var dateToNotify : NSDate?
     let dateCreated : NSDate
     let itemKey : String
     var finished: Bool
-    init(name: String, detail: String?, dateToNotify : NSDate, finished: Bool){
+    init(name: String, detail: String?, dateToNotify : NSDate?, finished: Bool){
         self.name = name
         self.detail = detail
         self.dateToNotify = dateToNotify
@@ -26,7 +26,7 @@ class Item: NSObject, NSCoding {
         super.init()
     }
     
-    convenience init(random : Bool = false, dateToNotify: NSDate, finished: Bool) {
+    convenience init(random : Bool = false, dateToNotify: NSDate?, finished: Bool) {
         if random {
             let adjective = ["Fluffy", "Rusty", "Shiny"]
             let nouns = ["Bear", "Spork", "Mac"]
@@ -60,7 +60,7 @@ class Item: NSObject, NSCoding {
         itemKey = aDecoder.decodeObjectForKey("itemKey") as! String
         detail = aDecoder.decodeObjectForKey("detail") as! String?
         name = aDecoder.decodeObjectForKey("name") as! String
-        dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate
+        dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate?
         finished = aDecoder.decodeBoolForKey("finished")
         super.init()
     }

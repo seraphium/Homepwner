@@ -57,7 +57,7 @@ class ItemStore  {
     }
     
     func CreateItem(random random: Bool, finished: Bool) -> Item {
-        let newItem = Item(random: random, dateToNotify: NSDate(), finished: finished)
+        let newItem = Item(random: random, dateToNotify: nil, finished: finished)
         if (finished){
             allItemsDone.append(newItem)
         } else {
@@ -89,12 +89,42 @@ class ItemStore  {
 
     }
     
+    func finishItemNotification(notification : UILocalNotification) {
+        var userInfo = notification.userInfo!
+        let key = userInfo["itemKey"] as! String
+        if let item = self.getItem(key, finished: false){
+            self.finishItem(item)
+            let app = UIApplication.sharedApplication()
+            app.cancelLocalNotification(notification)
+            app.applicationIconBadgeNumber -= 1
+        }
+
+    }
+    
+    func finishNotificationForItem(item: Item) {
+        self.finishItem(item)
+        let app = UIApplication.sharedApplication()
+        if let notifs = app.scheduledLocalNotifications {
+            for notify in notifs {
+                var userInfo = notify.userInfo!
+                let key = userInfo["itemKey"] as! String
+                if let it = self.getItem(key, finished: false) {
+                    if it == item {
+                        app.cancelLocalNotification(notify)
+                        app.applicationIconBadgeNumber -= 1
+                        return
+                    }
+
+                }
+            }
+        }
+    }
+    
     func finishItem(item : Item){
         item.finished = true
         let destIndexPath = self.allItemsDone.count
         if let sourceIndex = self.allItemsUnDone.indexOf(item) {
             self.MoveItemAtIndex(sourceIndex, toIndex: destIndexPath, finishing: true)
-
         }
     }
     

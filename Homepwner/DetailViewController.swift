@@ -149,8 +149,14 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         
         nameField.text = item.name
         detailField.text = item.detail
-        dateToNotifyField.text = dateFormatter.stringFromDate(item.dateToNotify)
-        
+        var dateString : String
+        if let date = item.dateToNotify {
+            dateString = dateFormatter.stringFromDate(date)
+
+        } else {
+            dateString = ""
+        }
+        dateToNotifyField.text = dateString
         //get the image key
         let key = item.itemKey
         //if there is associated image , display it on image view
