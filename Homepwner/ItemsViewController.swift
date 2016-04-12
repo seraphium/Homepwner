@@ -209,18 +209,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    
-    @IBAction func itemDoneClicked(sender: UIButton) {
-        let cell = sender.superview?.superview as! ItemCell
-        let indexPath = self.tableView.indexPathForCell(cell)!
-        if (indexPath.section == 0)
-        {
-            let item = itemStore.allItemsUnDone[indexPath.row]
-            itemStore.finishNotificationForItem(item)
-            tableView.reloadData()
-        }
-        
-    }
+
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -263,6 +252,22 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
+    
+    @IBAction func itemDoneClicked(sender: UIButton) {
+        let cell = sender.superview?.superview as! ItemCell
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        if (indexPath.section == 0)
+        {
+            let item = itemStore.allItemsUnDone[indexPath.row]
+            itemStore.finishItem(item)
+            //if expired (red), means badgenumber will remains and need reduce
+            if cell.expired {
+                UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
+            }
+            tableView.reloadData()
+        }
+        
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
