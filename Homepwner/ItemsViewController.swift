@@ -141,6 +141,18 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
+    //disable table row movement between sections
+    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+        if (sourceIndexPath.section != proposedDestinationIndexPath) {
+            var row = 0
+            if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
+            }
+            return NSIndexPath(forRow: row, inSection: sourceIndexPath.section)
+        }
+        return proposedDestinationIndexPath
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             var item : Item
