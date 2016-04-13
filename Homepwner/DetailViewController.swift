@@ -20,7 +20,8 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     @IBOutlet var imageView: UIImageView!
     
     var datePicker : UIDatePicker!
-
+    
+    let imagePicker = UIImagePickerController()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -103,8 +104,25 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         
     }
     
+    func showCamera(){
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+    }
+    
+    func choosePicture(){
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    }
+    
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        if(imagePicker.sourceType == UIImagePickerControllerSourceType.Camera){
+            let button = UIBarButtonItem(title: "Choose picture", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(choosePicture))
+            viewController.navigationItem.rightBarButtonItem = button
+            viewController.navigationController?.navigationBarHidden = false
+            viewController.navigationController?.navigationBar.translucent = true
+        }
+    }
+    
     @IBAction func takePicture(sender: UIBarButtonItem) {
-        let imagePicker = UIImagePickerController()
+
         
         //see if camera supported, if not , pick from library
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
@@ -113,7 +131,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         else {
             imagePicker.sourceType = .PhotoLibrary
         }
-        
+
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }
