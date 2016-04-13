@@ -174,7 +174,10 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         //pass back the changed value
         item.name = nameField.text ?? ""
         item.detail = detailField.text
-        item.dateToNotify = dateFormatter.dateFromString(dateToNotifyField.text!)!
+        if let text = dateToNotifyField.text {
+            item.dateToNotify = dateFormatter.dateFromString(text)
+
+        }
         
       
     }
