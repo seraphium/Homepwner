@@ -115,8 +115,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             break;
         }
 
-        
-    //TODO: update cell color according to notify date remaining
+    
       /*  if (item.valueInDollars  > 50){
             
             cell.valueLabel.textColor = UIColor.redColor()

@@ -90,11 +90,11 @@
                   moduleName = "Homepwner"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jackiezhang/Dev/Homepwner/Homepwner/AppDelegate.swift"
-                  timestampString = "482077707.622522"
+                  timestampString = "482508029.975661"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
                   offsetFromSymbolStart = "36">
                </Location>
                <Location
@@ -105,12 +105,12 @@
                   moduleName = "Homepwner"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jackiezhang/Dev/Homepwner/Homepwner/AppDelegate.swift"
-                  timestampString = "482077707.6228"
+                  timestampString = "482508029.975955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "434">
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "352">
                </Location>
             </Locations>
          </BreakpointContent>
