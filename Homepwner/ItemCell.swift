@@ -32,6 +32,10 @@ class ItemCell : UITableViewCell {
             doneButton.alpha = 0.0
             doneButton.enabled = false
             textField.textColor = UIColor.grayColor()
+        } else {
+            doneButton.alpha = 1.0
+            doneButton.enabled = true
+            textField.textColor = UIColor.blackColor()
         }
 
 
