@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let imageStore =  ImageStore()
     
     
-    //-- MARK: notification handling
+    //-- MARK: notification handling on alert dialog
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
         itemStore.finishItemNotification(notification)
     }
@@ -36,6 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func notificationHandleIgnore(application: UIApplication, forNotification notification: UILocalNotification) {
+        let navController = window!.rootViewController as! UINavigationController
+        if let ivc = navController.topViewController as? ItemsViewController {
+            ivc.tableView.reloadData();
+        }
+    }
+
+    
     func showNotificationAlertController(application:UIApplication, forNotification notification: UILocalNotification)
     {
         let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
@@ -48,15 +56,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.notificationHandleDetail(application, forNotification: notification)
             })
 
-        alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel) {
+            (alertAction) -> Void in
+            self.notificationHandleIgnore(application, forNotification: notification);
+            })
         let navController = window!.rootViewController as! UINavigationController
         let topController = navController.topViewController
         topController!.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    //MARK: app notification handling logic
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        
-        print ("identifier=\(identifier)")
         if let identify = identifier {
             switch identify {
             case "finished":
@@ -66,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 showNotificationAlertController(application, forNotification: notification)
             case "ignore":
                 print ("Ignore")
-                
             default:
                 print ("others")
             }
