@@ -8,14 +8,10 @@
 
 import UIKit
 
-class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigationControllerDelegate,
+class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavigationControllerDelegate,
     UIImagePickerControllerDelegate
 {
     
-    @IBOutlet var nameField: UITextField!
-    @IBOutlet var detailField: UITextField!
-    @IBOutlet var dateToNotifyField: UITextField!
-    @IBOutlet var dateLabel: UILabel!
     
     @IBOutlet var imageView: UIImageView!
     
@@ -74,7 +70,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
             return true
         }
 
-        nameField.resignFirstResponder()
+   /*     nameField.resignFirstResponder()
         detailField.resignFirstResponder()
         let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
@@ -94,7 +90,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
         self.presentViewController(alertController, animated:true, completion: nil)
-    
+    */
         return false;
     }
     
@@ -165,21 +161,11 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        nameField.text = item.name
-        detailField.text = item.detail
-        var dateString : String
-        if let date = item.dateToNotify {
-            dateString = dateFormatter.stringFromDate(date)
-
-        } else {
-            dateString = "Please select date"
-        }
-        dateToNotifyField.text = dateString
         //get the image key
         let key = item.itemKey
         //if there is associated image , display it on image view
-        let imageToDisplay = imageStore.imageForKey(key)
-        imageView.image = imageToDisplay
+       // let imageToDisplay = imageStore.imageForKey(key)
+        //imageView.image = imageToDisplay
         
     }
     
@@ -190,28 +176,26 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         view.endEditing(true)
         
         //pass back the changed value
-        item.name = nameField.text ?? ""
+      /*  item.name = nameField.text ?? ""
         item.detail = detailField.text
         if let text = dateToNotifyField.text {
             item.dateToNotify = dateFormatter.dateFromString(text)
-
+*/
         }
         
-      
-    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //get image from info directory
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         //put image into cache
-        imageStore.setImage(image, forKey: item.itemKey)
+  //      imageStore.setImage(image, forKey: item.itemKey)
         
         //put the image into imageview
-        imageView.image = image
+    //    imageView.image = image
         
         //take imagePicker off screen
-        dismissViewControllerAnimated(true, completion: nil)
+      //  dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -219,5 +203,66 @@ class DetailViewController : UIViewController, UITextFieldDelegate,  UINavigatio
         textField.resignFirstResponder()
         return true
     }
+    
+    //MARK: - table view delegate
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Name"
+        case 1:
+            return "Detail"
+        case 2:
+            return "DateToNotify"
+        case 3:
+            return "Picture"
+        default:
+            return ""
+        }
+    }
+    
+    
+    //MARK: - tableview actions
+    override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
+        return 1
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath) as! DetailNameCell
+            cell.nameField.text = item.name
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! DetailDetailCell
+            cell.detailField.text = item.detail
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier("dateToNotifyCell", forIndexPath: indexPath) as! DetailDateToNotifyCell
+            cell.dateToNotifyField.text = "date select here..."
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as! DetailPicCell
+            cell.picField.text = " select pic"
+            return cell
+        default:
+            return UITableViewCell()
+            
+        
+        }
+
+        
+    }
+
+    
     
 }
