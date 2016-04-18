@@ -25,11 +25,52 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
-       
-
+        
     }
     
-    func scheduleNotifyForDate(date: NSDate, onItem item: Item, withTitle title: String, withBody body:String){
+    
+    
+    let dateFormatter : NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
+        formatter.locale = NSLocale(localeIdentifier: "zh_CN")
+        return formatter
+    }()
+    
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField.tag != 123 {
+            if  datePicker.superview != nil {
+                datePicker.removeFromSuperview()
+            }
+            return true
+        }
+        
+        
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
+            (alertAction) -> Void in
+            //trunc date by set sec to 0
+            let date = self.datePicker.date
+            var minuteDate : NSDate?
+            NSCalendar.currentCalendar().rangeOfUnit(NSCalendarUnit.Minute,
+                startDate: &minuteDate,
+                interval: nil,
+                forDate: date)
+            
+           self.item.dateToNotify = minuteDate!
+            
+            self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
+            })
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.view.addSubview(datePicker)
+        self.presentViewController(alertController, animated:true, completion: nil)
+        
+        return false;
+    }
+    
+    func scheduleNotifyForDate(date: NSDate, onItem item: Item, withTitle title: String, withBody body:String?){
         let app = UIApplication.sharedApplication()
         //clear all old notify
         let oldNotify = app.scheduledLocalNotifications
@@ -57,43 +98,12 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         userInfo["itemKey"] = item.itemKey
         newNotify.userInfo = userInfo
         app.scheduleLocalNotification(newNotify)
-       // app.presentLocalNotificationNow(newNotify)
+        // app.presentLocalNotificationNow(newNotify)
         
         
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        if textField.tag != 123 {
-            if  datePicker.superview != nil {
-                datePicker.removeFromSuperview()
-            }
-            return true
-        }
-
-   /*     nameField.resignFirstResponder()
-        detailField.resignFirstResponder()
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
-        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
-            (alertAction) -> Void in
-            //trunc date by set sec to 0
-            let date = self.datePicker.date
-            var minuteDate : NSDate?
-            NSCalendar.currentCalendar().rangeOfUnit(NSCalendarUnit.Minute,
-                startDate: &minuteDate,
-                interval: nil,
-                forDate: date)
-            
-            self.dateToNotifyField.text = self.dateFormatter.stringFromDate(minuteDate!)
-            
-            self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.nameField.text!, withBody: self.detailField.text!)
-            })
-        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-        alertController.view.addSubview(datePicker)
-        self.presentViewController(alertController, animated:true, completion: nil)
-    */
-        return false;
-    }
-    
+       
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
 
         view.endEditing(true)
@@ -150,19 +160,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         return formatter
     }()
     
-    let dateFormatter : NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .ShortStyle
-        formatter.locale = NSLocale(localeIdentifier: "zh_CN")
-        return formatter
-    }()
-    
-    override func viewWillAppear(animated: Bool) {
+      override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         //get the image key
-        let key = item.itemKey
+       // let key = item.itemKey
         //if there is associated image , display it on image view
        // let imageToDisplay = imageStore.imageForKey(key)
         //imageView.image = imageToDisplay
@@ -186,7 +188,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //get image from info directory
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+      //  let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         //put image into cache
   //      imageStore.setImage(image, forKey: item.itemKey)
@@ -244,7 +246,10 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! DetailDetailCell
-            cell.detailField.text = item.detail
+            if let detail = item.detail {
+                cell.detailField.text = detail
+
+            }
             return cell
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("dateToNotifyCell", forIndexPath: indexPath) as! DetailDateToNotifyCell

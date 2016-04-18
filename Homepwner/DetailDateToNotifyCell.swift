@@ -12,4 +12,5 @@ class DetailDateToNotifyCell : UITableViewCell {
     
     @IBOutlet weak var dateToNotifyField: UITextField!
     
+
 }
