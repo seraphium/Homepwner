@@ -19,16 +19,23 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
     
     let imagePicker = UIImagePickerController()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        datePicker = UIDatePicker()
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
-        datePicker.datePickerMode = .DateAndTime
-        datePicker.date = NSDate() //initial value
-        
+    var item:Item! {
+        didSet {
+            navigationItem.title = item.name
+        }
     }
     
     
+    
+    var imageStore: ImageStore!
+    
+    let numberFormatter : NSNumberFormatter = {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
     
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -38,6 +45,17 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         return formatter
     }()
     
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        datePicker = UIDatePicker()
+        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.date = NSDate() //initial value
+        
+    }
+    
+
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField.tag != 123 {
@@ -59,9 +77,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
                 interval: nil,
                 forDate: date)
             
-           self.item.dateToNotify = minuteDate!
+            self.item.dateToNotify = minuteDate!
             
             self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
+            self.tableView.reloadData()
+
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
@@ -142,23 +162,6 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
-    
-    
-    var item:Item! {
-        didSet {
-            navigationItem.title = item.name
-        }
-    }
-    
-    var imageStore: ImageStore!
-    
-    let numberFormatter : NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
     
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -253,7 +256,12 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
             return cell
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("dateToNotifyCell", forIndexPath: indexPath) as! DetailDateToNotifyCell
-            cell.dateToNotifyField.text = "date select here..."
+            if let date = item.dateToNotify {
+                cell.dateToNotifyField.text = dateFormatter.stringFromDate(date)
+            } else {
+                cell.dateToNotifyField.text = "date select here..."
+
+            }
             return cell
         case 3:
             let cell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as! DetailPicCell

@@ -10,6 +10,6 @@ import UIKit
 
 class DetailDetailCell : UITableViewCell {
     
-    @IBOutlet weak var detailField: UITextField!
+    @IBOutlet weak var detailField: UITextView!
     
 }
