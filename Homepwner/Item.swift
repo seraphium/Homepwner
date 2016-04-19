@@ -40,7 +40,7 @@ class Item: NSObject, NSCoding {
             self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify, finished: finished)
             
         } else{
-            self.init(name: "New Item", detail: "no default...", dateToNotify: dateToNotify, finished: finished)
+            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify, finished: finished)
         }
     }
     

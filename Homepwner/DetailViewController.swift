@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavigationControllerDelegate,
+class DetailViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate,
     UIImagePickerControllerDelegate
 {
     
@@ -55,8 +55,18 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         
     }
     
-
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.tag == 111 && textField.text != nil{
+            //nameField
+            item.name = textField.text!
+        }
+    }
     
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.tag == 222 && textView.text != nil {
+            item.detail = textView.text!
+        }
+    }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField.tag != 123 {
             if  datePicker.superview != nil {
@@ -251,7 +261,8 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
             let cell = tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! DetailDetailCell
             if let detail = item.detail {
                 cell.detailField.text = detail
-
+            } else {
+                cell.detailField.text = "Detail here..."
             }
             return cell
         case 2:

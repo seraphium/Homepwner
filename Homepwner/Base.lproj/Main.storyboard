@@ -154,20 +154,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nameCell" id="UKn-VT-5vZ" customClass="DetailNameCell" customModule="Homepwner" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" tag="111" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nameCell" id="UKn-VT-5vZ" customClass="DetailNameCell" customModule="Homepwner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKn-VT-5vZ" id="aGl-Vq-LV4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yGL-xj-xbz">
+                                        <textField opaque="NO" clipsSubviews="YES" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yGL-xj-xbz">
                                             <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="14" y="8" width="340" height="30"/>
                                             </variation>
+                                            <connections>
+                                                <outlet property="delegate" destination="pG6-Ji-7tK" id="G7C-EQ-0hT"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <variation key="default">
@@ -185,24 +188,29 @@
                                     <outlet property="nameField" destination="yGL-xj-xbz" id="CeY-Tk-p3s"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailCell" id="wdl-pj-KIQ" customClass="DetailDetailCell" customModule="Homepwner" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" tag="222" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailCell" id="wdl-pj-KIQ" customClass="DetailDetailCell" customModule="Homepwner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdl-pj-KIQ" id="dqP-nA-RTj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please enter detail info here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wJP-Sn-ulH">
-                                            <rect key="frame" x="16" y="-3" width="568" height="50"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="222" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wJP-Sn-ulH">
+                                            <rect key="frame" x="16" y="13" width="568" height="81"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="LiR-W7-0e7"/>
+                                                <constraint firstAttribute="height" constant="80" id="LiR-W7-0e7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="pG6-Ji-7tK" id="415-eJ-Yxr"/>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="wJP-Sn-ulH" secondAttribute="bottom" constant="5" id="PfA-sc-0DV"/>
+                                        <constraint firstItem="wJP-Sn-ulH" firstAttribute="top" secondItem="dqP-nA-RTj" secondAttribute="topMargin" constant="5" id="Qcy-9v-HL5"/>
                                         <constraint firstItem="wJP-Sn-ulH" firstAttribute="leading" secondItem="dqP-nA-RTj" secondAttribute="leadingMargin" constant="8" id="X4J-A4-7z0"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="wJP-Sn-ulH" secondAttribute="trailing" constant="8" id="gKs-tQ-Hu9"/>
                                         <constraint firstItem="wJP-Sn-ulH" firstAttribute="centerY" secondItem="dqP-nA-RTj" secondAttribute="centerY" id="kUd-pc-0z8"/>
@@ -212,7 +220,7 @@
                                     <outlet property="detailField" destination="wJP-Sn-ulH" id="NoU-Hg-8nQ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateToNotifyCell" id="NNx-Nj-8bh" customClass="DetailDateToNotifyCell" customModule="Homepwner" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" tag="123" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateToNotifyCell" id="NNx-Nj-8bh" customClass="DetailDateToNotifyCell" customModule="Homepwner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNx-Nj-8bh" id="tZZ-vN-BMW">
@@ -281,11 +289,18 @@
                         <connections>
                             <outlet property="dataSource" destination="pG6-Ji-7tK" id="imC-kD-U70"/>
                             <outlet property="delegate" destination="pG6-Ji-7tK" id="Fes-m6-3Gh"/>
+                            <outletCollection property="gestureRecognizers" destination="DrC-WA-ka8" appends="YES" id="zun-4D-YWb"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="tsw-ze-zk7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQ9-vr-ebn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DrC-WA-ka8">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="pG6-Ji-7tK" id="kcz-7P-KiH"/>
+                        <outlet property="delegate" destination="pG6-Ji-7tK" id="ame-aM-K73"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1112" y="716"/>
         </scene>
