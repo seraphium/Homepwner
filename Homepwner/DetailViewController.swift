@@ -276,12 +276,19 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             return cell
         case 3:
             let cell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as! DetailPicCell
-            cell.picField.text = " select pic"
+            cell.picField.text = "Click to take picture..."
             return cell
         default:
             return UITableViewCell()
             
+        }
         
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if segue.identifier == "ShowPicture" {
         }
 
         

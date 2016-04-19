@@ -175,6 +175,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let itemsController = navController.topViewController as? ItemsViewController {
             itemsController.tableView.reloadData()
         }
+        //clear badge number 
+        application.applicationIconBadgeNumber = 0;
         
     }
 

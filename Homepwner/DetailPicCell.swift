@@ -9,6 +9,6 @@ import UIKit
 
 class DetailPicCell : UITableViewCell {
     
-    @IBOutlet weak var picField: UITextField!
+    @IBOutlet weak var picField: UILabel!
     
 }

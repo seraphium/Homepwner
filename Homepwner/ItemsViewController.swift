@@ -53,6 +53,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
+    
+    //MARK: - tableview actions
+    override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
+        switch section {
+        case 0:
+            return itemStore.allItemsUnDone.count
+        case 1:
+            return itemStore.allItemsDone.count
+        default:
+            return 0
+        }
+
+        
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -68,20 +83,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         }
     }
     
-    
-    //MARK: - tableview actions
-    override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
-        switch section {
-        case 0:
-            return itemStore.allItemsUnDone.count
-        case 1:
-            return itemStore.allItemsDone.count
-        default:
-            return 0
-        }
 
-        
-    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
@@ -116,25 +118,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             break;
         }
 
-    
-      /*  if (item.valueInDollars  > 50){
-            
-            cell.valueLabel.textColor = UIColor.redColor()
-        }
-        else{
-            cell.valueLabel.textColor = UIColor.greenColor()
-            
-        }*/
         return cell
        
     }
     
-    override func setEditing(editing: Bool, animated: Bool) {
-        if (editing) {
-            view.endEditing(true)
-        }
-        super.setEditing(editing, animated: animated)
-    }
+
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
@@ -195,33 +183,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
   
     
-    @IBAction func detailButtonClicked(sender: UIButton) {
-            let cell = sender.superview?.superview as! ItemCell
-            let indexPath = self.tableView.indexPathForCell(cell)!
-            tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
-    }
-    
-    @IBAction func cellEditingEnd(sender: UITextField) {
-        let cell = sender.superview?.superview as! ItemCell
-        let indexPath = self.tableView.indexPathForCell(cell)!
-        var item : Item
-        if (indexPath.section == 0)
-        {
-            item = itemStore.allItemsUnDone[indexPath.row]
-        } else {
-            item = itemStore.allItemsDone[indexPath.row]
-
-        }
-        item.name = sender.text!
-        sender.resignFirstResponder()
-    }
-    
-    
-    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
-
+ 
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -285,7 +247,39 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    @IBAction func detailButtonClicked(sender: UIButton) {
+        let cell = sender.superview?.superview as! ItemCell
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+    }
     
+    override func setEditing(editing: Bool, animated: Bool) {
+        if (editing) {
+            view.endEditing(true)
+        }
+        super.setEditing(editing, animated: animated)
+    }
+    @IBAction func cellEditingEnd(sender: UITextField) {
+        let cell = sender.superview?.superview as! ItemCell
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        var item : Item
+        if (indexPath.section == 0)
+        {
+            item = itemStore.allItemsUnDone[indexPath.row]
+        } else {
+            item = itemStore.allItemsDone[indexPath.row]
+            
+        }
+        item.name = sender.text!
+        sender.resignFirstResponder()
+    }
+    
+    
+    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+
     
 
     
