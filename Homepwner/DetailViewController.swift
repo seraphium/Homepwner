@@ -162,6 +162,10 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
+    override func viewDidLoad() {
+        self.tableView.estimatedRowHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+    }
     
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -235,10 +239,6 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UINavi
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         return 1
         
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
