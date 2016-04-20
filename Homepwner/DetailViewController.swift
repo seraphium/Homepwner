@@ -8,16 +8,13 @@
 
 import UIKit
 
-class DetailViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate,
-    UIImagePickerControllerDelegate
+class DetailViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate
 {
     
     
-    @IBOutlet var imageView: UIImageView!
     
     var datePicker : UIDatePicker!
     
-    let imagePicker = UIImagePickerController()
     
     var item:Item! {
         didSet {
@@ -139,39 +136,8 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         view.endEditing(true)
         
     }
-    
-    func showCamera(){
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-    }
-    
-    func choosePicture(){
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-    }
-    
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-        if(imagePicker.sourceType == UIImagePickerControllerSourceType.Camera){
-            let button = UIBarButtonItem(title: "Choose picture", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(choosePicture))
-            viewController.navigationItem.rightBarButtonItem = button
-            viewController.navigationController?.navigationBarHidden = false
-            viewController.navigationController?.navigationBar.translucent = true
-        }
-    }
-    
-    @IBAction func takePicture(sender: UIBarButtonItem) {
-
-        
-        //see if camera supported, if not , pick from library
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            imagePicker.sourceType  = .Camera
-        }
-        else {
-            imagePicker.sourceType = .PhotoLibrary
-        }
-
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-
+  
+  
     override func viewDidLoad() {
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -180,11 +146,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //get the image key
-       // let key = item.itemKey
-        //if there is associated image , display it on image view
-       // let imageToDisplay = imageStore.imageForKey(key)
-        //imageView.image = imageToDisplay
+      
         
     }
     
@@ -202,21 +164,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
 */
         }
         
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        //get image from info directory
-      //  let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        //put image into cache
-  //      imageStore.setImage(image, forKey: item.itemKey)
-        
-        //put the image into imageview
-    //    imageView.image = image
-        
-        //take imagePicker off screen
-      //  dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+      
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -294,6 +242,10 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if segue.identifier == "ShowPicture" {
+            let detailViewController = segue.destinationViewController as! PictureViewController
+            detailViewController.item = item
+            detailViewController.imageStore = imageStore
+            
         }
 
         
