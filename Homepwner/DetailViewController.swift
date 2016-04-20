@@ -251,6 +251,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //no normal selection
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
