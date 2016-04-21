@@ -18,15 +18,7 @@ class ItemCell : UITableViewCell {
     var expired : Bool = false
     
     func updateLabels(finished: Bool, expired: Bool){
-        
-        if expired { //expired notify item
-            textField.textColor = UIColor.redColor()
-            self.expired = true
-        } else {
-            textField.textColor = UIColor.blackColor()
-            self.expired = false
-        }
-        
+
         //finished item will not be "Done"able
         if (finished) {
             doneButton.alpha = 0.0
@@ -37,6 +29,16 @@ class ItemCell : UITableViewCell {
             doneButton.enabled = true
             textField.textColor = UIColor.blackColor()
         }
+        
+        if expired { //expired notify item
+            textField.textColor = UIColor.redColor()
+            self.expired = true
+        } else {
+            textField.textColor = UIColor.blackColor()
+            self.expired = false
+        }
+        
+
 
 
         //update font setting
