@@ -145,8 +145,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-      
+        self.tableView.reloadData()
         
     }
     
@@ -215,7 +214,8 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             if let detail = item.detail {
                 cell.detailField.text = detail
             } else {
-                cell.detailField.text = "Detail here..."
+                cell.detailField.text = "Please enter detail here"
+
             }
             return cell
         case 2:
@@ -223,13 +223,19 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             if let date = item.dateToNotify {
                 cell.dateToNotifyField.text = dateFormatter.stringFromDate(date)
             } else {
-                cell.dateToNotifyField.text = "date select here..."
+                cell.dateToNotifyField.text = "Please select notify time"
 
             }
             return cell
         case 3:
             let cell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as! DetailPicCell
-            cell.picField.text = "Click to take picture..."
+            cell.picField.text = "Picture detail"
+            let key = item.itemKey
+            //if there is associated image , display it on image view
+            if let imageToDisplay = imageStore.imageForKey(key) {
+                cell.imageView!.image = imageToDisplay
+            }
+
             return cell
         default:
             return UITableViewCell()
