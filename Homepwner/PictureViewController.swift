@@ -27,6 +27,23 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     
     var imageStore: ImageStore!
     
+    override func viewDidLayoutSubviews() {
+        
+        //need to put code to use scrollview frame here due to it will be 600x600 in viewwillappear
+        scrollView.contentSize = imageView.image!.size
+
+        
+        let scrollViewFrame = scrollView.frame
+        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
+        let minScale = min(scaleWidth, scaleHeight);
+        scrollView.minimumZoomScale = minScale;
+        
+        scrollView.maximumZoomScale = 1.0;
+        scrollView.zoomScale = minScale;
+
+        centerScrollViewContents()
+    }
 
     override func viewWillAppear(animated: Bool) {
         //get the image key
@@ -34,18 +51,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         //if there is associated image , display it on image view
          let imageToDisplay = imageStore.imageForKey(key)
         imageView.image = imageToDisplay
-        scrollView.contentSize = imageToDisplay!.size
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
-        let minScale = min(scaleWidth, scaleHeight);
-        scrollView.minimumZoomScale = minScale;
-        
-        // 5
-        scrollView.maximumZoomScale = 1.0;
-        scrollView.zoomScale = minScale;
-        
-        centerScrollViewContents()
+
         
     }
     
