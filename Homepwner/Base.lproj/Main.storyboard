@@ -319,7 +319,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="492" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="492" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                     </imageView>
                                 </subviews>
@@ -329,6 +329,11 @@
                                     <constraint firstItem="OXo-Q7-T8N" firstAttribute="top" secondItem="bjz-RR-vpw" secondAttribute="top" id="VSB-04-EwV"/>
                                     <constraint firstAttribute="trailing" secondItem="OXo-Q7-T8N" secondAttribute="trailing" id="sXN-sk-7AZ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Ern-Dg-VuE" id="eQz-hF-g6o"/>
+                                    <outletCollection property="gestureRecognizers" destination="bnM-3z-6k5" appends="YES" id="fIm-nH-maa"/>
+                                    <outletCollection property="gestureRecognizers" destination="BNV-aw-PIL" appends="YES" id="UuV-R6-HuS"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,10 +348,25 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doubleTapGestureRecognizer" destination="bnM-3z-6k5" id="e19-Ci-HPj"/>
                         <outlet property="imageView" destination="OXo-Q7-T8N" id="Sd1-FL-UyA"/>
+                        <outlet property="scrollView" destination="bjz-RR-vpw" id="D6x-C0-9MI"/>
+                        <outlet property="twoFingerTapGestureRecognizer" destination="BNV-aw-PIL" id="HEh-XL-Jjz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAs-yM-YVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTouchesRequired="2" id="BNV-aw-PIL">
+                    <connections>
+                        <action selector="twoFingerTapped:" destination="Ern-Dg-VuE" id="MaD-aB-YGk"/>
+                        <outlet property="delegate" destination="Ern-Dg-VuE" id="fKR-L0-Bmr"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="bnM-3z-6k5">
+                    <connections>
+                        <action selector="doubleTapped:" destination="Ern-Dg-VuE" id="JlI-dh-XQf"/>
+                        <outlet property="delegate" destination="Ern-Dg-VuE" id="V2x-Wy-ihu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1773" y="716"/>
         </scene>
