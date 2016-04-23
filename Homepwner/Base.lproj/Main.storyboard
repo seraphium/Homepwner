@@ -265,7 +265,7 @@
                                             <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -316,19 +316,30 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
-                                <rect key="frame" x="10" y="84" width="580" height="456"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="492" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="OXo-Q7-T8N" firstAttribute="leading" secondItem="bjz-RR-vpw" secondAttribute="leading" id="1Wo-sO-yIl"/>
+                                    <constraint firstAttribute="bottom" secondItem="OXo-Q7-T8N" secondAttribute="bottom" id="PhM-fV-yuI"/>
+                                    <constraint firstItem="OXo-Q7-T8N" firstAttribute="top" secondItem="bjz-RR-vpw" secondAttribute="top" id="VSB-04-EwV"/>
+                                    <constraint firstAttribute="trailing" secondItem="OXo-Q7-T8N" secondAttribute="trailing" id="sXN-sk-7AZ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wWI-JN-JCV" firstAttribute="leading" secondItem="gTR-Rr-I7T" secondAttribute="leading" id="0Kr-k1-tKK"/>
-                            <constraint firstItem="OXo-Q7-T8N" firstAttribute="leading" secondItem="gTR-Rr-I7T" secondAttribute="leading" constant="10" id="743-oM-FuB"/>
-                            <constraint firstItem="gL7-dZ-w6p" firstAttribute="top" secondItem="wWI-JN-JCV" secondAttribute="bottom" id="J0E-cD-00O"/>
-                            <constraint firstItem="OXo-Q7-T8N" firstAttribute="top" secondItem="P6N-w7-Ulw" secondAttribute="bottom" constant="20" id="bWa-yX-6Ij"/>
+                            <constraint firstItem="bjz-RR-vpw" firstAttribute="leading" secondItem="gTR-Rr-I7T" secondAttribute="leading" id="1Iw-4K-Zry"/>
+                            <constraint firstItem="bjz-RR-vpw" firstAttribute="top" secondItem="P6N-w7-Ulw" secondAttribute="bottom" id="X8S-Xj-YsO"/>
+                            <constraint firstAttribute="trailing" secondItem="bjz-RR-vpw" secondAttribute="trailing" id="cWh-Rq-XkH"/>
                             <constraint firstAttribute="trailing" secondItem="wWI-JN-JCV" secondAttribute="trailing" id="eLd-xT-e01"/>
-                            <constraint firstItem="gL7-dZ-w6p" firstAttribute="top" secondItem="OXo-Q7-T8N" secondAttribute="bottom" constant="60" id="o7e-Oa-COj"/>
-                            <constraint firstAttribute="trailing" secondItem="OXo-Q7-T8N" secondAttribute="trailing" constant="10" id="qcI-TQ-V4Y"/>
+                            <constraint firstItem="wWI-JN-JCV" firstAttribute="top" secondItem="bjz-RR-vpw" secondAttribute="bottom" id="vZm-yV-AhZ"/>
+                            <constraint firstItem="gL7-dZ-w6p" firstAttribute="top" secondItem="bjz-RR-vpw" secondAttribute="bottom" constant="44" id="xfR-ZN-5ru"/>
                         </constraints>
                     </view>
                     <connections>
