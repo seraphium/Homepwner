@@ -28,11 +28,8 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     var imageStore: ImageStore!
     
     override func viewDidLayoutSubviews() {
-        
         //need to put code to use scrollview frame here due to it will be 600x600 in viewwillappear
         scrollView.contentSize = imageView.image!.size
-
-        
         let scrollViewFrame = scrollView.frame
         let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
         let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
@@ -41,8 +38,8 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         
         scrollView.maximumZoomScale = 1.0;
         scrollView.zoomScale = minScale;
-
         centerScrollViewContents()
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -51,11 +48,9 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         //if there is associated image , display it on image view
          let imageToDisplay = imageStore.imageForKey(key)
         imageView.image = imageToDisplay
-
-        
+        //imageView.alpha = 0
     }
     
-
     //MARK: - controller
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //get image from info directory
@@ -121,6 +116,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         }
         
         imageView.frame = contentsFrame;
+       // imageView.alpha = 1
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -135,7 +131,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     @IBAction func twoFingerTapped(sender: UITapGestureRecognizer) {
          var newZoomScale = scrollView.zoomScale / 1.5
         newZoomScale = max(newZoomScale, scrollView.minimumZoomScale);
-        
+        //imageView.alpha = 0
         scrollView.setZoomScale(newZoomScale, animated: true)
         
     }
@@ -143,14 +139,11 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     @IBAction func doubleTapped(sender: UITapGestureRecognizer) {
         print ("double tapped");
        
-        
         let pointInView = doubleTapGestureRecognizer.locationInView(imageView)
         
-        // 2
         var newZoomScale = self.scrollView.zoomScale * 1.5;
         newZoomScale = min(newZoomScale, scrollView.maximumZoomScale);
         
-        // 3
         let scrollViewSize = scrollView.bounds.size;
         
         let w = scrollViewSize.width / newZoomScale;
@@ -160,7 +153,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         
         let rectToZoomTo = CGRectMake(x, y, w, h);
         
-        // 4
+        //imageView.alpha = 0
         scrollView.zoomToRect(rectToZoomTo, animated: true)
         
     }
