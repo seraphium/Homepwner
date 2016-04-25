@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homepwner/PictureViewController.swift"
-            timestampString = "483119307.530612"
+            timestampString = "483295387.909475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "doubleTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,12 +266,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Homepwner/PictureViewController.swift"
-            timestampString = "483119307.530612"
+            timestampString = "483295387.909475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Homepwner/PictureViewController.swift"
+            timestampString = "483295387.909475"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "scrollViewDidEndZooming(_:withView:atScale:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

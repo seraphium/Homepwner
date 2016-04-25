@@ -37,8 +37,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         scrollView.minimumZoomScale = minScale;
         
         scrollView.maximumZoomScale = 1.0;
-        scrollView.zoomScale = minScale;
-        centerScrollViewContents()
+        scrollView.setZoomScale(minScale, animated: true)
 
     }
 
@@ -100,31 +99,20 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     }
 
     //MARK: - zooming logic
-    func centerScrollViewContents() {
-        let boundsSize = scrollView.bounds.size;
-        var contentsFrame = self.imageView.frame;
-        if (contentsFrame.size.width < boundsSize.width) {
-            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0;
-        }
-        else {
-            contentsFrame.origin.x = 0.0;
-        }
-        if (contentsFrame.size.height < boundsSize.height) {
-            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0;
-        } else {
-            contentsFrame.origin.y = 0.0;
-        }
-        
-        imageView.frame = contentsFrame;
-       // imageView.alpha = 1
-    }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        centerScrollViewContents()
+        
+        //centerScrollViewContents()
+        let subView = scrollView.subviews[0]
+        
+        let offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0);
+        let offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0);
+        
+        subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,scrollView.contentSize.height * 0.5 + offsetY);
     }
     
     //MARK: - gesture logic
