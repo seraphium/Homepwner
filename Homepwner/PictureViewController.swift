@@ -13,7 +13,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     
     let imagePicker = UIImagePickerController()
     
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var scrollView: ImageScrollView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
     
@@ -47,7 +47,8 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         //if there is associated image , display it on image view
          let imageToDisplay = imageStore.imageForKey(key)
         imageView.image = imageToDisplay
-        //imageView.alpha = 0
+        scrollView.imageView = imageView
+
     }
     
     //MARK: - controller
@@ -60,6 +61,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         
         //put the image into imageview
         imageView.image = image
+        scrollView.imageView.image = image
         
         //take imagePicker off screen
         dismissViewControllerAnimated(true, completion: nil)
@@ -105,15 +107,8 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        
-        //centerScrollViewContents()
-        let subView = scrollView.subviews[0]
-        
-        let offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0);
-        let offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0);
-        
-        subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,scrollView.contentSize.height * 0.5 + offsetY);
-    }
+ 
+ }
     
     //MARK: - gesture logic
     @IBAction func twoFingerTapped(sender: UITapGestureRecognizer) {
