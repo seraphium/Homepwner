@@ -33,11 +33,7 @@ class ItemCell : UITableViewCell {
         if expired { //expired notify item
             textField.textColor = UIColor.redColor()
             self.expired = true
-        } else {
-            textField.textColor = UIColor.blackColor()
-            self.expired = false
         }
-        
 
 
 

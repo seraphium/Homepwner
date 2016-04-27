@@ -29,16 +29,19 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     
     override func viewDidLayoutSubviews() {
         //need to put code to use scrollview frame here due to it will be 600x600 in viewwillappear
-        scrollView.contentSize = imageView.image!.size
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
-        let minScale = min(scaleWidth, scaleHeight);
-        scrollView.minimumZoomScale = minScale;
-        
-        scrollView.maximumZoomScale = 1.0;
-        scrollView.setZoomScale(minScale, animated: true)
+        if imageView.image != nil {
+            scrollView.contentSize = imageView.image!.size
+            let scrollViewFrame = scrollView.frame
+            let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+            let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
+            let minScale = min(scaleWidth, scaleHeight);
+            scrollView.minimumZoomScale = minScale;
+            
+            scrollView.maximumZoomScale = 1.0;
+            scrollView.setZoomScale(minScale, animated: true)
 
+        }
+       
     }
 
     override func viewWillAppear(animated: Bool) {
