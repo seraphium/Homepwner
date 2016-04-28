@@ -11,7 +11,7 @@ import UIKit
 class ItemStore  {
     var allItemsUnDone = [Item]()
     var allItemsDone = [Item]()
-
+    let MaxItemInUndone = 5
     //archive path to save undone items
     let unDoneItemArchiveURL : NSURL = {
         let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -78,13 +78,18 @@ class ItemStore  {
         if finishing == false && (fromIndex == toIndex) {
             return ;
         }
+        var actualToIndex = toIndex
         let item = allItemsUnDone[fromIndex]
         allItemsUnDone.removeAtIndex(fromIndex)
-        if (finishing == true) {
-            allItemsDone.insert(item, atIndex: toIndex)
-
+        if finishing == true {
+            //remove item in Done list if items exceed
+            if allItemsDone.count >= MaxItemInUndone {
+                allItemsDone.removeAtIndex(0)
+                actualToIndex -= 1
+            }
+            allItemsDone.insert(item, atIndex: actualToIndex)
         } else {
-            allItemsUnDone.insert(item, atIndex: toIndex)
+            allItemsUnDone.insert(item, atIndex: actualToIndex)
         }
 
     }
