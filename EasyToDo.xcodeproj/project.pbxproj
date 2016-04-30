@@ -30,7 +30,7 @@
 		4B0EC9A21CC3D130002090DD /* DetailDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDetailCell.swift; sourceTree = "<group>"; };
 		4B0EC9A41CC3D14E002090DD /* DetailDateToNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDateToNotifyCell.swift; sourceTree = "<group>"; };
 		4B0EC9A61CC3D19F002090DD /* DetailPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPicCell.swift; sourceTree = "<group>"; };
-		4B3A8DE11C846DDF005B1DE5 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3A8DE91C846DDF005B1DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		4B3A8DD81C846DDF005B1DE5 = {
 			isa = PBXGroup;
 			children = (
-				4B3A8DE31C846DDF005B1DE5 /* Homepwner */,
+				4B3A8DE31C846DDF005B1DE5 /* EasyToDo */,
 				4B3A8DE21C846DDF005B1DE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,12 +68,12 @@
 		4B3A8DE21C846DDF005B1DE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B3A8DE11C846DDF005B1DE5 /* Homepwner.app */,
+				4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4B3A8DE31C846DDF005B1DE5 /* Homepwner */ = {
+		4B3A8DE31C846DDF005B1DE5 /* EasyToDo */ = {
 			isa = PBXGroup;
 			children = (
 				4B7995801CBB3B7600DEACB0 /* Views */,
@@ -85,7 +85,8 @@
 				4B3A8DED1C846DDF005B1DE5 /* LaunchScreen.storyboard */,
 				4B3A8DF01C846DDF005B1DE5 /* Info.plist */,
 			);
-			path = Homepwner;
+			name = EasyToDo;
+			path = EasyToDo;
 			sourceTree = "<group>";
 		};
 		4B79957E1CBB3B4D00DEACB0 /* ViewControllers */ = {
@@ -124,9 +125,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B3A8DE01C846DDF005B1DE5 /* Homepwner */ = {
+		4B3A8DE01C846DDF005B1DE5 /* EasyToDo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B3A8DF31C846DDF005B1DE5 /* Build configuration list for PBXNativeTarget "Homepwner" */;
+			buildConfigurationList = 4B3A8DF31C846DDF005B1DE5 /* Build configuration list for PBXNativeTarget "EasyToDo" */;
 			buildPhases = (
 				4B3A8DDD1C846DDF005B1DE5 /* Sources */,
 				4B3A8DDE1C846DDF005B1DE5 /* Frameworks */,
@@ -136,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = Homepwner;
-			productName = Homepwner;
-			productReference = 4B3A8DE11C846DDF005B1DE5 /* Homepwner.app */;
+			name = EasyToDo;
+			productName = EasyToDo;
+			productReference = 4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +158,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4B3A8DDC1C846DDF005B1DE5 /* Build configuration list for PBXProject "Homepwner" */;
+			buildConfigurationList = 4B3A8DDC1C846DDF005B1DE5 /* Build configuration list for PBXProject "EasyToDo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -170,7 +171,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B3A8DE01C846DDF005B1DE5 /* Homepwner */,
+				4B3A8DE01C846DDF005B1DE5 /* EasyToDo */,
 			);
 		};
 /* End PBXProject section */
@@ -318,10 +319,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Homepwner/Info.plist;
+				INFOPLIST_FILE = EasyToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.Homepwner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyToDo;
+				PRODUCT_NAME = EasyToDo;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -332,10 +333,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Homepwner/Info.plist;
+				INFOPLIST_FILE = EasyToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.Homepwner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyToDo;
+				PRODUCT_NAME = EasyToDo;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -343,7 +344,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B3A8DDC1C846DDF005B1DE5 /* Build configuration list for PBXProject "Homepwner" */ = {
+		4B3A8DDC1C846DDF005B1DE5 /* Build configuration list for PBXProject "EasyToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B3A8DF11C846DDF005B1DE5 /* Debug */,
@@ -352,7 +353,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B3A8DF31C846DDF005B1DE5 /* Build configuration list for PBXNativeTarget "Homepwner" */ = {
+		4B3A8DF31C846DDF005B1DE5 /* Build configuration list for PBXNativeTarget "EasyToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B3A8DF41C846DDF005B1DE5 /* Debug */,

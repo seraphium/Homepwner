@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B3A8DE01C846DDF005B1DE5"
-               BuildableName = "Homepwner.app"
-               BlueprintName = "Homepwner"
-               ReferencedContainer = "container:Homepwner.xcodeproj">
+               BuildableName = "EasyToDo.app"
+               BlueprintName = "EasyToDo"
+               ReferencedContainer = "container:EasyToDo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B3A8DE01C846DDF005B1DE5"
-            BuildableName = "Homepwner.app"
-            BlueprintName = "Homepwner"
-            ReferencedContainer = "container:Homepwner.xcodeproj">
+            BuildableName = "EasyToDo.app"
+            BlueprintName = "EasyToDo"
+            ReferencedContainer = "container:EasyToDo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B3A8DE01C846DDF005B1DE5"
-            BuildableName = "Homepwner.app"
-            BlueprintName = "Homepwner"
-            ReferencedContainer = "container:Homepwner.xcodeproj">
+            BuildableName = "EasyToDo.app"
+            BlueprintName = "EasyToDo"
+            ReferencedContainer = "container:EasyToDo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B3A8DE01C846DDF005B1DE5"
-            BuildableName = "Homepwner.app"
-            BlueprintName = "Homepwner"
-            ReferencedContainer = "container:Homepwner.xcodeproj">
+            BuildableName = "EasyToDo.app"
+            BlueprintName = "EasyToDo"
+            ReferencedContainer = "container:EasyToDo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
