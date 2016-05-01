@@ -81,9 +81,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Undone"
+            return "未完成项目"
         case 1:
-            return "Done"
+            return ""
         default:
             return ""
         }
@@ -93,20 +93,36 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
 
         if section == 0 {
             
-            return nil
-            
-        } else if section == 1 {
             let bt : UIButton = UIButton.init(type: UIButtonType.System)
-            bt.frame = CGRectMake(0, 0, 375, 60)
-            bt.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
+            bt.frame = CGRectMake(0, 0, 100, 60)
             // bt.backgroundColor = UIColor.cyanColor()
-            if doneClosed {
-                bt.setTitle("显示已完成", forState: .Normal)
+            if itemStore.allItemsUnDone.count > 0 {
+                bt.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+                bt.setTitle("未完成", forState: .Normal)
             } else {
-                bt.setTitle("隐藏已完成", forState: .Normal)
-
+                bt.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+                bt.setTitle("请点击+添加项目", forState: .Normal)
+                
             }
             return bt
+            
+        } else if section == 1 {
+            if (itemStore.allItemsDone.count > 0) {
+                let bt : UIButton = UIButton.init(type: UIButtonType.System)
+                bt.frame = CGRectMake(0, 0, 375, 60)
+                bt.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
+                // bt.backgroundColor = UIColor.cyanColor()
+                if doneClosed {
+                    bt.setTitle("显示已完成", forState: .Normal)
+                } else {
+                    bt.setTitleColor(UIColor.redColor(), forState: .Normal)
+                    bt.setTitle("隐藏已完成", forState: .Normal)
+
+                }
+                return bt
+            }
+            return nil
+            
 
         }
         return nil
@@ -262,6 +278,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         if let index = itemStore.allItemsUnDone.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
         }
         
     }
