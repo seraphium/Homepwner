@@ -89,41 +89,51 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         }
     }
     
+    func getUIViewFromBundle(name: String) -> UIView
+    {
+        let nib = NSBundle.mainBundle().loadNibNamed(name, owner: self, options: nil)
+        let view : UIView = nib[0] as! UIView
+        return view
+    }
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         if section == 0 {
-            
-            let bt : UIButton = UIButton.init(type: UIButtonType.System)
-            bt.frame = CGRectMake(0, 0, 100, 60)
-            // bt.backgroundColor = UIColor.cyanColor()
+            let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
             if itemStore.allItemsUnDone.count > 0 {
-                bt.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-                bt.setTitle("未完成", forState: .Normal)
+                view.titleLabel.text = "未完成"
+                view.headerLabel.alpha = 0
+                view.headerButton.alpha = 0
             } else {
-                bt.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-                bt.setTitle("请点击+添加项目", forState: .Normal)
-                
+                view.headerLabel.text = "请点击+添加项目"
+                view.titleLabel.alpha = 0
+                view.headerButton.alpha = 0
+
             }
-            return bt
+            return view
+            
             
         } else if section == 1 {
             if (itemStore.allItemsDone.count > 0) {
-                let bt : UIButton = UIButton.init(type: UIButtonType.System)
-                bt.frame = CGRectMake(0, 0, 375, 60)
-                bt.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
-                // bt.backgroundColor = UIColor.cyanColor()
+                let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
+                view.titleLabel.alpha = 0
+                view.headerLabel.alpha = 0
+                let btn = view.headerButton
+                
+                btn.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
                 if doneClosed {
-                    bt.setTitle("显示已完成", forState: .Normal)
+                    btn.setTitle("显示已完成", forState: .Normal)
                 } else {
-                    bt.setTitleColor(UIColor.redColor(), forState: .Normal)
-                    bt.setTitle("隐藏已完成", forState: .Normal)
+                    btn.setTitleColor(UIColor.redColor(), forState: .Normal)
+                    btn.setTitle("隐藏已完成", forState: .Normal)
 
                 }
-                return bt
+                return view
             }
+            else{
             return nil
+            }
             
-
         }
         return nil
         
@@ -135,6 +145,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
