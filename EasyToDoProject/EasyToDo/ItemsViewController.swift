@@ -308,7 +308,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             if cell.expired {
                 UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
             }
-            tableView.reloadData()
+            let range = NSMakeRange(0, self.tableView.numberOfSections)
+            let sections = NSIndexSet(indexesInRange: range)
+            self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
         }
         
     }

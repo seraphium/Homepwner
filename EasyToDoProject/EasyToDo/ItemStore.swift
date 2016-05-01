@@ -108,7 +108,7 @@ class ItemStore  {
     }
 
     
-    func finishItem(item : Item){
+    func finishItem(item : Item) -> Int {
         item.finished = true
         item.dateToNotify = nil
 
@@ -116,6 +116,7 @@ class ItemStore  {
         if let sourceIndex = self.allItemsUnDone.indexOf(item) {
             self.MoveItemAtIndex(sourceIndex, toIndex: destIndexPath, finishing: true)
         }
+        return destIndexPath
     }
     
     //save to file
