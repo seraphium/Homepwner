@@ -14,6 +14,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     var imageStore : ImageStore!
     
+    var doneClosed : Bool = false
     
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -60,7 +61,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         case 0:
             return itemStore.allItemsUnDone.count
         case 1:
-            return itemStore.allItemsDone.count
+            if doneClosed {
+                return 0
+            } else {
+                return itemStore.allItemsDone.count
+
+            }
         default:
             return 0
         }
@@ -75,7 +81,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "unDone"
+            return "Undone"
         case 1:
             return "Done"
         default:
@@ -83,6 +89,35 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         }
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        if section == 0 {
+            
+            return nil
+            
+        } else if section == 1 {
+            let bt : UIButton = UIButton.init(type: UIButtonType.System)
+            bt.frame = CGRectMake(0, 0, 375, 60)
+            bt.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
+            // bt.backgroundColor = UIColor.cyanColor()
+            if doneClosed {
+                bt.setTitle("显示已完成", forState: .Normal)
+            } else {
+                bt.setTitle("隐藏已完成", forState: .Normal)
+
+            }
+            return bt
+
+        }
+        return nil
+        
+    }
+    
+    func clickAction(bt: UIButton) -> Void {
+        doneClosed = !doneClosed
+        let indexSet = NSIndexSet(index: 1)
+        tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+    }
 
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
