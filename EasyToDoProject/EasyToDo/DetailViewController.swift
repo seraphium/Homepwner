@@ -14,7 +14,9 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     
     
     var datePicker : UIDatePicker!
+    @IBOutlet var dateExpandSwitch: UISwitch!
     
+    var dateExpand : Bool = false
     
     var item:Item! {
         didSet {
@@ -179,13 +181,13 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Name"
+            return "名称"
         case 1:
-            return "Detail"
+            return "详情"
         case 2:
-            return "DateToNotify"
+            return "提醒"
         case 3:
-            return "Picture"
+            return "照片"
         default:
             return ""
         }
@@ -194,7 +196,21 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
-        return 1
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        case 2:
+            if dateExpand {
+                return 3
+            }
+            return 1
+        case 3:
+            return 1
+        default:
+            return 0
+        }
         
     }
     
@@ -211,25 +227,30 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! DetailDetailCell
-            if let detail = item.detail {
-                cell.detailField.text = detail
-            } else {
-                cell.detailField.text = "Please enter detail here"
-
-            }
+                cell.detailField.text = item.detail
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("dateToNotifyCell", forIndexPath: indexPath) as! DetailDateToNotifyCell
-            if let date = item.dateToNotify {
-                cell.dateToNotifyField.text = dateFormatter.stringFromDate(date)
-            } else {
-                cell.dateToNotifyField.text = "Please select notify time"
+            if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCellWithIdentifier("dateToNotifyCell", forIndexPath: indexPath) as! DetailDateToNotifyCell
+                cell.dateExpandSwitch.setOn(dateExpand, animated: true)
+                return cell
+            }
+            if dateExpand {
+                if indexPath.row == 1{
+                    let cell = tableView.dequeueReusableCellWithIdentifier("detailDateInfoCell", forIndexPath: indexPath) as! DetailDateInfoCell
+                    return cell
+                }
+                if indexPath.row == 2{
+                    let cell = tableView.dequeueReusableCellWithIdentifier("detailDateRepeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
+                    return cell
+                }
 
             }
-            return cell
+            //default value
+            return UITableViewCell()
         case 3:
             let cell = tableView.dequeueReusableCellWithIdentifier("picCell", forIndexPath: indexPath) as! DetailPicCell
-            cell.picField.text = "Picture detail"
+            cell.picField.text = "点击添加照片"
             let key = item.itemKey
             //if there is associated image , display it on image view
             if let imageToDisplay = imageStore.imageForKey(key) {
@@ -256,6 +277,13 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
 
         
     }
+    
+    @IBAction func dateExpandValueChanged(sender: UISwitch) {
+            dateExpand = !dateExpand
+            tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+        
+        }
+    
 
     
     
