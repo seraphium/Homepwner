@@ -10,8 +10,8 @@ import UIKit
 
 class DetailDateRepeatCell: UITableViewCell {
     
-    @IBOutlet var detailDateRepeatField: UITextField!
 
+    @IBOutlet var dateRepeatLabel: UILabel!
     
 }
 

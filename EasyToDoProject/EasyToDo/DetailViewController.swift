@@ -238,6 +238,12 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             if dateExpand {
                 if indexPath.row == 1{
                     let cell = tableView.dequeueReusableCellWithIdentifier("detailDateInfoCell", forIndexPath: indexPath) as! DetailDateInfoCell
+                    if let date = item.dateToNotify {
+                        cell.dateToNotifyField.text = dateFormatter.stringFromDate(date)
+                    }
+                    else {
+                        cell.dateToNotifyField.text = "请选择时间"
+                    }
                     return cell
                 }
                 if indexPath.row == 2{

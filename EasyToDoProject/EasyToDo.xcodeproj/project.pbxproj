@@ -18,6 +18,7 @@
 		4B3A8DF71C847018005B1DE5 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */; };
 		4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF81C8470F2005B1DE5 /* Item.swift */; };
 		4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */; };
+		4B498B5A1CD9069C00870312 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B498B591CD9069C00870312 /* RepeatViewController.swift */; };
 		4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FEB011CC6905900751CF1 /* PictureViewController.swift */; };
 		4B7EB7731CCF6B8E00C90C0E /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */; };
 		4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */; };
@@ -43,6 +44,7 @@
 		4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		4B3A8DF81C8470F2005B1DE5 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		4B498B591CD9069C00870312 /* RepeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
 		4B5FEB011CC6905900751CF1 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */,
 				4B5FEB011CC6905900751CF1 /* PictureViewController.swift */,
 				4BBB65BA1C99A71000DB1DDE /* DetailViewController.swift */,
+				4B498B591CD9069C00870312 /* RepeatViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */,
 				4B0EC9A51CC3D14E002090DD /* DetailDateToNotifyCell.swift in Sources */,
 				4B0EC9A31CC3D130002090DD /* DetailDetailCell.swift in Sources */,
+				4B498B5A1CD9069C00870312 /* RepeatViewController.swift in Sources */,
 				4BBB65BB1C99A71000DB1DDE /* DetailViewController.swift in Sources */,
 				4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */,
 				4BB29B3C1C9A9672006E1BB8 /* ImageStore.swift in Sources */,

@@ -251,11 +251,11 @@
                                     <outlet property="dateExpandSwitch" destination="f4H-3r-qWQ" id="ZEh-xU-sfr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="detailDateInfoCell" id="cDb-Wy-VCm" customClass="DetailDateInfoCell" customModule="EasyToDo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailDateInfoCell" id="cDb-Wy-VCm" customClass="DetailDateInfoCell" customModule="EasyToDo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="245.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cDb-Wy-VCm" id="ebx-Zr-Fqe">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提醒日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2J7-Hj-vB4">
@@ -264,22 +264,24 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RU3-wa-YKd">
-                                            <rect key="frame" x="530" y="13.5" width="8" height="17"/>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="123" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RU3-wa-YKd">
+                                            <rect key="frame" x="574" y="13.5" width="8" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="pG6-Ji-7tK" id="bcZ-0o-CuS"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="RU3-wa-YKd" firstAttribute="centerY" secondItem="ebx-Zr-Fqe" secondAttribute="centerY" id="8fY-YJ-a1O"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="RU3-wa-YKd" secondAttribute="trailing" constant="21" id="ONa-9V-2Cj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="RU3-wa-YKd" secondAttribute="trailing" constant="10" id="ONa-9V-2Cj"/>
                                         <constraint firstItem="2J7-Hj-vB4" firstAttribute="centerY" secondItem="ebx-Zr-Fqe" secondAttribute="centerY" id="R2e-Ue-ido"/>
                                         <constraint firstItem="2J7-Hj-vB4" firstAttribute="leading" secondItem="ebx-Zr-Fqe" secondAttribute="leadingMargin" constant="7" id="ifh-Pa-8Fk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateToNotifyField" destination="RU3-wa-YKd" id="sOT-LL-U1e"/>
-                                    <segue destination="Ern-Dg-VuE" kind="show" identifier="ShowPicture" id="cyP-LT-lLY"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="detailDateRepeatCell" id="T6N-uJ-qLZ" customClass="DetailDateRepeatCell" customModule="EasyToDo" customModuleProvider="target">
@@ -295,22 +297,26 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0w-rN-i6u">
-                                            <rect key="frame" x="530" y="12.5" width="8" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCH-3g-8YO">
+                                            <rect key="frame" x="567" y="22.5" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="y0w-rN-i6u" secondAttribute="trailing" constant="21" id="2Dp-eG-zwv"/>
                                         <constraint firstItem="bLw-j6-5Ik" firstAttribute="leading" secondItem="23Z-FB-3d2" secondAttribute="leadingMargin" constant="7" id="7we-Rp-qtP"/>
                                         <constraint firstItem="bLw-j6-5Ik" firstAttribute="centerY" secondItem="23Z-FB-3d2" secondAttribute="centerY" id="D9w-X1-B32"/>
-                                        <constraint firstItem="y0w-rN-i6u" firstAttribute="centerY" secondItem="23Z-FB-3d2" secondAttribute="centerY" id="DiA-AK-Hzh"/>
+                                        <constraint firstItem="aCH-3g-8YO" firstAttribute="centerY" secondItem="23Z-FB-3d2" secondAttribute="centerY" id="KLs-9V-cZj"/>
                                         <constraint firstItem="bLw-j6-5Ik" firstAttribute="centerY" secondItem="23Z-FB-3d2" secondAttribute="centerY" id="Uuk-xa-g0t"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="aCH-3g-8YO" secondAttribute="trailing" constant="33" id="8Uu-fy-FJI"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="detailDateRepeatField" destination="y0w-rN-i6u" id="kxj-Cg-AWv"/>
+                                    <outlet property="dateRepeatLabel" destination="aCH-3g-8YO" id="ncC-gU-C8K"/>
+                                    <segue destination="DK5-am-75H" kind="show" id="pBV-yz-Ogc"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="picCell" textLabel="jJ4-Dd-Uq0" style="IBUITableViewCellStyleDefault" id="R4L-JW-aVa" customClass="DetailPicCell" customModule="EasyToDo" customModuleProvider="target">
@@ -331,6 +337,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="picField" destination="jJ4-Dd-Uq0" id="Zxs-aB-OjI"/>
+                                    <segue destination="Ern-Dg-VuE" kind="show" identifier="ShowPicture" id="fXr-5Q-oTg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -351,6 +358,34 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1112" y="716"/>
+        </scene>
+        <!--Repeat View Controller-->
+        <scene sceneID="8m7-Eu-S7N">
+            <objects>
+                <tableViewController id="DK5-am-75H" customClass="RepeatViewController" customModule="EasyToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fH7-0B-fc5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2uF-LH-qEw">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2uF-LH-qEw" id="SQF-Cd-Mqn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DK5-am-75H" id="jsN-5Q-kUu"/>
+                            <outlet property="delegate" destination="DK5-am-75H" id="Y9n-6p-nLS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LA3-W1-smL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165" y="1503"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="5Ei-Ho-O3f">
@@ -427,7 +462,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1773" y="716"/>
+            <point key="canvasLocation" x="2165" y="708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hyw-gG-d6I">
