@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F24b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F28b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -316,7 +316,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="dateRepeatLabel" destination="aCH-3g-8YO" id="ncC-gU-C8K"/>
-                                    <segue destination="DK5-am-75H" kind="show" id="pBV-yz-Ogc"/>
+                                    <segue destination="DK5-am-75H" kind="show" identifier="ShowRepeat" id="pBV-yz-Ogc"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="picCell" textLabel="jJ4-Dd-Uq0" style="IBUITableViewCellStyleDefault" id="R4L-JW-aVa" customClass="DetailPicCell" customModule="EasyToDo" customModuleProvider="target">

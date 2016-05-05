@@ -93,6 +93,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        showNotificationAlertController(application, forNotification: notification)
     }
     
+    static func scheduleNotifyForDate(date: NSDate, withRepeatInteval repeatInterval: NSCalendarUnit?, onItem item: Item, withTitle title: String, withBody body:String?){
+        let app = UIApplication.sharedApplication()
+        //clear all old notify
+        let oldNotify = app.scheduledLocalNotifications
+        
+        //cancel the old notify for this item
+        for notif in oldNotify! {
+            let itemKey =  notif.userInfo!["itemKey"] as! String
+            if itemKey == item.itemKey {
+                app.cancelLocalNotification(notif)
+            }
+        }
+        
+        let newNotify = UILocalNotification()
+        newNotify.fireDate = date
+        newNotify.timeZone = NSTimeZone.localTimeZone()
+        
+        if let interval = repeatInterval {
+            newNotify.repeatInterval = interval
+            
+        }
+        newNotify.soundName = UILocalNotificationDefaultSoundName
+        newNotify.alertTitle = title
+        newNotify.alertBody = body
+        newNotify.alertAction = "OK"
+        newNotify.applicationIconBadgeNumber = 1
+        newNotify.category = "MyNotification"
+        
+        var userInfo : [NSObject:AnyObject] = [NSObject:AnyObject]()
+        userInfo["itemKey"] = item.itemKey
+        newNotify.userInfo = userInfo
+        app.scheduleLocalNotification(newNotify)        
+        
+    }
+
+    
+    
   //-- MARK: App delegate logic
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -183,7 +220,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

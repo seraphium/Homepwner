@@ -25,6 +25,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     
+    var repeatString : String? {
+        didSet {
+            tableView.reloadSections(NSIndexSet(index:2), withRowAnimation: .Automatic)
+        }
+    }
     
     var imageStore: ImageStore!
     
@@ -88,7 +93,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             
             self.item.dateToNotify = minuteDate!
             
-            self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
+            AppDelegate.scheduleNotifyForDate(minuteDate!, withRepeatInteval: nil, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
             self.tableView.reloadData()
 
             })
@@ -99,38 +104,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         return false;
     }
     
-    func scheduleNotifyForDate(date: NSDate, onItem item: Item, withTitle title: String, withBody body:String?){
-        let app = UIApplication.sharedApplication()
-        //clear all old notify
-        let oldNotify = app.scheduledLocalNotifications
-        
-        //cancel the old notify for this item
-        for notif in oldNotify! {
-            let itemKey =  notif.userInfo!["itemKey"] as! String
-            if itemKey == item.itemKey {
-                app.cancelLocalNotification(notif)
-            }
-        }
-        
-        let newNotify = UILocalNotification()
-        newNotify.fireDate = date
-        newNotify.timeZone = NSTimeZone.localTimeZone()
-        newNotify.repeatInterval = NSCalendarUnit.Day
-        newNotify.soundName = UILocalNotificationDefaultSoundName
-        newNotify.alertTitle = title
-        newNotify.alertBody = body
-        newNotify.alertAction = "OK"
-        newNotify.applicationIconBadgeNumber = 1
-        newNotify.category = "MyNotification"
-        
-        var userInfo : [NSObject:AnyObject] = [NSObject:AnyObject]()
-        userInfo["itemKey"] = item.itemKey
-        newNotify.userInfo = userInfo
-        app.scheduleLocalNotification(newNotify)
-        // app.presentLocalNotificationNow(newNotify)
-        
-        
-    }
+
     
        
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
@@ -248,6 +222,9 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
                 }
                 if indexPath.row == 2{
                     let cell = tableView.dequeueReusableCellWithIdentifier("detailDateRepeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
+                    if let str = repeatString {
+                        cell.dateRepeatLabel.text = str
+                    }
                     return cell
                 }
 
@@ -279,6 +256,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             detailViewController.item = item
             detailViewController.imageStore = imageStore
             
+        }
+        
+        if segue.identifier == "ShowRepeat" {
+            let repeatController = segue.destinationViewController as! RepeatViewController
+            repeatController.item = item
         }
 
         

@@ -10,7 +10,8 @@ import UIKit
 
 class RepeatViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate
 {
-    let repeatTime = [ "每天",  "每周" , "每月", "每年"]
+    var item : Item?
+    let repeatTime = ["不重复", "每天",  "每周" , "每月", "每年"]
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repeatTime.count
     }
@@ -26,7 +27,32 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //should back to last vc d
+        let interval : NSCalendarUnit
+        if indexPath.row > 0 {
+            switch indexPath.row {
+            case 1:
+                interval = NSCalendarUnit.Day
+            case 2:
+                interval = NSCalendarUnit.Weekday
+            case 3:
+                interval = NSCalendarUnit.Month
+            case 4:
+                interval = NSCalendarUnit.Year
+            default:
+                interval = NSCalendarUnit()
+            }
+            if let date = item?.dateToNotify, name = item?.name {
+                AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: interval, onItem: item!, withTitle: name, withBody: item?.detail)
+
+            }
+        }
+        
+        //return to last viewcontroller with selected repeat string
+        let stringRepeat = repeatTime[indexPath.row]
+        navigationController?.popViewControllerAnimated(true)
+        let vc = navigationController?.topViewController as! DetailViewController
+        vc.repeatString = stringRepeat
+        
     }
 }
     
