@@ -26,22 +26,8 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let interval : NSCalendarUnit?
-            switch indexPath.row {
-            case 0:
-                interval = nil
-            case 1:
-                interval = NSCalendarUnit.Minute
-            case 2:
-                interval = NSCalendarUnit.Weekday
-            case 3:
-                interval = NSCalendarUnit.Month
-            case 4:
-                interval = NSCalendarUnit.Year
-            default:
-                interval = NSCalendarUnit()
-            }
-            if let date = item?.dateToNotify, name = item?.name {
+        let interval = AppDelegate.NSCalenderUnitFromRepeatInterval(indexPath.row)
+        if let date = item?.dateToNotify, name = item?.name {
                 AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: interval, onItem: item!, withTitle: name, withBody: item?.detail)
 
             }

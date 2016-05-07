@@ -139,7 +139,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
-    
+    static func NSCalenderUnitFromRepeatInterval(repeatInterval: Int) -> NSCalendarUnit?{
+        var interval: NSCalendarUnit?
+        switch repeatInterval {
+        case 0:
+            interval = nil
+        case 1:
+            interval = NSCalendarUnit.Minute
+        case 2:
+            interval = NSCalendarUnit.WeekOfYear
+        case 3:
+            interval = NSCalendarUnit.Month
+        case 4:
+            interval = NSCalendarUnit.Year
+        default:
+            interval = NSCalendarUnit()
+        }
+        return interval
+
+    }
     
   //-- MARK: App delegate logic
     

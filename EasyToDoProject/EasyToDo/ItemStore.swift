@@ -109,14 +109,34 @@ class ItemStore  {
 
     
     func finishItem(item : Item) -> Int {
-        item.finished = true
-        item.dateToNotify = nil
+        let sourceIndex = self.allItemsUnDone.indexOf(item)
+        //if in repeat notify, update dateToNotify and not finish item actually
+        if item.repeatInterval != 0 {
+            if let date = item.dateToNotify {
+                let unit = AppDelegate.NSCalenderUnitFromRepeatInterval(item.repeatInterval)
+                if let u = unit {
+                    //create new notify date according to current notify date + interval
+                    if let newDate = NSCalendar.currentCalendar().dateByAddingUnit(u, value: 1, toDate: date, options: NSCalendarOptions(rawValue: 0))
+                    { //recreate notify for repeat notify
+                        item.dateToNotify = newDate
+                        AppDelegate.scheduleNotifyForDate(newDate, withRepeatInteval: u, onItem: item, withTitle: item.name, withBody: item.detail)
+                    }
 
-        let destIndexPath = self.allItemsDone.count
-        if let sourceIndex = self.allItemsUnDone.indexOf(item) {
-            self.MoveItemAtIndex(sourceIndex, toIndex: destIndexPath, finishing: true)
+                }
+            }
+            
+            return sourceIndex!
+        } else {
+            //not repeat notify
+            item.finished = true
+            item.dateToNotify = nil
+            
+            let destIndexPath = self.allItemsDone.count
+            if let source = sourceIndex {
+                self.MoveItemAtIndex(source, toIndex: destIndexPath, finishing: true)
+            }
+            return destIndexPath
         }
-        return destIndexPath
     }
     
     //save to file

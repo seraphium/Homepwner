@@ -273,6 +273,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         dateExpand = !dateExpand
         if dateExpand == false {
             AppDelegate.cancelNotification(item)
+        } else {
+            //create default notify date if new item
+            let defaultNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: [])
+            item.dateToNotify = defaultNotifyDate
+            AppDelegate.scheduleNotifyForDate(defaultNotifyDate!, withRepeatInteval: nil, onItem: item, withTitle: item.name, withBody: item.detail)
         }
             tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
         
