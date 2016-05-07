@@ -11,9 +11,8 @@ import UIKit
 class RepeatViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate
 {
     var item : Item?
-    let repeatTime = ["不重复", "每天",  "每周" , "每月", "每年"]
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repeatTime.count
+        return AppDelegate.RepeatTime.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -22,7 +21,7 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("repeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
-        cell.dateRepeatLabel.text = repeatTime[indexPath.row]
+        cell.dateRepeatLabel.text = AppDelegate.RepeatTime[indexPath.row]
         return cell
     }
     
@@ -47,11 +46,10 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
             }
         }
         
+        item?.repeatInterval = indexPath.row
         //return to last viewcontroller with selected repeat string
-        let stringRepeat = repeatTime[indexPath.row]
         navigationController?.popViewControllerAnimated(true)
-        let vc = navigationController?.topViewController as! DetailViewController
-        vc.repeatString = stringRepeat
+  
         
     }
 }

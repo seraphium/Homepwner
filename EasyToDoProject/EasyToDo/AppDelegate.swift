@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let itemStore = ItemStore()
     let imageStore =  ImageStore()
     
+    static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
+
+    
     
     //-- MARK: notification handling on alert dialog
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
@@ -93,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        showNotificationAlertController(application, forNotification: notification)
     }
     
-    static func scheduleNotifyForDate(date: NSDate, withRepeatInteval repeatInterval: NSCalendarUnit?, onItem item: Item, withTitle title: String, withBody body:String?){
+    static func cancelNotification(item: Item) {
         let app = UIApplication.sharedApplication()
         //clear all old notify
         let oldNotify = app.scheduledLocalNotifications
@@ -105,6 +108,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 app.cancelLocalNotification(notif)
             }
         }
+
+    }
+    
+    static func scheduleNotifyForDate(date: NSDate, withRepeatInteval repeatInterval: NSCalendarUnit?, onItem item: Item, withTitle title: String, withBody body:String?){
+        
+        cancelNotification(item)
         
         let newNotify = UILocalNotification()
         newNotify.fireDate = date
@@ -124,7 +133,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var userInfo : [NSObject:AnyObject] = [NSObject:AnyObject]()
         userInfo["itemKey"] = item.itemKey
         newNotify.userInfo = userInfo
-        app.scheduleLocalNotification(newNotify)        
+        
+        let app = UIApplication.sharedApplication()
+        app.scheduleLocalNotification(newNotify)
         
     }
 

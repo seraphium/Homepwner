@@ -122,6 +122,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        dateExpand = item.dateToNotify != nil
         
     }
     
@@ -222,9 +223,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
                 }
                 if indexPath.row == 2{
                     let cell = tableView.dequeueReusableCellWithIdentifier("detailDateRepeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
-                    if let str = repeatString {
-                        cell.dateRepeatLabel.text = str
-                    }
+
+                    let repeatString = AppDelegate.RepeatTime[item.repeatInterval]
+
+                    cell.dateRepeatLabel.text = repeatString
+                    
                     return cell
                 }
 
@@ -267,7 +270,10 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     @IBAction func dateExpandValueChanged(sender: UISwitch) {
-            dateExpand = !dateExpand
+        dateExpand = !dateExpand
+        if dateExpand == false {
+            AppDelegate.cancelNotification(item)
+        }
             tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
         
         }
