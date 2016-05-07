@@ -26,11 +26,12 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let interval : NSCalendarUnit
-        if indexPath.row > 0 {
+        let interval : NSCalendarUnit?
             switch indexPath.row {
+            case 0:
+                interval = nil
             case 1:
-                interval = NSCalendarUnit.Day
+                interval = NSCalendarUnit.Minute
             case 2:
                 interval = NSCalendarUnit.Weekday
             case 3:
@@ -44,7 +45,7 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
                 AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: interval, onItem: item!, withTitle: name, withBody: item?.detail)
 
             }
-        }
+        
         
         item?.repeatInterval = indexPath.row
         //return to last viewcontroller with selected repeat string

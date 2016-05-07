@@ -171,7 +171,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
             if let dateNotify = item.dateToNotify {
-                cell.notifyDateLabel.text = dateFormatter.stringFromDate(dateNotify)
+                var notifyString = dateFormatter.stringFromDate(dateNotify)
+                if item.repeatInterval != 0 {
+                    notifyString = notifyString + "," + AppDelegate.RepeatTime[item.repeatInterval]
+                }
+                cell.notifyDateLabel.text = notifyString
             }
         case 1:
             cell.updateLabels(true, expired: false)
