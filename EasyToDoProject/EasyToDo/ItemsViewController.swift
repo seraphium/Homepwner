@@ -220,7 +220,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         self.imageStore.deleteImageForKey(item.itemKey)
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
+        tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
