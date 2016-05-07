@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case 0:
             interval = nil
         case 1:
-            interval = NSCalendarUnit.Minute
+            interval = NSCalendarUnit.Day
         case 2:
             interval = NSCalendarUnit.WeekOfYear
         case 3:
