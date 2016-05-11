@@ -259,8 +259,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         }
     }
   
+//MARK: - tableview Cell animation
+    //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+      /*  if let view = cell.contentView.viewWithTag(234) {
+            UIView.animateWithDuration(0.5,
+                                       delay:0,
+                                       options:[],
+                                       animations: {
+                                        view.center.x += view.bounds.width
+                }, completion:nil)
  
+        }*/
+    }
+
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -306,7 +319,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     
     @IBAction func itemDoneClicked(sender: UIButton) {
-        let cell = sender.superview?.superview as! ItemCell
+        let cell = sender.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
         if (indexPath.section == 0)
         {
