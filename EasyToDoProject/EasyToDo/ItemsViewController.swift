@@ -16,6 +16,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     var doneClosed : Bool = false
     
+    var newRow : Int?
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
@@ -170,6 +171,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
 
             cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
+            //set default cell view location for animation
+            if indexPath.row == newRow {
+                if let view = cell.contentView.viewWithTag(234) {
+                    view.alpha = 0
+                    view.center.x -= view.bounds.width
+                }
+            }
+           
             if let dateNotify = item.dateToNotify {
                 var notifyString = dateFormatter.stringFromDate(dateNotify)
                 if item.repeatInterval != 0 {
@@ -263,15 +272,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-      /*  if let view = cell.contentView.viewWithTag(234) {
-            UIView.animateWithDuration(0.5,
-                                       delay:0,
-                                       options:[],
-                                       animations: {
-                                        view.center.x += view.bounds.width
-                }, completion:nil)
- 
-        }*/
+        if indexPath.row == newRow {
+            if let view = cell.contentView.viewWithTag(234) {
+                UIView.animateWithDuration(0.5,
+                                           delay:0,
+                                           options:[],
+                                           animations: {
+                                            view.center.x += view.bounds.width
+                                            view.alpha = 1
+                    }, completion:nil)
+                newRow = nil
+                
+            }
+
+        }
     }
 
     
@@ -311,7 +325,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
        let newItem = itemStore.CreateItem(random: false, finished: false)
         if let index = itemStore.allItemsUnDone.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            newRow = indexPath.row
             tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
         }
         
