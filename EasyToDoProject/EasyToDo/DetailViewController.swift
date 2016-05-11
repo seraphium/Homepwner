@@ -136,6 +136,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         
         
     }
+
     
        
     @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
