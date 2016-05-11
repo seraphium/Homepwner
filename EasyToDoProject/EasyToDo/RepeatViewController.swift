@@ -10,9 +10,9 @@ import UIKit
 
 class RepeatViewController : UITableViewController, UITextFieldDelegate,  UITextViewDelegate,UINavigationControllerDelegate
 {
-    let repeatTime = [ "每天",  "每周" , "每月", "每年"]
+    var item : Item?
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repeatTime.count
+        return AppDelegate.RepeatTime.count
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -21,7 +21,7 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("repeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
-        cell.dateRepeatLabel.text = repeatTime[indexPath.row]
+        cell.dateRepeatLabel.text = AppDelegate.RepeatTime[indexPath.row]
         return cell
     }
     

@@ -171,7 +171,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
             if let dateNotify = item.dateToNotify {
-                cell.notifyDateLabel.text = dateFormatter.stringFromDate(dateNotify)
+                var notifyString = dateFormatter.stringFromDate(dateNotify)
+                if item.repeatInterval != 0 {
+                    notifyString = notifyString + "," + AppDelegate.RepeatTime[item.repeatInterval]
+                }
+                cell.notifyDateLabel.text = notifyString
             }
         case 1:
             cell.updateLabels(true, expired: false)
@@ -206,13 +210,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
+        //remove from notification center if has created notify
+        if (item.dateToNotify) != nil && item.finished != true {
+            AppDelegate.cancelNotification(item)
+        }
         //remove from item store
         self.itemStore.RemoveItem(item)
         //remove the item from image cache
         self.imageStore.deleteImageForKey(item.itemKey)
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
+        tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -314,11 +322,18 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         if (indexPath.section == 0)
         {
             let item = itemStore.allItemsUnDone[indexPath.row]
-            itemStore.finishItem(item)
+
             //if expired (red), means badgenumber will remains and need reduce
             if cell.expired {
+                cell.expired = false
                 UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
+            } else {
+                AppDelegate.cancelNotification(item)
             }
+            
+            //only finish and move cell of non-repeat notification
+            //for repeat notify, re create notify
+            itemStore.finishItem(item)
             let range = NSMakeRange(0, self.tableView.numberOfSections)
             let sections = NSIndexSet(indexesInRange: range)
             self.tableView.reloadSections(sections, withRowAnimation: .Automatic)

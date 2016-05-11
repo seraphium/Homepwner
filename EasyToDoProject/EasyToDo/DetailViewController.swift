@@ -25,6 +25,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     
+    var repeatString : String? {
+        didSet {
+            tableView.reloadSections(NSIndexSet(index:2), withRowAnimation: .Automatic)
+        }
+    }
     
     var imageStore: ImageStore!
     
@@ -88,7 +93,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             
             self.item.dateToNotify = minuteDate!
             
-            self.scheduleNotifyForDate(minuteDate!, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
+            AppDelegate.scheduleNotifyForDate(minuteDate!, withRepeatInteval: nil, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
             self.tableView.reloadData()
 
             })
@@ -148,6 +153,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
       override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        dateExpand = item.dateToNotify != nil
         
     }
     
@@ -248,6 +254,11 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
                 }
                 if indexPath.row == 2{
                     let cell = tableView.dequeueReusableCellWithIdentifier("detailDateRepeatCell", forIndexPath: indexPath) as! DetailDateRepeatCell
+
+                    let repeatString = AppDelegate.RepeatTime[item.repeatInterval]
+
+                    cell.dateRepeatLabel.text = repeatString
+                    
                     return cell
                 }
 
@@ -280,12 +291,25 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             detailViewController.imageStore = imageStore
             
         }
+        
+        if segue.identifier == "ShowRepeat" {
+            let repeatController = segue.destinationViewController as! RepeatViewController
+            repeatController.item = item
+        }
 
         
     }
     
     @IBAction func dateExpandValueChanged(sender: UISwitch) {
-            dateExpand = !dateExpand
+        dateExpand = !dateExpand
+        if dateExpand == false {
+            AppDelegate.cancelNotification(item)
+        } else {
+            //create default notify date if new item
+            let defaultNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: [])
+            item.dateToNotify = defaultNotifyDate
+            AppDelegate.scheduleNotifyForDate(defaultNotifyDate!, withRepeatInteval: nil, onItem: item, withTitle: item.name, withBody: item.detail)
+        }
             tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
         
         }

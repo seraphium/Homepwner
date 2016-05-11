@@ -13,20 +13,22 @@ class Item: NSObject, NSCoding {
     var name : String
     var detail : String?
     var dateToNotify : NSDate?
+    var repeatInterval : Int
     let dateCreated : NSDate
     let itemKey : String
     var finished: Bool
-    init(name: String, detail: String?, dateToNotify : NSDate?, finished: Bool){
+    init(name: String, detail: String?, dateToNotify : NSDate?, repeatInterval: Int,finished: Bool){
         self.name = name
         self.detail = detail
         self.dateToNotify = dateToNotify
+        self.repeatInterval = repeatInterval
         self.dateCreated = NSDate()
         self.itemKey = NSUUID().UUIDString
         self.finished = finished
         super.init()
     }
     
-    convenience init(random : Bool = false, dateToNotify: NSDate?, finished: Bool) {
+    convenience init(random : Bool = false, dateToNotify: NSDate?, repeatInterval: Int,finished: Bool) {
         if random {
             let adjective = ["Fluffy", "Rusty", "Shiny"]
             let nouns = ["Bear", "Spork", "Mac"]
@@ -37,10 +39,10 @@ class Item: NSObject, NSCoding {
             let randomName = "\(randomAdjective) \(randomNouns)"
             let randomSerialNumber = NSUUID().UUIDString.componentsSeparatedByString("-").first!
             
-            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify, finished: finished)
+            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify,repeatInterval: repeatInterval, finished: finished)
             
         } else{
-            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify, finished: finished)
+            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
         }
     }
     
@@ -50,6 +52,8 @@ class Item: NSObject, NSCoding {
         aCoder.encodeObject(itemKey, forKey: "itemKey")
         aCoder.encodeObject(detail, forKey: "detail")
         aCoder.encodeObject(dateToNotify, forKey: "dateToNotify")
+        aCoder.encodeObject(repeatInterval, forKey: "repeatInterval")
+
         aCoder.encodeObject(finished, forKey: "finished")
 
     }
@@ -61,6 +65,8 @@ class Item: NSObject, NSCoding {
         detail = aDecoder.decodeObjectForKey("detail") as! String?
         name = aDecoder.decodeObjectForKey("name") as! String
         dateToNotify = aDecoder.decodeObjectForKey("dateToNotify") as! NSDate?
+        repeatInterval = aDecoder.decodeObjectForKey("repeatInterval") as! Int
+
         finished = aDecoder.decodeObjectForKey("finished") as! Bool
         super.init()
     }

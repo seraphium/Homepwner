@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let itemStore = ItemStore()
     let imageStore =  ImageStore()
     
+    static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
+
+    
     
     //-- MARK: notification handling on alert dialog
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
@@ -91,6 +94,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("received local notification")
         
        showNotificationAlertController(application, forNotification: notification)
+    }
+    
+    static func cancelNotification(item: Item) {
+        let app = UIApplication.sharedApplication()
+        //clear all old notify
+        let oldNotify = app.scheduledLocalNotifications
+        
+        //cancel the old notify for this item
+        for notif in oldNotify! {
+            let itemKey =  notif.userInfo!["itemKey"] as! String
+            if itemKey == item.itemKey {
+                app.cancelLocalNotification(notif)
+            }
+        }
+
+    }
+    
+    static func scheduleNotifyForDate(date: NSDate, withRepeatInteval repeatInterval: NSCalendarUnit?, onItem item: Item, withTitle title: String, withBody body:String?){
+        
+        cancelNotification(item)
+        
+        let newNotify = UILocalNotification()
+        newNotify.fireDate = date
+        newNotify.timeZone = NSTimeZone.localTimeZone()
+        
+        if let interval = repeatInterval {
+            newNotify.repeatInterval = interval
+            
+        }
+        newNotify.soundName = UILocalNotificationDefaultSoundName
+        newNotify.alertTitle = title
+        newNotify.alertBody = body
+        newNotify.alertAction = "OK"
+        newNotify.applicationIconBadgeNumber = 1
+        newNotify.category = "MyNotification"
+        
+        var userInfo : [NSObject:AnyObject] = [NSObject:AnyObject]()
+        userInfo["itemKey"] = item.itemKey
+        newNotify.userInfo = userInfo
+        
+        let app = UIApplication.sharedApplication()
+        app.scheduleLocalNotification(newNotify)
+        
+    }
+
+    static func NSCalenderUnitFromRepeatInterval(repeatInterval: Int) -> NSCalendarUnit?{
+        var interval: NSCalendarUnit?
+        switch repeatInterval {
+        case 0:
+            interval = nil
+        case 1:
+            interval = NSCalendarUnit.Day
+        case 2:
+            interval = NSCalendarUnit.WeekOfYear
+        case 3:
+            interval = NSCalendarUnit.Month
+        case 4:
+            interval = NSCalendarUnit.Year
+        default:
+            interval = NSCalendarUnit()
+        }
+        return interval
+
     }
     
   //-- MARK: App delegate logic
@@ -183,7 +249,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
