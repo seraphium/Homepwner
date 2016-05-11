@@ -251,8 +251,19 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         }
     }
   
+//MARK: - tableview Cell animation
     
- 
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+            let view = cell.contentView
+            UIView.animateWithDuration(1,
+                                       delay:0,
+                                       options:[],
+                                       animations: {
+                                        view.center.x += view.bounds.width
+                }, completion:nil)
+        
+    }
+
     
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

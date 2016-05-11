@@ -114,8 +114,8 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         
         let newNotify = UILocalNotification()
         newNotify.fireDate = date
-        newNotify.timeZone = NSTimeZone.localTimeZone()
-        newNotify.repeatInterval = NSCalendarUnit.Day
+        //newNotify.timeZone = NSTimeZone.localTimeZone()
+        newNotify.repeatInterval = NSCalendarUnit.Month
         newNotify.soundName = UILocalNotificationDefaultSoundName
         newNotify.alertTitle = title
         newNotify.alertBody = body

@@ -26,7 +26,8 @@ class RepeatViewController : UITableViewController, UITextFieldDelegate,  UIText
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //should back to last vc d
+
+      
     }
 }
     
