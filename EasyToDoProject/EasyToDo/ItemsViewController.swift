@@ -263,7 +263,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if let view = cell.contentView.viewWithTag(234) {
+      /*  if let view = cell.contentView.viewWithTag(234) {
             UIView.animateWithDuration(0.5,
                                        delay:0,
                                        options:[],
@@ -271,7 +271,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                                         view.center.x += view.bounds.width
                 }, completion:nil)
  
-        }
+        }*/
     }
 
     
