@@ -171,13 +171,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
 
             cell.updateLabels(false, expired: expired)
             cell.textField.text = item.name
-            //set default cell view location for animation
-            if indexPath.row == newRow {
-                if let view = cell.contentView.viewWithTag(234) {
-                    view.alpha = 0
-                    view.center.x -= view.bounds.width
-                }
-            }
            
             if let dateNotify = item.dateToNotify {
                 var notifyString = dateFormatter.stringFromDate(dateNotify)
@@ -325,9 +318,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
        let newItem = itemStore.CreateItem(random: false, finished: false)
         if let index = itemStore.allItemsUnDone.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
+
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             newRow = indexPath.row
-            tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+
+            tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
         }
         
     }
