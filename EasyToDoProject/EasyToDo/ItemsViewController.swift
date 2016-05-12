@@ -370,7 +370,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         super.setEditing(editing, animated: animated)
     }
     @IBAction func cellEditingEnd(sender: UITextField) {
-        let cell = sender.superview?.superview as! ItemCell
+        let cell = sender.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
         var item : Item
         if (indexPath.section == 0)
