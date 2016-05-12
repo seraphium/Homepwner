@@ -169,7 +169,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                 }
             }
 
-            cell.updateLabels(false, expired: expired)
+            cell.updateCell(false, expired: expired)
             cell.textField.text = item.name
            
             if let dateNotify = item.dateToNotify {
@@ -180,7 +180,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                 cell.notifyDateLabel.text = notifyString
             }
         case 1:
-            cell.updateLabels(true, expired: false)
+            cell.updateCell(true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""

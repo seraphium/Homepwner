@@ -17,7 +17,14 @@ class ItemCell : UITableViewCell {
     
     var expired : Bool = false
     
-    func updateLabels(finished: Bool, expired: Bool){
+    @IBOutlet var innerView: UIView!
+    
+    var innerLayer: CALayer {
+        return innerView.layer
+    }
+    
+    
+    func updateCell(finished: Bool, expired: Bool){
 
         //finished item will not be "Done"able
         if (finished) {
@@ -34,10 +41,12 @@ class ItemCell : UITableViewCell {
             textField.textColor = UIColor.redColor()
             self.expired = true
         }
-
-
-
-        //update font setting
+        
+        innerLayer.borderColor = UIColor.grayColor().CGColor
+        innerLayer.borderWidth = 1
+        innerLayer.cornerRadius = 6
+        
+             //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
         
