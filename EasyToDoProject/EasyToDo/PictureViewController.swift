@@ -48,9 +48,14 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         //get the image key
          let key = item.itemKey
         //if there is associated image , display it on image view
-         let imageToDisplay = imageStore.imageForKey(key)
-        imageView.image = imageToDisplay
         scrollView.imageView = imageView
+
+        if let imageToDisplay = imageStore.imageForKey(key) {
+            imageView.image = imageToDisplay
+        } else {
+            takePic()
+        }
+      
 
     }
     
@@ -88,9 +93,8 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     func choosePicture(){
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
     }
-    @IBAction func takePicture(sender: UIBarButtonItem) {
-        
-        
+    
+    func takePic(){
         //see if camera supported, if not , pick from library
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType  = .Camera
@@ -101,6 +105,12 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
+
+    }
+    
+    @IBAction func takePicture(sender: UIBarButtonItem) {
+        takePic()
+        
     }
 
     //MARK: - zooming logic
