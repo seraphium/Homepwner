@@ -11,6 +11,7 @@
 		4B0EC9A31CC3D130002090DD /* DetailDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0EC9A21CC3D130002090DD /* DetailDetailCell.swift */; };
 		4B0EC9A51CC3D14E002090DD /* DetailDateToNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0EC9A41CC3D14E002090DD /* DetailDateToNotifyCell.swift */; };
 		4B0EC9A71CC3D19F002090DD /* DetailPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0EC9A61CC3D19F002090DD /* DetailPicCell.swift */; };
+		4B1C12761CE77E6E00A33ADC /* TableAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C12751CE77E6E00A33ADC /* TableAnimations.swift */; };
 		4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */; };
 		4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */; };
 		4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		4B0EC9A21CC3D130002090DD /* DetailDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDetailCell.swift; sourceTree = "<group>"; };
 		4B0EC9A41CC3D14E002090DD /* DetailDateToNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDateToNotifyCell.swift; sourceTree = "<group>"; };
 		4B0EC9A61CC3D19F002090DD /* DetailPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPicCell.swift; sourceTree = "<group>"; };
+		4B1C12751CE77E6E00A33ADC /* TableAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableAnimations.swift; sourceTree = "<group>"; };
 		4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3A8DE91C846DDF005B1DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */,
 				4B8EB5661CD7310E00E9758C /* DetaiDateInfoCell.swift */,
 				4B8EB5681CD7353F00E9758C /* DetailDateRepeatCell.swift */,
+				4B1C12751CE77E6E00A33ADC /* TableAnimations.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B8EB5671CD7310E00E9758C /* DetaiDateInfoCell.swift in Sources */,
+				4B1C12761CE77E6E00A33ADC /* TableAnimations.swift in Sources */,
 				4B3A8DF71C847018005B1DE5 /* ItemsViewController.swift in Sources */,
 				4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */,
 				4B7EB7731CCF6B8E00C90C0E /* ImageScrollView.swift in Sources */,

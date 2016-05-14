@@ -33,6 +33,22 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
+    // MARK: - Animation Setup
+    func SetUpAnimationForView(view: UIView)
+    {
+        let animationGroup = CAAnimationGroup()
+        let fromPosition = CGPoint(x: view.layer.position.x - view.layer.bounds.width, y: view.layer.position.y)
+        let toPosition = CGPoint(x: view.layer.position.x, y: view.layer.position.y)
+        
+        
+        animationGroup.animations =
+            [   TableAnimations.getAnimationOpacity(),
+                TableAnimations.getAnimationMove(NSValue(CGPoint:fromPosition), to: NSValue(CGPoint:toPosition))  ]
+        animationGroup.duration = 1
+        view.layer.addAnimation(animationGroup, forKey: "cellAnimation")
+        
+    }
+    
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -260,6 +276,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             }
         }
     }
+    
+ 
   
 //MARK: - tableview Cell animation
     //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
@@ -267,13 +285,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == newRow {
             if let view = cell.contentView.viewWithTag(234) {
-                UIView.animateWithDuration(0.5,
-                                           delay:0,
-                                           options:[],
-                                           animations: {
-                                            view.center.x += view.bounds.width
-                                            view.alpha = 1
-                    }, completion:nil)
+                SetUpAnimationForView(view)
                 newRow = nil
                 
             }
