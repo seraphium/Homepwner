@@ -101,6 +101,7 @@ class ItemCell : UITableViewCell {
         //contentLayer.borderColor = UIColor.whiteColor().CGColor
         //contentLayer.borderWidth = 1
         contentLayer.backgroundColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 1).CGColor
+        //contentLayer.backgroundColor = UIColor(red: 160.0/255.0, green: 107.0/255.0, blue: 89.0/255.0, alpha: 1).CGColor
         contentLayer.cornerRadius = 2
         
         contentLayer.transform = transform3d()
