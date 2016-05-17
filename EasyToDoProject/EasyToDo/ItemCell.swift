@@ -62,10 +62,12 @@ class ItemCell : UITableViewCell {
             textField.textColor = UIColor.redColor()
             self.expired = true
         }
-
-
-
-        //update font setting
+        
+        innerLayer.borderColor = UIColor.grayColor().CGColor
+        innerLayer.borderWidth = 1
+        innerLayer.cornerRadius = 6
+        
+             //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
         

@@ -66,7 +66,6 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="WXD-Vo-IZg" secondAttribute="centerY" id="IBB-FX-Cul"/>
                                                 <constraint firstItem="DyM-aN-Dht" firstAttribute="centerY" secondItem="WXD-Vo-IZg" secondAttribute="centerY" id="NZh-DS-yVE"/>
@@ -107,6 +106,7 @@
                                     <outlet property="animationView" destination="ANb-wr-bcv" id="5uZ-Dt-l7A"/>
                                     <outlet property="containerView" destination="WXD-Vo-IZg" id="WYc-rt-osH"/>
                                     <outlet property="doneButton" destination="DyM-aN-Dht" id="2PS-NU-L9N"/>
+                                    <outlet property="innerView" destination="WXD-Vo-IZg" id="Ul6-Fp-q8M"/>
                                     <outlet property="notifyDateLabel" destination="mOm-8y-faD" id="eox-VG-rkJ"/>
                                     <outlet property="textField" destination="pI1-lq-X5F" id="ki9-Yd-rbU"/>
                                     <segue destination="pG6-Ji-7tK" kind="show" identifier="ShowItem" id="6xg-If-gzH"/>
