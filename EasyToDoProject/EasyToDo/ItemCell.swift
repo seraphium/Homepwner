@@ -130,7 +130,7 @@ class ItemCell : UITableViewCell {
             doneButton.alpha = 1.0
             doneButton.enabled = true
             textField.textColor = UIColor.whiteColor()
-            contentView.alpha = 1.0
+            contentView.alpha = 0.8
         }
         
         if expired { //expired notify item
