@@ -54,7 +54,7 @@ class ItemCell : UITableViewCell {
     
     func slideAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden:Bool) {
         
-        let slideAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+        let slideAnimation = CABasicAnimation(keyPath: "transform.rotation.x")
         slideAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
         slideAnimation.fromValue           = (from)
         slideAnimation.toValue             = (to)
@@ -77,10 +77,13 @@ class ItemCell : UITableViewCell {
         
         let delay: NSTimeInterval = 0
         let timing                = kCAMediaTimingFunctionEaseIn
-        let from: CGFloat         = -containerView.bounds.size.width
+       // let from: CGFloat         = -containerView.bounds.size.width
+       // let to: CGFloat           = 0
+        
+        let from: CGFloat         = CGFloat(-M_PI / 2)
         let to: CGFloat           = 0
         let hidden                = true
-        let duration              = NSTimeInterval(1.0)
+        let duration              = NSTimeInterval(0.5)
 
         slideAnimation(timing, from: from, to: to, duration: duration, delay: delay, hidden: hidden)
         
@@ -95,10 +98,23 @@ class ItemCell : UITableViewCell {
     
     func createContentView()
     {
-        contentLayer.borderColor = UIColor.grayColor().CGColor
+        contentLayer.borderColor = UIColor.whiteColor().CGColor
         contentLayer.borderWidth = 1
+        contentLayer.backgroundColor = UIColor.clearColor().CGColor
         contentLayer.cornerRadius = 5
+        contentLayer.transform = transform3d()
     }
+    
+    
+    
+    //what's for?
+    func transform3d() -> CATransform3D {
+        var transform = CATransform3DIdentity
+        transform.m34 = 2.5 / -2000;
+        return transform
+    }
+  
+    
     
     func updateCell(finished: Bool, expired: Bool){
 
@@ -106,11 +122,11 @@ class ItemCell : UITableViewCell {
         if (finished) {
             doneButton.alpha = 0.0
             doneButton.enabled = false
-            textField.textColor = UIColor.grayColor()
+            textField.textColor = UIColor.whiteColor()
         } else {
             doneButton.alpha = 1.0
             doneButton.enabled = true
-            textField.textColor = UIColor.blackColor()
+            textField.textColor = UIColor.whiteColor()
         }
         
         if expired { //expired notify item
@@ -124,8 +140,7 @@ class ItemCell : UITableViewCell {
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
-        
-        notifyDateLabel.textColor = UIColor.grayColor()
+        notifyDateLabel.textColor = UIColor.whiteColor()
         
     }
     
