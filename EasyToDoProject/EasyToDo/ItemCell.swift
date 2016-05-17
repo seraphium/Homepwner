@@ -18,10 +18,18 @@ class ItemCell : UITableViewCell {
     //view for content
     @IBOutlet weak var containerView: UIView!
     
+    //layer for content view
+    var contentLayer : CALayer {
+        return containerView.layer
+    }
+    
     //view for showing animation for containerView
     @IBOutlet weak var animationView: UIView!
     
     var expired : Bool = false
+    
+    internal typealias CompletionHandler = () -> Void
+
     
     //removed existing animationViews
     private func removeImageItemsFromAnimationView() {
@@ -36,16 +44,63 @@ class ItemCell : UITableViewCell {
     //prepare containerView snapsho timage for animation
     func addImageItemsToAnimationView() {
         containerView.alpha = 1;
-        let contSize        = containerView.bounds.size
-        let image = containerView.pb_takeSnapshot(CGRect(x: 0, y: 0, width: contSize.width, height: contSize.height))
-        let imageView = UIImageView(image: image)
-           imageView.tag = 0
+        let contSize    = containerView.bounds.size
+        let image       = containerView.pb_takeSnapshot(CGRect(x: 0, y: 0, width: contSize.width, height: contSize.height))
+        let imageView   = UIImageView(image: image)
+        imageView.tag   = 0
         animationView?.addSubview(imageView)
 
     }
     
+    func slideAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden:Bool) {
+        
+        let slideAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+        slideAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
+        slideAnimation.fromValue           = (from)
+        slideAnimation.toValue             = (to)
+        slideAnimation.duration            = duration
+        slideAnimation.delegate            = self;
+        slideAnimation.fillMode            = kCAFillModeForwards
+        slideAnimation.removedOnCompletion = false;
+        slideAnimation.beginTime           = CACurrentMediaTime() + delay
+        
+        animationView.layer.addAnimation(slideAnimation, forKey: "translation.x")
+    }
     
-    func updateLabels(finished: Bool, expired: Bool){
+    func openAnimation(completion completion: CompletionHandler?) {
+        
+        removeImageItemsFromAnimationView()
+        addImageItemsToAnimationView()
+        
+        animationView.alpha = 1;
+        containerView.alpha = 0;
+        
+        let delay: NSTimeInterval = 0
+        let timing                = kCAMediaTimingFunctionEaseIn
+        let from: CGFloat         = -containerView.bounds.size.width
+        let to: CGFloat           = 0
+        let hidden                = true
+        let duration              = NSTimeInterval(1.0)
+
+        slideAnimation(timing, from: from, to: to, duration: duration, delay: delay, hidden: hidden)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64((delay + duration) * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            self.animationView?.alpha = 0
+            self.containerView.alpha  = 1
+            completion?()
+        }
+
+
+    }
+    
+    func createContentView()
+    {
+        contentLayer.borderColor = UIColor.grayColor().CGColor
+        contentLayer.borderWidth = 1
+        contentLayer.cornerRadius = 5
+    }
+    
+    func updateCell(finished: Bool, expired: Bool){
 
         //finished item will not be "Done"able
         if (finished) {
@@ -62,12 +117,11 @@ class ItemCell : UITableViewCell {
             textField.textColor = UIColor.redColor()
             self.expired = true
         }
-        
-        innerLayer.borderColor = UIColor.grayColor().CGColor
-        innerLayer.borderWidth = 1
-        innerLayer.cornerRadius = 6
-        
-             //update font setting
+
+        //create content layer apperance
+        createContentView()
+
+        //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
         

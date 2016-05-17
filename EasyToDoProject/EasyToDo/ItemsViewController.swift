@@ -36,16 +36,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     // MARK: - Animation Setup
     func SetUpAnimationForView(view: UIView)
     {
-        let animationGroup = CAAnimationGroup()
-        let fromPosition = CGPoint(x: view.layer.position.x - view.layer.bounds.width, y: view.layer.position.y)
-        let toPosition = CGPoint(x: view.layer.position.x, y: view.layer.position.y)
-        
-        
-        animationGroup.animations =
-            [   TableAnimations.getAnimationOpacity(),
-                TableAnimations.getAnimationMove(NSValue(CGPoint:fromPosition), to: NSValue(CGPoint:toPosition))  ]
-        animationGroup.duration = 1
-        view.layer.addAnimation(animationGroup, forKey: "cellAnimation")
+
         
     }
     
@@ -284,11 +275,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == newRow {
-            if let view = cell.contentView.viewWithTag(234) {
-                SetUpAnimationForView(view)
-                newRow = nil
-                
-            }
+            let itemCell = cell as! ItemCell
+            itemCell.openAnimation(completion: nil)
+            newRow = nil
 
         }
     }

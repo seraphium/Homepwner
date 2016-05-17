@@ -23,7 +23,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
-                                            <rect key="frame" x="5" y="3" width="590" height="59"/>
+                                            <rect key="frame" x="5" y="0.0" width="590" height="59"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
@@ -90,12 +90,14 @@
                                         <constraint firstAttribute="trailing" secondItem="WXD-Vo-IZg" secondAttribute="trailing" constant="5" id="jx6-FM-uXy"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ANb-wr-bcv" secondAttribute="trailing" constant="5" id="rCw-Eo-39b"/>
                                         <constraint firstItem="WXD-Vo-IZg" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leading" constant="5" id="yrr-TE-5pM"/>
+                                        <constraint firstItem="ANb-wr-bcv" firstAttribute="centerY" secondItem="WXD-Vo-IZg" secondAttribute="centerY" id="zw7-dP-u9c"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="3fL-ts-4b0"/>
                                             <exclude reference="Byq-mP-faP"/>
                                             <exclude reference="Dfc-up-yu9"/>
+                                            <exclude reference="FFT-Yp-ngO"/>
                                             <exclude reference="Md8-Id-7UZ"/>
                                             <exclude reference="rCw-Eo-39b"/>
                                         </mask>
@@ -106,7 +108,6 @@
                                     <outlet property="animationView" destination="ANb-wr-bcv" id="5uZ-Dt-l7A"/>
                                     <outlet property="containerView" destination="WXD-Vo-IZg" id="WYc-rt-osH"/>
                                     <outlet property="doneButton" destination="DyM-aN-Dht" id="2PS-NU-L9N"/>
-                                    <outlet property="innerView" destination="WXD-Vo-IZg" id="Ul6-Fp-q8M"/>
                                     <outlet property="notifyDateLabel" destination="mOm-8y-faD" id="eox-VG-rkJ"/>
                                     <outlet property="textField" destination="pI1-lq-X5F" id="ki9-Yd-rbU"/>
                                     <segue destination="pG6-Ji-7tK" kind="show" identifier="ShowItem" id="6xg-If-gzH"/>
