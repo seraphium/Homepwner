@@ -59,7 +59,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
  
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+      //  tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
     }
     

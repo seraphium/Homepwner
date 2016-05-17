@@ -98,10 +98,11 @@ class ItemCell : UITableViewCell {
     
     func createContentView()
     {
-        contentLayer.borderColor = UIColor.whiteColor().CGColor
-        contentLayer.borderWidth = 1
-        contentLayer.backgroundColor = UIColor.clearColor().CGColor
-        contentLayer.cornerRadius = 5
+        //contentLayer.borderColor = UIColor.whiteColor().CGColor
+        //contentLayer.borderWidth = 1
+        contentLayer.backgroundColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 1).CGColor
+        contentLayer.cornerRadius = 2
+        
         contentLayer.transform = transform3d()
     }
     
