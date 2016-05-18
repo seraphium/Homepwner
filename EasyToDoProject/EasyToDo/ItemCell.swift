@@ -22,6 +22,10 @@ class ItemCell : UITableViewCell {
     var contentLayer : CALayer {
         return containerView.layer
     }
+    //layer for content view
+    var animationLayer : CALayer {
+        return animationView.layer
+    }
     
     //view for showing animation for containerView
     @IBOutlet weak var animationView: UIView!
@@ -30,6 +34,13 @@ class ItemCell : UITableViewCell {
     
     internal typealias CompletionHandler = () -> Void
 
+ 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.backgroundColor = UIColor.clearColor()
+      //  self.backgroundView?.backgroundColor = UIColor.clearColor()
+    
+    }
     
     //removed existing animationViews
     private func removeImageItemsFromAnimationView() {
@@ -64,7 +75,7 @@ class ItemCell : UITableViewCell {
         slideAnimation.removedOnCompletion = false;
         slideAnimation.beginTime           = CACurrentMediaTime() + delay
         
-        animationView.layer.addAnimation(slideAnimation, forKey: "translation.x")
+        animationLayer.addAnimation(slideAnimation, forKey: "rotation.x")
     }
     
     func openAnimation(completion completion: CompletionHandler?) {
@@ -78,7 +89,7 @@ class ItemCell : UITableViewCell {
         let delay: NSTimeInterval = 0
         let timing                = kCAMediaTimingFunctionEaseIn
        // let from: CGFloat         = -containerView.bounds.size.width
-       // let to: CGFloat           = 0
+        //let to: CGFloat           = 0
         
         let from: CGFloat         = CGFloat(-M_PI / 2)
         let to: CGFloat           = 0
@@ -93,18 +104,17 @@ class ItemCell : UITableViewCell {
             completion?()
         }
 
-
     }
     
-    func createContentView()
+    func createView(layer: CALayer)
     {
         //contentLayer.borderColor = UIColor.whiteColor().CGColor
         //contentLayer.borderWidth = 1
-        contentLayer.backgroundColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 1).CGColor
+        layer.backgroundColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 1).CGColor
         //contentLayer.backgroundColor = UIColor(red: 160.0/255.0, green: 107.0/255.0, blue: 89.0/255.0, alpha: 1).CGColor
-        contentLayer.cornerRadius = 2
+        layer.cornerRadius = 2
         
-        contentLayer.transform = transform3d()
+        layer.transform = transform3d()
     }
     
     
@@ -127,10 +137,10 @@ class ItemCell : UITableViewCell {
             textField.textColor = UIColor.whiteColor()
             contentView.alpha = 0.4
         } else {
-            doneButton.alpha = 1.0
+            doneButton.alpha = 0.8
             doneButton.enabled = true
             textField.textColor = UIColor.whiteColor()
-            contentView.alpha = 1.0
+            contentView.alpha = 0.8
         }
         
         if expired { //expired notify item
@@ -138,8 +148,9 @@ class ItemCell : UITableViewCell {
             self.expired = true
         }
 
-        //create content layer apperance
-        createContentView()
+        //create content/animation layer apperance
+        createView(contentLayer)
+        createView(animationLayer)
 
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)

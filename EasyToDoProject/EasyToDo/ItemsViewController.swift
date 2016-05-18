@@ -274,14 +274,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
-        cell.backgroundView?.backgroundColor = UIColor.clearColor()
-        
         if indexPath.row == newRow {
             let itemCell = cell as! ItemCell
             itemCell.openAnimation(completion: nil)
             newRow = nil
-
         }
     }
 
