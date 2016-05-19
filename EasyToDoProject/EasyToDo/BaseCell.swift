@@ -69,7 +69,7 @@ class BaseCell : UITableViewCell {
         animationLayer.addAnimation(slideAnimation, forKey: "rotation.x")
     }
     
-    func openAnimation(completion completion: CompletionHandler?) {
+    func openAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
         
         removeImageItemsFromAnimationView()
         addImageItemsToAnimationView()
@@ -77,7 +77,6 @@ class BaseCell : UITableViewCell {
         animationView.alpha = 1;
         containerView.alpha = 0;
         
-        let delay: NSTimeInterval = 0
         let timing                = kCAMediaTimingFunctionEaseIn
         // let from: CGFloat         = -containerView.bounds.size.width
         //let to: CGFloat           = 0

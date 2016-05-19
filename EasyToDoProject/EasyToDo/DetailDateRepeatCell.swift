@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailDateRepeatCell: UITableViewCell {
+class DetailDateRepeatCell: BaseCell {
     
 
     @IBOutlet var dateRepeatLabel: UILabel!
