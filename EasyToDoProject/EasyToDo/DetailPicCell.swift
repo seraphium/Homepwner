@@ -10,5 +10,7 @@ import UIKit
 class DetailPicCell : BaseCell {
     
     @IBOutlet weak var picField: UILabel!
-    
+    @IBOutlet var cellImage: UIImageView!
+ 
+
 }

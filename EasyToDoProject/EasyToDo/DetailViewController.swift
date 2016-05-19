@@ -96,6 +96,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         if !(indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2)) {
             let c = cell as! BaseCell
             c.InitCellViews()
+            c.openAnimation(completion: nil)
         }
 
     }
@@ -255,6 +256,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as! DetailDetailCell
+                cell.detailField.textColor = UIColor.whiteColor()
                 cell.detailField.text = item.detail
             return cell
         case 2:
@@ -293,7 +295,8 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             let key = item.itemKey
             //if there is associated image , display it on image view
             if let imageToDisplay = imageStore.imageForKey(key) {
-                cell.imageView!.image = imageToDisplay
+                cell.cellImage.alpha = 0.6
+                cell.cellImage.image = imageToDisplay
             }
 
             return cell

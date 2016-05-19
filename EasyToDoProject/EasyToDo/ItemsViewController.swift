@@ -271,7 +271,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == newRow {
-            let itemCell = cell as! ItemCell
+            let itemCell = cell as! BaseCell
             itemCell.openAnimation(completion: nil)
             newRow = nil
         }
