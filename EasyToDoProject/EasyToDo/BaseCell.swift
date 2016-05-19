@@ -24,7 +24,7 @@ class BaseCell : UITableViewCell {
 
     internal typealias CompletionHandler = () -> Void
     
-    
+    //MARK: - Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clearColor()
@@ -32,6 +32,7 @@ class BaseCell : UITableViewCell {
         
     }
 
+    //MARK: - animation setup
     //removed existing animationViews
     private func removeImageItemsFromAnimationView() {
         

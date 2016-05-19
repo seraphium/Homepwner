@@ -33,16 +33,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
     }
     
-    // MARK: - Animation Setup
-    func SetUpAnimationForView(view: UIView)
-    {
-
-        
-    }
-    
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //set default background color
+        tableView.backgroundColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
         
         //refresh the table data if changed in detailed view
         tableView.reloadData()
