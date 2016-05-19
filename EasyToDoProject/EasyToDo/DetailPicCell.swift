@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class DetailPicCell : UITableViewCell {
+class DetailPicCell : BaseCell {
     
     @IBOutlet weak var picField: UILabel!
     

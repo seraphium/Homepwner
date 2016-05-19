@@ -8,8 +8,14 @@
 
 import UIKit
 
-class DetailDetailCell : UITableViewCell {
+class DetailDetailCell : BaseCell {
     
     @IBOutlet weak var detailField: UITextView!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+
+    }
     
 }

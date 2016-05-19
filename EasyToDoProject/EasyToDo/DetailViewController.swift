@@ -59,6 +59,54 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         
     }
     
+    //MARK: - life cycle
+    override func viewDidLoad() {
+        self.tableView.estimatedRowHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //set default background color
+        tableView.backgroundColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+        tableView.sectionIndexColor = UIColor.whiteColor()
+        
+        self.tableView.reloadData()
+        dateExpand = item.dateToNotify != nil
+        
+
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //clear the first responder (keyboard)
+        view.endEditing(true)
+
+    }
+    
+    //set default header behavior e.g. textColor
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = UIColor.whiteColor()
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if !(indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2)) {
+            let c = cell as! BaseCell
+            c.InitCellViews()
+        }
+
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            return 100
+        }
+        return 50
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         if textField.tag == 111 && textField.text != nil{
             //nameField
@@ -145,34 +193,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         
     }
   
-  
-    override func viewDidLoad() {
-        self.tableView.estimatedRowHeight = 50
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-    }
     
-      override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.reloadData()
-        dateExpand = item.dateToNotify != nil
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        //clear the first responder (keyboard)
-        view.endEditing(true)
-        
-        //pass back the changed value
-      /*  item.name = nameField.text ?? ""
-        item.detail = detailField.text
-        if let text = dateToNotifyField.text {
-            item.dateToNotify = dateFormatter.dateFromString(text)
-*/
-        }
-        
-      
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

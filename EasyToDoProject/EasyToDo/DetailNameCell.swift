@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailNameCell : UITableViewCell {
+class DetailNameCell : BaseCell {
     
     @IBOutlet weak var nameField: UITextField!
 

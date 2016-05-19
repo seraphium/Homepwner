@@ -19,7 +19,6 @@ class ItemCell : BaseCell {
  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
       //  self.backgroundView?.backgroundColor = UIColor.clearColor()
     
     }
@@ -27,7 +26,11 @@ class ItemCell : BaseCell {
       
     
     func updateCell(finished: Bool, expired: Bool){
-
+        
+        //create content/animation layer apperance
+        createView(contentLayer)
+        createView(animationLayer)
+        
         //finished item will not be "Done"able
         if (finished) {
             doneButton.alpha = 0.0
@@ -46,9 +49,7 @@ class ItemCell : BaseCell {
             self.expired = true
         }
 
-        //create content/animation layer apperance
-        createView(contentLayer)
-        createView(animationLayer)
+
 
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)

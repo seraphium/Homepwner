@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailDateToNotifyCell : UITableViewCell {
+class DetailDateToNotifyCell : BaseCell {
     
     @IBOutlet weak var dateToNotifyField: UITextField!
     
