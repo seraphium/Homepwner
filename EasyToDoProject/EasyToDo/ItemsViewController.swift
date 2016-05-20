@@ -181,6 +181,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                     notifyString = notifyString + "," + AppDelegate.RepeatTime[item.repeatInterval]
                 }
                 cell.notifyDateLabel.text = notifyString
+            } else {
+                cell.notifyDateLabel.text = nil
             }
         case 1:
             cell.updateCell(true, expired: false)

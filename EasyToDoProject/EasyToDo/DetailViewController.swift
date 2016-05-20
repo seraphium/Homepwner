@@ -95,7 +95,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
             let c = cell as! BaseCell
             c.InitCellViews()
-            c.openAnimation(0.0,completion: nil)
+          //  c.openAnimation(0.0,completion: nil)
         
 
     }
@@ -328,6 +328,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
         dateExpand = !dateExpand
         if dateExpand == false {
             AppDelegate.cancelNotification(item)
+            item.dateToNotify = nil
         } else {
             //create default notify date if new item
             let defaultNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: [])
