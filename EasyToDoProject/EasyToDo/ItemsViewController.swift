@@ -206,7 +206,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     //disable table row movement between sections
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-        if (sourceIndexPath.section != proposedDestinationIndexPath) {
+        if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
             var row = 0
             if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
                 row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
@@ -231,47 +231,33 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
-        
+        if editing {
+            return .None
+
+        }
+        return .Delete
         
     }
     
-    
-  /*  func addCustomizeEditingViewForCell(cell cell:UITableViewCell) {
-        UIView *editingCategoryAccessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 35)];
-        
-        UIButton *addCategoryButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [addCategoryButton setTitle:@"Add" forState:UIControlStateNormal];
-        [addCategoryButton setFrame:CGRectMake(0, 0, 50, 35)];
-        [addCategoryButton addTarget:self action:@selector(addCategoryClicked:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIButton *removeCategoryButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [removeCategoryButton setTitle:@"Remove" forState:UIControlStateNormal];
-        [removeCategoryButton setFrame:CGRectMake(55, 0, 65, 35)];
-        [removeCategoryButton addTarget:self action:@selector(removeCategoryClicked:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [editingCategoryAccessoryView addSubview:addCategoryButton];
-        [editingCategoryAccessoryView addSubview:removeCategoryButton];
-        cell.editingAccessoryView = editingCategoryAccessoryView;
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
+    override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let customAction = UITableViewRowAction(style: .Normal, title: "Your Custom Action", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
-            print("Do whatever it is you want to do when they press your custom action button")
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
+            self.deleteRow(indexPath)
         })
-        customAction.backgroundColor = UIColor.greenColor()
+        deleteAction.backgroundColor =  UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+
         
-        let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
-            print("You can even implement a deletion action here")
-        })
-        deleteAction.backgroundColor = UIColor.redColor()
-        
-        return [deleteAction, customAction]
-    }*/
+        return [deleteAction]
+    }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+   func deleteRow(indexPath: NSIndexPath) {
             var item : Item
             if (indexPath.section == 0)
             {
@@ -293,8 +279,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
 
             }
             
-           
-            }
+    }
+    
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {

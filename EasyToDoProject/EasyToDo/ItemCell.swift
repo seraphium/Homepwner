@@ -21,14 +21,27 @@ class ItemCell : BaseCell {
  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-      //  self.backgroundView?.backgroundColor = UIColor.clearColor()
-    
+       // addCustomizeEditingViewForCell()
     }
     
     let indicatorLayer = CAShapeLayer()
     var indicatorPath = UIBezierPath()
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let f = contentView.frame
+        let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
+        contentView.frame = fr
+        
+    }
     
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+       // self.showsReorderControl = false;
+        for view in subviews as [UIView] { if view.dynamicType.description().rangeOfString("Reorder") != nil { for subview in view.subviews as! [UIImageView] { if subview.isKindOfClass(UIImageView) { subview.image = UIImage(named: "moveicon") } } } }
+       // self.editingAccessoryView = editing ? UIImageView(image: UIImage(named: "moveicon")) : nil
+    }
     private func initPath() {
         indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))
 
@@ -44,10 +57,6 @@ class ItemCell : BaseCell {
     }
     
     func updateCell(finished: Bool, expired: Bool){
-        
-        //create content/animation layer apperance
-        createView(contentLayer)
-        createView(animationLayer)
         
         //finished item will not be "Done"able
         if (finished) {
@@ -77,6 +86,8 @@ class ItemCell : BaseCell {
         notifyDateLabel.textColor = UIColor.whiteColor()
         
     }
+    
+    
     
 }
 

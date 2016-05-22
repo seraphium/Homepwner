@@ -22,6 +22,7 @@ class BaseCell : UITableViewCell {
         return animationView.layer
     }
 
+    
     internal typealias CompletionHandler = () -> Void
     
     //MARK: - Init
@@ -30,6 +31,11 @@ class BaseCell : UITableViewCell {
         self.backgroundColor = UIColor.clearColor()
         //  self.backgroundView?.backgroundColor = UIColor.clearColor()
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        InitCellViews()
     }
 
     //MARK: - animation setup
@@ -95,6 +101,7 @@ class BaseCell : UITableViewCell {
         }
         
     }
+    
     
     func createView(layer: CALayer)
     {
