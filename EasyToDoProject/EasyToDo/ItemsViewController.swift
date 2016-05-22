@@ -253,7 +253,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         [editingCategoryAccessoryView addSubview:addCategoryButton];
         [editingCategoryAccessoryView addSubview:removeCategoryButton];
         cell.editingAccessoryView = editingCategoryAccessoryView;
-    }*/
+    }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
@@ -268,7 +268,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         deleteAction.backgroundColor = UIColor.redColor()
         
         return [deleteAction, customAction]
-    }
+    }*/
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {

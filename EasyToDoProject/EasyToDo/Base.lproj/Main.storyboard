@@ -23,20 +23,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
-                                            <rect key="frame" x="5" y="0.0" width="590" height="59"/>
+                                            <rect key="frame" x="5" y="0.0" width="590" height="64.5"/>
                                         </view>
                                         <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
-                                            <rect key="frame" x="5" y="0.0" width="590" height="59"/>
+                                            <rect key="frame" x="5" y="0.0" width="590" height="64.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je1-YY-HQp">
-                                                    <rect key="frame" x="5" y="5" width="10" height="49"/>
+                                                    <rect key="frame" x="5" y="5" width="10" height="54.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="sne-kD-pJm"/>
                                                     </constraints>
                                                 </view>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                    <rect key="frame" x="20" y="22" width="65.5" height="15"/>
+                                                    <rect key="frame" x="20" y="25" width="65.5" height="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -46,13 +46,13 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
-                                                    <rect key="frame" x="550" y="29" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="550" y="32" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
-                                                    <rect key="frame" x="566" y="19" width="16" height="22"/>
+                                                    <rect key="frame" x="566" y="22" width="16" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="sqW-eR-lw2"/>
                                                     </constraints>
@@ -104,7 +104,7 @@
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="height" secondItem="NPT-jZ-EYc" secondAttribute="height" id="Md8-Id-7UZ"/>
                                         <constraint firstItem="WXD-Vo-IZg" firstAttribute="top" secondItem="NPT-jZ-EYc" secondAttribute="top" id="NaM-Fz-pbm"/>
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="centerX" secondItem="WXD-Vo-IZg" secondAttribute="centerX" id="aFc-Ju-cOV"/>
-                                        <constraint firstAttribute="bottom" secondItem="WXD-Vo-IZg" secondAttribute="bottom" constant="5" id="cIG-6A-D8D"/>
+                                        <constraint firstAttribute="bottom" secondItem="WXD-Vo-IZg" secondAttribute="bottom" id="cIG-6A-D8D"/>
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="width" secondItem="WXD-Vo-IZg" secondAttribute="width" id="jgt-Cd-mEE"/>
                                         <constraint firstAttribute="trailing" secondItem="WXD-Vo-IZg" secondAttribute="trailing" constant="5" id="jx6-FM-uXy"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ANb-wr-bcv" secondAttribute="trailing" constant="5" id="rCw-Eo-39b"/>
