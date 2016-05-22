@@ -40,7 +40,7 @@
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
                                                     <rect key="frame" x="550" y="29.5" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -557,19 +557,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utj-RW-xcb">
-                                            <rect key="frame" x="18" y="22" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFB-jk-HBW">
+                                            <rect key="frame" x="5" y="5" width="590" height="33.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxq-oA-jAz">
+                                            <rect key="frame" x="5" y="5" width="590" height="33.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utj-RW-xcb">
+                                                    <rect key="frame" x="5" y="17" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="utj-RW-xcb" firstAttribute="centerY" secondItem="oxq-oA-jAz" secondAttribute="centerY" id="dDt-Nu-ja3"/>
+                                                <constraint firstItem="utj-RW-xcb" firstAttribute="leading" secondItem="oxq-oA-jAz" secondAttribute="leading" constant="5" id="djx-nI-5Kj"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="utj-RW-xcb" firstAttribute="leading" secondItem="SQF-Cd-Mqn" secondAttribute="leadingMargin" constant="10" id="0QQ-oe-E8M"/>
-                                        <constraint firstItem="utj-RW-xcb" firstAttribute="centerY" secondItem="SQF-Cd-Mqn" secondAttribute="centerY" id="F1I-r2-eMl"/>
+                                        <constraint firstItem="zFB-jk-HBW" firstAttribute="centerX" secondItem="oxq-oA-jAz" secondAttribute="centerX" id="1Zc-Ed-S6N"/>
+                                        <constraint firstItem="oxq-oA-jAz" firstAttribute="leading" secondItem="SQF-Cd-Mqn" secondAttribute="leading" constant="5" id="FVe-G2-ce4"/>
+                                        <constraint firstItem="zFB-jk-HBW" firstAttribute="width" secondItem="oxq-oA-jAz" secondAttribute="width" id="Oyg-0Q-bU3"/>
+                                        <constraint firstAttribute="trailing" secondItem="oxq-oA-jAz" secondAttribute="trailing" constant="5" id="RBw-5g-qyh"/>
+                                        <constraint firstItem="zFB-jk-HBW" firstAttribute="height" secondItem="oxq-oA-jAz" secondAttribute="height" id="TTG-av-HWH"/>
+                                        <constraint firstItem="zFB-jk-HBW" firstAttribute="centerY" secondItem="oxq-oA-jAz" secondAttribute="centerY" id="Wmc-aK-Hno"/>
+                                        <constraint firstItem="oxq-oA-jAz" firstAttribute="top" secondItem="SQF-Cd-Mqn" secondAttribute="top" constant="5" id="XbP-a5-X0I"/>
+                                        <constraint firstAttribute="bottom" secondItem="oxq-oA-jAz" secondAttribute="bottom" constant="5" id="ko4-0G-9Wv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="animationView" destination="zFB-jk-HBW" id="FVM-of-qFJ"/>
+                                    <outlet property="containerView" destination="oxq-oA-jAz" id="IW7-Gh-fxZ"/>
                                     <outlet property="dateRepeatLabel" destination="utj-RW-xcb" id="feg-e7-pNJ"/>
                                 </connections>
                             </tableViewCell>
