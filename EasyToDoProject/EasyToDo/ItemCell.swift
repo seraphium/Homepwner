@@ -21,12 +21,12 @@ class ItemCell : BaseCell {
  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-       // addCustomizeEditingViewForCell()
     }
     
     let indicatorLayer = CAShapeLayer()
     var indicatorPath = UIBezierPath()
 
+    //give row edge inset for item row
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -36,6 +36,7 @@ class ItemCell : BaseCell {
         
     }
 
+    //find and replace default Reorder Control view
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         for view in subviews {
@@ -50,14 +51,10 @@ class ItemCell : BaseCell {
 
         }
     }
-    
-    private func initPath() {
-        indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))
 
-    }
-    
+    //init expired item indicator view
     func initIndicatorView() {
-        initPath()
+        indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))
         indicatorLayer.backgroundColor = UIColor.clearColor().CGColor
         indicatorLayer.path = indicatorPath.CGPath
         indicatorLayer.fillColor = UIColor.redColor().CGColor
@@ -86,7 +83,6 @@ class ItemCell : BaseCell {
         } else {
             indicatorView.alpha = 0.0
         }
-
 
 
         //update font setting

@@ -297,7 +297,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
  
   
 //MARK: - tableview Cell animation
-    //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let c = cell as! ItemCell
