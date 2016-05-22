@@ -161,7 +161,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         //update cell font
-        
+       
         switch indexPath.section {
         case 0:
             var expired = false
@@ -228,6 +228,46 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+        
+        
+    }
+    
+    
+  /*  func addCustomizeEditingViewForCell(cell cell:UITableViewCell) {
+        UIView *editingCategoryAccessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 35)];
+        
+        UIButton *addCategoryButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [addCategoryButton setTitle:@"Add" forState:UIControlStateNormal];
+        [addCategoryButton setFrame:CGRectMake(0, 0, 50, 35)];
+        [addCategoryButton addTarget:self action:@selector(addCategoryClicked:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIButton *removeCategoryButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [removeCategoryButton setTitle:@"Remove" forState:UIControlStateNormal];
+        [removeCategoryButton setFrame:CGRectMake(55, 0, 65, 35)];
+        [removeCategoryButton addTarget:self action:@selector(removeCategoryClicked:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [editingCategoryAccessoryView addSubview:addCategoryButton];
+        [editingCategoryAccessoryView addSubview:removeCategoryButton];
+        cell.editingAccessoryView = editingCategoryAccessoryView;
+    }*/
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let customAction = UITableViewRowAction(style: .Normal, title: "Your Custom Action", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
+            print("Do whatever it is you want to do when they press your custom action button")
+        })
+        customAction.backgroundColor = UIColor.greenColor()
+        
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
+            print("You can even implement a deletion action here")
+        })
+        deleteAction.backgroundColor = UIColor.redColor()
+        
+        return [deleteAction, customAction]
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
