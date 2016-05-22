@@ -35,13 +35,22 @@ class ItemCell : BaseCell {
         contentView.frame = fr
         
     }
-    
+
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-       // self.showsReorderControl = false;
-        for view in subviews as [UIView] { if view.dynamicType.description().rangeOfString("Reorder") != nil { for subview in view.subviews as! [UIImageView] { if subview.isKindOfClass(UIImageView) { subview.image = UIImage(named: "moveicon") } } } }
-       // self.editingAccessoryView = editing ? UIImageView(image: UIImage(named: "moveicon")) : nil
+        for view in subviews {
+            if let reorderControlView = view.findSubViewWithString("ReorderControl") {
+                for subview in reorderControlView.subviews as! [UIImageView] {
+                    if subview.isKindOfClass(UIImageView) {
+                    subview.image = UIImage(named: "moveicon")
+                        break
+                    }
+                }
+            }
+
+        }
     }
+    
     private func initPath() {
         indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))
 
@@ -93,6 +102,26 @@ class ItemCell : BaseCell {
 
 
 extension UIView {
+    
+    func findSubViewWithString(partialName: String) -> UIView? {
+        
+        if self.dynamicType.description().rangeOfString("Reorder") != nil {
+            return self
+        }
+        
+        for view in subviews as [UIView]
+        {
+                if let match = view.findSubViewWithString(partialName) {
+                    return match
+                }
+                
+        }
+        
+        return nil
+
+    }
+
+
     func pb_takeSnapshot(frame: CGRect) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
         
