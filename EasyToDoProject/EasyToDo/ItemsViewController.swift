@@ -55,7 +55,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
  
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-      //  tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
         
     }
     
@@ -272,6 +272,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     //let rotation = CGAffineTransformMakeRotation(CGFloat(M_PI))
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let c = cell as! ItemCell
+        c.initIndicatorView()
+        
         if indexPath.row == newRow {
             let itemCell = cell as! BaseCell
             itemCell.openAnimation(0, completion: nil)

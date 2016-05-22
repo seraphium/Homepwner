@@ -10,6 +10,8 @@ import UIKit
 
 class ItemCell : BaseCell {
     
+
+    @IBOutlet var indicatorView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet var notifyDateLabel: UILabel!
 
@@ -23,7 +25,23 @@ class ItemCell : BaseCell {
     
     }
     
-      
+    let indicatorLayer = CAShapeLayer()
+    var indicatorPath = UIBezierPath()
+
+    
+    private func initPath() {
+        indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))
+
+    }
+    
+    func initIndicatorView() {
+        initPath()
+        indicatorLayer.backgroundColor = UIColor.clearColor().CGColor
+        indicatorLayer.path = indicatorPath.CGPath
+        indicatorLayer.fillColor = UIColor.redColor().CGColor
+        indicatorView.layer.addSublayer(indicatorLayer)
+        
+    }
     
     func updateCell(finished: Bool, expired: Bool){
         
@@ -45,8 +63,10 @@ class ItemCell : BaseCell {
         }
         
         if expired { //expired notify item
-            textField.textColor = UIColor.redColor()
+            indicatorView.alpha = 1.0
             self.expired = true
+        } else {
+            indicatorView.alpha = 0.0
         }
 
 
