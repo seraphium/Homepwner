@@ -10,6 +10,8 @@ import UIKit
 
 class ItemCell : BaseCell {
     
+    @IBOutlet var foregroundView: UIView!
+    @IBOutlet var foldView: UIView!
 
     @IBOutlet var indicatorView: UIView!
     @IBOutlet weak var textField: UITextField!

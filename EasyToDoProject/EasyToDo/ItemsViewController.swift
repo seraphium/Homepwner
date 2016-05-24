@@ -154,7 +154,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return 200
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -357,7 +357,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     
     @IBAction func itemDoneClicked(sender: UIButton) {
-        let cell = sender.superview?.superview?.superview as! ItemCell
+        let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
         if (indexPath.section == 0)
         {

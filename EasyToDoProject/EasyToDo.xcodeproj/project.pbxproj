@@ -55,6 +55,7 @@
 		4B8EB5681CD7353F00E9758C /* DetailDateRepeatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDateRepeatCell.swift; sourceTree = "<group>"; };
 		4BB29B3B1C9A9672006E1BB8 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		4BBB65BA1C99A71000DB1DDE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4BC5F5391CF4A85300B9D770 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		4BD8CD4C1C8F209200B38916 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +159,7 @@
 				4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */,
 				4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */,
 				4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */,
+				4BC5F5391CF4A85300B9D770 /* Reveal.framework */,
 				4B3A8DED1C846DDF005B1DE5 /* LaunchScreen.storyboard */,
 			);
 			name = Resources;
@@ -372,7 +374,12 @@
 				);
 				INFOPLIST_FILE = EasyToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyToDo;
 				PRODUCT_NAME = EasyToDo;
 				PROVISIONING_PROFILE = "";
@@ -391,7 +398,12 @@
 				);
 				INFOPLIST_FILE = EasyToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyToDo;
 				PRODUCT_NAME = EasyToDo;
 				PROVISIONING_PROFILE = "";
