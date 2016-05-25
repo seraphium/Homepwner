@@ -20,7 +20,7 @@ class ItemCell : BaseCell {
     @IBOutlet var doneButton: UIButton!
 
     var expired : Bool = false
- 
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -31,11 +31,10 @@ class ItemCell : BaseCell {
     //give row edge inset for item row
     override func layoutSubviews() {
         super.layoutSubviews()
-
+ 
         let f = contentView.frame
         let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
         contentView.frame = fr
-        
     }
 
     //find and replace default Reorder Control view
@@ -64,8 +63,10 @@ class ItemCell : BaseCell {
         
     }
     
-    func updateCell(finished: Bool, expired: Bool){
-        
+    func updateCell(expanded: Bool, finished: Bool, expired: Bool){
+
+        foldView.hidden = !expanded
+
         //finished item will not be "Done"able
         if (finished) {
             doneButton.alpha = 0.0
@@ -94,6 +95,88 @@ class ItemCell : BaseCell {
         
     }
     
+    //MARK: - animation setup
+    //removed existing animationViews
+    private func removeImageItemsFromAnimationView() {
+        
+        guard let animationView = self.animationView else {
+            return
+        }
+        
+        animationView.subviews.forEach({ $0.removeFromSuperview() })
+    }
+    
+    //prepare containerView snapsho timage for animation
+    func addImageItemsToAnimationView() {
+        containerView.alpha = 1;
+        let contSize    = containerView.bounds.size
+        let image       = containerView.pb_takeSnapshot(CGRect(x: 0, y: 0, width: contSize.width, height: contSize.height))
+        let imageView   = UIImageView(image: image)
+        imageView.tag   = 0
+        animationView?.addSubview(imageView)
+        
+    }
+    
+    //MARK: open animation
+    func slideAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden:Bool) {
+        
+        let slideAnimation = CABasicAnimation(keyPath: "transform.rotation.x")
+        slideAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
+        slideAnimation.fromValue           = (from)
+        slideAnimation.toValue             = (to)
+        slideAnimation.duration            = duration
+        slideAnimation.delegate            = self;
+        slideAnimation.fillMode            = kCAFillModeForwards
+        slideAnimation.removedOnCompletion = false;
+        slideAnimation.beginTime           = CACurrentMediaTime() + delay
+        
+        animationLayer.addAnimation(slideAnimation, forKey: "rotation.x")
+    }
+    
+    func openAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
+        
+        removeImageItemsFromAnimationView()
+        addImageItemsToAnimationView()
+        
+        animationView.alpha = 1;
+        containerView.alpha = 0;
+        
+        let timing                = kCAMediaTimingFunctionEaseIn
+        // let from: CGFloat         = -containerView.bounds.size.width
+        //let to: CGFloat           = 0
+        
+        let from: CGFloat         = CGFloat(-M_PI / 2)
+        let to: CGFloat           = 0
+        let hidden                = true
+        let duration              = NSTimeInterval(0.5)
+        
+        slideAnimation(timing, from: from, to: to, duration: duration, delay: delay, hidden: hidden)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64((delay + duration) * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            self.animationView?.alpha = 0
+            self.containerView.alpha  = 1
+            completion?()
+        }
+        
+    }
+    
+    //MARK: - Fold animation
+    func foldingAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden:Bool) {
+        
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation.x")
+        rotateAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
+        rotateAnimation.fromValue           = (from)
+        rotateAnimation.toValue             = (to)
+        rotateAnimation.duration            = duration
+        rotateAnimation.delegate            = self;
+        rotateAnimation.fillMode            = kCAFillModeForwards
+        rotateAnimation.removedOnCompletion = false;
+        rotateAnimation.beginTime           = CACurrentMediaTime() + delay
+        
+       // self.hiddenAfterAnimation = hidden
+        
+        self.layer.addAnimation(rotateAnimation, forKey: "rotation.x")
+    }
     
     
 }

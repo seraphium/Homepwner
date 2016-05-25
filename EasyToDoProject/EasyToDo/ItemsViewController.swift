@@ -16,6 +16,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     var doneClosed : Bool = false
     
+    let kCloseCellHeight: CGFloat = 50
+    let kOpenCellHeight: CGFloat = 250
+
+    var cellHeightsForUnDone = [CGFloat]()
+    var cellHeightsForDone = [CGFloat]()
+
     var newRow : Int?
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -23,8 +29,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         formatter.timeStyle = .ShortStyle
         return formatter
     }()
-    
-    
+
     // MARK: - initializer
     required init?(coder aDecoder: NSCoder){
         //set default edit mode button
@@ -34,9 +39,23 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     
+    func createCellHeightsArray() {
+        let rowCountForUndone = itemStore.allItemsUnDone.count
+        for _ in 0...rowCountForUndone {
+            cellHeightsForUnDone.append(kCloseCellHeight)
+        }
+        let rowCountForDone = itemStore.allItemsDone.count
+        for _ in 0...rowCountForDone {
+            cellHeightsForDone.append(kCloseCellHeight)
+        }
+    }
+    
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //set table cell height
+        createCellHeightsArray()
+        
         //set default background color
         tableView.backgroundColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
         
@@ -154,7 +173,15 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250
+        switch indexPath.section {
+        case 0:
+            return cellHeightsForUnDone[indexPath.row]
+        case 1:
+            return cellHeightsForDone[indexPath.row]
+        default:
+            return 0
+        }
+
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -171,8 +198,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                     expired = true
                 }
             }
-
-            cell.updateCell(false, expired: expired)
+            let expand = cellHeightsForUnDone[indexPath.row] == kOpenCellHeight
+            cell.updateCell(expand, finished: false, expired: expired)
             cell.textField.text = item.name
            
             if let dateNotify = item.dateToNotify {
@@ -185,7 +212,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
                 cell.notifyDateLabel.text = nil
             }
         case 1:
-            cell.updateCell(true, expired: false)
+            let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
+
+            cell.updateCell(expand, finished: true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
@@ -202,6 +231,29 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
+        var expand : Bool = false
+        switch indexPath.section {
+        case 0:
+            if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
+                cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
+            } else {// close cell
+                cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
+
+            }
+        case 1:
+            if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
+                cellHeightsForDone[indexPath.row] = kOpenCellHeight
+
+            } else {// close cell
+                cellHeightsForDone[indexPath.row] = kCloseCellHeight
+
+            }
+        default:
+            break
+        }
+        tableView.reloadData()
+
     }
     
     //disable table row movement between sections
@@ -303,7 +355,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         c.initIndicatorView()
         
         if indexPath.row == newRow {
-            let itemCell = cell as! BaseCell
+            let itemCell = cell as! ItemCell
             itemCell.openAnimation(0, completion: nil)
             newRow = nil
         }
@@ -398,7 +450,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         super.setEditing(editing, animated: animated)
     }
     @IBAction func cellEditingEnd(sender: UITextField) {
-        let cell = sender.superview?.superview?.superview as! ItemCell
+        let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
         var item : Item
         if (indexPath.section == 0)
