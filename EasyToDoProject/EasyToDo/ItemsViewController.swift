@@ -213,6 +213,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             } else {
                 cell.notifyDateLabel.text = nil
             }
+           
         case 1:
             let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
 
@@ -233,7 +234,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
+        
         switch indexPath.section {
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
@@ -253,7 +255,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         default:
             break
         }
-        tableView.reloadData()
+        let duration = 0.5
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }) {done -> Void in
+            if done {
+                cell.expandAnimation(0, completion: nil)
+            }
+
+        }
 
     }
     
@@ -363,6 +374,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             itemCell.openAnimation(0, completion: nil)
             newRow = nil
         }
+
     }
 
     

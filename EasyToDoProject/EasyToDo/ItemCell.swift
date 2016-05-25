@@ -38,6 +38,7 @@ class ItemCell : BaseCell {
         let f = contentView.frame
         let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
         contentView.frame = fr
+        
     }
 
     //find and replace default Reorder Control view
@@ -67,7 +68,8 @@ class ItemCell : BaseCell {
     }
     
     func updateCell(expanded: Bool, finished: Bool, expired: Bool){
-            self.foldView.hidden = !expanded
+        
+        self.foldView.hidden = !expanded
 
         //finished item will not be "Done"able
         if (finished) {
@@ -163,7 +165,7 @@ class ItemCell : BaseCell {
     }
     
     //MARK: - Fold animation
-    func foldingAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden:Bool) {
+    func foldingAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden: Bool) {
         
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation.x")
         rotateAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
@@ -175,18 +177,36 @@ class ItemCell : BaseCell {
         rotateAnimation.removedOnCompletion = false;
         rotateAnimation.beginTime           = CACurrentMediaTime() + delay
         
-       // self.hiddenAfterAnimation = hidden
-        
-        foldAnimationView.layer.addAnimation(rotateAnimation, forKey: "rotation.x")
+        foldAnimationView.layer.addAnimation(rotateAnimation, forKey: "folding")
     }
     
     func expandAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
         
+        foldView.hidden = false
+        
         removeImageItemsFromAnimationView(foldAnimationView)
         addImageItemsToAnimationView(foldView, destView: foldAnimationView)
+//        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+
+        foldView.alpha = 0
+        foldAnimationView.alpha = 1.0
+        foldAnimationView.layer.shouldRasterize = true
+        let delay: NSTimeInterval = 0
+        let timing                = kCAMediaTimingFunctionEaseIn
+        let from: CGFloat         = CGFloat(-M_PI / 2)
+        let to: CGFloat           = 0
+        let duration              = 0.5
+        let hiddenAfter : Bool    = false
+
+        foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay, hidden: hiddenAfter)
         
-        
-        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            self.foldAnimationView?.alpha = 0
+            self.foldAnimationView.layer.removeAllAnimations()
+            self.foldAnimationView.layer.shouldRasterize = false
+            self.foldView.alpha  = 1
+            completion?()
+        }
     }
     
 }
