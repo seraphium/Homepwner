@@ -64,8 +64,7 @@ class ItemCell : BaseCell {
     }
     
     func updateCell(expanded: Bool, finished: Bool, expired: Bool){
-
-        foldView.hidden = !expanded
+            self.foldView.hidden = !expanded
 
         //finished item will not be "Done"able
         if (finished) {

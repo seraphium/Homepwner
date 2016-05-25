@@ -40,6 +40,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     
     func createCellHeightsArray() {
+        cellHeightsForUnDone.removeAll()
+        cellHeightsForDone.removeAll()
         let rowCountForUndone = itemStore.allItemsUnDone.count
         for _ in 0...rowCountForUndone {
             cellHeightsForUnDone.append(kCloseCellHeight)
@@ -231,8 +233,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
-        var expand : Bool = false
+    
         switch indexPath.section {
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
@@ -279,6 +280,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         self.imageStore.deleteImageForKey(item.itemKey)
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        
+        createCellHeightsArray()
+
         tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
     }
     
@@ -395,13 +399,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
+
        let newItem = itemStore.CreateItem(random: false, finished: false)
+        createCellHeightsArray()
+
         if let index = itemStore.allItemsUnDone.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
 
             tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             newRow = indexPath.row
-
+            createCellHeightsArray()
             tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
         }
         
@@ -426,6 +433,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             //only finish and move cell of non-repeat notification
             //for repeat notify, re create notify
             itemStore.finishItem(item)
+            
+            createCellHeightsArray()
+
             let range = NSMakeRange(0, self.tableView.numberOfSections)
             let sections = NSIndexSet(indexesInRange: range)
             self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
