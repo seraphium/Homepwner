@@ -11,8 +11,11 @@ import UIKit
 class ItemCell : BaseCell {
     
     @IBOutlet var foregroundView: UIView!
+    
     @IBOutlet var foldView: UIView!
 
+    @IBOutlet weak var foldAnimationView: UIView!
+    
     @IBOutlet var indicatorView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet var notifyDateLabel: UILabel!
@@ -96,9 +99,9 @@ class ItemCell : BaseCell {
     
     //MARK: - animation setup
     //removed existing animationViews
-    private func removeImageItemsFromAnimationView() {
+    private func removeImageItemsFromAnimationView(view: UIView?) {
         
-        guard let animationView = self.animationView else {
+        guard let animationView = view else {
             return
         }
         
@@ -106,13 +109,13 @@ class ItemCell : BaseCell {
     }
     
     //prepare containerView snapsho timage for animation
-    func addImageItemsToAnimationView() {
-        containerView.alpha = 1;
-        let contSize    = containerView.bounds.size
-        let image       = containerView.pb_takeSnapshot(CGRect(x: 0, y: 0, width: contSize.width, height: contSize.height))
+    func addImageItemsToAnimationView(sourceView : UIView, destView: UIView?) {
+        sourceView.alpha = 1;
+        let contSize    = sourceView.bounds.size
+        let image       = sourceView.pb_takeSnapshot(CGRect(x: 0, y: 0, width: contSize.width, height: contSize.height))
         let imageView   = UIImageView(image: image)
         imageView.tag   = 0
-        animationView?.addSubview(imageView)
+        destView?.addSubview(imageView)
         
     }
     
@@ -134,8 +137,8 @@ class ItemCell : BaseCell {
     
     func openAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
         
-        removeImageItemsFromAnimationView()
-        addImageItemsToAnimationView()
+        removeImageItemsFromAnimationView(animationView)
+        addImageItemsToAnimationView(containerView, destView: animationView)
         
         animationView.alpha = 1;
         containerView.alpha = 0;
@@ -174,9 +177,17 @@ class ItemCell : BaseCell {
         
        // self.hiddenAfterAnimation = hidden
         
-        self.layer.addAnimation(rotateAnimation, forKey: "rotation.x")
+        foldAnimationView.layer.addAnimation(rotateAnimation, forKey: "rotation.x")
     }
     
+    func expandAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
+        
+        removeImageItemsFromAnimationView(foldAnimationView)
+        addImageItemsToAnimationView(foldView, destView: foldAnimationView)
+        
+        
+        
+    }
     
 }
 

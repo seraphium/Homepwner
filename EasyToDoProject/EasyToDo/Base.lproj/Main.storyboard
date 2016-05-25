@@ -111,6 +111,10 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xs-kD-Up4">
+                                                    <rect key="frame" x="0.0" y="50" width="590" height="200"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65u-gf-Vsx">
                                                     <rect key="frame" x="0.0" y="50" width="590" height="200"/>
                                                     <subviews>
@@ -174,20 +178,26 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="2Xs-kD-Up4" firstAttribute="width" secondItem="65u-gf-Vsx" secondAttribute="width" id="1QL-hi-Gay"/>
+                                                <constraint firstItem="2Xs-kD-Up4" firstAttribute="centerY" secondItem="65u-gf-Vsx" secondAttribute="centerY" id="5hZ-JW-REz"/>
                                                 <constraint firstItem="DyM-aN-Dht" firstAttribute="centerY" secondItem="WXD-Vo-IZg" secondAttribute="centerY" id="8iB-It-Wcx"/>
+                                                <constraint firstItem="2Xs-kD-Up4" firstAttribute="height" secondItem="65u-gf-Vsx" secondAttribute="height" id="CDw-CP-4rH"/>
                                                 <constraint firstItem="nq1-RY-AG9" firstAttribute="leading" secondItem="WXD-Vo-IZg" secondAttribute="leading" id="G57-Wy-Irh"/>
                                                 <constraint firstAttribute="trailing" secondItem="65u-gf-Vsx" secondAttribute="trailing" id="Iei-bC-Gee"/>
                                                 <constraint firstAttribute="bottom" secondItem="65u-gf-Vsx" secondAttribute="bottom" id="Lg9-Yg-OWW"/>
                                                 <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="PaY-GG-v9A"/>
                                                 <constraint firstItem="65u-gf-Vsx" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="bottom" id="cca-KC-CYe"/>
                                                 <constraint firstItem="65u-gf-Vsx" firstAttribute="leading" secondItem="WXD-Vo-IZg" secondAttribute="leading" id="eE3-xZ-YfJ"/>
+                                                <constraint firstItem="2Xs-kD-Up4" firstAttribute="leading" secondItem="65u-gf-Vsx" secondAttribute="leading" id="fg5-13-R2w"/>
                                                 <constraint firstAttribute="trailing" secondItem="nq1-RY-AG9" secondAttribute="trailing" id="pwU-k2-Zb2"/>
+                                                <constraint firstItem="2Xs-kD-Up4" firstAttribute="centerX" secondItem="65u-gf-Vsx" secondAttribute="centerX" id="uFo-an-AzK"/>
                                                 <constraint firstAttribute="trailing" secondItem="DyM-aN-Dht" secondAttribute="trailing" constant="5" id="xGN-1C-iXb"/>
                                                 <constraint firstItem="nq1-RY-AG9" firstAttribute="top" secondItem="WXD-Vo-IZg" secondAttribute="top" id="ygL-Jx-JtC"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="Lg9-Yg-OWW"/>
+                                                    <exclude reference="fg5-13-R2w"/>
                                                     <exclude reference="8iB-It-Wcx"/>
                                                     <exclude reference="xGN-1C-iXb"/>
                                                 </mask>
@@ -225,6 +235,7 @@
                                     <outlet property="animationView" destination="ANb-wr-bcv" id="5uZ-Dt-l7A"/>
                                     <outlet property="containerView" destination="WXD-Vo-IZg" id="WYc-rt-osH"/>
                                     <outlet property="doneButton" destination="DyM-aN-Dht" id="2PS-NU-L9N"/>
+                                    <outlet property="foldAnimationView" destination="2Xs-kD-Up4" id="0xz-1X-PPe"/>
                                     <outlet property="foldView" destination="65u-gf-Vsx" id="Hpb-7Z-5Oa"/>
                                     <outlet property="foregroundView" destination="nq1-RY-AG9" id="phq-Qu-95V"/>
                                     <outlet property="indicatorView" destination="je1-YY-HQp" id="W4V-cS-CnA"/>
