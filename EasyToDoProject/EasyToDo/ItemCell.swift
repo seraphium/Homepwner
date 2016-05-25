@@ -39,6 +39,7 @@ class ItemCell : BaseCell {
         let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
         contentView.frame = fr
         
+       
     }
 
     //find and replace default Reorder Control view
@@ -191,6 +192,11 @@ class ItemCell : BaseCell {
         foldView.alpha = 0
         foldAnimationView.alpha = 1.0
         foldAnimationView.layer.shouldRasterize = true
+        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        let x = foldView.bounds.width / 2
+        let y = CGFloat(50.0)
+        foldAnimationView.layer.position = CGPoint(x: x , y: y)
+        
         let delay: NSTimeInterval = 0
         let timing                = kCAMediaTimingFunctionEaseIn
         let from: CGFloat         = CGFloat(-M_PI / 2)
