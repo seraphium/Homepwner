@@ -165,7 +165,7 @@ class ItemCell : BaseCell {
     }
     
     //MARK: - Fold animation
-    func foldingAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval, hidden: Bool) {
+    func foldingAnimation(timing: String, from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay:NSTimeInterval) {
         
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation.x")
         rotateAnimation.timingFunction      = CAMediaTimingFunction(name: timing)
@@ -196,9 +196,8 @@ class ItemCell : BaseCell {
         let from: CGFloat         = CGFloat(-M_PI / 2)
         let to: CGFloat           = 0
         let duration              = 0.5
-        let hiddenAfter : Bool    = false
 
-        foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay, hidden: hiddenAfter)
+        foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
             self.foldAnimationView?.alpha = 0
@@ -209,6 +208,34 @@ class ItemCell : BaseCell {
         }
     }
     
+    
+    func unExpandAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
+        
+        removeImageItemsFromAnimationView(foldAnimationView)
+        addImageItemsToAnimationView(foldView, destView: foldAnimationView)
+        
+        foldView.alpha = 0
+        foldAnimationView.alpha = 1.0
+        foldAnimationView.layer.shouldRasterize = true
+        let delay: NSTimeInterval = 0
+        let timing                = kCAMediaTimingFunctionEaseIn
+        let from: CGFloat         = 0
+        let to: CGFloat           = CGFloat(-M_PI / 2)
+        let duration              = 0.5
+        
+        foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            self.foldAnimationView?.alpha = 0
+            self.foldAnimationView.layer.removeAllAnimations()
+            self.foldAnimationView.layer.shouldRasterize = false
+            self.foldView.alpha  = 0
+            self.foldView.hidden = true
+
+            completion?()
+        }
+    }
+
 }
 
 

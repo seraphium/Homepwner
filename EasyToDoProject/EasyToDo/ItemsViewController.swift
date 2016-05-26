@@ -230,41 +230,55 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
     }
     
 
+    func updateWithExpandCell(cell: ItemCell) {
+        let duration = 0.5
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }) {done -> Void in
+            if done {
+                cell.expandAnimation(0, completion: nil)
+            }
+            
+        }
+    }
+    
+    func updateWithUnExpandCell(cell: ItemCell) {
+        let duration = 0.5
+        cell.expandAnimation(0) {
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }, completion: nil)     }
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
-        
         switch indexPath.section {
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
+                updateWithExpandCell(cell)
             } else {// close cell
                 cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
-
+                updateWithUnExpandCell(cell)
             }
         case 1:
             if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForDone[indexPath.row] = kOpenCellHeight
+                updateWithExpandCell(cell)
 
             } else {// close cell
                 cellHeightsForDone[indexPath.row] = kCloseCellHeight
+                updateWithUnExpandCell(cell)
 
             }
         default:
             break
         }
-        let duration = 0.5
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }) {done -> Void in
-            if done {
-                cell.expandAnimation(0, completion: nil)
-            }
-
-        }
+ 
 
     }
     
