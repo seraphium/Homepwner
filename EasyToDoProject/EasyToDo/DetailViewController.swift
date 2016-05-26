@@ -95,7 +95,6 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
             let c = cell as! BaseCell
             c.InitCellViews()
-          //  c.openAnimation(0.0,completion: nil)
         
 
     }

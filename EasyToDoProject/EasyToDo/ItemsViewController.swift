@@ -30,6 +30,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         return formatter
     }()
 
+    //expanded item
+    var item:Item!
+
+    
     // MARK: - initializer
     required init?(coder aDecoder: NSCoder){
         //set default edit mode button
@@ -203,7 +207,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             let expand = cellHeightsForUnDone[indexPath.row] == kOpenCellHeight
             cell.updateCell(expand, finished: false, expired: expired)
             cell.textField.text = item.name
-           
+            cell.item = item
             if let dateNotify = item.dateToNotify {
                 var notifyString = dateFormatter.stringFromDate(dateNotify)
                 if item.repeatInterval != 0 {
@@ -221,6 +225,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             let item = itemStore.allItemsDone[indexPath.row]
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
+            cell.item = item
+
         default:
             break;
         }
@@ -257,18 +263,23 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
+
                 updateWithExpandCell(cell)
+
             } else {// close cell
                 cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
+
                 updateWithUnExpandCell(cell)
             }
         case 1:
             if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForDone[indexPath.row] = kOpenCellHeight
+
                 updateWithExpandCell(cell)
 
             } else {// close cell
                 cellHeightsForDone[indexPath.row] = kCloseCellHeight
+
                 updateWithUnExpandCell(cell)
 
             }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemCell : BaseCell {
+class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet var foregroundView: UIView!
     
@@ -22,14 +22,42 @@ class ItemCell : BaseCell {
 
     @IBOutlet var doneButton: UIButton!
 
+    //foldview content
+    @IBOutlet weak var detailTextView: UITextView!
+    
+    @IBOutlet weak var detailNotifyDate: UITextField!
+    
+    @IBOutlet weak var detailSelectPhoto: UITextField!
+    
     var expired : Bool = false
     
     let indicatorLayer = CAShapeLayer()
     var indicatorPath = UIBezierPath()
     
+    var item:Item!
+    
+    var dateExpand : Bool = false
+    
+    var datePicker : UIDatePicker!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        datePicker = UIDatePicker()
+        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.date = NSDate() //initial value
+        
+
     }
+    
+    let dateFormatter : NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .ShortStyle
+        return formatter
+    }()
+
     
     override internal func awakeFromNib() {
         super.awakeFromNib()
@@ -38,9 +66,28 @@ class ItemCell : BaseCell {
         contentView.frame = fr
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
+        
+        detailTextView.delegate = self
+        
+        detailNotifyDate.delegate = self
+        
+        detailSelectPhoto.delegate = self
+        
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let it = item {
+            if let detail = it.detail {
+                detailTextView.text = detail
+            }
+            if let date = it.dateToNotify {
+                detailNotifyDate.text = dateFormatter.stringFromDate(date)  
+            }
 
+        }
+       
+    }
 
     //find and replace default Reorder Control view
     override func setEditing(editing: Bool, animated: Bool) {
@@ -57,6 +104,51 @@ class ItemCell : BaseCell {
 
         }
     }
+    
+    //MARK: - textfield delegate
+
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.tag == 111 && textView.text != nil {
+            item.detail = textView.text!
+        }
+    }
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField.tag != 222 {
+            if  datePicker.superview != nil {
+                datePicker.removeFromSuperview()
+            }
+            return true
+        }
+        
+        
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
+            (alertAction) -> Void in
+            //trunc date by set sec to 0
+            let date = self.datePicker.date
+            var minuteDate : NSDate?
+            NSCalendar.currentCalendar().rangeOfUnit(NSCalendarUnit.Minute,
+                startDate: &minuteDate,
+                interval: nil,
+                forDate: date)
+            
+            self.item.dateToNotify = minuteDate!
+            
+            AppDelegate.scheduleNotifyForDate(minuteDate!, withRepeatInteval: nil, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
+
+            
+            })
+        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.view.addSubview(datePicker)
+        
+        let navController = window!.rootViewController as! UINavigationController
+        let itemVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("itemVC") as! ItemsViewController
+        
+        itemVC.presentViewController(alertController, animated:true, completion: nil)
+        
+        return false;
+    }
+
 
     //init expired item indicator view
     func initIndicatorView() {
