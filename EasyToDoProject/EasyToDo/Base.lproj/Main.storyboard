@@ -32,7 +32,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="590" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je1-YY-HQp">
-                                                            <rect key="frame" x="5" y="2" width="10" height="10"/>
+                                                            <rect key="frame" x="5" y="8" width="10" height="10"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="LXO-lE-Fal"/>
@@ -87,7 +87,9 @@
                                                     <constraints>
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="3Vn-TC-BFE"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="5BU-ft-25D"/>
+                                                        <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
+                                                        <constraint firstItem="je1-YY-HQp" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="8" id="Kpr-y4-2Ga"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="LhO-Pk-VJ9"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="10" id="Z7I-e5-49s"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="2" id="ZJT-CV-WJ5"/>
@@ -103,6 +105,8 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="CkS-HJ-yfm"/>
+                                                            <exclude reference="ZJT-CV-WJ5"/>
                                                             <exclude reference="at5-XG-UDb"/>
                                                             <exclude reference="LhO-Pk-VJ9"/>
                                                             <exclude reference="Z7I-e5-49s"/>
