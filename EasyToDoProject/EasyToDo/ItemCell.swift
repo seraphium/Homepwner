@@ -68,9 +68,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     override internal func awakeFromNib() {
         super.awakeFromNib()
-        let f = containerView.frame
-        let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
-        containerView.frame = fr
         
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
