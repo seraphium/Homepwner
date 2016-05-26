@@ -30,9 +30,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return formatter
     }()
 
-    //expanded item
-    var item:Item!
-
+    
+    var selectedItem : Item?
     
     // MARK: - initializer
     required init?(coder aDecoder: NSCoder){
@@ -269,22 +268,23 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
-
+                selectedItem = itemStore.allItemsUnDone[indexPath.row]
                 updateWithExpandCell(cell)
 
             } else {// close cell
                 cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
-
+                selectedItem = nil
                 updateWithUnExpandCell(cell)
             }
         case 1:
             if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForDone[indexPath.row] = kOpenCellHeight
-
+                selectedItem = itemStore.allItemsDone[indexPath.row]
                 updateWithExpandCell(cell)
 
             } else {// close cell
                 cellHeightsForDone[indexPath.row] = kCloseCellHeight
+                selectedItem = nil
 
                 updateWithUnExpandCell(cell)
 
@@ -409,22 +409,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
   //MARK: - segue actions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //pass the value to the detailed view
-        if segue.identifier == "ShowItem" {
-            if let row = tableView.indexPathForSelectedRow?.row {
-                var item : Item
-                if (tableView.indexPathForSelectedRow?.section == 0)
-                {
-                    item = itemStore.allItemsUnDone[row]
-                } else {
-                    item = itemStore.allItemsDone[row]
-                }
-                let detailViewController = segue.destinationViewController as! DetailViewController
-                detailViewController.item = item
-                detailViewController.imageStore = imageStore
-                
-            }
-            
-        }
+        if segue.identifier == "ShowPicture" {
+
+        let picVC = segue.destinationViewController as! PictureViewController
+        picVC.item = selectedItem
+        picVC.imageStore = imageStore
+
+      }
     
     }
     

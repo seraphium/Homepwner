@@ -140,7 +140,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             }
             return true
         }
-        
+        //handled the event that clear button clicked on notifyDateField
         if cleaningItem == true {
             cleaningItem = false
             return false

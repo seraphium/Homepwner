@@ -24,20 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         itemStore.finishItemNotification(notification)
     }
     
-    func notificationHandleDetail(application: UIApplication, forNotification notification: UILocalNotification) {
-       //todo: present detail view controller
-        let navController = window!.rootViewController as! UINavigationController
-        let detailVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("detailVC") as! DetailViewController
-        
-        var userInfo = notification.userInfo!
-        let key = userInfo["itemKey"] as! String
-        if let item = itemStore.getItem(key, finished: false){
-            detailVC.item = item
-            detailVC.imageStore = imageStore
-            navController.pushViewController(detailVC, animated: true)
-        }
-
-    }
     
     func notificationHandleIgnore(application: UIApplication, forNotification notification: UILocalNotification) {
         let navController = window!.rootViewController as! UINavigationController
@@ -53,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alertController.addAction(UIAlertAction(title: "Finish", style: .Default) {
             (alertAction) -> Void in
                 self.notificationHandleFinish(application, forNotification: notification)
-            })
-        alertController.addAction(UIAlertAction(title: "Detail", style: .Default) {
-            (alertAction) -> Void in
-                self.notificationHandleDetail(application, forNotification: notification)
             })
 
         alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel) {
