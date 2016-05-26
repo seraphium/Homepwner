@@ -118,6 +118,13 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             item.detail = textView.text!
         }
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //handling notify date selection
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField.tag != 222 {
             if  datePicker.superview != nil {
@@ -140,7 +147,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
                 forDate: date)
             
             self.item.dateToNotify = minuteDate!
-            
+            self.detailNotifyDate.text = self.dateFormatter.stringFromDate(minuteDate!)
             AppDelegate.scheduleNotifyForDate(minuteDate!, withRepeatInteval: nil, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
 
             
