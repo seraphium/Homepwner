@@ -55,6 +55,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
     }
     
+    func getUIViewFromBundle(name: String) -> UIView
+    {
+        let nib = NSBundle.mainBundle().loadNibNamed(name, owner: self, options: nil)
+        let view : UIView = nib[0] as! UIView
+        return view
+    }
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -118,12 +124,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
     }
     
-    func getUIViewFromBundle(name: String) -> UIView
-    {
-        let nib = NSBundle.mainBundle().loadNibNamed(name, owner: self, options: nil)
-        let view : UIView = nib[0] as! UIView
-        return view
-    }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
@@ -165,12 +165,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
         return nil
         
-    }
-    
-    func clickAction(bt: UIButton) -> Void {
-        doneClosed = !doneClosed
-        let indexSet = NSIndexSet(index: 1)
-        tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -236,30 +230,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
        
     }
     
-    func presentNotify(controller: UIViewController) {
-        self.presentViewController(controller, animated: true) { () -> Void in
-            
-        };
-    }
-    func updateWithExpandCell(cell: ItemCell) {
-        let duration = 0.5
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
-        }, completion: nil)
-         cell.expandAnimation(0, completion: nil)
-    }
-    
-    func updateWithUnExpandCell(cell: ItemCell) {
-        let duration = 0.5
-        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
-        }, completion: nil)
-         cell.unExpandAnimation(0, completion: nil)
-    
-    }
-    
+ 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -308,24 +279,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return proposedDestinationIndexPath
     }
     
-    private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
-        //remove from notification center if has created notify
-        if (item.dateToNotify) != nil && item.finished != true {
-            AppDelegate.cancelNotification(item)
-        }
-        //remove from item store
-        self.itemStore.RemoveItem(item)
-        //remove the item from image cache
-        self.imageStore.deleteImageForKey(item.itemKey)
-        //delete from tableview
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
-        createCellHeightsArray()
-
-        tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
-    }
-    
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+       override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         if editing {
             return .None
 
@@ -352,30 +306,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return [deleteAction]
     }
     
-   func deleteRow(indexPath: NSIndexPath) {
-            var item : Item
-            if (indexPath.section == 0)
-            {
-                item = itemStore.allItemsUnDone[indexPath.row]
-                let title = "Delete \(item.name)?"
-                let message = "Are you sure you want to delete this item?"
-                
-                let ac = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                ac.addAction(cancelAction)
-                let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
-                    self.deleteItemFromTable(item, indexPath: indexPath)
-                })
-                ac.addAction(deleteAction)
-                presentViewController(ac, animated: true, completion: nil)
-            } else {
-                item = itemStore.allItemsDone[indexPath.row]
-                self.deleteItemFromTable(item, indexPath: indexPath)
-
-            }
-            
-    }
-    
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
@@ -392,6 +322,29 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
  
   
 //MARK: - tableview Cell animation
+    func presentNotify(controller: UIViewController) {
+        self.presentViewController(controller, animated: true) { () -> Void in
+            
+        };
+    }
+    func updateWithExpandCell(cell: ItemCell) {
+        let duration = 0.5
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            }, completion: nil)
+        cell.expandAnimation(0, completion: nil)
+    }
+    
+    func updateWithUnExpandCell(cell: ItemCell) {
+        let duration = 0.5
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            }, completion: nil)
+        cell.unExpandAnimation(0, completion: nil)
+        
+    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let c = cell as! ItemCell
@@ -441,6 +394,55 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             newRow = indexPath.row
             createCellHeightsArray()
             tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
+        }
+        
+    }
+    
+    private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
+        //remove from notification center if has created notify
+        if (item.dateToNotify) != nil && item.finished != true {
+            AppDelegate.cancelNotification(item)
+        }
+        //remove from item store
+        self.itemStore.RemoveItem(item)
+        //remove the item from image cache
+        self.imageStore.deleteImageForKey(item.itemKey)
+        //delete from tableview
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        
+        createCellHeightsArray()
+        
+        tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
+    }
+    
+
+    
+    func clickAction(bt: UIButton) -> Void {
+        doneClosed = !doneClosed
+        let indexSet = NSIndexSet(index: 1)
+        tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+
+    func deleteRow(indexPath: NSIndexPath) {
+        var item : Item
+        if (indexPath.section == 0)
+        {
+            item = itemStore.allItemsUnDone[indexPath.row]
+            let title = "Delete \(item.name)?"
+            let message = "Are you sure you want to delete this item?"
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            ac.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
+                self.deleteItemFromTable(item, indexPath: indexPath)
+            })
+            ac.addAction(deleteAction)
+            presentViewController(ac, animated: true, completion: nil)
+        } else {
+            item = itemStore.allItemsDone[indexPath.row]
+            self.deleteItemFromTable(item, indexPath: indexPath)
+            
         }
         
     }
