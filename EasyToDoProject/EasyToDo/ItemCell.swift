@@ -24,23 +24,23 @@ class ItemCell : BaseCell {
 
     var expired : Bool = false
     
+    let indicatorLayer = CAShapeLayer()
+    var indicatorPath = UIBezierPath()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    let indicatorLayer = CAShapeLayer()
-    var indicatorPath = UIBezierPath()
-
-    //give row edge inset for item row
-    override func layoutSubviews() {
-        super.layoutSubviews()
- 
+    override internal func awakeFromNib() {
+        super.awakeFromNib()
         let f = contentView.frame
         let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
         contentView.frame = fr
-        
-       
+        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        foldAnimationView.frame = foldView.frame
     }
+
+
 
     //find and replace default Reorder Control view
     override func setEditing(editing: Bool, animated: Bool) {
@@ -187,15 +187,12 @@ class ItemCell : BaseCell {
         
         removeImageItemsFromAnimationView(foldAnimationView)
         addImageItemsToAnimationView(foldView, destView: foldAnimationView)
-//        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-
+        
         foldView.alpha = 0
+      
         foldAnimationView.alpha = 1.0
         foldAnimationView.layer.shouldRasterize = true
-        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-        let x = foldView.bounds.width / 2
-        let y = CGFloat(50.0)
-        foldAnimationView.layer.position = CGPoint(x: x , y: y)
+
         
         let delay: NSTimeInterval = 0
         let timing                = kCAMediaTimingFunctionEaseIn

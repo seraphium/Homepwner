@@ -235,21 +235,18 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-        }) {done -> Void in
-            if done {
-                cell.expandAnimation(0, completion: nil)
-            }
-            
-        }
+        }, completion: nil)
+         cell.expandAnimation(0, completion: nil)
     }
     
     func updateWithUnExpandCell(cell: ItemCell) {
         let duration = 0.5
-        cell.expandAnimation(0) {
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-        }, completion: nil)     }
+        }, completion: nil)
+         cell.unExpandAnimation(0, completion: nil)
+    
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
