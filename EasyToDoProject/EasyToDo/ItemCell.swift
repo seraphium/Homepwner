@@ -32,8 +32,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var detailNotifyDate: UITextField!
     
-    @IBOutlet weak var detailSelectPhoto: UITextField!
-    
+    @IBOutlet weak var detailAddPhoto: UIButton!
+
     weak var delegate: PresentNotifyProtocol?
     
     var expired : Bool = false
@@ -63,22 +63,22 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     override internal func awakeFromNib() {
         super.awakeFromNib()
-        let f = contentView.frame
+        let f = containerView.frame
         let fr = UIEdgeInsetsInsetRect(f, UIEdgeInsetsMake(5, 5, 5, 5))
-        contentView.frame = fr
+        containerView.frame = fr
+        
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
         
         detailTextView.delegate = self
         detailNotifyDate.delegate = self
-        detailSelectPhoto.delegate = self
         
         datePicker = UIDatePicker()
         datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
 
-        
+        detailAddPhoto.backgroundColor = UIColor.whiteColor()
     }
 
     override func layoutSubviews() {
@@ -117,6 +117,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         if textView.tag == 111 && textView.text != nil {
             item.detail = textView.text!
         }
+        textView.resignFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -133,6 +134,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             return true
         }
         
+        detailTextView.resignFirstResponder()
         
         let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil,
                               preferredStyle: .ActionSheet)
