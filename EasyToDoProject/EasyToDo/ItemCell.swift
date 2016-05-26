@@ -47,6 +47,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     var datePicker : UIDatePicker!
     
+    //tag if in clear notify date status
+    var cleaningItem : Bool = false
+    
+    @IBOutlet var repeatSelector: UISegmentedControl!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -78,7 +83,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
 
-        detailAddPhoto.backgroundColor = UIColor.whiteColor()
     }
 
     override func layoutSubviews() {
@@ -90,6 +94,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             if let date = it.dateToNotify {
                 detailNotifyDate.text = dateFormatter.stringFromDate(date)  
             }
+            repeatSelector.selectedSegmentIndex = item.repeatInterval
 
         }
        
@@ -125,6 +130,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         return true
     }
     
+
+    
     //handling notify date selection
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField.tag != 222 {
@@ -132,6 +139,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
                 datePicker.removeFromSuperview()
             }
             return true
+        }
+        
+        if cleaningItem == true {
+            cleaningItem = false
+            return false
         }
         
         detailTextView.resignFirstResponder()
@@ -165,7 +177,35 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         return false;
     }
 
+    //MARK: - textfield delegate
+    @IBAction func repeatSelectorValueChanged(sender: UISegmentedControl) {
+        //print("selected:" + String(sender.selectedSegmentIndex))
+        let index = sender.selectedSegmentIndex
+        let interval = AppDelegate.NSCalenderUnitFromRepeatInterval(index)
+        if let date = item?.dateToNotify, name = item?.name {
+            AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: interval, onItem: item!, withTitle: name, withBody: item?.detail)
+            
+        }
+        
+        
+        item?.repeatInterval = index
 
+        
+    }
+    
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        if textField == self.detailNotifyDate {
+            if let it = item {
+                AppDelegate.cancelNotification(it)
+                it.dateToNotify = nil
+                cleaningItem = true
+            }
+        }
+        return true
+
+    }
+    
     //MARK: - init view
     
     //init expired item indicator view

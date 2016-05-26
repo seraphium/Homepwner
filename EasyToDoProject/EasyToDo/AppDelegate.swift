@@ -150,8 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             interval = NSCalendarUnit.WeekOfYear
         case 3:
             interval = NSCalendarUnit.Month
-        case 4:
-            interval = NSCalendarUnit.Year
         default:
             interval = NSCalendarUnit()
         }
