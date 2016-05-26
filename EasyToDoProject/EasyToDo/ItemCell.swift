@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol PresentNotifyProtocol : NSObjectProtocol {
+    func presentNotify(controller: UIViewController) -> Void;
+}
+
 class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet var foregroundView: UIView!
@@ -29,6 +34,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var detailSelectPhoto: UITextField!
     
+    weak var delegate: PresentNotifyProtocol?
+    
     var expired : Bool = false
     
     let indicatorLayer = CAShapeLayer()
@@ -42,11 +49,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        datePicker = UIDatePicker()
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
-        datePicker.datePickerMode = .DateAndTime
-        datePicker.date = NSDate() //initial value
         
 
     }
@@ -68,10 +70,14 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         foldAnimationView.frame = foldView.frame
         
         detailTextView.delegate = self
-        
         detailNotifyDate.delegate = self
-        
         detailSelectPhoto.delegate = self
+        
+        datePicker = UIDatePicker()
+        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.date = NSDate() //initial value
+
         
     }
 
@@ -121,7 +127,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         }
         
         
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil,
+                              preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
             (alertAction) -> Void in
             //trunc date by set sec to 0
@@ -141,15 +148,17 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
         
-        let navController = window!.rootViewController as! UINavigationController
-        let itemVC =  navController.storyboard!.instantiateViewControllerWithIdentifier("itemVC") as! ItemsViewController
-        
-        itemVC.presentViewController(alertController, animated:true, completion: nil)
+        if((delegate?.respondsToSelector(Selector("presentNotify:"))) != nil)
+        {
+            delegate?.presentNotify(alertController);
+        }
         
         return false;
     }
 
 
+    //MARK: - init view
+    
     //init expired item indicator view
     func initIndicatorView() {
         indicatorPath = UIBezierPath(ovalInRect: CGRect(x: 0, y: 13, width: 8, height: 8))

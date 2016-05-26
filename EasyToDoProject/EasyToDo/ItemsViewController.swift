@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsViewController : UITableViewController,UITextFieldDelegate {
+class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
     
     var itemStore : ItemStore!
     
@@ -208,6 +208,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             cell.updateCell(expand, finished: false, expired: expired)
             cell.textField.text = item.name
             cell.item = item
+            cell.delegate = self
             if let dateNotify = item.dateToNotify {
                 var notifyString = dateFormatter.stringFromDate(dateNotify)
                 if item.repeatInterval != 0 {
@@ -226,6 +227,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
             cell.item = item
+            cell.delegate = self
 
         default:
             break;
@@ -235,7 +237,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate {
        
     }
     
-
+    func presentNotify(controller: UIViewController) {
+        self.presentViewController(controller, animated: true) { () -> Void in
+            
+        };
+    }
     func updateWithExpandCell(cell: ItemCell) {
         let duration = 0.5
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in

@@ -53,7 +53,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         datePicker = UIDatePicker()
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+       // datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
         
@@ -146,6 +146,7 @@ class DetailViewController : UITableViewController, UITextFieldDelegate,  UIText
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
+        
         self.presentViewController(alertController, animated:true, completion: nil)
         
         return false;
