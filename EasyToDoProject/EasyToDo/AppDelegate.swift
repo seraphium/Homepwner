@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
 
-    
+    static let backColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+    static let cellColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 0.8)
+    static let cellInnerColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 0.7)
+
     
     //-- MARK: notification handling on alert dialog
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {

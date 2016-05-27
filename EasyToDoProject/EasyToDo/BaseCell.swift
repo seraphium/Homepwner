@@ -44,7 +44,7 @@ class BaseCell : UITableViewCell {
     func createView(layer: CALayer)
     {
 
-        layer.backgroundColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 0.8).CGColor
+        layer.backgroundColor = AppDelegate.cellColor.CGColor
         layer.cornerRadius = 2
         layer.transform = transform3d()
     }

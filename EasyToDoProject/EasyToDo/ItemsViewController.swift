@@ -68,7 +68,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         createCellHeightsArray()
         
         //set default background color
-        tableView.backgroundColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+        tableView.backgroundColor = AppDelegate.backColor
         
         //refresh the table data if changed in detailed view
         tableView.reloadData()

@@ -73,13 +73,17 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         foldAnimationView.frame = foldView.frame
         
         detailTextView.delegate = self
+        detailTextView.layer.cornerRadius = 5
+        
         detailNotifyDate.delegate = self
         
         datePicker = UIDatePicker()
         datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
-
+        
+        foregroundView.backgroundColor = AppDelegate.cellInnerColor
+        
     }
 
     override func layoutSubviews() {
