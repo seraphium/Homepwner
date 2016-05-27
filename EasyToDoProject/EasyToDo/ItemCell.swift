@@ -101,11 +101,13 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             repeatSelector.selectedSegmentIndex = item.repeatInterval
 
         }
-        
-        if let _ = AppDelegate.imageStore.imageForKey(item.itemKey) {
-            detailAddPhoto.setImage(UIImage(named: "camera2"), forState: .Normal)
+        if let it = item {
+            if let _ = AppDelegate.imageStore.imageForKey(it.itemKey) {
+                detailAddPhoto.setImage(UIImage(named: "camera2"), forState: .Normal)
+            }
+
         }
-       
+        
     }
 
     //find and replace default Reorder Control view
