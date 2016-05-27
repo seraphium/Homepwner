@@ -57,7 +57,7 @@
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
                                                             <rect key="frame" x="530" y="10" width="0.0" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -189,8 +189,8 @@
                                                             <segments>
                                                                 <segment title="无"/>
                                                                 <segment title="日"/>
-                                                                <segment title="月"/>
                                                                 <segment title="周"/>
+                                                                <segment title="月"/>
                                                             </segments>
                                                             <connections>
                                                                 <action selector="repeatSelectorValueChanged:" destination="vfd-qt-dG2" eventType="valueChanged" id="YPZ-L5-Vsj"/>
@@ -349,7 +349,9 @@
                                                 </constraint>
                                                 <constraint firstAttribute="trailing" secondItem="65u-gf-Vsx" secondAttribute="trailing" id="Iei-bC-Gee"/>
                                                 <constraint firstAttribute="bottom" secondItem="65u-gf-Vsx" secondAttribute="bottom" id="Lg9-Yg-OWW"/>
-                                                <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="PaY-GG-v9A"/>
+                                                <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="PaY-GG-v9A">
+                                                    <variation key="widthClass=compact" constant="40"/>
+                                                </constraint>
                                                 <constraint firstItem="65u-gf-Vsx" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="bottom" constant="8" id="RdT-Sa-Skw">
                                                     <variation key="widthClass=compact" constant="2"/>
                                                 </constraint>

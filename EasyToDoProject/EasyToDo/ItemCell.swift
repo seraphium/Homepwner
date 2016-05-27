@@ -50,6 +50,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     //tag if in clear notify date status
     var cleaningItem : Bool = false
     
+    
     @IBOutlet var repeatSelector: UISegmentedControl!
     
     required init?(coder aDecoder: NSCoder) {
@@ -162,9 +163,14 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
                 forDate: date)
             
             self.item.dateToNotify = minuteDate!
-            self.detailNotifyDate.text = self.dateFormatter.stringFromDate(minuteDate!)
-            AppDelegate.scheduleNotifyForDate(minuteDate!, withRepeatInteval: nil, onItem: self.item, withTitle: self.item.name, withBody: self.item.detail)
-
+            let dateString = self.dateFormatter.stringFromDate(minuteDate!)
+            self.detailNotifyDate.text = dateString
+            self.notifyDateLabel.text = self.getNotifyFullString(minuteDate!, repeatIndex: self.item.repeatInterval)
+            AppDelegate.scheduleNotifyForDate(minuteDate!,
+                withRepeatInteval: self.getIntervalFromIndex(self.item.repeatInterval),
+                onItem: self.item,
+                withTitle: self.item.name, withBody: self.item.detail)
+            
             
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
@@ -177,19 +183,39 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
         return false;
     }
+    
+    func getIntervalFromIndex(index: Int) -> NSCalendarUnit?
+    {
+       return index == 0 ? nil : AppDelegate.NSCalenderUnitFromRepeatInterval(index)
 
+    }
+
+    func getNotifyFullString( date: NSDate?, repeatIndex : Int) -> String {
+        var updatedNotifyString = ""
+        if let notif = date {
+            updatedNotifyString = dateFormatter.stringFromDate(notif)
+            if repeatIndex != 0 {
+                updatedNotifyString += "," + AppDelegate.RepeatTime[repeatIndex]
+            }
+        }
+
+        return updatedNotifyString
+    }
+    
     //MARK: - textfield delegate
     @IBAction func repeatSelectorValueChanged(sender: UISegmentedControl) {
         //print("selected:" + String(sender.selectedSegmentIndex))
+        
         let index = sender.selectedSegmentIndex
-        let interval = AppDelegate.NSCalenderUnitFromRepeatInterval(index)
+        item?.repeatInterval = index
+        notifyDateLabel.text = getNotifyFullString(item?.dateToNotify, repeatIndex: index)
+        
         if let date = item?.dateToNotify, name = item?.name {
-            AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: interval, onItem: item!, withTitle: name, withBody: item?.detail)
+            AppDelegate.scheduleNotifyForDate(date, withRepeatInteval: getIntervalFromIndex(index), onItem: item!, withTitle: name, withBody: item?.detail)
             
         }
         
         
-        item?.repeatInterval = index
 
         
     }
@@ -200,6 +226,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             if let it = item {
                 AppDelegate.cancelNotification(it)
                 it.dateToNotify = nil
+                notifyDateLabel.text = nil
                 cleaningItem = true
             }
         }

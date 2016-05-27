@@ -122,6 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let app = UIApplication.sharedApplication()
         app.scheduleLocalNotification(newNotify)
         
+        print ("scheduled local notification")
     }
 
     static func NSCalenderUnitFromRepeatInterval(repeatInterval: Int) -> NSCalendarUnit?{
