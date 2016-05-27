@@ -70,6 +70,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     override internal func awakeFromNib() {
         super.awakeFromNib()
         
+        contentView.tintColor = UIColor.whiteColor()
+        
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
         
