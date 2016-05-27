@@ -101,6 +101,10 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             repeatSelector.selectedSegmentIndex = item.repeatInterval
 
         }
+        
+        if let _ = AppDelegate.imageStore.imageForKey(item.itemKey) {
+            detailAddPhoto.setImage(UIImage(named: "camera2"), forState: .Normal)
+        }
        
     }
 
@@ -271,7 +275,10 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         } else {
             indicatorView.alpha = 0.0
         }
-
+        
+       // if item.itemKey{
+        //    detailAddPhoto.backgroundImageForState(.Normal) = UIImage("camera2")
+       // }
 
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)

@@ -147,7 +147,7 @@
                                                     <rect key="frame" x="-45" y="-32" width="4" height="9"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                        <rect key="frame" x="40" y="37" width="20" height="91"/>
+                                                        <rect key="frame" x="0.0" y="-53" width="91" height="86"/>
                                                     </variation>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65u-gf-Vsx">
@@ -194,23 +194,30 @@
                                                                 <action selector="repeatSelectorValueChanged:" destination="vfd-qt-dG2" eventType="valueChanged" id="YPZ-L5-Vsj"/>
                                                             </connections>
                                                         </segmentedControl>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-8j-Vqn">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-8j-Vqn">
                                                             <rect key="frame" x="60" y="125" width="510" height="40"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="GPp-LS-zz1">
+                                                                    <variation key="widthClass=compact" constant="30"/>
+                                                                </constraint>
                                                                 <constraint firstAttribute="width" constant="50" id="Jh3-xQ-kkm"/>
                                                                 <constraint firstAttribute="height" constant="40" id="R94-Ax-wBI">
                                                                     <variation key="widthClass=compact" constant="20"/>
                                                                 </constraint>
                                                             </constraints>
-                                                            <state key="normal" title="照片"/>
+                                                            <state key="normal" image="camera"/>
+                                                            <state key="highlighted" image="camera2"/>
                                                             <variation key="default">
                                                                 <mask key="constraints">
+                                                                    <exclude reference="GPp-LS-zz1"/>
                                                                     <exclude reference="Jh3-xQ-kkm"/>
                                                                 </mask>
                                                             </variation>
                                                             <variation key="widthClass=compact">
                                                                 <mask key="constraints">
-                                                                    <include reference="Jh3-xQ-kkm"/>
+                                                                    <exclude reference="GPp-LS-zz1"/>
+                                                                    <exclude reference="Jh3-xQ-kkm"/>
+                                                                    <exclude reference="R94-Ax-wBI"/>
                                                                 </mask>
                                                             </variation>
                                                             <connections>
@@ -240,6 +247,9 @@
                                                         </constraint>
                                                         <constraint firstItem="yJv-2P-e6l" firstAttribute="centerY" secondItem="EZq-av-oa0" secondAttribute="centerY" id="9Pd-ls-IuO"/>
                                                         <constraint firstItem="f5r-fZ-VMy" firstAttribute="centerX" secondItem="510-SJ-yn5" secondAttribute="centerX" id="9qm-RM-Vwd"/>
+                                                        <constraint firstItem="Jyt-8j-Vqn" firstAttribute="leading" secondItem="65u-gf-Vsx" secondAttribute="leading" constant="352" id="AB5-Qa-gPA">
+                                                            <variation key="widthClass=compact" constant="60"/>
+                                                        </constraint>
                                                         <constraint firstItem="mrG-fu-mrD" firstAttribute="leading" secondItem="EZq-av-oa0" secondAttribute="leading" id="Ax5-Ip-8HG"/>
                                                         <constraint firstItem="yJv-2P-e6l" firstAttribute="top" secondItem="65u-gf-Vsx" secondAttribute="top" constant="5" id="DAA-gM-0kX"/>
                                                         <constraint firstItem="mrG-fu-mrD" firstAttribute="centerY" secondItem="HPK-TK-12N" secondAttribute="centerY" id="ECf-cK-dsh"/>
@@ -299,6 +309,7 @@
                                                             <exclude reference="r4E-c5-NCJ"/>
                                                             <exclude reference="5Ds-rt-g7p"/>
                                                             <exclude reference="8PU-JN-T9b"/>
+                                                            <exclude reference="AB5-Qa-gPA"/>
                                                             <exclude reference="Gps-Ky-8Dg"/>
                                                             <exclude reference="X5p-mc-eTO"/>
                                                             <exclude reference="kLq-Ba-dQ4"/>
@@ -326,7 +337,8 @@
                                                             <include reference="qVj-ga-asw"/>
                                                             <include reference="r4E-c5-NCJ"/>
                                                             <exclude reference="0H0-Hi-Nwi"/>
-                                                            <include reference="8PU-JN-T9b"/>
+                                                            <exclude reference="8PU-JN-T9b"/>
+                                                            <include reference="AB5-Qa-gPA"/>
                                                             <exclude reference="Gps-Ky-8Dg"/>
                                                             <exclude reference="NX0-TW-hqg"/>
                                                             <exclude reference="X5p-mc-eTO"/>
@@ -585,6 +597,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="23" height="18"/>
+        <image name="camera2" width="23" height="18"/>
         <image name="check3" width="16" height="16"/>
     </resources>
 </document>

@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let itemStore = ItemStore()
-    let imageStore =  ImageStore()
+    static let imageStore =  ImageStore()
     
     static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
 
@@ -196,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = window!.rootViewController as! UINavigationController
         let itemsController = navController.topViewController as! ItemsViewController
         itemsController.itemStore = itemStore
-        itemsController.imageStore = imageStore
+        itemsController.imageStore = AppDelegate.imageStore
         return true
     }
 
