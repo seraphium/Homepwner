@@ -71,6 +71,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         super.awakeFromNib()
         
         contentView.tintColor = UIColor.whiteColor()
+
+        containerView.layer.cornerRadius = 5
         
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
@@ -278,9 +280,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             indicatorView.alpha = 0.0
         }
         
-       // if item.itemKey{
-        //    detailAddPhoto.backgroundImageForState(.Normal) = UIImage("camera2")
-       // }
 
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)

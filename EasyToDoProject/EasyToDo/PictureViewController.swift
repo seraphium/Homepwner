@@ -59,6 +59,13 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
 
     }
     
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+//TODO: why popViewController doesn't work ?
+        navigationController?.popToRootViewControllerAnimated(true)
+        
+    }
+    
     //MARK: - controller
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //get image from info directory

@@ -373,11 +373,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "ShowItem" {
-            if editing {
-                return false
-            }
-        }
+
         return true
     }
     
