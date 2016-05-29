@@ -95,17 +95,7 @@ class ItemStore  {
     }
 
     
-    func finishItemNotification(notification : UILocalNotification) {
-        var userInfo = notification.userInfo!
-        let key = userInfo["itemKey"] as! String
-        if let item = self.getItem(key, finished: false){
-            self.finishItem(item)
-            let app = UIApplication.sharedApplication()
-            app.cancelLocalNotification(notification)
-            app.applicationIconBadgeNumber -= 1
-        }
-        
-    }
+
 
     
     func finishItem(item : Item) -> Int {

@@ -21,10 +21,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let cellColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 0.8)
     static let cellInnerColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 0.7)
 
+    func finishItemNotification(notification : UILocalNotification) -> Item? {
+        var userInfo = notification.userInfo!
+        let key = userInfo["itemKey"] as! String
+        if let item = self.itemStore.getItem(key, finished: false){
+            self.itemStore.finishItem(item)
+            let app = UIApplication.sharedApplication()
+            app.cancelLocalNotification(notification)
+            app.applicationIconBadgeNumber -= 1
+            
+            return item
+        }
+        
+        return nil
+    }
+    
     
     //-- MARK: notification handling on alert dialog
     func notificationHandleFinish(application: UIApplication, forNotification notification: UILocalNotification) {
-        itemStore.finishItemNotification(notification)
+        if let item = finishItemNotification(notification) {
+            let navController = window!.rootViewController as! UINavigationController
+            if let ivc = navController.topViewController as? ItemsViewController {
+                ivc.finishItemReload(item)
+            }
+        }
+        
     }
     
     
@@ -59,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch identify {
             case "finished":
                 print ("finished")
-                itemStore.finishItemNotification(notification)
+                finishItemNotification(notification)
             case "detail":
                 showNotificationAlertController(application, forNotification: notification)
             case "ignore":

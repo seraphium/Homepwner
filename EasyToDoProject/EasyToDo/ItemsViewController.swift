@@ -447,6 +447,18 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
     }
     
+    func finishItemReload(item : Item)
+    {
+        //only finish and move cell of non-repeat notification
+        //for repeat notify, re create notify
+        itemStore.finishItem(item)
+        
+        createCellHeightsArray()
+        
+        let range = NSMakeRange(0, self.tableView.numberOfSections)
+        let sections = NSIndexSet(indexesInRange: range)
+        self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
+    }
     
     @IBAction func itemDoneClicked(sender: UIButton) {
         let cell = sender.superview?.superview?.superview?.superview as! ItemCell
@@ -463,15 +475,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                 AppDelegate.cancelNotification(item)
             }
             
-            //only finish and move cell of non-repeat notification
-            //for repeat notify, re create notify
-            itemStore.finishItem(item)
-            
-            createCellHeightsArray()
-
-            let range = NSMakeRange(0, self.tableView.numberOfSections)
-            let sections = NSIndexSet(indexesInRange: range)
-            self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
+            finishItemReload(item)
+           
         }
         
     }
