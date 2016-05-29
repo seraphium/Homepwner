@@ -43,8 +43,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     var item:Item!
     
-    var dateExpand : Bool = false
-    
+    var expanded : Bool = false
     var datePicker : UIDatePicker!
     
     //tag if in clear notify date status
@@ -71,14 +70,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         super.awakeFromNib()
         
         contentView.tintColor = UIColor.whiteColor()
-
-        containerView.layer.cornerRadius = 5
         
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         foldAnimationView.frame = foldView.frame
         
         detailTextView.delegate = self
-        detailTextView.layer.cornerRadius = 5
         
         detailNotifyDate.delegate = self
         
@@ -88,9 +84,31 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker.date = NSDate() //initial value
         
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
-        
+        containerView.backgroundColor = AppDelegate.backColor
+        detailTextView.layer.cornerRadius = 5
+
     }
 
+    func setCellCornerRadius( expanded: Bool)
+    {
+        UIView.animateWithDuration(0.5, animations:
+            {
+                if !expanded {
+                    self.contentView.layer.cornerRadius = 5
+                    self.containerView.layer.cornerRadius = 5
+                    self.foregroundView.layer.cornerRadius = 5
+                    self.animationView.layer.cornerRadius = 5
+                    
+                } else {
+                    self.contentView.layer.cornerRadius = 0
+                    self.containerView.layer.cornerRadius = 0
+                    self.foregroundView.layer.cornerRadius = 0
+                    self.animationView.layer.cornerRadius = 0
+                }
+
+        })
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         if let it = item {
@@ -109,6 +127,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             }
 
         }
+        setCellCornerRadius(expanded)
         
     }
 
@@ -372,7 +391,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     func expandAnimation(delay:NSTimeInterval,completion: CompletionHandler?) {
         
         foldView.hidden = false
-        
+        self.expanded = true
+
         removeImageItemsFromAnimationView(foldAnimationView)
         addImageItemsToAnimationView(foldView, destView: foldAnimationView)
         
@@ -404,7 +424,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
         removeImageItemsFromAnimationView(foldAnimationView)
         addImageItemsToAnimationView(foldView, destView: foldAnimationView)
-        
+        self.expanded = false
         foldView.alpha = 0
         foldAnimationView.alpha = 1.0
         foldAnimationView.layer.shouldRasterize = true
@@ -422,7 +442,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             self.foldAnimationView.layer.shouldRasterize = false
             self.foldView.alpha  = 0
             self.foldView.hidden = true
-
             completion?()
         }
     }
