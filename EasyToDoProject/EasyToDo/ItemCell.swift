@@ -34,6 +34,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var detailAddPhoto: UIButton!
 
+    @IBOutlet weak var detailDetailLabel: UILabel!
+    
+    @IBOutlet weak var detailNotifyLabel: UILabel!
+    
+    @IBOutlet weak var detailRepeatLabel: UILabel!
     weak var delegate: PresentNotifyProtocol?
     
     var expired : Bool = false
@@ -69,27 +74,44 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     override internal func awakeFromNib() {
         super.awakeFromNib()
         
-        contentView.tintColor = UIColor.whiteColor()
-        
-        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-        foldAnimationView.frame = foldView.frame
-        
-        detailTextView.delegate = self
-        
-        detailNotifyDate.delegate = self
-        
         datePicker = UIDatePicker()
         datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
         
-        foregroundView.backgroundColor = AppDelegate.cellInnerColor
-        containerView.backgroundColor = AppDelegate.backColor
+        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        foldAnimationView.frame = foldView.frame
+        
+        detailTextView.delegate = self
         detailTextView.layer.cornerRadius = 5
+
+        detailNotifyDate.delegate = self
+
+        
+        //update font setting
+        let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        textField.font = bodyFont
+        
         
         doneButton.contentHorizontalAlignment = .Fill
         doneButton.contentVerticalAlignment = .Fill
-
+        
+        foregroundView.backgroundColor = AppDelegate.cellInnerColor
+        containerView.backgroundColor = AppDelegate.backColor
+        
+        let foregroundTextColor = AppDelegate.backColor
+        let foldTextColor = AppDelegate.cellInnerColor
+        contentView.tintColor = foldTextColor
+        
+        textField.textColor = foregroundTextColor
+        notifyDateLabel.textColor = foregroundTextColor
+        
+        detailTextView.textColor = foldTextColor
+        detailNotifyDate.textColor = foldTextColor
+        detailDetailLabel.textColor = foldTextColor
+        detailNotifyLabel.textColor = foldTextColor
+        detailRepeatLabel.textColor = foldTextColor
+        
     }
 
     func setCellCornerRadius( expanded: Bool)
@@ -130,7 +152,22 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             }
 
         }
+        
         setCellCornerRadius(expanded)
+        
+        //setup Shadow
+        layer.shadowOffset = CGSizeMake(1, 1)
+        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
+        layer.shadowRadius = 5
+        layer.shadowOpacity = 0.3
+    
+        // Maybe just me, but I had to add it to work:
+        clipsToBounds = false
+        
+        let shadowFrame: CGRect = layer.bounds
+        let shadowPath: CGPathRef = UIBezierPath(rect: shadowFrame).CGPath
+        layer.shadowPath = shadowPath
+
         
     }
 
@@ -307,13 +344,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         if (finished) {
             doneButton.alpha = 0.0
             doneButton.enabled = false
-            textField.textColor = UIColor.whiteColor()
             contentView.alpha = 0.4
         } else {
             doneButton.alpha = 0.8
             doneButton.enabled = true
-            textField.textColor = UIColor.whiteColor()
-            contentView.alpha = 0.8
+            contentView.alpha = 1.0
         }
         
         if expired { //expired notify item
@@ -322,12 +357,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         } else {
             indicatorView.alpha = 0.0
         }
-        
-
-        //update font setting
-        let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textField.font = bodyFont
-        notifyDateLabel.textColor = UIColor.whiteColor()
         
     }
     

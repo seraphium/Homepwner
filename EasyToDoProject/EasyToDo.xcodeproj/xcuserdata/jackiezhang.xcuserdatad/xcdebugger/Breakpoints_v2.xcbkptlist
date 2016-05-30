@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemCell.swift"
-            timestampString = "486267703.13319"
+            timestampString = "486288277.498083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "textViewDidEndEditing(_:)"
-            landmarkType = "5">
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "ItemCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemCell.swift"
-            timestampString = "486267703.13319"
+            timestampString = "486288080.743104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "setCellCornerRadius(_:)"
             landmarkType = "5">
          </BreakpointContent>
