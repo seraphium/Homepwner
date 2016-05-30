@@ -203,11 +203,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             cell.item = item
             cell.delegate = self
             if let dateNotify = item.dateToNotify {
-                var notifyString = dateFormatter.stringFromDate(dateNotify)
-                if item.repeatInterval != 0 {
-                    notifyString = notifyString + "," + AppDelegate.RepeatTime[item.repeatInterval]
-                }
-                cell.notifyDateLabel.text = notifyString
+                cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
+               
             } else {
                 cell.notifyDateLabel.text = nil
             }

@@ -55,8 +55,8 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
-                                                            <rect key="frame" x="528" y="10" width="0.0" height="20"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <rect key="frame" x="526" y="10" width="0.0" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
@@ -100,6 +100,7 @@
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="5BU-ft-25D"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
+                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="20" id="GqV-Gs-CFT"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="8" id="Kpr-y4-2Ga">
                                                             <variation key="widthClass=compact" constant="5"/>
                                                         </constraint>
@@ -398,7 +399,7 @@
                                                 </constraint>
                                                 <constraint firstAttribute="trailing" secondItem="65u-gf-Vsx" secondAttribute="trailing" id="Iei-bC-Gee"/>
                                                 <constraint firstAttribute="bottom" secondItem="65u-gf-Vsx" secondAttribute="bottom" id="Lg9-Yg-OWW"/>
-                                                <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="PaY-GG-v9A">
+                                                <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="100" id="PaY-GG-v9A">
                                                     <variation key="widthClass=compact" constant="45"/>
                                                 </constraint>
                                                 <constraint firstItem="65u-gf-Vsx" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="bottom" constant="8" id="RdT-Sa-Skw">
@@ -438,6 +439,7 @@
                                                     <exclude reference="fg5-13-R2w"/>
                                                     <exclude reference="oWX-U2-qne"/>
                                                     <exclude reference="uFo-an-AzK"/>
+                                                    <exclude reference="PaY-GG-v9A"/>
                                                     <exclude reference="8iB-It-Wcx"/>
                                                     <exclude reference="xGN-1C-iXb"/>
                                                 </mask>

@@ -207,11 +207,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             })
         alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
-        
-        if((delegate?.respondsToSelector(Selector("presentNotify:"))) != nil)
-        {
-            delegate?.presentNotify(alertController);
-        }
+
+        delegate?.presentNotify(alertController);
         
         return false;
     }
@@ -222,16 +219,40 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
     }
 
-    func getNotifyFullString( date: NSDate?, repeatIndex : Int) -> String {
-        var updatedNotifyString = ""
-        if let notif = date {
-            updatedNotifyString = dateFormatter.stringFromDate(notif)
-            if repeatIndex != 0 {
-                updatedNotifyString += "," + AppDelegate.RepeatTime[repeatIndex]
-            }
+    func getNotifyFullString(date: NSDate?, repeatIndex : Int) -> String {
+        guard let notifDate = date else {
+            return ""
+        }
+        let currentTime = NSDate()
+        if notifDate.earlierDate(currentTime) == notifDate {
+            return "已过期"
+        }
+        var outputString = "还剩"
+        var outputStep = 2
+        let calender = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let component = calender?.components([.Year, .Month, .Day, .Hour, .Minute], fromDate: currentTime, toDate: notifDate, options: [])
+        if outputStep > 0 && component?.year > 0 {
+            outputString += String(component!.year) + "年"
+            outputStep -= 1
+        }
+        if outputStep > 0 && component?.month > 0 {
+            outputString += String(component!.month) + "个月"
+            outputStep -= 1
+        }
+        if outputStep > 0 && component?.day > 0 {
+            outputString += String(component!.day) + "天"
+            outputStep -= 1
+        }
+        if outputStep > 0 && component?.hour > 0 {
+            outputString += String(component!.hour) + "小时"
+            outputStep -= 1
+        }
+        if outputStep > 0 && component?.minute > 0 {
+            outputString += String(component!.minute) + "分钟"
+            outputStep -= 1	
         }
 
-        return updatedNotifyString
+        return outputString
     }
     
     //MARK: - textfield delegate
