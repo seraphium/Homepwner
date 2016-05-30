@@ -86,6 +86,9 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
         containerView.backgroundColor = AppDelegate.backColor
         detailTextView.layer.cornerRadius = 5
+        
+        doneButton.contentHorizontalAlignment = .Fill
+        doneButton.contentVerticalAlignment = .Fill
 
     }
 
