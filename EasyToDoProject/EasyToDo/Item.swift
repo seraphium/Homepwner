@@ -42,7 +42,7 @@ class Item: NSObject, NSCoding {
             self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify,repeatInterval: repeatInterval, finished: finished)
             
         } else{
-            self.init(name: "New Item", detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
+            self.init(name: "新事项", detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
         }
     }
     

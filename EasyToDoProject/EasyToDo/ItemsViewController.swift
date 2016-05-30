@@ -129,6 +129,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
         if section == 0 {
             let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
+            view.tintColor = AppDelegate.cellInnerColor
+            view.titleLabel.textColor = AppDelegate.cellInnerColor
+            view.headerLabel.textColor = AppDelegate.cellInnerColor
+            
             if itemStore.allItemsUnDone.count > 0 {
                 view.titleLabel.text = "未完成"
                 view.headerLabel.alpha = 0
@@ -297,8 +301,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
             self.deleteRow(indexPath)
         })
-        deleteAction.backgroundColor =  UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
-
+        deleteAction.backgroundColor =  AppDelegate.backColor
         
         return [deleteAction]
     }
@@ -346,7 +349,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let c = cell as! ItemCell
         c.initIndicatorView()
-        
+        c.setCellCornerRadius(c.expanded)
         if indexPath.row == newRow {
             let itemCell = cell as! ItemCell
             itemCell.openAnimation(0, completion: nil)

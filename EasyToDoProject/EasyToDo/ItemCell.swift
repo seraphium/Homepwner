@@ -79,11 +79,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker.datePickerMode = .DateAndTime
         datePicker.date = NSDate() //initial value
         
-        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-        foldAnimationView.frame = foldView.frame
-        
         detailTextView.delegate = self
-        detailTextView.layer.cornerRadius = 5
+   
 
         detailNotifyDate.delegate = self
 
@@ -92,9 +89,22 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
         
-        
         doneButton.contentHorizontalAlignment = .Fill
         doneButton.contentVerticalAlignment = .Fill
+        
+        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        foldAnimationView.frame = foldView.frame
+        
+        
+        //setup Shadow
+        layer.shadowOffset = CGSizeMake(1, 1)
+        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
+        layer.shadowRadius = 5
+        layer.shadowOpacity = 0.5
+        
+        // Maybe just me, but I had to add it to work:
+        clipsToBounds = false
+        
         
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
         containerView.backgroundColor = AppDelegate.backColor
@@ -116,26 +126,19 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
     func setCellCornerRadius( expanded: Bool)
     {
-        UIView.animateWithDuration(0.5, animations:
-            {
-                if !expanded {
-                    self.contentView.layer.cornerRadius = 5
-                    self.containerView.layer.cornerRadius = 5
-                    self.foregroundView.layer.cornerRadius = 5
-                    self.animationView.layer.cornerRadius = 5
-                    
-                } else {
-                    self.contentView.layer.cornerRadius = 0
-                    self.containerView.layer.cornerRadius = 0
-                    self.foregroundView.layer.cornerRadius = 0
-                    self.animationView.layer.cornerRadius = 0
-                }
+        print ("set corner radius")
+        let from = CGFloat(expanded ? 5 : 0)
+        let to = CGFloat(expanded ? 0 : 5)
+        contentView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+        containerView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+        foregroundView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+        animationView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
 
-        })
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         if let it = item {
             if let detail = it.detail {
                 detailTextView.text = detail
@@ -153,22 +156,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
         }
         
-        setCellCornerRadius(expanded)
         
-        //setup Shadow
-        layer.shadowOffset = CGSizeMake(1, 1)
-        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
-        layer.shadowRadius = 5
-        layer.shadowOpacity = 0.3
-    
-        // Maybe just me, but I had to add it to work:
-        clipsToBounds = false
-        
-        let shadowFrame: CGRect = layer.bounds
-        let shadowPath: CGPathRef = UIBezierPath(rect: shadowFrame).CGPath
-        layer.shadowPath = shadowPath
 
-        
     }
 
     //find and replace default Reorder Control view
@@ -266,7 +255,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         }
         var outputString = "还剩"
         var outputStep = 2
-        let calender = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let calender = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let component = calender?.components([.Year, .Month, .Day, .Hour, .Minute], fromDate: currentTime, toDate: notifDate, options: [])
         if outputStep > 0 && component?.year > 0 {
             outputString += String(component!.year) + "年"
@@ -339,12 +328,14 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     func updateCell(expanded: Bool, finished: Bool, expired: Bool){
         
         self.foldView.hidden = !expanded
-
+        
         //finished item will not be "Done"able
         if (finished) {
             doneButton.alpha = 0.0
             doneButton.enabled = false
-            contentView.alpha = 0.4
+            foregroundView.userInteractionEnabled = false
+            foldView.userInteractionEnabled = false
+            contentView.alpha = 0.2
         } else {
             doneButton.alpha = 0.8
             doneButton.enabled = true
@@ -357,7 +348,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         } else {
             indicatorView.alpha = 0.0
         }
-        
+
     }
     
     //MARK: - animation setup
@@ -461,6 +452,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         let to: CGFloat           = 0
         let duration              = 0.5
 
+        setCellCornerRadius(expanded)
+
         foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
@@ -487,8 +480,10 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         let to: CGFloat           = CGFloat(-M_PI / 2)
         let duration              = 0.5
         
+        setCellCornerRadius(expanded)
+
         foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
-        
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
             self.foldAnimationView?.alpha = 0
             self.foldAnimationView.layer.removeAllAnimations()
@@ -501,6 +496,21 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
 }
 
+
+extension UIView
+{
+    func addCornerRadiusAnimation(from: CGFloat, to: CGFloat, duration: CFTimeInterval)
+    {
+        let animation = CABasicAnimation(keyPath:"cornerRadius")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.fromValue = from
+        animation.toValue = to
+        animation.duration = duration
+        animation.removedOnCompletion = true
+        self.layer.addAnimation(animation, forKey: "cornerRadius")
+        self.layer.cornerRadius = to
+    }
+}
 
 extension UIView {
     
