@@ -89,14 +89,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         doneButton.contentHorizontalAlignment = .Fill
         doneButton.contentVerticalAlignment = .Fill
         
-        //setup Shadow
-        layer.shadowOffset = CGSizeMake(1, 1)
-        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
-        layer.shadowRadius = 5
-        layer.shadowOpacity = 0.5
-        
-        // Maybe just me, but I had to add it to work:
-        clipsToBounds = false
         
         foldAnimationView = UIView()
         foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
@@ -147,9 +139,26 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
     }
     
+    func setupShadow()
+    {
+        
+        //setup Shadow
+        layer.shadowOffset = CGSizeMake(1, 1)
+        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
+        layer.shadowRadius = 5
+        layer.shadowOpacity = 0.5
+        
+        // Maybe just me, but I had to add it to work:
+        clipsToBounds = false
+
+    }
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
+        setupShadow()
+        
         if let it = item {
             if let detail = it.detail {
                 detailTextView.text = detail
@@ -344,8 +353,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         if (finished) {
             doneButton.alpha = 0.0
             doneButton.enabled = false
-            foregroundView.userInteractionEnabled = false
-            foldView.userInteractionEnabled = false
+          //  foregroundView.userInteractionEnabled = false
+           // foldView.userInteractionEnabled = false
             contentView.alpha = 0.2
         } else {
             doneButton.alpha = 0.8
