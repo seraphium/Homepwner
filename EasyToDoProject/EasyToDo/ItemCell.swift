@@ -19,7 +19,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet var foldView: UIView!
 
-    @IBOutlet weak var foldAnimationView: UIView!
+    var foldAnimationView: UIView!
     
     @IBOutlet var indicatorView: UIView!
     @IBOutlet weak var textField: UITextField!
@@ -60,7 +60,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-
     }
     
     let dateFormatter : NSDateFormatter = {
@@ -80,8 +79,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker.date = NSDate() //initial value
         
         detailTextView.delegate = self
-   
-
         detailNotifyDate.delegate = self
 
         
@@ -92,10 +89,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         doneButton.contentHorizontalAlignment = .Fill
         doneButton.contentVerticalAlignment = .Fill
         
-        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-        foldAnimationView.frame = foldView.frame
-        
-        
         //setup Shadow
         layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowColor = AppDelegate.cellInnerColor.CGColor
@@ -105,6 +98,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         // Maybe just me, but I had to add it to work:
         clipsToBounds = false
         
+        foldAnimationView = UIView()
+        foldAnimationView.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        foldAnimationView.frame = foldView.frame
+        
+        containerView.addSubview(foldAnimationView)
         
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
         containerView.backgroundColor = AppDelegate.backColor
@@ -124,15 +122,25 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
     }
 
-    func setCellCornerRadius( expanded: Bool)
+    func setCellCornerRadius(expanded: Bool, animated: Bool)
     {
+        let cornerRadius = CGFloat(5.0)
         print ("set corner radius")
-        let from = CGFloat(expanded ? 5 : 0)
-        let to = CGFloat(expanded ? 0 : 5)
-        contentView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
-        containerView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
-        foregroundView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
-        animationView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+        if (animated) {
+            let from = CGFloat(expanded ? cornerRadius : 0)
+            let to = CGFloat(expanded ? 0 : cornerRadius)
+            contentView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+            containerView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+            foregroundView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+            animationView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+        } else {
+            contentView.layer.cornerRadius = cornerRadius
+            containerView.layer.cornerRadius = cornerRadius
+            foregroundView.layer.cornerRadius = cornerRadius
+            animationView.layer.cornerRadius = cornerRadius
+            
+        }
+
 
     }
     
@@ -452,7 +460,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         let to: CGFloat           = 0
         let duration              = 0.5
 
-        setCellCornerRadius(expanded)
+        setCellCornerRadius(expanded,animated: true)
 
         foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
         
@@ -480,7 +488,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         let to: CGFloat           = CGFloat(-M_PI / 2)
         let duration              = 0.5
         
-        setCellCornerRadius(expanded)
+        setCellCornerRadius(expanded, animated: true)
 
         foldingAnimation(timing, from: from, to: to, duration: duration, delay: delay)
 

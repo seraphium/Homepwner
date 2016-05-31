@@ -349,7 +349,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let c = cell as! ItemCell
         c.initIndicatorView()
-        c.setCellCornerRadius(c.expanded)
+        c.setCellCornerRadius(c.expanded, animated: false)
         if indexPath.row == newRow {
             let itemCell = cell as! ItemCell
             itemCell.openAnimation(0, completion: nil)
