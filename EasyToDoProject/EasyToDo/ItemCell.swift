@@ -120,6 +120,9 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         detailNotifyLabel.textColor = foldTextColor
         detailRepeatLabel.textColor = foldTextColor
         
+        setCellCornerRadius(expanded, animated: false)
+
+        
     }
 
     func setCellCornerRadius(expanded: Bool, animated: Bool)
@@ -146,7 +149,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if let it = item {
             if let detail = it.detail {
                 detailTextView.text = detail

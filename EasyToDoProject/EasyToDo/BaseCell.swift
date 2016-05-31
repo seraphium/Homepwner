@@ -45,7 +45,6 @@ class BaseCell : UITableViewCell {
     {
 
         layer.backgroundColor = AppDelegate.cellColor.CGColor
-        layer.cornerRadius = 2
         layer.transform = transform3d()
     }
     
