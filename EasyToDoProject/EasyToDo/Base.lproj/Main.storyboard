@@ -183,12 +183,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重复" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5r-fZ-VMy">
-                                                            <rect key="frame" x="10" y="134" width="32" height="20"/>
+                                                            <rect key="frame" x="10" y="131" width="32" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="510-SJ-yn5">
-                                                            <rect key="frame" x="60" y="130" width="480" height="29"/>
+                                                            <rect key="frame" x="60" y="127" width="480" height="29"/>
                                                             <segments>
                                                                 <segment title="无"/>
                                                                 <segment title="日"/>
@@ -200,7 +200,7 @@
                                                             </connections>
                                                         </segmentedControl>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-8j-Vqn">
-                                                            <rect key="frame" x="60" y="166" width="30" height="34"/>
+                                                            <rect key="frame" x="60" y="163" width="30" height="34"/>
                                                             <connections>
                                                                 <segue destination="Ern-Dg-VuE" kind="show" identifier="ShowPicture" id="UQd-Ws-eCc"/>
                                                             </connections>
@@ -215,9 +215,7 @@
                                                         <constraint firstItem="HPK-TK-12N" firstAttribute="leading" secondItem="EZq-av-oa0" secondAttribute="leading" id="1ac-en-jA3"/>
                                                         <constraint firstItem="EZq-av-oa0" firstAttribute="top" secondItem="yJv-2P-e6l" secondAttribute="top" id="3ZU-Dv-IS8"/>
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="leading" secondItem="65u-gf-Vsx" secondAttribute="leading" constant="272" id="5Ds-rt-g7p"/>
-                                                        <constraint firstItem="Jyt-8j-Vqn" firstAttribute="top" secondItem="510-SJ-yn5" secondAttribute="bottom" constant="8" id="7Hp-DA-Hts">
-                                                            <variation key="widthClass=compact" constant="5"/>
-                                                        </constraint>
+                                                        <constraint firstItem="Jyt-8j-Vqn" firstAttribute="top" secondItem="510-SJ-yn5" secondAttribute="bottom" constant="8" id="7Hp-DA-Hts"/>
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="trailing" secondItem="510-SJ-yn5" secondAttribute="trailing" id="8PU-JN-T9b">
                                                             <variation key="widthClass=compact" constant="5"/>
                                                         </constraint>
@@ -261,7 +259,7 @@
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="leading" secondItem="HPK-TK-12N" secondAttribute="leading" id="fip-IJ-xa9"/>
                                                         <constraint firstItem="HPK-TK-12N" firstAttribute="leading" secondItem="yJv-2P-e6l" secondAttribute="leading" id="gYU-en-4sS"/>
                                                         <constraint firstItem="HPK-TK-12N" firstAttribute="leading" secondItem="yJv-2P-e6l" secondAttribute="leading" id="iGr-ya-2Cv"/>
-                                                        <constraint firstItem="510-SJ-yn5" firstAttribute="top" secondItem="HPK-TK-12N" secondAttribute="bottom" constant="15" id="jnX-HB-SFd"/>
+                                                        <constraint firstItem="510-SJ-yn5" firstAttribute="top" secondItem="HPK-TK-12N" secondAttribute="bottom" constant="12" id="jnX-HB-SFd"/>
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="top" secondItem="510-SJ-yn5" secondAttribute="bottom" constant="13" id="kLq-Ba-dQ4"/>
                                                         <constraint firstItem="510-SJ-yn5" firstAttribute="trailing" secondItem="HPK-TK-12N" secondAttribute="trailing" id="kiD-a9-uB4"/>
                                                         <constraint firstItem="510-SJ-yn5" firstAttribute="width" secondItem="HPK-TK-12N" secondAttribute="width" id="n7B-ql-hLn"/>
