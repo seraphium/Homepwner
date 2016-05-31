@@ -55,12 +55,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
     }
     
-    func getUIViewFromBundle(name: String) -> UIView
-    {
-        let nib = NSBundle.mainBundle().loadNibNamed(name, owner: self, options: nil)
-        let view : UIView = nib[0] as! UIView
-        return view
-    }
+
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -516,4 +511,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
 
     
+}
+
+//MARK: - extension
+extension UIViewController {
+    func getUIViewFromBundle(name: String) -> UIView
+    {
+        let nib = NSBundle.mainBundle().loadNibNamed(name, owner: self, options: nil)
+        let view : UIView = nib[0] as! UIView
+        return view
+    }
 }
