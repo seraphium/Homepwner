@@ -143,11 +143,13 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     {
         
         //setup Shadow
-        layer.shadowOffset = CGSizeMake(1, 1)
-        layer.shadowColor = AppDelegate.cellInnerColor.CGColor
-        layer.shadowRadius = 5
-        layer.shadowOpacity = 0.5
-        
+        containerView.layer.shadowOffset = CGSizeMake(1, 1)
+        containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
+        containerView.layer.shadowRadius = 5
+        containerView.layer.shadowOpacity = 0.5
+       // let shadowFrame = foregroundView.layer.bounds;
+       // let shadowPath = UIBezierPath(rect: shadowFrame).CGPath
+       // containerView.layer.shadowPath = shadowPath;
         // Maybe just me, but I had to add it to work:
         clipsToBounds = false
 
