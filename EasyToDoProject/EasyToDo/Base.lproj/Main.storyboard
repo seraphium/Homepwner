@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,20 +16,20 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="EasyToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
-                                            <rect key="frame" x="5" y="0.0" width="590" height="244"/>
+                                            <rect key="frame" x="20" y="0.0" width="560" height="239.5"/>
                                         </view>
                                         <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
-                                            <rect key="frame" x="5" y="0.0" width="590" height="244"/>
+                                            <rect key="frame" x="20" y="0.0" width="560" height="239.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq1-RY-AG9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="590" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je1-YY-HQp">
                                                             <rect key="frame" x="5" y="8" width="10" height="10"/>
@@ -46,28 +46,35 @@
                                                             </variation>
                                                         </view>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                            <rect key="frame" x="20" y="15" width="66" height="15"/>
+                                                            <rect key="frame" x="20" y="12.5" width="66" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                                <rect key="frame" x="20" y="15" width="66" height="15"/>
+                                                            </variation>
                                                             <connections>
                                                                 <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingDidEnd" id="Qlp-q9-omp"/>
                                                                 <outlet property="delegate" destination="OmN-gi-ltQ" id="xR2-VS-4Td"/>
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
-                                                            <rect key="frame" x="530" y="23" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="500" y="20.5" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                                <rect key="frame" x="300" y="22" width="0.0" height="0.0"/>
+                                                            </variation>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
-                                                            <rect key="frame" x="550" y="8" width="30" height="30"/>
+                                                            <rect key="frame" x="520" y="5.5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="PeX-mH-JnK"/>
                                                                 <constraint firstAttribute="height" constant="30" id="sbZ-EH-wdI"/>
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="1" minY="1" maxX="1" maxY="1"/>
-                                                            <state key="normal" image="check3"/>
-                                                            <state key="highlighted" image="check3"/>
+                                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                                <rect key="frame" x="320" y="7" width="30" height="30"/>
+                                                            </variation>
                                                             <connections>
                                                                 <action selector="itemDoneClicked:" destination="OmN-gi-ltQ" eventType="touchUpInside" id="Ixq-NK-1Hq"/>
                                                             </connections>
@@ -101,9 +108,7 @@
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="fW5-Tp-h6f"/>
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="pI1-lq-X5F" secondAttribute="centerY" id="gKC-Ss-0gE"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="leading" secondItem="nq1-RY-AG9" secondAttribute="leading" constant="5" id="gQy-RI-S3v"/>
-                                                        <constraint firstAttribute="height" constant="45" id="lA9-gL-3x0">
-                                                            <variation key="widthClass=compact" constant="45"/>
-                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="40" id="lA9-gL-3x0"/>
                                                         <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="njd-oX-XVR"/>
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="10" id="qhT-mc-GCD">
                                                             <variation key="widthClass=compact" constant="15"/>
@@ -130,8 +135,10 @@
                                                             <exclude reference="fPl-sI-5G6"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="45"/>
                                                         <mask key="constraints">
+                                                            <include reference="lA9-gL-3x0"/>
                                                             <include reference="4ok-zq-c8f"/>
                                                             <exclude reference="5BU-ft-25D"/>
                                                             <exclude reference="VsB-Q0-4Vn"/>
@@ -146,10 +153,10 @@
                                                     </variation>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65u-gf-Vsx">
-                                                    <rect key="frame" x="0.0" y="50" width="590" height="200"/>
+                                                    <rect key="frame" x="0.0" y="50" width="560" height="200"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="111" contentMode="scaleToFill" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yJv-2P-e6l">
-                                                            <rect key="frame" x="60" y="5" width="510" height="60"/>
+                                                            <rect key="frame" x="60" y="5" width="480" height="60"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="6ae-P5-J5M"/>
@@ -158,7 +165,7 @@
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="222" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="点击选择提醒时间" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="HPK-TK-12N">
-                                                            <rect key="frame" x="60" y="75" width="510" height="40"/>
+                                                            <rect key="frame" x="60" y="75" width="480" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="6XJ-V0-mX7"/>
                                                             </constraints>
@@ -181,7 +188,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="510-SJ-yn5">
-                                                            <rect key="frame" x="60" y="130" width="510" height="29"/>
+                                                            <rect key="frame" x="60" y="130" width="480" height="29"/>
                                                             <segments>
                                                                 <segment title="无"/>
                                                                 <segment title="日"/>
@@ -193,9 +200,7 @@
                                                             </connections>
                                                         </segmentedControl>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-8j-Vqn">
-                                                            <rect key="frame" x="60" y="166" width="23" height="22"/>
-                                                            <state key="normal" image="camera"/>
-                                                            <state key="highlighted" image="camera2"/>
+                                                            <rect key="frame" x="60" y="166" width="30" height="34"/>
                                                             <connections>
                                                                 <segue destination="Ern-Dg-VuE" kind="show" identifier="ShowPicture" id="UQd-Ws-eCc"/>
                                                             </connections>
@@ -210,7 +215,9 @@
                                                         <constraint firstItem="HPK-TK-12N" firstAttribute="leading" secondItem="EZq-av-oa0" secondAttribute="leading" id="1ac-en-jA3"/>
                                                         <constraint firstItem="EZq-av-oa0" firstAttribute="top" secondItem="yJv-2P-e6l" secondAttribute="top" id="3ZU-Dv-IS8"/>
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="leading" secondItem="65u-gf-Vsx" secondAttribute="leading" constant="272" id="5Ds-rt-g7p"/>
-                                                        <constraint firstItem="Jyt-8j-Vqn" firstAttribute="top" secondItem="510-SJ-yn5" secondAttribute="bottom" constant="8" id="7Hp-DA-Hts"/>
+                                                        <constraint firstItem="Jyt-8j-Vqn" firstAttribute="top" secondItem="510-SJ-yn5" secondAttribute="bottom" constant="8" id="7Hp-DA-Hts">
+                                                            <variation key="widthClass=compact" constant="5"/>
+                                                        </constraint>
                                                         <constraint firstItem="Jyt-8j-Vqn" firstAttribute="trailing" secondItem="510-SJ-yn5" secondAttribute="trailing" id="8PU-JN-T9b">
                                                             <variation key="widthClass=compact" constant="5"/>
                                                         </constraint>
@@ -399,19 +406,23 @@
                                             <variation key="widthClass=compact" constant="20" symbolic="YES"/>
                                         </constraint>
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="centerX" secondItem="WXD-Vo-IZg" secondAttribute="centerX" id="aFc-Ju-cOV"/>
-                                        <constraint firstAttribute="bottom" secondItem="WXD-Vo-IZg" secondAttribute="bottom" constant="5" id="cIG-6A-D8D">
+                                        <constraint firstAttribute="bottom" secondItem="WXD-Vo-IZg" secondAttribute="bottom" constant="10" id="cIG-6A-D8D">
                                             <variation key="widthClass=compact" constant="20" symbolic="YES"/>
                                         </constraint>
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="width" secondItem="WXD-Vo-IZg" secondAttribute="width" id="jgt-Cd-mEE"/>
-                                        <constraint firstAttribute="trailing" secondItem="WXD-Vo-IZg" secondAttribute="trailing" constant="5" id="jx6-FM-uXy"/>
+                                        <constraint firstAttribute="trailing" secondItem="WXD-Vo-IZg" secondAttribute="trailing" constant="20" id="jx6-FM-uXy">
+                                            <variation key="widthClass=compact" constant="20"/>
+                                        </constraint>
                                         <constraint firstAttribute="trailingMargin" secondItem="ANb-wr-bcv" secondAttribute="trailing" constant="5" id="rCw-Eo-39b"/>
                                         <constraint firstItem="WXD-Vo-IZg" firstAttribute="top" secondItem="NPT-jZ-EYc" secondAttribute="top" id="tC2-xB-eS5">
                                             <variation key="widthClass=compact" constant="0.0"/>
                                         </constraint>
                                         <constraint firstAttribute="bottom" secondItem="WXD-Vo-IZg" secondAttribute="bottom" id="tj3-Y1-zTJ">
-                                            <variation key="widthClass=compact" constant="5"/>
+                                            <variation key="widthClass=compact" constant="10"/>
                                         </constraint>
-                                        <constraint firstItem="WXD-Vo-IZg" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leading" constant="5" id="yrr-TE-5pM"/>
+                                        <constraint firstItem="WXD-Vo-IZg" firstAttribute="leading" secondItem="NPT-jZ-EYc" secondAttribute="leading" constant="20" id="yrr-TE-5pM">
+                                            <variation key="widthClass=compact" constant="20"/>
+                                        </constraint>
                                         <constraint firstItem="ANb-wr-bcv" firstAttribute="centerY" secondItem="WXD-Vo-IZg" secondAttribute="centerY" id="zw7-dP-u9c"/>
                                     </constraints>
                                     <variation key="default">
@@ -573,9 +584,4 @@
             <point key="canvasLocation" x="-365" y="722"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="camera" width="23" height="18"/>
-        <image name="camera2" width="23" height="18"/>
-        <image name="check3" width="16" height="16"/>
-    </resources>
 </document>
