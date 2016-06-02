@@ -29,14 +29,14 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
             AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
         ]
         audioSession = AVAudioSession.sharedInstance()
-        do {
+       /* do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try audioRecorder = AVAudioRecorder(URL: self.directoryURL(), settings: recordSettings)
             audioRecorder.prepareToRecord()
         } catch {
             print ("audio recorder prepare failed")
         }
-        
+        */
     }
     
     func directoryURL() -> NSURL {

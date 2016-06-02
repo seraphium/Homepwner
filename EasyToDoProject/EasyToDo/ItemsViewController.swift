@@ -345,7 +345,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     func updateWithUnExpandCell(cell: ItemCell) {
-        let duration = 0.85
+        let duration = 0.7
         cell.unExpandAnimation(0, completion: nil)
         UIView.animateWithDuration(duration, delay: 0, options: .CurveLinear, animations: { () -> Void in
             self.tableView.beginUpdates()
