@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AudioViewController : UIViewController, UINavigationControllerDelegate {
     
@@ -15,7 +16,34 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
     @IBOutlet var startPlayBtn: UIButton!
     @IBOutlet var stopPlayBtn: UIButton!
     
+    var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
     
+    var audioSession : AVAudioSession!
+    
+    override func viewDidLoad() {
+        let recordSettings = [
+            AVSampleRateKey : NSNumber(float: Float(44100.0)),
+            AVFormatIDKey : NSNumber(int: Int32(kAudioFormatMPEG4AAC)),
+            AVNumberOfChannelsKey : NSNumber(int: 1),
+            AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
+        ]
+        audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try audioRecorder = AVAudioRecorder(URL: self.directoryURL(), settings: recordSettings)
+            audioRecorder.prepareToRecord()
+        } catch {
+            print ("audio recorder prepare failed")
+        }
+        
+    }
+    
+    func directoryURL() -> NSURL {
+        
+        
+        return NSURL()
+    }
     
     @IBAction func startRecord(sender: UIButton) {
         print ("start record")

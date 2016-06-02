@@ -53,7 +53,7 @@ class  ImageStore {
     func imageURLForKey(key: String) ->NSURL {
         let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let documentDirectory = documentDirectories.first!
-        return documentDirectory.URLByAppendingPathComponent(key)
+        return documentDirectory.URLByAppendingPathComponent(key + ".png")
 
     }
 
