@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,17 +16,17 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="EasyToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
-                                            <rect key="frame" x="20" y="0.0" width="560" height="239.5"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
+                                            <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                         </view>
-                                        <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
-                                            <rect key="frame" x="20" y="0.0" width="560" height="239.5"/>
+                                        <view tag="234" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
+                                            <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq1-RY-AG9">
                                                     <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
@@ -46,7 +46,7 @@
                                                             </variation>
                                                         </view>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                            <rect key="frame" x="20" y="12.5" width="66" height="15"/>
+                                                            <rect key="frame" x="20" y="13" width="66" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -57,16 +57,16 @@
                                                                 <outlet property="delegate" destination="OmN-gi-ltQ" id="xR2-VS-4Td"/>
                                                             </connections>
                                                         </textField>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
-                                                            <rect key="frame" x="500" y="20.5" width="0.0" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
+                                                            <rect key="frame" x="500" y="21" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                                 <rect key="frame" x="300" y="22" width="0.0" height="0.0"/>
                                                             </variation>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
-                                                            <rect key="frame" x="520" y="5.5" width="30" height="30"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyM-aN-Dht">
+                                                            <rect key="frame" x="520" y="6" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="PeX-mH-JnK"/>
                                                                 <constraint firstAttribute="height" constant="30" id="sbZ-EH-wdI"/>

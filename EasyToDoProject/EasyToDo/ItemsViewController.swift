@@ -207,6 +207,15 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             } else {
                 cell.notifyDateLabel.text = nil
             }
+
+            if let detail = item.detail {
+                cell.detailTextView.text = detail
+            }
+            if let date = item.dateToNotify {
+                cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
+            }
+            cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
+
            
         case 1:
             let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
@@ -216,6 +225,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
             cell.item = item
+            if let detail = item.detail {
+                cell.detailTextView.text = detail
+            }
+
             cell.delegate = self
 
         default:

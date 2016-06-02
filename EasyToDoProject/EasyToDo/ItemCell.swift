@@ -82,7 +82,10 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker = UIDatePicker()
         datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
-        datePicker.date = NSDate() //initial value
+        
+        let initialNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))
+        
+        datePicker.date = initialNotifyDate! //initial value
         
         detailTextView.delegate = self
         detailNotifyDate.delegate = self
@@ -171,16 +174,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
         setupShadow()
         
-        if let it = item {
-            if let detail = it.detail {
-                detailTextView.text = detail
-            }
-            if let date = it.dateToNotify {
-                detailNotifyDate.text = dateFormatter.stringFromDate(date)  
-            }
-            repeatSelector.selectedSegmentIndex = item.repeatInterval
 
-        }
         if let it = item {
             if let _ = AppDelegate.imageStore.imageForKey(it.itemKey) {
                updateCameraButtonStatus(true)
@@ -504,13 +498,16 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         if (finished) {
             doneButton.alpha = 0.0
             doneButton.enabled = false
-          //  foregroundView.userInteractionEnabled = false
-           // foldView.userInteractionEnabled = false
+            foregroundView.userInteractionEnabled = false
+            foldView.userInteractionEnabled = false
             contentView.alpha = 0.2
         } else {
             doneButton.alpha = 0.8
             doneButton.enabled = true
             contentView.alpha = 1.0
+            foregroundView.userInteractionEnabled = true
+            foldView.userInteractionEnabled = true
+
         }
         
         if expired { //expired notify item
