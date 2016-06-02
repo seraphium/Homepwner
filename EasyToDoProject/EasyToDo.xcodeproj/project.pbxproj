@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20AB781D007AFA0009442E /* AudioViewController.swift */; };
 		4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */; };
 		4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */; };
 		4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B20AB781D007AFA0009442E /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3A8DE91C846DDF005B1DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */,
 				4B5FEB011CC6905900751CF1 /* PictureViewController.swift */,
+				4B20AB781D007AFA0009442E /* AudioViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */,
 				4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */,
 				4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */,
+				4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */,
 				4BB29B3C1C9A9672006E1BB8 /* ImageStore.swift in Sources */,
 				4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */,
 			);

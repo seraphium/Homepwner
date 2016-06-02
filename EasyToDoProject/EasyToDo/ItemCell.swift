@@ -48,10 +48,13 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     //donebutton
     var doneButtonLayer = CAShapeLayer()
     var doneButtonPath = UIBezierPath()
-    //
+    //camera button
     var cameraButtonLayer = CAShapeLayer()
     var cameraButtonPath = UIBezierPath()
     
+    //audio button
+    var audioButtonLayer = CAShapeLayer()
+    var audioButtonPath = UIBezierPath()
     var item:Item!
     
     var expanded : Bool = false
@@ -62,6 +65,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     
     @IBOutlet var repeatSelector: UISegmentedControl!
+    
+    @IBOutlet var detailAddAudio: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -128,6 +133,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         initIndicatorView()
         initDoneButtonView()
         initCameraButtonView()
+        initAudioButtonView()
     }
 
     func setCellCornerRadius(expanded: Bool, animated: Bool)
@@ -177,11 +183,10 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
         if let it = item {
             if let _ = AppDelegate.imageStore.imageForKey(it.itemKey) {
-               updateCameraButtonStatus(true)
+               updateButtonLayerStatus(cameraButtonLayer, hasItem: true)
             } else {
-                updateCameraButtonStatus(false)
+                updateButtonLayerStatus(cameraButtonLayer, hasItem: false)
             }
-
         }
         
         
@@ -481,14 +486,59 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
     }
     
-    func updateCameraButtonStatus(hasPhoto: Bool) {
-        if hasPhoto {
-            cameraButtonLayer.fillColor = AppDelegate.cellInnerColor.CGColor
+    func initAudioButtonView () {
+
+        //// Group 2
+        //// Group 3
+        //// Bezier Drawing
+        let bezierPath = UIBezierPath()
+        bezierPath.moveToPoint(CGPoint(x: 6.3, y: 14.15))
+        bezierPath.addCurveToPoint(CGPoint(x: 10.56, y: 9.91), controlPoint1: CGPoint(x: 8.68, y: 14.15), controlPoint2: CGPoint(x: 10.56, y: 12.27))
+        bezierPath.addLineToPoint(CGPoint(x: 10.56, y: 3.84))
+        bezierPath.addCurveToPoint(CGPoint(x: 6.3, y: -0.4), controlPoint1: CGPoint(x: 10.56, y: 1.48), controlPoint2: CGPoint(x: 8.68, y: -0.4))
+        bezierPath.addCurveToPoint(CGPoint(x: 2.04, y: 3.84), controlPoint1: CGPoint(x: 3.92, y: -0.4), controlPoint2: CGPoint(x: 2.04, y: 1.48))
+        bezierPath.addLineToPoint(CGPoint(x: 2.04, y: 9.91))
+        bezierPath.addCurveToPoint(CGPoint(x: 6.3, y: 14.15), controlPoint1: CGPoint(x: 2.04, y: 12.27), controlPoint2: CGPoint(x: 3.92, y: 14.15))
+        bezierPath.closePath()
+        bezierPath.moveToPoint(CGPoint(x: 13, y: 11.12))
+        bezierPath.addLineToPoint(CGPoint(x: 11.78, y: 11.12))
+        bezierPath.addCurveToPoint(CGPoint(x: 6.3, y: 15.36), controlPoint1: CGPoint(x: 11.23, y: 13.54), controlPoint2: CGPoint(x: 8.92, y: 15.36))
+        bezierPath.addCurveToPoint(CGPoint(x: 0.82, y: 11.12), controlPoint1: CGPoint(x: 3.68, y: 15.36), controlPoint2: CGPoint(x: 1.37, y: 13.54))
+        bezierPath.addLineToPoint(CGPoint(x: -0.4, y: 11.12))
+        bezierPath.addCurveToPoint(CGPoint(x: 5.69, y: 16.58), controlPoint1: CGPoint(x: 0.15, y: 14.03), controlPoint2: CGPoint(x: 2.71, y: 16.27))
+        bezierPath.addLineToPoint(CGPoint(x: 5.69, y: 17.79))
+        bezierPath.addLineToPoint(CGPoint(x: 5.08, y: 17.79))
+        bezierPath.addCurveToPoint(CGPoint(x: 4.47, y: 18.39), controlPoint1: CGPoint(x: 4.72, y: 17.79), controlPoint2: CGPoint(x: 4.47, y: 18.03))
+        bezierPath.addCurveToPoint(CGPoint(x: 5.08, y: 19), controlPoint1: CGPoint(x: 4.47, y: 18.76), controlPoint2: CGPoint(x: 4.72, y: 19))
+        bezierPath.addLineToPoint(CGPoint(x: 7.52, y: 19))
+        bezierPath.addCurveToPoint(CGPoint(x: 8.13, y: 18.39), controlPoint1: CGPoint(x: 7.88, y: 19), controlPoint2: CGPoint(x: 8.13, y: 18.76))
+        bezierPath.addCurveToPoint(CGPoint(x: 7.52, y: 17.79), controlPoint1: CGPoint(x: 8.13, y: 18.03), controlPoint2: CGPoint(x: 7.88, y: 17.79))
+        bezierPath.addLineToPoint(CGPoint(x: 6.91, y: 17.79))
+        bezierPath.addLineToPoint(CGPoint(x: 6.91, y: 16.58))
+        bezierPath.addCurveToPoint(CGPoint(x: 13, y: 11.12), controlPoint1: CGPoint(x: 9.89, y: 16.27), controlPoint2: CGPoint(x: 12.45, y: 14.03))
+        bezierPath.closePath()
+        bezierPath.miterLimit = 4;
+
+        
+        audioButtonPath = bezierPath
+        
+        audioButtonLayer.backgroundColor = UIColor.clearColor().CGColor
+        audioButtonLayer.path = audioButtonPath.CGPath
+        audioButtonLayer.fillColor = AppDelegate.cellInnerColor.CGColor
+        audioButtonLayer.fillRule = kCAFillRuleEvenOdd
+        detailAddAudio.layer.addSublayer(audioButtonLayer)
+
+    }
+    
+    func updateButtonLayerStatus(layer: CAShapeLayer, hasItem: Bool) {
+        if hasItem {
+            layer.fillColor = AppDelegate.cellInnerColor.CGColor
 
         } else {
-            cameraButtonLayer.fillColor = UIColor.lightGrayColor().CGColor
+            layer.fillColor = UIColor.lightGrayColor().CGColor
         }
     }
+    
     
     func updateCell(expanded: Bool, finished: Bool, expired: Bool){
         
