@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class AudioViewController : UIViewController, UINavigationControllerDelegate {
+class AudioViewController : UIViewController, UINavigationControllerDelegate, AVAudioRecorderDelegate {
     
     @IBOutlet var startRecordBtn: UIButton!
     @IBOutlet var stopRecordBtn: UIButton!
@@ -37,15 +37,16 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
             if let url = self.directoryURL() {
                 try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
                 try audioRecorder = AVAudioRecorder(URL: url, settings: recordSettings)
+                audioRecorder.delegate = self
+                
                 audioRecorder.prepareToRecord()
                 
-                audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 
             } else {
                 print ("cannot get proper audio url")
             }
         } catch {
-            print ("audio recorder prepare failed")
+            print ("audio recorder prepare failed: \(error)")
         }
         
     }
@@ -67,7 +68,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
                 try audioSession.setActive(true)
                 audioRecorder.record()
             } catch {
-                print ("start recording failed")
+                print ("start recording failed: \(error)")
             }
         }
         
@@ -79,21 +80,36 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
         do {
             try audioSession.setActive(false)
         } catch {
-            print ("stop recording failed")
+            print ("stop recording failed: \(error)")
+        }
+    }
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            print ("record finished successfully")
         }
     }
     
     @IBAction func startPlay(sender: UIButton) {
         if !audioRecorder.recording {
-            audioPlayer.play()
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOfURL: audioRecorder.url)
+                audioPlayer.play()
+            } catch  {
+                print ("playing failed: \(error)")
+            }
+           
             print ("started play")
         }
     }
     
     @IBAction func stopPlay(sender: UIButton) {
         if !audioRecorder.recording {
-            audioPlayer.stop()
-            print ("stopped play")
+            if let ap = audioPlayer {
+                ap.stop()
+                print ("stopped play")
+            }
+           
 
         }
     }

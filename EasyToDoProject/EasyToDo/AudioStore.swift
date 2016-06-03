@@ -12,7 +12,7 @@ import AVFoundation
 
 class  AudioStore : ResourceStore {
     
-    let kSuffix = ".caf"
+    let kSuffix = ".m4a"
     
     func audioURLForKey(key: String) -> NSURL? {
         return resourceURLForKey(key, suffix: kSuffix)
