@@ -187,6 +187,14 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             } else {
                 updateButtonLayerStatus(cameraButtonLayer, hasItem: false)
             }
+            if let url = AppDelegate.audioStore.audioURLForKey(it.itemKey) {
+                if AppDelegate.audioStore.hasAudioForURL(url) {
+                    updateButtonLayerStatus(audioButtonLayer, hasItem: true)
+                } else {
+                    updateButtonLayerStatus(audioButtonLayer, hasItem: false)
+
+                }
+            }
         }
         
         

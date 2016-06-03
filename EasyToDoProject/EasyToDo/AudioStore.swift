@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 class  AudioStore : ResourceStore {
@@ -16,6 +17,14 @@ class  AudioStore : ResourceStore {
     func audioURLForKey(key: String) -> NSURL? {
         return resourceURLForKey(key, suffix: kSuffix)
     }
-
+    
+    func hasAudioForURL(url: NSURL) -> Bool {
+        do {
+            _ = try AVAudioPlayer(contentsOfURL: url)
+        } catch {
+            return false
+        }
+        return true
+    }
 
 }
