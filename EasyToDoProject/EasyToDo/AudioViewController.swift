@@ -21,6 +21,10 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
     
     var audioSession : AVAudioSession!
     
+    var audioStore : AudioStore!
+    
+    var item: Item!
+    
     override func viewDidLoad() {
         let recordSettings = [
             AVSampleRateKey : NSNumber(float: Float(44100.0)),
@@ -29,37 +33,67 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate {
             AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
         ]
         audioSession = AVAudioSession.sharedInstance()
-       /* do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try audioRecorder = AVAudioRecorder(URL: self.directoryURL(), settings: recordSettings)
-            audioRecorder.prepareToRecord()
+        do {
+            if let url = self.directoryURL() {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                try audioRecorder = AVAudioRecorder(URL: url, settings: recordSettings)
+                audioRecorder.prepareToRecord()
+                
+                audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                
+            } else {
+                print ("cannot get proper audio url")
+            }
         } catch {
             print ("audio recorder prepare failed")
         }
-        */
+        
     }
     
-    func directoryURL() -> NSURL {
+    func directoryURL() -> NSURL? {
+        if let it = item {
+            return audioStore.audioURLForKey(it.itemKey)
+        }
+        return nil
         
-        
-        return NSURL()
     }
     
     @IBAction func startRecord(sender: UIButton) {
         print ("start record")
+        if !audioRecorder.recording
+        {
+            do {
+                try audioSession.setActive(true)
+                audioRecorder.record()
+            } catch {
+                print ("start recording failed")
+            }
+        }
         
     }
     
     @IBAction func stopRecord(sender: UIButton) {
         print ("stop record")
-        
+        audioRecorder.stop()
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            print ("stop recording failed")
+        }
     }
+    
     @IBAction func startPlay(sender: UIButton) {
-        print ("start play")
+        if !audioRecorder.recording {
+            audioPlayer.play()
+            print ("started play")
+        }
     }
     
     @IBAction func stopPlay(sender: UIButton) {
-        print ("stop play")
-        
+        if !audioRecorder.recording {
+            audioPlayer.stop()
+            print ("stopped play")
+
+        }
     }
 }

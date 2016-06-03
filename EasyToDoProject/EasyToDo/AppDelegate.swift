@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let itemStore = ItemStore()
     static let imageStore =  ImageStore()
+    static let audioStore = AudioStore()
     
     static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
 
@@ -226,6 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let itemsController = navController.topViewController as! ItemsViewController
         itemsController.itemStore = itemStore
         itemsController.imageStore = AppDelegate.imageStore
+        itemsController.audioStore = AppDelegate.audioStore
         return true
     }
 

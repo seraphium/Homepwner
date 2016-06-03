@@ -13,6 +13,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     var itemStore : ItemStore!
     
     var imageStore : ImageStore!
+    var audioStore: AudioStore!
     
     var doneClosed : Bool = false
     
@@ -376,6 +377,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         picVC.imageStore = imageStore
 
       }
+        if segue.identifier == "ShowAudio" {
+            let audioVC = segue.destinationViewController as! AudioViewController
+            audioVC.item = selectedItem
+            audioVC.audioStore = audioStore
+            
+        }
     
     }
     
