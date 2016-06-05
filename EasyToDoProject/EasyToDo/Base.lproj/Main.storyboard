@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iDe-P4-qev">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,16 +16,16 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="EasyToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
                                             <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                         </view>
-                                        <view tag="234" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
+                                        <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
                                             <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq1-RY-AG9">
@@ -507,57 +507,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie6-Mo-T3M">
-                                <rect key="frame" x="258" y="261" width="85" height="30"/>
-                                <state key="normal" title="Stop Record"/>
-                                <connections>
-                                    <action selector="stopRecord:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="WUm-MC-N5Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOU-ky-LIq">
-                                <rect key="frame" x="268" y="370" width="65" height="30"/>
-                                <state key="normal" title="Stop Play"/>
-                                <connections>
-                                    <action selector="stopPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="pQn-Zu-a8P"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
-                                <rect key="frame" x="267" y="316" width="67" height="30"/>
-                                <state key="normal" title="Start Play"/>
+                                <rect key="frame" x="375" y="214" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
+                                    <constraint firstAttribute="width" constant="50" id="9RO-SO-Se9"/>
+                                </constraints>
                                 <connections>
                                     <action selector="startPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="R7x-OR-9xO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q53-9p-4js">
-                                <rect key="frame" x="257" y="202" width="87" height="30"/>
-                                <state key="normal" title="Start Record"/>
+                                <rect key="frame" x="175" y="214" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ENd-h6-Fww"/>
+                                    <constraint firstAttribute="height" constant="50" id="SfD-Lz-D0R"/>
+                                </constraints>
                                 <connections>
                                     <action selector="startRecord:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="ex2-Vz-Nfq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCm-R8-cRU">
+                                <rect key="frame" x="300" y="93" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="37W-xy-ped"/>
-                            <constraint firstItem="zOU-ky-LIq" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="CnN-2a-mMh"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="Wcq-x9-4GE"/>
-                            <constraint firstItem="ie6-Mo-T3M" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="XPD-DJ-uLN"/>
-                            <constraint firstItem="ie6-Mo-T3M" firstAttribute="top" secondItem="Q53-9p-4js" secondAttribute="bottom" constant="29" id="bnY-hf-U3M"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="138" id="eyi-ug-J7v"/>
-                            <constraint firstItem="zOU-ky-LIq" firstAttribute="top" secondItem="Z06-Le-3Wp" secondAttribute="bottom" constant="24" id="uHI-Ya-LRi"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="top" secondItem="ie6-Mo-T3M" secondAttribute="bottom" constant="25" id="wAa-Iq-sRB"/>
+                            <constraint firstItem="iCm-R8-cRU" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="29" id="8im-fz-5WW"/>
+                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" id="T2e-fb-BMa"/>
+                            <constraint firstItem="iCm-R8-cRU" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="eYB-nP-FJX"/>
+                            <constraint firstItem="Q53-9p-4js" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="eds-T7-YN8"/>
+                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="-100" id="orq-q0-acu"/>
+                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="p38-X4-jVc"/>
+                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="100" id="qio-To-jZ7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="T2e-fb-BMa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="meteringLabel" destination="iCm-R8-cRU" id="4XW-uT-abt"/>
                         <outlet property="startPlayBtn" destination="Z06-Le-3Wp" id="Ttq-NG-OvZ"/>
                         <outlet property="startRecordBtn" destination="Q53-9p-4js" id="oph-TP-7kk"/>
-                        <outlet property="stopPlayBtn" destination="zOU-ky-LIq" id="49z-az-hvl"/>
-                        <outlet property="stopRecordBtn" destination="ie6-Mo-T3M" id="Umd-8y-3T9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGp-9y-DW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="1628"/>
+            <point key="canvasLocation" x="1318" y="1717"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="5Ei-Ho-O3f">
