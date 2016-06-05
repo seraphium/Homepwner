@@ -20,6 +20,8 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
     
     @IBOutlet var meteringLabel: UILabel!
     
+    @IBOutlet var meteringView: UIView!
+    
     var audioSession : AVAudioSession!
     
     var audioStore : AudioStore!
@@ -28,6 +30,14 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
     
     var isPlaying: Bool = false
     var isRecording: Bool = false
+    
+    //metering path
+    var meteringPath = UIBezierPath()
+    var meteringShapeLayer = CAShapeLayer()
+    
+    var meteringLayer : CALayer {
+        return meteringView.layer
+    }
     
     //audio button
     var audioPlayLayer = CAShapeLayer()
@@ -82,7 +92,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
         initAudioPausePath()
         initAudioRecordPath()
         initAudioStopRecordPath()
-        
+        initMeteringView()
         initPlayButtonView(true)
         initRecordButtonView(true)
     }
@@ -113,10 +123,32 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
         
     }
     
+    func initMeteringView() {
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 100))
+        meteringPath = rectanglePath
+        meteringLayer.backgroundColor = UIColor.clearColor().CGColor
+        meteringShapeLayer.path = meteringPath.CGPath
+        meteringShapeLayer.fillColor = AppDelegate.cellInnerColor.CGColor
+        meteringShapeLayer.fillRule = kCAFillRuleEvenOdd
+        meteringLayer.addSublayer(meteringShapeLayer)
+        let frame = meteringLayer.frame
+        meteringLayer.anchorPoint = CGPoint(x: 0.5 ,y: 1)
+        meteringLayer.frame = frame
+        meteringLayer.transform = CATransform3DMakeScale(1.0, 0, 1.0)  //init with no height
+  
+        
+    }
+    
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
             print (dbLevel)
             meteringLabel.text = "dB: " + String(dbLevel)
+            var height = CGFloat((dbLevel + 80) / 80)
+            if height < 0
+            {
+                height = 0
+            }
+            meteringLayer.transform = CATransform3DMakeScale(1.0,  height, 1.0)
     }
 
     
