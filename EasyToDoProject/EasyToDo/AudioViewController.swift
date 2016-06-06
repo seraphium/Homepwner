@@ -9,7 +9,8 @@
 import UIKit
 import AVFoundation
 
-class AudioViewController : UIViewController, UINavigationControllerDelegate, AVAudioRecorderDelegate {
+class AudioViewController : UIViewController, UINavigationControllerDelegate,
+            AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet var startRecordBtn: UIButton!
     @IBOutlet var stopRecordBtn: UIButton!
@@ -21,6 +22,8 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
     @IBOutlet var meteringLabel: UILabel!
     
     @IBOutlet var meteringView: UIView!
+    
+    let audioDbMaxNegativeValue : Float = 80.0
     
     var audioSession : AVAudioSession!
     
@@ -105,6 +108,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
     func stopAudioMetering() {
         timer?.invalidate()
         meteringLabel.text = ""
+        updateMeteringUI(Float((-audioDbMaxNegativeValue)))
     }
     
     func updateMetering() {
@@ -143,7 +147,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
             let dbLevel = obj as! Float
             print (dbLevel)
             meteringLabel.text = "dB: " + String(dbLevel)
-            var height = CGFloat((dbLevel + 80) / 80)
+            var height = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
             if height < 0
             {
                 height = 0
@@ -309,14 +313,32 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
         }
     }
     
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        handlingStop()
+    }
+    
     
     //MARK: - Playing control
     
+    
+    func handlingStop() {
+        if let ap = audioPlayer {
+            ap.stop()
+            print ("stopped play")
+            self.initPlayButtonView(true)
+            isPlaying = false
+            stopAudioMetering()
+        } else {
+            print ("audio player stopping failed")
+        }
+
+    }
     @IBAction func startPlay(sender: UIButton) {
         if !isPlaying {
             if let url = self.directoryURL {
                 do {
                     audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    audioPlayer.delegate = self
                     audioPlayer.prepareToPlay()
                     audioPlayer.meteringEnabled = true
                     audioPlayer.play()
@@ -338,16 +360,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate, AV
             }
 
         } else {
-            if let ap = audioPlayer {
-                ap.stop()
-                print ("stopped play")
-                self.initPlayButtonView(true)
-                isPlaying = false
-                stopAudioMetering()
-            } else {
-                print ("audio player stopping failed")
-            }
-
+            handlingStop()
         }
         
         
