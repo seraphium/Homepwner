@@ -23,8 +23,9 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     @IBOutlet var meteringView: UIView!
     
+    var audioMeteringInitPositionY : CGFloat = 0
     let audioDbMaxNegativeValue : Float = 80.0
-    
+    let audioMeterMaxElevate : Int = 100
     var audioSession : AVAudioSession!
     
     var audioStore : AudioStore!
@@ -135,11 +136,9 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         meteringShapeLayer.fillColor = AppDelegate.cellInnerColor.CGColor
         meteringShapeLayer.fillRule = kCAFillRuleEvenOdd
         meteringLayer.addSublayer(meteringShapeLayer)
-        let frame = meteringLayer.frame
-        meteringLayer.anchorPoint = CGPoint(x: 0.5 ,y: 1)
-        meteringLayer.frame = frame
-        meteringLayer.transform = CATransform3DMakeScale(1.0, 0, 1.0)  //init with no height
-  
+        meteringLayer.masksToBounds = true
+        meteringShapeLayer.position = CGPoint(x: meteringShapeLayer.position.x, y: meteringShapeLayer.position.y + meteringLayer.bounds.height)
+        audioMeteringInitPositionY = meteringShapeLayer.position.y
         
     }
     
@@ -147,12 +146,12 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             let dbLevel = obj as! Float
             print (dbLevel)
             meteringLabel.text = "dB: " + String(dbLevel)
-            var height = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
-            if height < 0
+            var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
+            if heightPercentage < 0
             {
-                height = 0
+                heightPercentage = 0
             }
-            meteringLayer.transform = CATransform3DMakeScale(1.0,  height, 1.0)
+            meteringShapeLayer.position = CGPoint(x: meteringShapeLayer.position.x, y: audioMeteringInitPositionY - CGFloat(audioMeterMaxElevate) * heightPercentage)
     }
 
     
