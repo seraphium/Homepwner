@@ -198,7 +198,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         
         audioPlayLayer.removeFromSuperlayer()
         audioPlayLayer.backgroundColor = UIColor.clearColor().CGColor
-        audioPlayLayer.path = canPlay ? audioPlayPath.CGPath : audioPausePath.CGPath
+        audioPlayLayer.path = canPlay ? audioPlayPath.CGPath : audioStopRecordPath.CGPath
         audioPlayLayer.fillColor = AppDelegate.cellInnerColor.CGColor
         audioPlayLayer.fillRule = kCAFillRuleEvenOdd
         startPlayBtn.layer.addSublayer(audioPlayLayer)
