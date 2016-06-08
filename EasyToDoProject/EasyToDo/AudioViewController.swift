@@ -25,7 +25,13 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     var audioMeteringInitPositionY : CGFloat = 0
     let audioDbMaxNegativeValue : Float = 80.0
-    let audioMeterMaxElevate : Int = 100
+    let audioMeterInstanceWidth = 50
+    let audioMeterIntancelengthMultiplier : CGFloat = 0.1
+    let audioMeterInstanceOffset = 10
+    let audioMeteringInstanceMaxCount = 10
+    
+    var audioMeteringInstanceHeightIncludeInterval = 0
+    
     var audioSession : AVAudioSession!
     
     var audioStore : AudioStore!
@@ -37,8 +43,8 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     //metering path
     var meteringPath = UIBezierPath()
-    var meteringShapeLayer = CAShapeLayer()
-    
+    var meteringInstanceLayer = CALayer()
+    var meteringReplicatorLayer = CAReplicatorLayer()
     var meteringLayer : CALayer {
         return meteringView.layer
     }
@@ -109,7 +115,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     func stopAudioMetering() {
         timer?.invalidate()
         meteringLabel.text = ""
-        updateMeteringUI(Float((-audioDbMaxNegativeValue)))
+        stopMeteringUI()
     }
     
     func updateMetering() {
@@ -128,30 +134,61 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         
     }
     
+    func setUpInstanceLayer() {
+        let layerWidth = CGFloat(audioMeterInstanceWidth)
+        let midX = CGRectGetMidX(meteringView.bounds) - layerWidth / 2.0
+        let instanceHeight = layerWidth * audioMeterIntancelengthMultiplier
+        meteringInstanceLayer.frame = CGRect(x: midX, y: meteringView.bounds.height, width: layerWidth, height: instanceHeight)
+        meteringInstanceLayer.backgroundColor = AppDelegate.cellInnerColor.CGColor
+
+    }
+    
+    func setUpReplicatorLayer() {
+        meteringReplicatorLayer.frame = meteringView.bounds
+        meteringReplicatorLayer.instanceCount = 1
+        meteringReplicatorLayer.preservesDepth = false
+        meteringReplicatorLayer.addSublayer(meteringInstanceLayer)
+        meteringReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(CGFloat(0), CGFloat(-audioMeterInstanceOffset), CGFloat(0))
+        
+    }
+    
     func initMeteringView() {
         let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 100))
         meteringPath = rectanglePath
-        meteringLayer.backgroundColor = UIColor.clearColor().CGColor
-        meteringShapeLayer.path = meteringPath.CGPath
-        meteringShapeLayer.fillColor = AppDelegate.cellInnerColor.CGColor
-        meteringShapeLayer.fillRule = kCAFillRuleEvenOdd
-        meteringLayer.addSublayer(meteringShapeLayer)
-        meteringLayer.masksToBounds = true
-        meteringShapeLayer.position = CGPoint(x: meteringShapeLayer.position.x, y: meteringShapeLayer.position.y + meteringLayer.bounds.height)
-        audioMeteringInitPositionY = meteringShapeLayer.position.y
+        meteringView.backgroundColor = AppDelegate.cellColor
+        setUpInstanceLayer()
+        setUpReplicatorLayer()
         
+        meteringLayer.addSublayer(meteringReplicatorLayer)
+       
+        
+    }
+    
+    func stopMeteringUI() {
+        meteringReplicatorLayer.instanceCount = 1
+
     }
     
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
-            print (dbLevel)
             meteringLabel.text = "dB: " + String(dbLevel)
             var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
             if heightPercentage < 0
             {
                 heightPercentage = 0
             }
-            meteringShapeLayer.position = CGPoint(x: meteringShapeLayer.position.x, y: audioMeteringInitPositionY - CGFloat(audioMeterMaxElevate) * heightPercentage)
+            print (heightPercentage)
+        
+            var count = Int(CGFloat(audioMeteringInstanceMaxCount) * heightPercentage)
+        
+            let rand = Int(arc4random() % UInt32(3))
+            count += rand
+
+            if count > audioMeteringInstanceMaxCount {
+                count = audioMeteringInstanceMaxCount
+            }
+            meteringReplicatorLayer.instanceCount = count
+        
     }
 
     

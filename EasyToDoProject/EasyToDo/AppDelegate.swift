@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let backColor = UIColor(red: 225.0/255.0, green: 236.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     static let cellColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 250.0/255.0, alpha: 1.0)
     static let cellInnerColor = UIColor(red: 103.0/255.0, green: 127.0/255.0, blue: 228.0/255.0, alpha: 1.0)
-    
+ 
+
     func finishItemNotification(notification : UILocalNotification) -> Item? {
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
