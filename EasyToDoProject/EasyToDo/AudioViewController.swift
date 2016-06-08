@@ -19,8 +19,6 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     
-    @IBOutlet var meteringLabel: UILabel!
-    
     @IBOutlet var meteringView: UIView!
     
     var audioMeteringInitPositionY : CGFloat = 0
@@ -109,12 +107,12 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     //MARK: - Audio metering
     func startAudioMetering() {
+      //  meteringView.hidden = false
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateMetering), userInfo: nil, repeats: true)
     }
     
     func stopAudioMetering() {
         timer?.invalidate()
-        meteringLabel.text = ""
         stopMeteringUI()
     }
     
@@ -155,11 +153,14 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     func initMeteringView() {
         let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 100))
         meteringPath = rectanglePath
-        meteringView.backgroundColor = AppDelegate.cellColor
+        meteringView.backgroundColor = UIColor.clearColor()
         setUpInstanceLayer()
         setUpReplicatorLayer()
-        
+        meteringLayer.borderColor = AppDelegate.cellInnerColor.CGColor
+        meteringLayer.borderWidth = 2
+        meteringLayer.cornerRadius = 2
         meteringLayer.addSublayer(meteringReplicatorLayer)
+       // meteringView.hidden = true
        
         
     }
@@ -171,7 +172,6 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
-            meteringLabel.text = "dB: " + String(dbLevel)
             var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
             if heightPercentage < 0
             {

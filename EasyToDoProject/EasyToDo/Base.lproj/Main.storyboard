@@ -507,18 +507,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
-                                <rect key="frame" x="375" y="214" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
-                                    <constraint firstAttribute="width" constant="50" id="9RO-SO-Se9"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="startPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="R7x-OR-9xO"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q53-9p-4js">
-                                <rect key="frame" x="175" y="214" width="50" height="50"/>
+                                <rect key="frame" x="225" y="275" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="ENd-h6-Fww"/>
                                     <constraint firstAttribute="height" constant="50" id="SfD-Lz-D0R"/>
@@ -527,45 +517,54 @@
                                     <action selector="startRecord:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="ex2-Vz-Nfq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCm-R8-cRU">
-                                <rect key="frame" x="300" y="93" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W">
-                                <rect key="frame" x="275" y="189" width="50" height="100"/>
+                                <rect key="frame" x="275" y="114" width="50" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="0Ng-OL-YD6"/>
                                     <constraint firstAttribute="height" constant="100" id="GVU-34-PN7"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
+                                <rect key="frame" x="325" y="275" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
+                                    <constraint firstAttribute="width" constant="50" id="9RO-SO-Se9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="startPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="R7x-OR-9xO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Qy-r5-Ztj" firstAttribute="top" secondItem="2CJ-cI-29W" secondAttribute="bottom" constant="236" id="5NE-iO-jx5"/>
-                            <constraint firstItem="iCm-R8-cRU" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="29" id="8im-fz-5WW"/>
+                            <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="50" id="JOK-xB-XQW"/>
                             <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" id="T2e-fb-BMa"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="Z06-Le-3Wp" secondAttribute="centerY" id="TIB-vW-QR1"/>
+                            <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="Q53-9p-4js" secondAttribute="centerY" constant="-150" id="c0q-vY-TNr"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="c1C-m2-JMU"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="dPI-mD-gew"/>
-                            <constraint firstItem="iCm-R8-cRU" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="eYB-nP-FJX"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="eds-T7-YN8"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="-100" id="orq-q0-acu"/>
+                            <constraint firstItem="Q53-9p-4js" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="250" id="eds-T7-YN8"/>
+                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="-50" id="orq-q0-acu"/>
                             <constraint firstItem="Z06-Le-3Wp" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="p38-X4-jVc"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="100" id="qio-To-jZ7"/>
+                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="50" id="qio-To-jZ7"/>
+                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" id="vO7-kR-dua"/>
+                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="Q53-9p-4js" secondAttribute="centerY" id="zVk-Ra-hhy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="eds-T7-YN8"/>
+                                <exclude reference="TIB-vW-QR1"/>
+                                <exclude reference="c0q-vY-TNr"/>
                                 <exclude reference="c1C-m2-JMU"/>
                                 <exclude reference="T2e-fb-BMa"/>
+                                <exclude reference="p38-X4-jVc"/>
                                 <exclude reference="5NE-iO-jx5"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="meteringLabel" destination="iCm-R8-cRU" id="4XW-uT-abt"/>
                         <outlet property="meteringView" destination="2CJ-cI-29W" id="Trc-BO-Rnr"/>
                         <outlet property="startPlayBtn" destination="Z06-Le-3Wp" id="Ttq-NG-OvZ"/>
                         <outlet property="startRecordBtn" destination="Q53-9p-4js" id="oph-TP-7kk"/>
