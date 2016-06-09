@@ -12,6 +12,7 @@ import AVFoundation
 class AudioViewController : UIViewController, UINavigationControllerDelegate,
             AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
+    @IBOutlet var controllerView: UIView!
     @IBOutlet var startRecordBtn: UIButton!
     @IBOutlet var startPlayBtn: UIButton!
     
@@ -100,6 +101,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         initAudioRecordPath()
         initAudioStopRecordPath()
         initMeteringView()
+        initControllerView()
         initPlayButtonView(true)
         initRecordButtonView(true)
         
@@ -169,6 +171,15 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         
     }
     
+    func initControllerView(){
+        controllerView.backgroundColor = UIColor.clearColor()
+        startRecordBtn.backgroundColor = UIColor.clearColor()
+        startPlayBtn.backgroundColor = UIColor.clearColor()
+        controllerView.layer.borderColor = AppDelegate.cellInnerColor.CGColor
+        controllerView.layer.borderWidth = 2
+        controllerView.layer.cornerRadius = 10
+
+    }
     func initMeteringView() {
         let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 100))
         meteringPath = rectanglePath
@@ -239,16 +250,16 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         //// Group 3
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
-        bezierPath.moveToPoint(CGPoint(x: 0.08, y: 6.72))
-        bezierPath.addCurveToPoint(CGPoint(x: 9.76, y: 1.13), controlPoint1: CGPoint(x: 0.08, y: 0.54), controlPoint2: CGPoint(x: 4.48, y: -1.96))
-        bezierPath.addLineToPoint(CGPoint(x: 48.04, y: 23.35))
-        bezierPath.addCurveToPoint(CGPoint(x: 48.04, y: 34.54), controlPoint1: CGPoint(x: 53.32, y: 26.44), controlPoint2: CGPoint(x: 53.32, y: 31.45))
-        bezierPath.addLineToPoint(CGPoint(x: 9.76, y: 56.77))
-        bezierPath.addCurveToPoint(CGPoint(x: 0.08, y: 51.17), controlPoint1: CGPoint(x: 4.48, y: 59.71), controlPoint2: CGPoint(x: 0.08, y: 57.21))
-        bezierPath.addLineToPoint(CGPoint(x: 0.08, y: 6.72))
+        bezierPath.moveToPoint(CGPoint(x: 0.08, y: 5.89))
+        bezierPath.addCurveToPoint(CGPoint(x: 8.82, y: 0.97), controlPoint1: CGPoint(x: 0.08, y: 0.45), controlPoint2: CGPoint(x: 4.05, y: -1.75))
+        bezierPath.addLineToPoint(CGPoint(x: 43.42, y: 20.52))
+        bezierPath.addCurveToPoint(CGPoint(x: 43.42, y: 30.36), controlPoint1: CGPoint(x: 48.19, y: 23.24), controlPoint2: CGPoint(x: 48.19, y: 27.64))
+        bezierPath.addLineToPoint(CGPoint(x: 8.82, y: 49.91))
+        bezierPath.addCurveToPoint(CGPoint(x: 0.08, y: 44.99), controlPoint1: CGPoint(x: 4.05, y: 52.5), controlPoint2: CGPoint(x: 0.08, y: 50.3))
+        bezierPath.addLineToPoint(CGPoint(x: 0.08, y: 5.89))
         bezierPath.closePath()
         bezierPath.miterLimit = 4;
-        
+
         
         audioPlayPath = bezierPath
     }

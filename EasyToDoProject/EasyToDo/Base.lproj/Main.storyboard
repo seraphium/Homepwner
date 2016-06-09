@@ -507,64 +507,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q53-9p-4js">
-                                <rect key="frame" x="225" y="275" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="ENd-h6-Fww"/>
-                                    <constraint firstAttribute="height" constant="50" id="SfD-Lz-D0R"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="startRecord:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="ex2-Vz-Nfq"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W">
-                                <rect key="frame" x="275" y="114" width="50" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="275" y="170" width="50" height="100"/>
+                                <color key="backgroundColor" red="0.82352941180000006" green="0.96078431369999995" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="0Ng-OL-YD6"/>
                                     <constraint firstAttribute="height" constant="100" id="GVU-34-PN7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
-                                <rect key="frame" x="325" y="275" width="50" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehv-e0-gts">
+                                <rect key="frame" x="175" y="340" width="250" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
+                                        <rect key="frame" x="150" y="35" width="50" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.54584723069999996" blue="0.45339924279999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
+                                            <constraint firstAttribute="width" constant="50" id="9RO-SO-Se9"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="startPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="R7x-OR-9xO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q53-9p-4js">
+                                        <rect key="frame" x="50" y="35" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ENd-h6-Fww"/>
+                                            <constraint firstAttribute="height" constant="50" id="SfD-Lz-D0R"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="startRecord:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="ex2-Vz-Nfq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35294117650000001" green="0.96078431369999995" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
-                                    <constraint firstAttribute="width" constant="50" id="9RO-SO-Se9"/>
+                                    <constraint firstItem="Q53-9p-4js" firstAttribute="centerY" secondItem="ehv-e0-gts" secondAttribute="centerY" id="Ja2-Yg-3qr"/>
+                                    <constraint firstItem="Q53-9p-4js" firstAttribute="leading" secondItem="ehv-e0-gts" secondAttribute="leading" constant="50" id="Kp6-e1-q59"/>
+                                    <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="ehv-e0-gts" secondAttribute="centerY" id="Pe0-3V-hhJ"/>
+                                    <constraint firstAttribute="height" constant="120" id="QaR-hi-sK4"/>
+                                    <constraint firstAttribute="width" constant="250" id="dQt-JR-ffc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z06-Le-3Wp" secondAttribute="trailing" constant="50" id="vzs-j1-6F4"/>
                                 </constraints>
-                                <connections>
-                                    <action selector="startPlay:" destination="b3s-5Y-HQj" eventType="touchUpInside" id="R7x-OR-9xO"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Qy-r5-Ztj" firstAttribute="top" secondItem="2CJ-cI-29W" secondAttribute="bottom" constant="236" id="5NE-iO-jx5"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="50" id="JOK-xB-XQW"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" id="T2e-fb-BMa"/>
-                            <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="Z06-Le-3Wp" secondAttribute="centerY" id="TIB-vW-QR1"/>
-                            <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="Q53-9p-4js" secondAttribute="centerY" constant="-150" id="c0q-vY-TNr"/>
+                            <constraint firstItem="ehv-e0-gts" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" constant="100" id="Toi-ZG-g6x"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="c1C-m2-JMU"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="dPI-mD-gew"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="250" id="eds-T7-YN8"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="-50" id="orq-q0-acu"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="p38-X4-jVc"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" constant="50" id="qio-To-jZ7"/>
-                            <constraint firstItem="Q53-9p-4js" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" id="vO7-kR-dua"/>
-                            <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="Q53-9p-4js" secondAttribute="centerY" id="zVk-Ra-hhy"/>
+                            <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" constant="-80" id="nuE-2u-X2U"/>
+                            <constraint firstItem="ehv-e0-gts" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="q3S-VA-Ut9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="TIB-vW-QR1"/>
-                                <exclude reference="c0q-vY-TNr"/>
+                                <exclude reference="JOK-xB-XQW"/>
                                 <exclude reference="c1C-m2-JMU"/>
-                                <exclude reference="eds-T7-YN8"/>
-                                <exclude reference="T2e-fb-BMa"/>
-                                <exclude reference="p38-X4-jVc"/>
                                 <exclude reference="5NE-iO-jx5"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="controllerView" destination="ehv-e0-gts" id="ByO-Uc-G1s"/>
                         <outlet property="meteringView" destination="2CJ-cI-29W" id="Trc-BO-Rnr"/>
                         <outlet property="startPlayBtn" destination="Z06-Le-3Wp" id="Ttq-NG-OvZ"/>
                         <outlet property="startRecordBtn" destination="Q53-9p-4js" id="oph-TP-7kk"/>
