@@ -13,7 +13,6 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet var startRecordBtn: UIButton!
-    @IBOutlet var stopRecordBtn: UIButton!
     @IBOutlet var startPlayBtn: UIButton!
     
     var audioRecorder: AVAudioRecorder!
@@ -103,7 +102,27 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         initMeteringView()
         initPlayButtonView(true)
         initRecordButtonView(true)
+        
+        if let url = AppDelegate.audioStore.audioURLForKey(item.itemKey) {
+            if AppDelegate.audioStore.hasAudioForURL(url) {
+             setupButtonEnable(startPlayBtn, enable: true)
+            } else {
+                setupButtonEnable(startPlayBtn, enable: false)
+            }
+        }
     }
+    
+    func setupButtonEnable(button: UIButton, enable: Bool) {
+        if !enable {
+            button.enabled = false
+            button.alpha = 0.3
+        } else {
+            button.enabled = true
+            button.alpha = 1.0
+        }
+    }
+    
+    
     
     //MARK: - Audio metering
     func startAudioMetering() {
@@ -317,6 +336,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
                //  let delay = 0.0
                //  addBtnPathAnimation(duration, delay: delay, from: audioRecordPath.CGPath, to:// audioStopRecordPath.CGPath, onLayer: audioRecordLayer) {
                     self.initRecordButtonView(false)
+                    self.setupButtonEnable(startPlayBtn, enable: false)
                // }
             } catch {
                 print ("start recording failed: \(error)")
@@ -331,6 +351,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             stopAudioMetering()
             isRecording = false
             self.initRecordButtonView(true)
+            self.setupButtonEnable(startPlayBtn, enable: true)
             do {
                 try audioSession.setActive(false)
             } catch {
@@ -362,6 +383,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             ap.stop()
             print ("stopped play")
             self.initPlayButtonView(true)
+            self.setupButtonEnable(startRecordBtn, enable: true)
             isPlaying = false
             stopAudioMetering()
         } else {
@@ -388,6 +410,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
                 // let delay = 0.0
                 // addPlayBtnPathAnimation(duration, delay: delay) {
                 self.initPlayButtonView(false)
+                self.setupButtonEnable(startRecordBtn, enable: false)
                 // }
                 startAudioMetering()
                 
