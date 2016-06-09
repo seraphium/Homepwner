@@ -84,8 +84,13 @@ class ItemStore  {
         if finishing == true {
             //remove item in Done list if items exceed
             if allItemsDone.count >= MaxItemInUndone {
+                //remove the resource related to the to-be removed item
+                let oldItem = allItemsDone[0]
+                AppDelegate.imageStore.deleteImageForKey(oldItem.itemKey)
+                AppDelegate.audioStore.deleteAudioForKey(oldItem.itemKey)
                 allItemsDone.removeAtIndex(0)
                 actualToIndex -= 1
+                
             }
             allItemsDone.insert(item, atIndex: actualToIndex)
         } else {

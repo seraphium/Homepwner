@@ -45,7 +45,7 @@ class  ImageStore : ResourceStore {
         let imageURL = resourceURLForKey(key, suffix: kSuffix)
         do {
            try NSFileManager.defaultManager().removeItemAtURL(imageURL)
-
+            print ("removed image for key:" + key)
         } catch let deleteError {
             print ("error removing image from disk:\(deleteError)")
         }

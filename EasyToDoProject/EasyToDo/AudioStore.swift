@@ -27,4 +27,16 @@ class  AudioStore : ResourceStore {
         return true
     }
 
+    func deleteAudioForKey(key: String) {
+        
+        //removeResource(key)
+        let audioURL = resourceURLForKey(key, suffix: kSuffix)
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(audioURL)
+            print("removed audio for key:" + key)
+        } catch let deleteError {
+            print ("error removing audio file from disk:\(deleteError)")
+        }
+        
+    }
 }

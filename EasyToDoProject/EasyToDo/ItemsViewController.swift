@@ -417,6 +417,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         self.itemStore.RemoveItem(item)
         //remove the item from image cache
         self.imageStore.deleteImageForKey(item.itemKey)
+        self.audioStore.deleteAudioForKey(item.itemKey)
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         
