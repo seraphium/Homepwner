@@ -516,7 +516,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             } else {
                 AppDelegate.cancelNotification(item)
             }
-            
+            if cell.expanded {
+                updateWithUnExpandCell(cell, completion: nil)
+            }
             finishItemReload(item)
            
         }
