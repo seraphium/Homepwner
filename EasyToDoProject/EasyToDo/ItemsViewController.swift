@@ -10,6 +10,8 @@ import UIKit
 
 class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
     
+    public typealias Completion = ((Bool) -> Void)?
+
     var itemStore : ItemStore!
     
     var imageStore : ImageStore!
@@ -19,7 +21,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     let kCloseCellHeight: CGFloat = 50
     let kOpenCellHeight: CGFloat = 250
-
+    let kExpandDuration = 0.5
+    let kUnexpandDuration = 0.7
+    
     var cellHeightsForUnDone = [CGFloat]()
     var cellHeightsForDone = [CGFloat]()
 
@@ -241,39 +245,43 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
  
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //no normal selection
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
+    private func toggleExpand(cell: ItemCell) {
+        let indexPath = tableView.indexPathForCell(cell)!
         switch indexPath.section {
         case 0:
             if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
                 selectedItem = itemStore.allItemsUnDone[indexPath.row]
                 updateWithExpandCell(cell)
-
+                
             } else {// close cell
                 cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
                 selectedItem = nil
-                updateWithUnExpandCell(cell)
+                updateWithUnExpandCell(cell, completion: nil)
             }
         case 1:
             if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
                 cellHeightsForDone[indexPath.row] = kOpenCellHeight
                 selectedItem = itemStore.allItemsDone[indexPath.row]
                 updateWithExpandCell(cell)
-
+                
             } else {// close cell
                 cellHeightsForDone[indexPath.row] = kCloseCellHeight
                 selectedItem = nil
-
-                updateWithUnExpandCell(cell)
-
+                
+                updateWithUnExpandCell(cell, completion: nil)
+                
             }
         default:
             break
         }
- 
+
+    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //no normal selection
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
+        toggleExpand(cell)
 
     }
     
@@ -337,7 +345,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         };
     }
     func updateWithExpandCell(cell: ItemCell) {
-        let duration = 0.5
+        let duration = kExpandDuration
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
@@ -345,13 +353,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         cell.expandAnimation(0, completion: nil)
     }
     
-    func updateWithUnExpandCell(cell: ItemCell) {
-        let duration = 0.7
+    func updateWithUnExpandCell(cell: ItemCell, completion: Completion) {
+        let duration = kUnexpandDuration
         cell.unExpandAnimation(0, completion: nil)
         UIView.animateWithDuration(duration, delay: 0, options: .CurveLinear, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-            }, completion: nil)
+            }, completion: completion)
 
         
     }
@@ -393,19 +401,42 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
-
-       let newItem = itemStore.CreateItem(random: false, finished: false)
-        createCellHeightsArray()
-
-        if let index = itemStore.allItemsUnDone.indexOf(newItem) {
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-            newRow = indexPath.row
-            createCellHeightsArray()
-            tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
+        //TODO: should close all expanded item cells
+        var delay = 0.0
+        if unExpandAllCell() {
+            delay = kUnexpandDuration
         }
         
+        //wait for unexpand animation if actually unexpanded
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            let newItem = self.itemStore.CreateItem(random: false, finished: false)
+            self.createCellHeightsArray()
+            
+            if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                self.newRow = indexPath.row
+                self.createCellHeightsArray()
+                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
+            }
+        }
+        
+        
+    }
+    
+    private func unExpandAllCell() -> Bool {
+        var hadUnexpand = false
+        for cell in tableView.visibleCells {
+            if let c = cell as? ItemCell {
+                if c.expanded {
+                    hadUnexpand = true
+                    toggleExpand(c)
+                }
+            }
+        }
+        return hadUnexpand
+
     }
     
     private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
