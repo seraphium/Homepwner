@@ -64,8 +64,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //set table cell height
-        createCellHeightsArray()
         
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
@@ -85,7 +83,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
  
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-        
+        //set table cell height
+        createCellHeightsArray()
+
         
     }
     
@@ -201,8 +201,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                     expired = true
                 }
             }
-            let expand = cellHeightsForUnDone[indexPath.row] == kOpenCellHeight
+          //  let expand = cellHeightsForUnDone[indexPath.row] == kOpenCellHeight
+            let expand = cell.expanded
             cell.updateCell(expand, finished: false, expired: expired)
+            
             cell.textField.text = item.name
             cell.item = item
             cell.delegate = self
@@ -223,7 +225,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
            
         case 1:
-            let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
+           // let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
+            let expand = cell.expanded
 
             cell.updateCell(expand, finished: true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
@@ -245,38 +248,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
  
-    private func toggleExpand(cell: ItemCell) {
-        let indexPath = tableView.indexPathForCell(cell)!
-        switch indexPath.section {
-        case 0:
-            if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
-                cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
-                selectedItem = itemStore.allItemsUnDone[indexPath.row]
-                updateWithExpandCell(cell)
-                
-            } else {// close cell
-                cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
-                selectedItem = nil
-                updateWithUnExpandCell(cell, completion: nil)
-            }
-        case 1:
-            if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
-                cellHeightsForDone[indexPath.row] = kOpenCellHeight
-                selectedItem = itemStore.allItemsDone[indexPath.row]
-                updateWithExpandCell(cell)
-                
-            } else {// close cell
-                cellHeightsForDone[indexPath.row] = kCloseCellHeight
-                selectedItem = nil
-                
-                updateWithUnExpandCell(cell, completion: nil)
-                
-            }
-        default:
-            break
-        }
-
-    }
+ 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -437,6 +409,39 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
         return hadUnexpand
 
+    }
+    
+    private func toggleExpand(cell: ItemCell) {
+        let indexPath = tableView.indexPathForCell(cell)!
+        switch indexPath.section {
+        case 0:
+            if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
+                cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
+                selectedItem = itemStore.allItemsUnDone[indexPath.row]
+                updateWithExpandCell(cell)
+                
+            } else {// close cell
+                cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
+                selectedItem = nil
+                updateWithUnExpandCell(cell, completion: nil)
+            }
+        case 1:
+            if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
+                cellHeightsForDone[indexPath.row] = kOpenCellHeight
+                selectedItem = itemStore.allItemsDone[indexPath.row]
+                updateWithExpandCell(cell)
+                
+            } else {// close cell
+                cellHeightsForDone[indexPath.row] = kCloseCellHeight
+                selectedItem = nil
+                
+                updateWithUnExpandCell(cell, completion: nil)
+                
+            }
+        default:
+            break
+        }
+        
     }
     
     private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
