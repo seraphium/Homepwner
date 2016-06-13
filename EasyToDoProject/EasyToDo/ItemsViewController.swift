@@ -183,7 +183,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                     expired = true
                 }
             }
-            print ("index:" + String(indexPath.row) + " expanded:" + String(item.expanded))
+           // print ("index:" + String(indexPath.row) + " expanded:" + String(item.expanded))
             cell.updateCell(item.expanded, finished: false, expired: expired)
             
             cell.textField.text = item.name
