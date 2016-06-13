@@ -17,6 +17,7 @@ class Item: NSObject, NSCoding {
     let dateCreated : NSDate
     let itemKey : String
     var finished: Bool
+    var expanded: Bool
     init(name: String, detail: String?, dateToNotify : NSDate?, repeatInterval: Int,finished: Bool){
         self.name = name
         self.detail = detail
@@ -25,6 +26,7 @@ class Item: NSObject, NSCoding {
         self.dateCreated = NSDate()
         self.itemKey = NSUUID().UUIDString
         self.finished = finished
+        self.expanded = false
         super.init()
     }
     
@@ -55,6 +57,8 @@ class Item: NSObject, NSCoding {
         aCoder.encodeObject(repeatInterval, forKey: "repeatInterval")
 
         aCoder.encodeObject(finished, forKey: "finished")
+        aCoder.encodeObject(finished, forKey: "expanded")
+
 
     }
     
@@ -68,6 +72,7 @@ class Item: NSObject, NSCoding {
         repeatInterval = aDecoder.decodeObjectForKey("repeatInterval") as! Int
 
         finished = aDecoder.decodeObjectForKey("finished") as! Bool
+        expanded = aDecoder.decodeObjectForKey("expanded") as! Bool
         super.init()
     }
     

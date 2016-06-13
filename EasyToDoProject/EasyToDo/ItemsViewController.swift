@@ -10,7 +10,7 @@ import UIKit
 
 class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
     
-    public typealias Completion = ((Bool) -> Void)?
+    internal typealias Completion = ((Bool) -> Void)?
 
     var itemStore : ItemStore!
     
@@ -23,9 +23,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     let kOpenCellHeight: CGFloat = 250
     let kExpandDuration = 0.5
     let kUnexpandDuration = 0.7
-    
-    var cellHeightsForUnDone = [CGFloat]()
-    var cellHeightsForDone = [CGFloat]()
 
     var newRow : Int?
     let dateFormatter : NSDateFormatter = {
@@ -44,20 +41,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         super.init(coder : aDecoder)
         navigationItem.leftBarButtonItem = editButtonItem()
         
-    }
-    
-    
-    func initCellHeightArray() {
-        cellHeightsForUnDone.removeAll()
-        cellHeightsForDone.removeAll()
-        let rowCountForUndone = itemStore.allItemsUnDone.count
-        for _ in 0...rowCountForUndone {
-            cellHeightsForUnDone.append(kCloseCellHeight)
-        }
-        let rowCountForDone = itemStore.allItemsDone.count
-        for _ in 0...rowCountForDone {
-            cellHeightsForDone.append(kCloseCellHeight)
-        }
     }
     
 
@@ -84,7 +67,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         //set table cell height
-        initCellHeightArray()
 
         
     }
@@ -178,9 +160,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return cellHeightsForUnDone[indexPath.row]
+            return itemStore.allItemsUnDone[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
         case 1:
-            return cellHeightsForDone[indexPath.row]
+            return itemStore.allItemsDone[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
         default:
             return 0
         }
@@ -201,9 +183,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                     expired = true
                 }
             }
-          //  let expand = cellHeightsForUnDone[indexPath.row] == kOpenCellHeight
-            let expand = cell.expanded
-            cell.updateCell(expand, finished: false, expired: expired)
+            print ("index:" + String(indexPath.row) + " expanded:" + String(item.expanded))
+            cell.updateCell(item.expanded, finished: false, expired: expired)
             
             cell.textField.text = item.name
             cell.item = item
@@ -225,11 +206,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
            
         case 1:
-           // let expand = cellHeightsForDone[indexPath.row] == kOpenCellHeight
-            let expand = cell.expanded
-
-            cell.updateCell(expand, finished: true, expired: false)
             let item = itemStore.allItemsDone[indexPath.row]
+
+            cell.updateCell(item.expanded, finished: true, expired: false)
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
             cell.item = item
@@ -316,22 +295,32 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             
         };
     }
-    func updateWithExpandCell(cell: ItemCell) {
+    func updateWithExpandCell(cell: ItemCell, item: Item) {
+        item.expanded = true
+
         let duration = kExpandDuration
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             }, completion: nil)
-        cell.expandAnimation(0, completion: nil)
+        cell.expandAnimation(0, completion: { done -> Void in
+            cell.expanded = true
+            
+        })
     }
     
-    func updateWithUnExpandCell(cell: ItemCell, completion: Completion) {
+    func updateWithUnExpandCell(cell: ItemCell, item: Item, completion: (() -> ())?) {
+        item.expanded = false
+
         let duration = kUnexpandDuration
         cell.unExpandAnimation(0, completion: nil)
         UIView.animateWithDuration(duration, delay: 0, options: .CurveLinear, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-            }, completion: completion)
+            }, completion: { done -> Void in
+                cell.expanded = false
+                completion?()
+        })
 
         
     }
@@ -373,70 +362,42 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
-        //TODO: should close all expanded item cells
-        var delay = 0.0
-        if unExpandAllCell() {
-            delay = kUnexpandDuration
-        }
+
+        let newItem = self.itemStore.CreateItem(random: false, finished: false)
         
-        //wait for unexpand animation if actually unexpanded
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            let newItem = self.itemStore.CreateItem(random: false, finished: false)
-           // self.initCellHeightArray()
-            
-            if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
+        if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
                 self.newRow = indexPath.row
-                self.initCellHeightArray()
                 self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
             }
-        }
-        
-        
     }
     
-    private func unExpandAllCell() -> Bool {
-        var hadUnexpand = false
-        for cell in tableView.visibleCells {
-            if let c = cell as? ItemCell {
-                if c.expanded {
-                    hadUnexpand = true
-                    toggleExpand(c)
-                }
-            }
-        }
-        return hadUnexpand
-
-    }
     
     private func toggleExpand(cell: ItemCell) {
         let indexPath = tableView.indexPathForCell(cell)!
         switch indexPath.section {
         case 0:
-            if cellHeightsForUnDone[indexPath.row] == kCloseCellHeight { // open cell
-                cellHeightsForUnDone[indexPath.row] = kOpenCellHeight
-                selectedItem = itemStore.allItemsUnDone[indexPath.row]
-                updateWithExpandCell(cell)
+            selectedItem = itemStore.allItemsUnDone[indexPath.row]
+
+            if !((selectedItem?.expanded)!) { // open cell
+                updateWithExpandCell(cell, item: selectedItem!)
                 
             } else {// close cell
-                cellHeightsForUnDone[indexPath.row] = kCloseCellHeight
-                selectedItem = nil
-                updateWithUnExpandCell(cell, completion: nil)
+                updateWithUnExpandCell(cell, item: selectedItem!) {
+                    self.selectedItem = nil
+                }
             }
         case 1:
-            if cellHeightsForDone[indexPath.row] == kCloseCellHeight { // open cell
-                cellHeightsForDone[indexPath.row] = kOpenCellHeight
-                selectedItem = itemStore.allItemsDone[indexPath.row]
-                updateWithExpandCell(cell)
+            selectedItem = itemStore.allItemsDone[indexPath.row]
+
+            if !((selectedItem?.expanded)!)   { // open cell
+                updateWithExpandCell(cell, item: selectedItem!)
                 
             } else {// close cell
-                cellHeightsForDone[indexPath.row] = kCloseCellHeight
-                selectedItem = nil
-                
-                updateWithUnExpandCell(cell, completion: nil)
-                
+                updateWithUnExpandCell(cell, item: selectedItem!) {
+                    self.selectedItem = nil
+                }
             }
         default:
             break
@@ -456,8 +417,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         self.audioStore.deleteAudioForKey(item.itemKey)
         //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
-        initCellHeightArray()
         
         tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
     }
@@ -499,9 +458,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         //only finish and move cell of non-repeat notification
         //for repeat notify, re create notify
         itemStore.finishItem(item)
-        
-        initCellHeightArray()
-        
+        item.expanded = false
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesInRange: range)
         self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
@@ -521,15 +478,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             } else {
                 AppDelegate.cancelNotification(item)
             }
-            if cell.expanded {
-                updateWithUnExpandCell(cell, completion: nil)
-            }
+            
             finishItemReload(item)
-           
-        }
+            
+           // if item.expanded {
+            //    updateWithUnExpandCell(cell, item: item, completion: nil)
+        //}
         
+        }
     }
-    
+
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
