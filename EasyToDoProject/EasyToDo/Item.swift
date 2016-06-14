@@ -1,4 +1,4 @@
-//
+ //
 //  Item.swift
 //  Homepwner
 //
@@ -44,7 +44,9 @@ class Item: NSObject, NSCoding {
             self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify,repeatInterval: repeatInterval, finished: finished)
             
         } else{
-            self.init(name: "新事项", detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
+            let newItemString = NSLocalizedString("NewItemName", comment: "New item default name")
+
+            self.init(name: newItemString, detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
         }
     }
     

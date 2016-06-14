@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20AB781D007AFA0009442E /* AudioViewController.swift */; };
+		4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B33DF921D1055D500579DA0 /* Localizable.strings */; };
 		4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */; };
 		4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */; };
 		4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */; };
@@ -28,6 +29,11 @@
 
 /* Begin PBXFileReference section */
 		4B20AB781D007AFA0009442E /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		4B33DF8B1D10531B00579DA0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		4B33DF8D1D1053F000579DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		4B33DF911D1055D500579DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B33DF931D1055D900579DA0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4B33DF941D1056C300579DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B3A8DE11C846DDF005B1DE5 /* EasyToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3A8DE91C846DDF005B1DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */,
 				4BC5F5391CF4A85300B9D770 /* Reveal.framework */,
 				4B3A8DED1C846DDF005B1DE5 /* LaunchScreen.storyboard */,
+				4B33DF921D1055D500579DA0 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4B3A8DD81C846DDF005B1DE5;
 			productRefGroup = 4B3A8DE21C846DDF005B1DE5 /* Products */;
@@ -212,6 +220,7 @@
 				4B3A8DEF1C846DDF005B1DE5 /* LaunchScreen.storyboard in Resources */,
 				4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */,
 				4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */,
+				4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */,
 				4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,10 +251,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4B33DF921D1055D500579DA0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B33DF911D1055D500579DA0 /* en */,
+				4B33DF931D1055D900579DA0 /* zh-Hans */,
+				4B33DF941D1056C300579DA0 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4B3A8DE91C846DDF005B1DE5 /* Base */,
+				4B33DF8B1D10531B00579DA0 /* zh-Hans */,
+				4B33DF8D1D1053F000579DA0 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

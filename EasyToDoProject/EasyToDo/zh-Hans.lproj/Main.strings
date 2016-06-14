@@ -1,0 +1,33 @@
+
+/* Class = "UINavigationItem"; title = "EasyToDo"; ObjectID = "2nj-M0-rBk"; */
+"2nj-M0-rBk.title" = "简单事";
+
+/* Class = "UISegmentedControl"; 510-SJ-yn5.segmentTitles[0] = "无"; ObjectID = "510-SJ-yn5"; */
+"510-SJ-yn5.segmentTitles[0]" = "无";
+
+/* Class = "UISegmentedControl"; 510-SJ-yn5.segmentTitles[1] = "日"; ObjectID = "510-SJ-yn5"; */
+"510-SJ-yn5.segmentTitles[1]" = "日";
+
+/* Class = "UISegmentedControl"; 510-SJ-yn5.segmentTitles[2] = "周"; ObjectID = "510-SJ-yn5"; */
+"510-SJ-yn5.segmentTitles[2]" = "周";
+
+/* Class = "UISegmentedControl"; 510-SJ-yn5.segmentTitles[3] = "月"; ObjectID = "510-SJ-yn5"; */
+"510-SJ-yn5.segmentTitles[3]" = "月";
+
+/* Class = "UILabel"; text = "详情"; ObjectID = "EZq-av-oa0"; */
+"EZq-av-oa0.text" = "详情";
+
+/* Class = "UITextField"; placeholder = "点击选择提醒时间"; ObjectID = "HPK-TK-12N"; */
+"HPK-TK-12N.placeholder" = "点击选择提醒时间";
+
+/* Class = "UILabel"; text = "重复"; ObjectID = "f5r-fZ-VMy"; */
+"f5r-fZ-VMy.text" = "重复";
+
+/* Class = "UILabel"; text = "提醒"; ObjectID = "mrG-fu-mrD"; */
+"mrG-fu-mrD.text" = "提醒";
+
+/* Class = "UITextField"; placeholder = "Name here"; ObjectID = "pI1-lq-X5F"; */
+"pI1-lq-X5F.placeholder" = "输入名称";
+
+/* Class = "UITextView"; text = " "; ObjectID = "yJv-2P-e6l"; */
+"yJv-2P-e6l.text" = " ";
