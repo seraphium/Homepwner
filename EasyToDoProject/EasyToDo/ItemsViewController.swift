@@ -367,9 +367,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
                 self.newRow = indexPath.row
-                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .None)
+                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
             }
     }
     
