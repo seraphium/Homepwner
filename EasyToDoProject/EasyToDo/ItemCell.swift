@@ -558,7 +558,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             doneButton.enabled = false
             foregroundView.userInteractionEnabled = false
             foldView.userInteractionEnabled = false
-            contentView.alpha = 0.2
+            contentView.alpha = 0.4
         } else {
             doneButton.alpha = 0.8
             doneButton.enabled = true
