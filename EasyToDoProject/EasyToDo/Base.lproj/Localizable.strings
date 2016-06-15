@@ -7,3 +7,20 @@
 */
 /* New Item Name */
 "NewItemName" = "New Item";
+"NotificationAlertFinish" = "Finish";
+"NotificationAlertIgnore" = "Ignore";
+"ItemListHeaderNotFinished" = "Unfinished Items";
+"ItemViewHeaderNotFinished" = "Unfinished";
+"ItemListClickToAddLabel" = "Press + To Add New Item";
+"ItemListShowFinishedLabel" = "Show Finished";
+"ItemListHideFinishedLabel" = "Hide Finished";
+"ItemCellDateSelectorOK" = "OK";
+"ItemCellDateSelectorCancel" = "Cancel";
+"ItemCellDateAlreadyExpired" = "Expired";
+"ItemCellDateStillLeft" = "Left";
+"ItemCellDateLeftYear" = "Year";
+"ItemCellDateLeftMonth" = "Month";
+"ItemCellDateLeftDay" = "Day";
+"ItemCellDateLeftHour" = "Hour";
+"ItemCellDateLeftMin" = "Min";
+"PictureViewChoosePicture" = "Choose Picture";

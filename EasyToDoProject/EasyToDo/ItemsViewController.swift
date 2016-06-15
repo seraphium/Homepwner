@@ -96,9 +96,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let unfinishedTitle = NSLocalizedString("ItemListHeaderNotFinished", comment: "")
         switch section {
         case 0:
-            return "未完成项目"
+            return unfinishedTitle
         case 1:
             return ""
         default:
@@ -108,6 +109,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let unfinishedString = NSLocalizedString("ItemViewHeaderNotFinished", comment: "")
+        let addNewString = NSLocalizedString("ItemListClickToAddLabel", comment: "")
 
         if section == 0 {
             let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
@@ -116,11 +119,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             view.headerLabel.textColor = AppDelegate.cellInnerColor
             
             if itemStore.allItemsUnDone.count > 0 {
-                view.titleLabel.text = "未完成"
+                view.titleLabel.text = unfinishedString
                 view.headerLabel.alpha = 0
                 view.headerButton.alpha = 0
             } else {
-                view.headerLabel.text = "请点击+添加项目"
+                view.headerLabel.text = addNewString
                 view.titleLabel.alpha = 0
                 view.headerButton.alpha = 0
 
@@ -134,12 +137,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                 view.titleLabel.alpha = 0
                 view.headerLabel.alpha = 0
                 let btn = view.headerButton
-                
+                let showFinishedItemString = NSLocalizedString("ItemListShowFinishedLabel", comment: "")
+                let hideFinishedItemString = NSLocalizedString("ItemListHideFinishedLabel", comment: "")
                 btn.addTarget(self, action: #selector(clickAction), forControlEvents: UIControlEvents.TouchUpInside)
                 if doneClosed {
-                    btn.setTitle("显示已完成", forState: .Normal)
+                    btn.setTitle(showFinishedItemString, forState: .Normal)
                 } else {
-                    btn.setTitle("隐藏已完成", forState: .Normal)
+                    btn.setTitle(hideFinishedItemString, forState: .Normal)
 
                 }
                 return view

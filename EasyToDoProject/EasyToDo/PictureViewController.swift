@@ -84,8 +84,9 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        let choosePictureString = NSLocalizedString("PictureViewChoosePicture", comment: "")
         if(imagePicker.sourceType == UIImagePickerControllerSourceType.Camera){
-            let button = UIBarButtonItem(title: "Choose picture", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(choosePicture))
+            let button = UIBarButtonItem(title: choosePictureString, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(choosePicture))
             viewController.navigationItem.rightBarButtonItem = button
             viewController.navigationController?.navigationBarHidden = false
             viewController.navigationController?.navigationBar.translucent = true

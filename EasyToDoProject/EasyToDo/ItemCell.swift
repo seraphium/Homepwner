@@ -85,7 +85,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         super.awakeFromNib()
         
         datePicker = UIDatePicker()
-        datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
+        //datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
         
         let initialNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))
@@ -248,10 +248,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         }
         
         detailTextView.resignFirstResponder()
-        
+        let okString = NSLocalizedString("ItemCellDateSelectorOK", comment: "")
+        let cancelString = NSLocalizedString("ItemCellDateSelectorCancel", comment: "")
         let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil,
                               preferredStyle: .ActionSheet)
-        alertController.addAction(UIAlertAction(title: "确定", style: .Default) {
+        alertController.addAction(UIAlertAction(title: okString, style: .Default) {
             (alertAction) -> Void in
             //trunc date by set sec to 0
             let date = self.datePicker.date
@@ -272,7 +273,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             
             
             })
-        alertController.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: cancelString, style: .Cancel, handler: nil))
         alertController.view.addSubview(datePicker)
 
         delegate?.presentNotify(alertController);
@@ -291,31 +292,34 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             return ""
         }
         let currentTime = NSDate()
+        let expiredString = NSLocalizedString("ItemCellDateAlreadyExpired", comment: "")
         if notifDate.earlierDate(currentTime) == notifDate {
-            return "已过期"
+            return expiredString
         }
-        var outputString = "还剩"
+        var outputString = NSLocalizedString("ItemCellDateStillLeft", comment: "")
+        outputString += " "
         var outputStep = 2
         let calender = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let component = calender?.components([.Year, .Month, .Day, .Hour, .Minute], fromDate: currentTime, toDate: notifDate, options: [])
         if outputStep > 0 && component?.year > 0 {
-            outputString += String(component!.year) + "年"
+            outputString += String(component!.year) + NSLocalizedString("ItemCellDateLeftYear", comment: "")
             outputStep -= 1
         }
         if outputStep > 0 && component?.month > 0 {
-            outputString += String(component!.month) + "个月"
+            outputString += String(component!.month) + NSLocalizedString("ItemCellDateLeftMonth", comment: "")
             outputStep -= 1
         }
         if outputStep > 0 && component?.day > 0 {
-            outputString += String(component!.day) + "天"
+            outputString += String(component!.day) + NSLocalizedString("ItemCellDateLeftDay", comment: "")
             outputStep -= 1
         }
         if outputStep > 0 && component?.hour > 0 {
-            outputString += String(component!.hour) + "小时"
+            outputString += String(component!.hour) + NSLocalizedString("ItemCellDateLeftHour", comment: "")
+
             outputStep -= 1
         }
         if outputStep > 0 && component?.minute > 0 {
-            outputString += String(component!.minute) + "分钟"
+            outputString += String(component!.minute) + NSLocalizedString("ItemCellDateLeftMin", comment: "")
             outputStep -= 1	
         }
 

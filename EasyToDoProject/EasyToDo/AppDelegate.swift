@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let imageStore =  ImageStore()
     static let audioStore = AudioStore()
     
-    static let RepeatTime : [String] = ["不重复", "每天",  "每周" , "每月", "每年"]
-
    /* static let backColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
     static let cellColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 0.8)
     static let cellInnerColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 0.7)
@@ -69,13 +67,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showNotificationAlertController(application:UIApplication, forNotification notification: UILocalNotification)
     {
+        let finishString = NSLocalizedString("NotificationAlertFinish", comment: "")
+        let ignoreString = NSLocalizedString("NotificationAlertIgnore", comment: "")
         let alertController = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Finish", style: .Default) {
+        alertController.addAction(UIAlertAction(title: finishString, style: .Default) {
             (alertAction) -> Void in
                 self.notificationHandleFinish(application, forNotification: notification)
             })
 
-        alertController.addAction(UIAlertAction(title: "Ignore", style: .Cancel) {
+        alertController.addAction(UIAlertAction(title: ignoreString, style: .Cancel) {
             (alertAction) -> Void in
             self.notificationHandleIgnore(application, forNotification: notification);
             })
@@ -91,8 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case "finished":
                 print ("finished")
                 finishItemNotification(notification)
-            case "detail":
-                showNotificationAlertController(application, forNotification: notification)
             case "ignore":
                 print ("Ignore")
             default:
@@ -188,30 +186,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             //TODO: should add response to local notification here
             
-            
+            let finishString = NSLocalizedString("NotificationAlertFinish", comment: "")
+            let ignoreString = NSLocalizedString("NotificationAlertIgnore", comment: "")
+
             let userAction1 = UIMutableUserNotificationAction()
             userAction1.identifier = "finished"
-            userAction1.title = "Finished"
+            userAction1.title = finishString
             userAction1.activationMode = .Background
             userAction1.authenticationRequired = true
             
-            let userAction2 = UIMutableUserNotificationAction()
-            userAction2.identifier = "detail"
-            userAction2.title = "Detail"
-            userAction2.activationMode = .Foreground
-            userAction2.authenticationRequired = true
-            
             let userAction3 = UIMutableUserNotificationAction()
             userAction3.identifier = "ignore"
-            userAction3.title = "Ignore"
+            userAction3.title = ignoreString
             userAction3.activationMode = .Background
             userAction3.authenticationRequired = true
             userAction3.destructive = true
             
             let userCategory = UIMutableUserNotificationCategory()
             userCategory.identifier = "MyNotification"
-            userCategory.setActions([userAction1, userAction3], forContext: .Minimal)
-            userCategory.setActions([userAction1, userAction2, userAction3], forContext: .Default)
+            userCategory.setActions([userAction1, userAction3], forContext: .Default)
             
             //  application.registerForRemoteNotifications()
             let setting = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound],

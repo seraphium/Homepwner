@@ -8,3 +8,20 @@
 
 /* New Item Name */
 "NewItemName" = "新项目";
+"NotificationAlertFinish" = "完成";
+"NotificationAlertIgnore" = "忽略";
+"ItemListHeaderNotFinished" = "未完成项目";
+"ItemViewHeaderNotFinished" = "未完成";
+"ItemListClickToAddLabel" = "点击+添加项目";
+"ItemListShowFinishedLabel" = "显示已完成";
+"ItemListHideFinishedLabel" = "隐藏已完成";
+"ItemCellDateSelectorOK" = "确定";
+"ItemCellDateSelectorCancel" = "取消";
+"ItemCellDateAlreadyExpired" = "已过期";
+"ItemCellDateStillLeft" = "剩余";
+"ItemCellDateLeftYear" = "年";
+"ItemCellDateLeftMonth" = "个月";
+"ItemCellDateLeftDay" = "天";
+"ItemCellDateLeftHour" = "小时";
+"ItemCellDateLeftMin" = "分钟";
+"PictureViewChoosePicture" = "选择照片";
