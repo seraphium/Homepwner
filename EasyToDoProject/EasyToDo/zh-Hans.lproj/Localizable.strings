@@ -24,4 +24,7 @@
 "ItemCellDateLeftDay" = "天";
 "ItemCellDateLeftHour" = "小时";
 "ItemCellDateLeftMin" = "分钟";
+"ItemCellDeleteLabel" = "删除";
+"ItemCellDeleteCancel" = "取消";
+"ItemCellDeleteConfirm" = "请确认是否删除此项目?";
 "PictureViewChoosePicture" = "选择照片";

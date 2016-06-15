@@ -269,8 +269,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return false
     }
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
-        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
+        let titleString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
+        let deleteAction = UITableViewRowAction(style: .Default, title: titleString, handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
             self.deleteRow(indexPath)
         })
         deleteAction.backgroundColor =  AppDelegate.backColor
@@ -438,13 +438,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         if (indexPath.section == 0)
         {
             item = itemStore.allItemsUnDone[indexPath.row]
-            let title = "Delete \(item.name)?"
-            let message = "Are you sure you want to delete this item?"
+            let deleteString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
+            let title = "\(deleteString) \(item.name)"
+            let message = NSLocalizedString("ItemCellDeleteConfirm", comment: "")
             
             let ac = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("ItemCellDeleteCancel", comment: ""), style: .Cancel, handler: nil)
             ac.addAction(cancelAction)
-            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
+            let deleteAction = UIAlertAction(title: NSLocalizedString("ItemCellDeleteLabel", comment: ""), style: .Destructive, handler: { (action) -> Void in
                 self.deleteItemFromTable(item, indexPath: indexPath)
             })
             ac.addAction(deleteAction)

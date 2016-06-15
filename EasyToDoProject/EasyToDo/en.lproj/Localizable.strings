@@ -25,4 +25,7 @@
 "ItemCellDateLeftDay" = "D";
 "ItemCellDateLeftHour" = "H";
 "ItemCellDateLeftMin" = "m";
+"ItemCellDeleteLabel" = "Delete";
+"ItemCellDeleteCancel" = "Cancel";
+"ItemCellDeleteConfirm" = "Are you sure you want to delete this item?";
 "PictureViewChoosePicture" = "Choose Picture";
