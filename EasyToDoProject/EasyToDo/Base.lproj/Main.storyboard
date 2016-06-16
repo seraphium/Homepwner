@@ -32,7 +32,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je1-YY-HQp">
-                                                            <rect key="frame" x="5" y="8" width="10" height="10"/>
+                                                            <rect key="frame" x="5" y="3" width="10" height="10"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="LXO-lE-Fal"/>
@@ -87,7 +87,7 @@
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
                                                         <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="20" id="GqV-Gs-CFT"/>
-                                                        <constraint firstItem="je1-YY-HQp" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="8" id="Kpr-y4-2Ga">
+                                                        <constraint firstItem="je1-YY-HQp" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="6" id="Kpr-y4-2Ga">
                                                             <variation key="widthClass=compact" constant="5"/>
                                                         </constraint>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="LhO-Pk-VJ9"/>
@@ -110,6 +110,7 @@
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="leading" secondItem="nq1-RY-AG9" secondAttribute="leading" constant="5" id="gQy-RI-S3v"/>
                                                         <constraint firstAttribute="height" constant="40" id="lA9-gL-3x0"/>
                                                         <constraint firstAttribute="trailing" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="60" id="njd-oX-XVR"/>
+                                                        <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" constant="-12" id="pMp-ZI-Tht"/>
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="top" secondItem="nq1-RY-AG9" secondAttribute="top" constant="10" id="qhT-mc-GCD">
                                                             <variation key="widthClass=compact" constant="15"/>
                                                         </constraint>
@@ -119,6 +120,7 @@
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="CkS-HJ-yfm"/>
+                                                            <exclude reference="Kpr-y4-2Ga"/>
                                                             <exclude reference="ZJT-CV-WJ5"/>
                                                             <exclude reference="at5-XG-UDb"/>
                                                             <exclude reference="4ok-zq-c8f"/>
