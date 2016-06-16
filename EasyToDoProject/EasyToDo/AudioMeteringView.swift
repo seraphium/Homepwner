@@ -13,21 +13,28 @@ import UIKit
     let baseColor : UIColor = AppDelegate.cellInnerColor
     
     //stored the value to draw the rect in metering view
-    var audioMeteringArray = [Int]()
+    var audioMeteringArray = [CGFloat]()
     
     //Maxmum metering count
-    let maxArrayCount = 50
+    let maxMeteringArrayCount = 100
     
-    let meteringInstanceWidth  = 6
+    var meteringWindowArray : [CGFloat]!
+    
+    let meteringInstanceWidth  = 3
     
     let meteringInstanceMaxHeight = 45
     
     override func drawRect(rect: CGRect) {
-        initBackground(rect)
-        initDrawMetering(rect)
+        drawBackground(rect)
+        drawMetering(rect)
     }
     
-    func initBackground(rect: CGRect){
+    override func awakeFromNib() {
+        
+        meteringWindowArray = [CGFloat].init(count: maxMeteringArrayCount, repeatedValue: CGFloat(0.0))
+    }
+    
+    func drawBackground(rect: CGRect){
         //draw background
         layer.cornerRadius = 5
         layer.borderWidth = 2
@@ -43,14 +50,28 @@ import UIKit
         path.stroke()
     }
     
-    func initDrawMetering(rect: CGRect){
-        for i in 1 ..< maxArrayCount {
-            let height = CGFloat(arc4random() % UInt32(meteringInstanceMaxHeight))
+    func drawMetering(rect: CGRect){
+        for i in 1 ..< maxMeteringArrayCount {
+            
+            let height = meteringWindowArray[i - 1] * CGFloat(meteringInstanceMaxHeight)
+            
             let path = UIBezierPath()
             path.lineWidth = CGFloat(meteringInstanceWidth)
-            path.moveToPoint(CGPoint(x: CGFloat(i * meteringInstanceWidth), y: rect.height / 2))
+            path.moveToPoint(CGPoint(x: CGFloat(i * meteringInstanceWidth), y: rect.height / 2 + height))
             path.addLineToPoint(CGPoint(x: CGFloat(i * meteringInstanceWidth), y: CGFloat(rect.height / 2 - height)))
             path.stroke()
         }
+    }
+    
+    func updateMetering(factor: CGFloat) {
+        //append value to persistent array that keeps all value
+        audioMeteringArray.append(factor)
+        
+        //shift window array that bind to UI metering
+        meteringWindowArray.removeFirst()
+        meteringWindowArray.append(factor)
+        
+        setNeedsDisplay()
+    
     }
 }

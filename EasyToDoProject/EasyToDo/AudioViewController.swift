@@ -19,7 +19,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     
-    @IBOutlet var meteringView: UIView!
+    @IBOutlet var meteringView: AudioMeteringView!
     
     var audioMeteringInitPositionY : CGFloat = 0
     let audioDbMaxNegativeValue : Float = 80.0
@@ -178,8 +178,9 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             if count > audioMeteringInstanceMaxCount {
                 count = audioMeteringInstanceMaxCount
             }
-          //  meteringReplicatorLayer.instanceCount = count
         
+          //  meteringReplicatorLayer.instanceCount = count
+            meteringView.updateMetering(heightPercentage)
     }
     
     func stopMeteringUI() {
