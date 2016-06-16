@@ -92,7 +92,6 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         initAudioPausePath()
         initAudioRecordPath()
         initAudioStopRecordPath()
-        initMeteringView()
         initControllerView()
         initPlayButtonView(true)
         initRecordButtonView(true)
@@ -148,7 +147,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
 
     
     func initControllerView(){
-        controllerView.backgroundColor = UIColor.clearColor()
+        controllerView.backgroundColor = AppDelegate.cellColor
         startRecordBtn.backgroundColor = UIColor.clearColor()
         startPlayBtn.backgroundColor = UIColor.clearColor()
         controllerView.layer.borderColor = AppDelegate.cellInnerColor.CGColor
@@ -156,12 +155,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         controllerView.layer.cornerRadius = 10
 
     }
-    func initMeteringView() {
-        
-        meteringView.backgroundColor = UIColor.clearColor()
-    }
-    
-  
+
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
             var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)

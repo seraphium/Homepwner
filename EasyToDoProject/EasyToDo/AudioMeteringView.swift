@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable class AudioMeteringView : UIView {
     
     let baseColor : UIColor = AppDelegate.cellInnerColor
-    let meteringColor : UIColor = AppDelegate.cellInnerColor.colorWithAlphaComponent(0.6)
+    let meteringColor : UIColor = AppDelegate.cellInnerColor
     
     //Maxmum metering count
     let maxMeteringArrayCount = 100
@@ -40,7 +40,8 @@ import UIKit
         layer.cornerRadius = 5
         layer.borderWidth = 2
         layer.borderColor = baseColor.CGColor
-        
+        layer.backgroundColor = AppDelegate.cellColor.CGColor
+        layer.masksToBounds = true
         baseColor.setStroke()
         
         let path = UIBezierPath()

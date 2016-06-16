@@ -508,10 +508,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehv-e0-gts">
-                                <rect key="frame" x="175" y="340" width="250" height="120"/>
+                                <rect key="frame" x="175" y="360" width="250" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-Le-3Wp">
-                                        <rect key="frame" x="150" y="35" width="50" height="50"/>
+                                        <rect key="frame" x="150" y="15" width="50" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.54584723069999996" blue="0.45339924279999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7Ep-pX-SdW"/>
@@ -522,7 +522,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q53-9p-4js">
-                                        <rect key="frame" x="50" y="35" width="50" height="50"/>
+                                        <rect key="frame" x="50" y="15" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ENd-h6-Fww"/>
@@ -538,7 +538,7 @@
                                     <constraint firstItem="Q53-9p-4js" firstAttribute="centerY" secondItem="ehv-e0-gts" secondAttribute="centerY" id="Ja2-Yg-3qr"/>
                                     <constraint firstItem="Q53-9p-4js" firstAttribute="leading" secondItem="ehv-e0-gts" secondAttribute="leading" constant="50" id="Kp6-e1-q59"/>
                                     <constraint firstItem="Z06-Le-3Wp" firstAttribute="centerY" secondItem="ehv-e0-gts" secondAttribute="centerY" id="Pe0-3V-hhJ"/>
-                                    <constraint firstAttribute="height" constant="120" id="QaR-hi-sK4"/>
+                                    <constraint firstAttribute="height" constant="80" id="QaR-hi-sK4"/>
                                     <constraint firstAttribute="width" constant="250" id="dQt-JR-ffc"/>
                                     <constraint firstAttribute="trailing" secondItem="Z06-Le-3Wp" secondAttribute="trailing" constant="50" id="vzs-j1-6F4"/>
                                 </constraints>
