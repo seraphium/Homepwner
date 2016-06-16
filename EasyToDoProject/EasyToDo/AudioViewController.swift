@@ -39,14 +39,6 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     var isPlaying: Bool = false
     var isRecording: Bool = false
     
-    //metering path
-    var meteringPath = UIBezierPath()
-    var meteringInstanceLayer = CALayer()
-    var meteringReplicatorLayer = CAReplicatorLayer()
-    var meteringLayer : CALayer {
-        return meteringView.layer
-    }
-    
     //audio button
     var audioPlayLayer = CAShapeLayer()
     var audioPlayPath = UIBezierPath()
@@ -152,24 +144,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         performSelectorOnMainThread(#selector(updateMeteringUI), withObject: dbLevel, waitUntilDone: false)
         
     }
-    
-    func setUpInstanceLayer() {
-        let layerWidth = CGFloat(audioMeterInstanceWidth)
-        let midX = CGRectGetMidX(meteringView.bounds) - layerWidth / 2.0
-        let instanceHeight = layerWidth * audioMeterIntancelengthMultiplier
-        meteringInstanceLayer.frame = CGRect(x: midX, y: meteringView.bounds.height, width: layerWidth, height: instanceHeight)
-        meteringInstanceLayer.backgroundColor = AppDelegate.cellInnerColor.CGColor
 
-    }
-    
-    func setUpReplicatorLayer() {
-        meteringReplicatorLayer.frame = meteringView.bounds
-        meteringReplicatorLayer.instanceCount = 1
-        meteringReplicatorLayer.preservesDepth = false
-        meteringReplicatorLayer.addSublayer(meteringInstanceLayer)
-        meteringReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(CGFloat(0), CGFloat(-audioMeterInstanceOffset), CGFloat(0))
-        
-    }
     
     func initControllerView(){
         controllerView.backgroundColor = UIColor.clearColor()
@@ -181,25 +156,11 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
 
     }
     func initMeteringView() {
-        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 100))
-        meteringPath = rectanglePath
-        meteringView.backgroundColor = UIColor.clearColor()
-        setUpInstanceLayer()
-        setUpReplicatorLayer()
-        meteringLayer.borderColor = AppDelegate.cellInnerColor.CGColor
-        meteringLayer.borderWidth = 2
-        meteringLayer.cornerRadius = 2
-        meteringLayer.addSublayer(meteringReplicatorLayer)
-       // meteringView.hidden = true
-       
         
+        meteringView.backgroundColor = UIColor.clearColor()
     }
     
-    func stopMeteringUI() {
-        meteringReplicatorLayer.instanceCount = 1
-
-    }
-    
+  
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
             var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
@@ -217,7 +178,11 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
             if count > audioMeteringInstanceMaxCount {
                 count = audioMeteringInstanceMaxCount
             }
-            meteringReplicatorLayer.instanceCount = count
+          //  meteringReplicatorLayer.instanceCount = count
+        
+    }
+    
+    func stopMeteringUI() {
         
     }
 

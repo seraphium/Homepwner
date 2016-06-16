@@ -25,6 +25,7 @@
 		4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD8CD4C1C8F209200B38916 /* ItemCell.swift */; };
 		4BF144871D01192F0033AB71 /* ResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF144861D01192F0033AB71 /* ResourceStore.swift */; };
 		4BF144891D011D750033AB71 /* AudioStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF144881D011D750033AB71 /* AudioStore.swift */; };
+		4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		4BD8CD4C1C8F209200B38916 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		4BF144861D01192F0033AB71 /* ResourceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceStore.swift; sourceTree = "<group>"; };
 		4BF144881D011D750033AB71 /* AudioStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStore.swift; sourceTree = "<group>"; };
+		4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMeteringView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */,
 				4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */,
+				4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */,
 				4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */,
 				4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */,
+				4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */,
 				4BB29B3C1C9A9672006E1BB8 /* ImageStore.swift in Sources */,
 				4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */,
 				4BF144871D01192F0033AB71 /* ResourceStore.swift in Sources */,
