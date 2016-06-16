@@ -120,6 +120,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     
     //MARK: - Audio metering
     func startAudioMetering() {
+        meteringView.initMetering()
       //  meteringView.hidden = false
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(updateMetering), userInfo: nil, repeats: true)
     }

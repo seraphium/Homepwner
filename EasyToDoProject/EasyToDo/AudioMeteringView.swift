@@ -11,9 +11,7 @@ import UIKit
 @IBDesignable class AudioMeteringView : UIView {
     
     let baseColor : UIColor = AppDelegate.cellInnerColor
-    
-    //stored the value to draw the rect in metering view
-    var audioMeteringArray = [CGFloat]()
+    let meteringColor : UIColor = AppDelegate.cellInnerColor.colorWithAlphaComponent(0.6)
     
     //Maxmum metering count
     let maxMeteringArrayCount = 100
@@ -30,10 +28,13 @@ import UIKit
     }
     
     override func awakeFromNib() {
-        
-        meteringWindowArray = [CGFloat].init(count: maxMeteringArrayCount, repeatedValue: CGFloat(0.0))
+        initMetering()
     }
     
+    func initMetering() {
+        meteringWindowArray = [CGFloat].init(count: maxMeteringArrayCount, repeatedValue: CGFloat(0.0))
+
+    }
     func drawBackground(rect: CGRect){
         //draw background
         layer.cornerRadius = 5
@@ -59,13 +60,13 @@ import UIKit
             path.lineWidth = CGFloat(meteringInstanceWidth)
             path.moveToPoint(CGPoint(x: CGFloat(i * meteringInstanceWidth), y: rect.height / 2 + height))
             path.addLineToPoint(CGPoint(x: CGFloat(i * meteringInstanceWidth), y: CGFloat(rect.height / 2 - height)))
+            meteringColor.setStroke()
+            
             path.stroke()
         }
     }
     
     func updateMetering(factor: CGFloat) {
-        //append value to persistent array that keeps all value
-        audioMeteringArray.append(factor)
         
         //shift window array that bind to UI metering
         meteringWindowArray.removeFirst()
