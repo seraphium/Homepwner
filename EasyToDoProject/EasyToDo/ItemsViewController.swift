@@ -12,6 +12,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     internal typealias Completion = ((Bool) -> Void)?
 
+    var loaded: Bool = false
+    
     var itemStore : ItemStore!
     
     var imageStore : ImageStore!
@@ -53,9 +55,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         //refresh the table data if changed in detailed view
         tableView.reloadData()
+        
+        //show slash screen first
+        if !loaded {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let launchVC = sb.instantiateViewControllerWithIdentifier("111")
+            self.presentViewController(launchVC, animated: false, completion: nil)
+            loaded = true
+            
+        }
+        
+        
     }
     
-    
+       
     override func viewWillDisappear(animated: Bool) {
         //clear the first responder (keyboard)
         view.endEditing(true)

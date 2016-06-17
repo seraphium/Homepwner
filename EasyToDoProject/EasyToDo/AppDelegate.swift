@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let itemStore = ItemStore()
+    static let itemStore = ItemStore()
     static let imageStore =  ImageStore()
     static let audioStore = AudioStore()
     
@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func finishItemNotification(notification : UILocalNotification) -> Item? {
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
-        if let item = self.itemStore.getItem(key, finished: false){
-            self.itemStore.finishItem(item)
+        if let item = AppDelegate.itemStore.getItem(key, finished: false){
+            AppDelegate.itemStore.finishItem(item)
             let app = UIApplication.sharedApplication()
             app.cancelLocalNotification(notification)
             app.applicationIconBadgeNumber -= 1
@@ -209,26 +209,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
         }
-        
-        
-        
-        //Access the ItemsViewController and set its datasource
+
         let navController = window!.rootViewController as! UINavigationController
         let itemsController = navController.topViewController as! ItemsViewController
-        itemsController.itemStore = itemStore
+        itemsController.itemStore = AppDelegate.itemStore
         itemsController.imageStore = AppDelegate.imageStore
         itemsController.audioStore = AppDelegate.audioStore
         return true
     }
 
-    
-    func applicationWillResignActive(application: UIApplication) {
+       func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        let success = itemStore.saveChanges()
+        let success = AppDelegate.itemStore.saveChanges()
         if (success) {
             print ("saved all items")
         } else{
@@ -242,12 +238,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        let navController = window!.rootViewController as! UINavigationController
-        if let itemsController = navController.topViewController as? ItemsViewController {
-            itemsController.tableView.reloadData()
+        
+        if let navController = window!.rootViewController as? UINavigationController {
+            if let itemsController = navController.topViewController as? ItemsViewController {
+                itemsController.tableView.reloadData()
+            }
+
         }
-        //clear badge number 
+        //clear badge number
         application.applicationIconBadgeNumber = 0;
+
         
     }
 
