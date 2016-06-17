@@ -20,7 +20,14 @@ class LaunchScreenViewController : UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         showLaunchAnimation() {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+
+            let navController = sb.instantiateViewControllerWithIdentifier("222") as! UINavigationController
+            let itemsController = navController.topViewController as! ItemsViewController
+            itemsController.itemStore = AppDelegate.itemStore
+            itemsController.imageStore = AppDelegate.imageStore
+            itemsController.audioStore = AppDelegate.audioStore
+            self.view.window?.rootViewController = navController
         }
         
     }
@@ -40,12 +47,13 @@ class LaunchScreenViewController : UIViewController {
     
     func showLaunchAnimation(completion: (() -> Void)?)
     {
-        UIView.animateWithDuration(0.3, animations: {
+   
+        UIView.animateWithDuration(0.4,delay: 0.0, options: [.CurveEaseInOut], animations: {
             self.launchImageView.frame = CGRectMake(0,0,50,50)
             self.launchImageView.center = self.view.center
             }, completion: { (done) -> Void in
-                UIView.animateWithDuration(0.6, animations: {
-                    self.launchImageView.frame = CGRectMake(0, 0, 1000, 1000)
+                UIView.animateWithDuration(0.6, delay: 0.6, options: [.CurveEaseIn],animations: {
+                    self.launchImageView.frame = CGRectMake(0, 0, 500, 500)
                     self.launchImageView.center = self.view.center
                     self.launchImageView.alpha = 0.0
                     }, completion:  { (done) -> Void in

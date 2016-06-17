@@ -209,12 +209,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
         }
-
-        let navController = window!.rootViewController as! UINavigationController
-        let itemsController = navController.topViewController as! ItemsViewController
-        itemsController.itemStore = AppDelegate.itemStore
-        itemsController.imageStore = AppDelegate.imageStore
-        itemsController.audioStore = AppDelegate.audioStore
+        
+       
         return true
     }
 

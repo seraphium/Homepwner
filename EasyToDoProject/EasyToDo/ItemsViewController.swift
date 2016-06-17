@@ -11,8 +11,6 @@ import UIKit
 class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
     
     internal typealias Completion = ((Bool) -> Void)?
-
-    var loaded: Bool = false
     
     var itemStore : ItemStore!
     
@@ -50,14 +48,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         navigationItem.leftBarButtonItem = editButtonItem()
 
         //show slash screen first
-        if !loaded {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let launchVC = sb.instantiateViewControllerWithIdentifier("111")
-            self.presentViewController(launchVC, animated: false, completion: nil)
-            loaded = true
-            
-        }
-        
+                  
         
     }
     
