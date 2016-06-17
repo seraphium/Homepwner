@@ -19,6 +19,7 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
     
+    @IBOutlet var audioTimeLabel: UILabel!
     @IBOutlet var meteringView: AudioMeteringView!
     
     var audioMeteringInitPositionY : CGFloat = 0
@@ -96,9 +97,21 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         initPlayButtonView(true)
         initRecordButtonView(true)
         
+        audioTimeLabel.textColor = AppDelegate.cellInnerColor
+        audioTimeLabel.font = audioTimeLabel.font.fontWithSize(50)
+        
+        audioTimeLabel.text = ""
+        
         if let url = AppDelegate.audioStore.audioURLForKey(item.itemKey) {
             if AppDelegate.audioStore.hasAudioForURL(url) {
              setupButtonEnable(startPlayBtn, enable: true)
+                do {
+                    let player = try AVAudioPlayer(contentsOfURL: url)
+                    audioTimeLabel.text = getIntervalString(player.duration)
+                } catch {
+                    
+                }
+
             } else {
                 setupButtonEnable(startPlayBtn, enable: false)
             }
@@ -155,7 +168,16 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         controllerView.layer.cornerRadius = 10
 
     }
+    
+    
 
+    func getIntervalString(time: NSTimeInterval) -> String {
+        
+        let min = Int(time / 60);    // divide two longs, truncates
+        let sec = Int(time % 60);    // remainder of long divide
+        return  String.localizedStringWithFormat("%02d:%02d", min, sec)
+    }
+    
     func updateMeteringUI(obj: AnyObject) {
             let dbLevel = obj as! Float
             var heightPercentage = CGFloat((dbLevel + audioDbMaxNegativeValue) / audioDbMaxNegativeValue)
@@ -176,6 +198,14 @@ class AudioViewController : UIViewController, UINavigationControllerDelegate,
         
           //  meteringReplicatorLayer.instanceCount = count
             meteringView.updateMetering(heightPercentage)
+        var time : NSTimeInterval
+        if isRecording {
+            time = audioRecorder.currentTime
+        } else {
+            time = audioPlayer.currentTime
+        }
+       
+        audioTimeLabel.text = getIntervalString(time)
     }
     
     func stopMeteringUI() {

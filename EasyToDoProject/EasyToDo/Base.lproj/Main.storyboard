@@ -553,12 +553,20 @@
                                     <constraint firstAttribute="height" constant="100" id="GVU-34-PN7"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lr-Vz-96N">
+                                <rect key="frame" x="279" y="324" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Qy-r5-Ztj" firstAttribute="top" secondItem="2CJ-cI-29W" secondAttribute="bottom" constant="236" id="5NE-iO-jx5"/>
+                            <constraint firstItem="ehv-e0-gts" firstAttribute="top" secondItem="8Lr-Vz-96N" secondAttribute="bottom" constant="15" id="Guj-la-E4r"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="50" id="JOK-xB-XQW"/>
                             <constraint firstItem="ehv-e0-gts" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" constant="100" id="Toi-ZG-g6x"/>
+                            <constraint firstItem="8Lr-Vz-96N" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="abP-gH-kvr"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="top" secondItem="wdJ-Rn-Nnq" secondAttribute="bottom" constant="150" id="c1C-m2-JMU"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="centerX" secondItem="UPg-UU-XH5" secondAttribute="centerX" id="dPI-mD-gew"/>
                             <constraint firstItem="2CJ-cI-29W" firstAttribute="centerY" secondItem="UPg-UU-XH5" secondAttribute="centerY" constant="-80" id="nuE-2u-X2U"/>
@@ -573,6 +581,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="audioTimeLabel" destination="8Lr-Vz-96N" id="cUc-ZL-p1C"/>
                         <outlet property="controllerView" destination="ehv-e0-gts" id="ByO-Uc-G1s"/>
                         <outlet property="meteringView" destination="2CJ-cI-29W" id="Trc-BO-Rnr"/>
                         <outlet property="startPlayBtn" destination="Z06-Le-3Wp" id="Ttq-NG-OvZ"/>
