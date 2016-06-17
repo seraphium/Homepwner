@@ -37,15 +37,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedItem : Item?
     
-    // MARK: - initializer
-    required init?(coder aDecoder: NSCoder){
-        //set default edit mode button
-        super.init(coder : aDecoder)
-        navigationItem.leftBarButtonItem = editButtonItem()
-        
-    }
-    
-
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,6 +47,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         //refresh the table data if changed in detailed view
         tableView.reloadData()
         
+        navigationItem.leftBarButtonItem = editButtonItem()
+
         //show slash screen first
         if !loaded {
             let sb = UIStoryboard(name: "Main", bundle: nil)

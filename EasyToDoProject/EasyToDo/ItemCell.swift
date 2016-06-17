@@ -68,10 +68,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet var detailAddAudio: UIButton!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-    }
     
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -126,7 +122,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         detailDetailLabel.textColor = foldTextColor
         detailNotifyLabel.textColor = foldTextColor
         detailRepeatLabel.textColor = foldTextColor
-        
+                
         setCellCornerRadius(expanded, animated: false)
 
         //init customized path layer
