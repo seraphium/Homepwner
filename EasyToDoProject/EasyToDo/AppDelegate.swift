@@ -12,28 +12,24 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let itemStore = ItemStore()
+    static let itemStore = ItemStore()
     static let imageStore =  ImageStore()
     static let audioStore = AudioStore()
     
-   /* static let backColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 1.0)
-    static let cellColor = UIColor(red: 169.0/255.0, green: 167.0/255.0, blue: 158.0/255.0, alpha: 0.8)
-    static let cellInnerColor = UIColor(red: 206.0/255.0, green: 203.0/255.0, blue: 188.0/255.0, alpha: 0.7)
-*/
-   /* static let backColor = UIColor(red: 147/255.0, green: 165/255.0, blue: 198/255.0, alpha: 1.0)
-    static let cellColor = UIColor(red: 238/255.0, green: 241/255.0, blue: 249.0/255.0, alpha: 1.0)
-    static let cellInnerColor = UIColor(red: 147/255.0, green: 165/255.0, blue: 198/255.0, alpha: 0.8) */
-    
-    static let backColor = UIColor(red: 225.0/255.0, green: 236.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+  /*  static let backColor = UIColor(red: 225.0/255.0, green: 236.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     static let cellColor = UIColor(red: 248.0/255.0, green: 248.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-    static let cellInnerColor = UIColor(red: 103.0/255.0, green: 127.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+    static let cellInnerColor = UIColor(red: 103.0/255.0, green: 127.0/255.0, blue: 228.0/255.0, alpha: 1.0)*/
  
+    static let backColor = UIColor(red: 220.0/255.0, green: 237.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static let cellColor = UIColor(red: 253/255.0, green: 254/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static let cellInnerColor = UIColor(red: 34.0/255.0, green: 149.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    
 
     func finishItemNotification(notification : UILocalNotification) -> Item? {
         var userInfo = notification.userInfo!
         let key = userInfo["itemKey"] as! String
-        if let item = self.itemStore.getItem(key, finished: false){
-            self.itemStore.finishItem(item)
+        if let item = AppDelegate.itemStore.getItem(key, finished: false){
+            AppDelegate.itemStore.finishItem(item)
             let app = UIApplication.sharedApplication()
             app.cancelLocalNotification(notification)
             app.applicationIconBadgeNumber -= 1
@@ -213,26 +209,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
         }
-        
-        
-        
-        //Access the ItemsViewController and set its datasource
+
         let navController = window!.rootViewController as! UINavigationController
         let itemsController = navController.topViewController as! ItemsViewController
-        itemsController.itemStore = itemStore
+        itemsController.itemStore = AppDelegate.itemStore
         itemsController.imageStore = AppDelegate.imageStore
         itemsController.audioStore = AppDelegate.audioStore
         return true
     }
 
-    
-    func applicationWillResignActive(application: UIApplication) {
+       func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        let success = itemStore.saveChanges()
+        let success = AppDelegate.itemStore.saveChanges()
         if (success) {
             print ("saved all items")
         } else{
@@ -246,12 +238,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        let navController = window!.rootViewController as! UINavigationController
-        if let itemsController = navController.topViewController as? ItemsViewController {
-            itemsController.tableView.reloadData()
+        
+        if let navController = window!.rootViewController as? UINavigationController {
+            if let itemsController = navController.topViewController as? ItemsViewController {
+                itemsController.tableView.reloadData()
+            }
+
         }
-        //clear badge number 
+        //clear badge number
         application.applicationIconBadgeNumber = 0;
+
         
     }
 
