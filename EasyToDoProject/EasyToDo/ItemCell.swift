@@ -314,8 +314,15 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
             outputStep -= 1
         }
-        if outputStep > 0 && component?.minute > 0 {
-            outputString += String(component!.minute) + NSLocalizedString("ItemCellDateLeftMin", comment: "")
+        if outputStep > 0 {
+            let minutesLeft = component!.minute
+            if minutesLeft > 0 {
+                outputString += String(minutesLeft)
+            } else {
+                outputString += "<1"
+
+            }
+            outputString +=  NSLocalizedString("ItemCellDateLeftMin", comment: "")
             outputStep -= 1	
         }
 
