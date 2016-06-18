@@ -6,16 +6,16 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--EasyToDo-->
+        <!--Easy Do-->
         <scene sceneID="JmG-QZ-B1K">
             <objects>
-                <tableViewController storyboardIdentifier="itemVC" id="OmN-gi-ltQ" customClass="ItemsViewController" customModule="EasyToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="itemVC" id="OmN-gi-ltQ" customClass="ItemsViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="y6o-QQ-S8B">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="EasyToDo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="Easy_Do" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
@@ -480,7 +480,7 @@
                             <outletCollection property="gestureRecognizers" destination="bfj-HP-hee" appends="YES" id="sx3-gS-h2H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="EasyToDo" id="2nj-M0-rBk">
+                    <navigationItem key="navigationItem" title="Easy Do" id="2nj-M0-rBk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JiT-eZ-hD2">
                             <connections>
                                 <action selector="addNewItem:" destination="OmN-gi-ltQ" id="k7K-aO-ZD0"/>
@@ -500,7 +500,7 @@
         <!--Audio View Controller-->
         <scene sceneID="GUi-GL-O4f">
             <objects>
-                <viewController id="b3s-5Y-HQj" customClass="AudioViewController" customModule="EasyToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b3s-5Y-HQj" customClass="AudioViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wdJ-Rn-Nnq"/>
                         <viewControllerLayoutGuide type="bottom" id="9Qy-r5-Ztj"/>
@@ -545,7 +545,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Z06-Le-3Wp" secondAttribute="trailing" constant="50" id="vzs-j1-6F4"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W" customClass="AudioMeteringView" customModule="EasyToDo" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W" customClass="AudioMeteringView" customModule="Easy_Do" customModuleProvider="target">
                                 <rect key="frame" x="150" y="170" width="300" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -556,7 +556,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lr-Vz-96N">
                                 <rect key="frame" x="279" y="324" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -595,7 +595,7 @@
         <!--Picture View Controller-->
         <scene sceneID="5Ei-Ho-O3f">
             <objects>
-                <viewController id="Ern-Dg-VuE" customClass="PictureViewController" customModule="EasyToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ern-Dg-VuE" customClass="PictureViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P6N-w7-Ulw"/>
                         <viewControllerLayoutGuide type="bottom" id="gL7-dZ-w6p"/>
@@ -614,7 +614,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw" customClass="ImageScrollView" customModule="EasyToDo" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw" customClass="ImageScrollView" customModule="Easy_Do" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="492" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
@@ -672,7 +672,7 @@
         <!--Launch Screen View Controller-->
         <scene sceneID="z3F-TP-aHP">
             <objects>
-                <viewController storyboardIdentifier="111" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XMr-VZ-VpI" customClass="LaunchScreenViewController" customModule="EasyToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="111" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XMr-VZ-VpI" customClass="LaunchScreenViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="50y-Vb-yIa"/>
                         <viewControllerLayoutGuide type="bottom" id="cis-7d-l2r"/>
