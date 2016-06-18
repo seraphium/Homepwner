@@ -46,9 +46,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.reloadData()
         
         navigationItem.leftBarButtonItem = editButtonItem()
-
-        //show slash screen first
-                  
         
     }
     
@@ -63,9 +60,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
  
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-        //set table cell height
-
         
+
     }
     
     
@@ -199,17 +195,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
             if let detail = item.detail {
                 cell.detailTextView.text = detail
+            } else {
+                cell.detailTextView.text = nil
             }
             if let date = item.dateToNotify {
                 cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
+            }else{
+                cell.detailNotifyDate.text = nil
             }
             cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
 
            
         case 1:
             let item = itemStore.allItemsDone[indexPath.row]
-
-            cell.updateCell(item.expanded, finished: true, expired: false)
+                //finished items are all expanded
+            cell.updateCell(false, finished: true, expired: false)
             cell.textField.text = item.name
             cell.notifyDateLabel.text = ""
             cell.item = item
@@ -298,20 +298,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     func updateWithExpandCell(cell: ItemCell, item: Item) {
         item.expanded = true
-
+        cell.expanded = true
         let duration = kExpandDuration
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             }, completion: nil)
         cell.expandAnimation(0, completion: { done -> Void in
-            cell.expanded = true
+            
             
         })
     }
     
     func updateWithUnExpandCell(cell: ItemCell, item: Item, completion: (() -> ())?) {
         item.expanded = false
+        cell.expanded = false
 
         let duration = kUnexpandDuration
         cell.unExpandAnimation(0, completion: nil)
@@ -319,7 +320,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             }, completion: { done -> Void in
-                cell.expanded = false
                 completion?()
         })
 

@@ -240,6 +240,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //clear badge number
         application.applicationIconBadgeNumber = 0;
 
+        //set all done item's expand to false
+        for item in AppDelegate.itemStore.allItemsDone {
+            item.expanded = false
+        }
+        
         
     }
 
