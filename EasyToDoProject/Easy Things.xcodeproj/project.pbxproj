@@ -38,7 +38,7 @@
 		4B33DF911D1055D500579DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B33DF931D1055D900579DA0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B33DF941D1056C300579DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4B3A8DE11C846DDF005B1DE5 /* Easy Do.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Do.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B3A8DE11C846DDF005B1DE5 /* Easy Things.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Things.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3A8DE41C846DDF005B1DE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3A8DE91C846DDF005B1DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		4B3A8DE21C846DDF005B1DE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B3A8DE11C846DDF005B1DE5 /* Easy Do.app */,
+				4B3A8DE11C846DDF005B1DE5 /* Easy Things.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,7 +181,7 @@
 			);
 			name = "Easy Things";
 			productName = EasyToDo;
-			productReference = 4B3A8DE11C846DDF005B1DE5 /* Easy Do.app */;
+			productReference = 4B3A8DE11C846DDF005B1DE5 /* Easy Things.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -336,7 +336,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "Easy Do";
+				PRODUCT_NAME = "Easy Things";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -374,7 +374,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "Easy Do";
+				PRODUCT_NAME = "Easy Things";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -394,7 +394,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyThings;
-				PRODUCT_NAME = "Easy Do";
+				PRODUCT_NAME = "Easy Things";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -413,7 +413,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackiezhang.EasyThings;
-				PRODUCT_NAME = "Easy Do";
+				PRODUCT_NAME = "Easy Things";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
