@@ -35,10 +35,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedItem : Item?
     
-    override func awakeFromNib() {
-        tabBarItem.title = NSLocalizedString("ItemListTabTitle", comment: "")
-        tabBarItem.image = UIImage(named: "moveicon")
-    }
     
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {

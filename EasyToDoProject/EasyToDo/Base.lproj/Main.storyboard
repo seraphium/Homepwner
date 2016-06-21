@@ -711,7 +711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWd-8e-WRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-491" y="722"/>
+            <point key="canvasLocation" x="-383" y="710"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hyw-gG-d6I">
@@ -731,24 +731,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYe-Zk-H7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1085" y="716"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Abl-Mm-vDX">
-            <objects>
-                <tabBarController storyboardIdentifier="111" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RH2-b4-w1C" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="6oc-dr-8BZ">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="iDe-P4-qev" kind="relationship" relationship="viewControllers" id="n7P-I2-n57"/>
-                        <segue destination="Dg2-TT-fMS" kind="relationship" relationship="viewControllers" id="5e5-bl-aa1"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xKe-Rc-9RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="273" y="716"/>
         </scene>
     </scenes>
 </document>

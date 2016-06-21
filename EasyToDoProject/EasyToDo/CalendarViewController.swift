@@ -10,17 +10,13 @@ import UIKit
 
 
 class CalendarViewController : UIViewController {
-    
-    override func awakeFromNib() {
-        tabBarItem.title = NSLocalizedString("CalendarTabTitle", comment: "")
-        tabBarItem.image = UIImage(named: "camera")
 
-    }
     override func viewWillAppear(animated: Bool) {
         
 
     }
     
     override func viewDidLoad() {
-           }
+   
+    }
 }

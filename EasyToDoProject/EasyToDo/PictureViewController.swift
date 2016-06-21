@@ -46,9 +46,6 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     }
 
     override func viewWillAppear(animated: Bool) {
-        //hide tabbar
-        tabBarController?.tabBar.hidden = true
-
         
         //get the image key
          let key = item.itemKey
@@ -63,11 +60,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
       
 
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-            tabBarController?.tabBar.hidden = false
-    
-    }
+
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
