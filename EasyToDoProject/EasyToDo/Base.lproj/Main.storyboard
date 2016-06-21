@@ -480,7 +480,6 @@
                             <outletCollection property="gestureRecognizers" destination="bfj-HP-hee" appends="YES" id="sx3-gS-h2H"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" id="4We-lR-Og7"/>
                     <navigationItem key="navigationItem" title="Easy Do" id="2nj-M0-rBk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JiT-eZ-hD2">
                             <connections>
@@ -501,7 +500,7 @@
         <!--Calendar View Controller-->
         <scene sceneID="R8H-2c-yn7">
             <objects>
-                <viewController id="Dg2-TT-fMS" customClass="CalendarViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="333" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dg2-TT-fMS" customClass="CalendarViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eTy-7i-ULT"/>
                         <viewControllerLayoutGuide type="bottom" id="WzR-Y5-Upr"/>
@@ -517,11 +516,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="YuX-e0-slw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSE-eT-phI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="273" y="1569"/>
+            <point key="canvasLocation" x="2023" y="-7"/>
         </scene>
         <!--Audio View Controller-->
         <scene sceneID="GUi-GL-O4f">
@@ -716,14 +714,17 @@
         <!--Navigation Controller-->
         <scene sceneID="hyw-gG-d6I">
             <objects>
-                <navigationController storyboardIdentifier="222" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iDe-P4-qev" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="nUh-hw-zGa"/>
+                <navigationController storyboardIdentifier="222" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="iDe-P4-qev" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gO8-OM-7K4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="OvY-rk-xZ6">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="OmN-gi-ltQ" kind="relationship" relationship="rootViewController" id="7AT-LH-6ZL"/>
                     </connections>

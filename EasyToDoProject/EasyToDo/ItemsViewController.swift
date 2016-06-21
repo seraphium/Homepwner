@@ -32,6 +32,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return formatter
     }()
 
+
+    @IBOutlet weak var calenderButton: UIBarButtonItem!
+    
     
     var selectedItem : Item?
     
@@ -45,12 +48,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         navigationItem.leftBarButtonItem = editButtonItem()
         
+        //add calendar tool bar button
+        navigationController?.toolbarHidden = false
+        let calendarBarItem = UIBarButtonItem.init(image: UIImage(named: "check2"), style: .Plain, target: self, action: #selector(calendarBarClicked))
+        //calendarBarItem.tintColor = UIColor.redColor()
+        let calendarBarItemCollection = [calendarBarItem]
+        toolbarItems = calendarBarItemCollection
     }
     
        
     override func viewWillDisappear(animated: Bool) {
         //clear the first responder (keyboard)
         view.endEditing(true)
+        //hide tool bar button if leaving this page
+        navigationController?.toolbarHidden = true
     }
     
     override func viewDidLoad() {
@@ -66,10 +77,19 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-        
+
 
     }
     
+    
+    func calendarBarClicked(sender: UIBarButtonItem)
+    {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let calendarVC = sb.instantiateViewControllerWithIdentifier("333")
+        navigationController?.pushViewController(calendarVC, animated: true)
+        
+    }
     
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
