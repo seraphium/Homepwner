@@ -29,3 +29,6 @@
 "ItemCellDeleteCancel" = "Cancel";
 "ItemCellDeleteConfirm" = "Are you sure you want to delete this item?";
 "PictureViewChoosePicture" = "Choose Picture";
+"ItemListTabTitle" = "List";
+"CalendarTabTitle" = "Calendar";
+

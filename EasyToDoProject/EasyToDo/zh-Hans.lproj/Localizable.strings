@@ -28,3 +28,7 @@
 "ItemCellDeleteCancel" = "取消";
 "ItemCellDeleteConfirm" = "请确认是否删除此项目?";
 "PictureViewChoosePicture" = "选择照片";
+"ItemListTabTitle" = "列表";
+"CalendarTabTitle" = "日历";
+
+

@@ -35,6 +35,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedItem : Item?
     
+    override func awakeFromNib() {
+        tabBarItem.title = NSLocalizedString("ItemListTabTitle", comment: "")
+        tabBarItem.image = UIImage(named: "moveicon")
+    }
+    
     // MARK: - view lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,6 +60,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        
         self.itemStore = AppDelegate.itemStore
         self.imageStore = AppDelegate.imageStore
         self.audioStore = AppDelegate.audioStore

@@ -16,6 +16,7 @@
 		4B3A8DF71C847018005B1DE5 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */; };
 		4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF81C8470F2005B1DE5 /* Item.swift */; };
 		4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */; };
+		4B3B5F621D19180400576D6E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B5F611D19180400576D6E /* CalendarViewController.swift */; };
 		4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FEB011CC6905900751CF1 /* PictureViewController.swift */; };
 		4B7159F21D15288900456B68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F41D15288900456B68 /* InfoPlist.strings */; };
 		4B7159F81D152A0000456B68 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F71D152A0000456B68 /* Info.plist */; };
@@ -45,6 +46,7 @@
 		4B3A8DF61C847018005B1DE5 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		4B3A8DF81C8470F2005B1DE5 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		4B3B5F611D19180400576D6E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4B5FEB011CC6905900751CF1 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		4B7159F31D15288900456B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B7159F51D15289100456B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4B5FEB011CC6905900751CF1 /* PictureViewController.swift */,
 				4B20AB781D007AFA0009442E /* AudioViewController.swift */,
 				4B18DDAC1D13C3570092AB4F /* LaunchScreenViewController.swift */,
+				4B3B5F611D19180400576D6E /* CalendarViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			files = (
 				4BF144891D011D750033AB71 /* AudioStore.swift in Sources */,
 				4B82FAE51CED5AC8004F4E76 /* BaseCell.swift in Sources */,
+				4B3B5F621D19180400576D6E /* CalendarViewController.swift in Sources */,
 				4B18DDAD1D13C3570092AB4F /* LaunchScreenViewController.swift in Sources */,
 				4B3A8DF71C847018005B1DE5 /* ItemsViewController.swift in Sources */,
 				4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */,
