@@ -27,6 +27,7 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     
     var imageStore: ImageStore!
     
+
     override func viewDidLayoutSubviews() {
         //need to put code to use scrollview frame here due to it will be 600x600 in viewwillappear
         if imageView.image != nil {
@@ -45,6 +46,10 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
     }
 
     override func viewWillAppear(animated: Bool) {
+        //hide tabbar
+        tabBarController?.tabBar.hidden = true
+
+        
         //get the image key
          let key = item.itemKey
         //if there is associated image , display it on image view
@@ -57,6 +62,11 @@ class PictureViewController : UIViewController, UINavigationControllerDelegate, 
         }
       
 
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+            tabBarController?.tabBar.hidden = false
+    
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
