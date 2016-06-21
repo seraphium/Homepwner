@@ -50,7 +50,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         //add calendar tool bar button
         navigationController?.toolbarHidden = false
-        let calendarBarItem = UIBarButtonItem.init(image: UIImage(named: "check2"), style: .Plain, target: self, action: #selector(calendarBarClicked))
+        let calendarBarItem = UIBarButtonItem.init(image: UIImage(named: "calendar"), style: .Plain, target: self, action: #selector(calendarBarClicked))
+ 
         //calendarBarItem.tintColor = UIColor.redColor()
         let calendarBarItemCollection = [calendarBarItem]
         toolbarItems = calendarBarItemCollection
@@ -80,7 +81,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
 
     }
-    
+ 
     
     func calendarBarClicked(sender: UIBarButtonItem)
     {
