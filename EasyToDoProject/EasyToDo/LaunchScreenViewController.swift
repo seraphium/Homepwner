@@ -22,12 +22,8 @@ class LaunchScreenViewController : UIViewController {
         showLaunchAnimation() {
             let sb = UIStoryboard(name: "Main", bundle: nil)
 
-            let navController = sb.instantiateViewControllerWithIdentifier("222") as! UINavigationController
-            let itemsController = navController.topViewController as! ItemsViewController
-            itemsController.itemStore = AppDelegate.itemStore
-            itemsController.imageStore = AppDelegate.imageStore
-            itemsController.audioStore = AppDelegate.audioStore
-            self.view.window?.rootViewController = navController
+            let tabController = sb.instantiateViewControllerWithIdentifier("111") as! UITabBarController
+            self.view.window?.rootViewController = tabController
         }
         
     }

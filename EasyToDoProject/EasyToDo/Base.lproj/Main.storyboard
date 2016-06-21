@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XMr-VZ-VpI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XMr-VZ-VpI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,23 +9,23 @@
         <!--Easy Do-->
         <scene sceneID="JmG-QZ-B1K">
             <objects>
-                <tableViewController storyboardIdentifier="itemVC" id="OmN-gi-ltQ" customClass="ItemsViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="itemVC" id="OmN-gi-ltQ" customClass="ItemsViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="y6o-QQ-S8B">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="Easy_Do" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="250"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="250" id="vfd-qt-dG2" customClass="ItemCell" customModule="Easy_Things" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vfd-qt-dG2" id="NPT-jZ-EYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANb-wr-bcv">
                                             <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                         </view>
-                                        <view tag="234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
+                                        <view tag="234" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXD-Vo-IZg">
                                             <rect key="frame" x="20" y="0.0" width="560" height="240"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq1-RY-AG9">
@@ -480,6 +480,7 @@
                             <outletCollection property="gestureRecognizers" destination="bfj-HP-hee" appends="YES" id="sx3-gS-h2H"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="List" image="camera" id="4We-lR-Og7"/>
                     <navigationItem key="navigationItem" title="Easy Do" id="2nj-M0-rBk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JiT-eZ-hD2">
                             <connections>
@@ -495,12 +496,37 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="399" y="716"/>
+            <point key="canvasLocation" x="2023" y="716"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="R8H-2c-yn7">
+            <objects>
+                <viewController id="Dg2-TT-fMS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eTy-7i-ULT"/>
+                        <viewControllerLayoutGuide type="bottom" id="WzR-Y5-Upr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hRP-lf-TYT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-wO-7Tx">
+                                <rect key="frame" x="267" y="311" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="check" id="YuX-e0-slw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSE-eT-phI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="1569"/>
         </scene>
         <!--Audio View Controller-->
         <scene sceneID="GUi-GL-O4f">
             <objects>
-                <viewController id="b3s-5Y-HQj" customClass="AudioViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b3s-5Y-HQj" customClass="AudioViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wdJ-Rn-Nnq"/>
                         <viewControllerLayoutGuide type="bottom" id="9Qy-r5-Ztj"/>
@@ -545,7 +571,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Z06-Le-3Wp" secondAttribute="trailing" constant="50" id="vzs-j1-6F4"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W" customClass="AudioMeteringView" customModule="Easy_Do" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-cI-29W" customClass="AudioMeteringView" customModule="Easy_Things" customModuleProvider="target">
                                 <rect key="frame" x="150" y="170" width="300" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -590,12 +616,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGp-9y-DW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="1717"/>
+            <point key="canvasLocation" x="1226" y="1593"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="5Ei-Ho-O3f">
             <objects>
-                <viewController id="Ern-Dg-VuE" customClass="PictureViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ern-Dg-VuE" customClass="PictureViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P6N-w7-Ulw"/>
                         <viewControllerLayoutGuide type="bottom" id="gL7-dZ-w6p"/>
@@ -604,7 +630,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWI-JN-JCV">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWI-JN-JCV">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="camera" id="iqz-1Y-wKX">
@@ -614,7 +640,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw" customClass="ImageScrollView" customModule="Easy_Do" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-RR-vpw" customClass="ImageScrollView" customModule="Easy_Things" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="492" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Q7-T8N">
@@ -667,12 +693,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1186.5" y="722"/>
+            <point key="canvasLocation" x="2810" y="722"/>
         </scene>
         <!--Launch Screen View Controller-->
         <scene sceneID="z3F-TP-aHP">
             <objects>
-                <viewController storyboardIdentifier="111" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XMr-VZ-VpI" customClass="LaunchScreenViewController" customModule="Easy_Do" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XMr-VZ-VpI" customClass="LaunchScreenViewController" customModule="Easy_Things" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="50y-Vb-yIa"/>
                         <viewControllerLayoutGuide type="bottom" id="cis-7d-l2r"/>
@@ -685,12 +711,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWd-8e-WRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1231" y="716"/>
+            <point key="canvasLocation" x="-491" y="722"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="hyw-gG-d6I">
             <objects>
                 <navigationController storyboardIdentifier="222" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iDe-P4-qev" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="nUh-hw-zGa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gO8-OM-7K4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -698,12 +725,34 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="OmN-gi-ltQ" kind="relationship" relationship="rootViewController" id="2RC-Jg-8ax"/>
+                        <segue destination="OmN-gi-ltQ" kind="relationship" relationship="rootViewController" id="7AT-LH-6ZL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYe-Zk-H7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-523" y="722"/>
+            <point key="canvasLocation" x="1085" y="716"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Abl-Mm-vDX">
+            <objects>
+                <tabBarController storyboardIdentifier="111" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RH2-b4-w1C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="6oc-dr-8BZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="iDe-P4-qev" kind="relationship" relationship="viewControllers" id="n7P-I2-n57"/>
+                        <segue destination="Dg2-TT-fMS" kind="relationship" relationship="viewControllers" id="5e5-bl-aa1"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKe-Rc-9RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="716"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="23" height="18"/>
+        <image name="check" width="16" height="16"/>
+    </resources>
 </document>

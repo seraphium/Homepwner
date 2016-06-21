@@ -135,7 +135,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     func setCellCornerRadius(expanded: Bool, animated: Bool)
     {
         let cornerRadius = CGFloat(5.0)
-        print ("set corner radius")
         if (animated) {
             let from = CGFloat(expanded ? cornerRadius : 0)
             let to = CGFloat(expanded ? 0 : cornerRadius)
@@ -162,10 +161,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
         containerView.layer.shadowRadius = 5
         containerView.layer.shadowOpacity = 0.5
-       // let shadowFrame = foregroundView.layer.bounds;
-       // let shadowPath = UIBezierPath(rect: shadowFrame).CGPath
-       // containerView.layer.shadowPath = shadowPath;
-        // Maybe just me, but I had to add it to work:
+
         clipsToBounds = false
 
     }

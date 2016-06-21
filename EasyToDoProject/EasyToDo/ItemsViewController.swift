@@ -39,9 +39,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //set default background color
-        tableView.backgroundColor = AppDelegate.backColor
-        
         //refresh the table data if changed in detailed view
         tableView.reloadData()
         
@@ -58,6 +55,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        self.itemStore = AppDelegate.itemStore
+        self.imageStore = AppDelegate.imageStore
+        self.audioStore = AppDelegate.audioStore
+        
+        //set default background color
+        tableView.backgroundColor = AppDelegate.backColor
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         
