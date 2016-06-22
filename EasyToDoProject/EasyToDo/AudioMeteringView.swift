@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class AudioMeteringView : UIView {
+class AudioMeteringView : UIView {
     
     let baseColor : UIColor = AppDelegate.cellInnerColor
     let meteringColor : UIColor = AppDelegate.cellInnerColor
