@@ -17,11 +17,10 @@
 		4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DF81C8470F2005B1DE5 /* Item.swift */; };
 		4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */; };
 		4B3B5F621D19180400576D6E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B5F611D19180400576D6E /* CalendarViewController.swift */; };
-		4B3B5F681D1A2A0100576D6E /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3B5F671D1A2A0100576D6E /* JTAppleCalendar.framework */; };
-		4B3B5F691D1A327100576D6E /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3B5F671D1A2A0100576D6E /* JTAppleCalendar.framework */; };
-		4B3B5F6A1D1A327100576D6E /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3B5F671D1A2A0100576D6E /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B3B5F6D1D1A33D000576D6E /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3B5F6C1D1A33D000576D6E /* CellView.xib */; };
 		4B3B5F6F1D1A33D600576D6E /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B5F6E1D1A33D600576D6E /* CellView.swift */; };
+		4B3B5F711D1A6EED00576D6E /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3B5F701D1A6EED00576D6E /* JTAppleCalendar.framework */; };
+		4B3B5F731D1A6F3300576D6E /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3B5F701D1A6EED00576D6E /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FEB011CC6905900751CF1 /* PictureViewController.swift */; };
 		4B7159F21D15288900456B68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F41D15288900456B68 /* InfoPlist.strings */; };
 		4B7159F81D152A0000456B68 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F71D152A0000456B68 /* Info.plist */; };
@@ -43,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B3B5F6A1D1A327100576D6E /* JTAppleCalendar.framework in Embed Frameworks */,
+				4B3B5F731D1A6F3300576D6E /* JTAppleCalendar.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,9 +65,9 @@
 		4B3A8DF81C8470F2005B1DE5 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		4B3B5F611D19180400576D6E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		4B3B5F671D1A2A0100576D6E /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = "<group>"; };
 		4B3B5F6C1D1A33D000576D6E /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
 		4B3B5F6E1D1A33D600576D6E /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		4B3B5F701D1A6EED00576D6E /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = "<group>"; };
 		4B5FEB011CC6905900751CF1 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		4B7159F31D15288900456B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B7159F51D15289100456B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -90,8 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3B5F681D1A2A0100576D6E /* JTAppleCalendar.framework in Frameworks */,
-				4B3B5F691D1A327100576D6E /* JTAppleCalendar.framework in Frameworks */,
+				4B3B5F711D1A6EED00576D6E /* JTAppleCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +148,7 @@
 		4B3B5F661D1A29F500576D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4B3B5F671D1A2A0100576D6E /* JTAppleCalendar.framework */,
+				4B3B5F701D1A6EED00576D6E /* JTAppleCalendar.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

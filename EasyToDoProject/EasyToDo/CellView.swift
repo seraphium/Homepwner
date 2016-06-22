@@ -18,12 +18,15 @@ class CellView: JTAppleDayCellView {
     
     func setupCellBeforeDisplay(cellState: CellState, date: NSDate) {
         
+        //Setup cell background color
+        self.backgroundColor = UIColor.blueColor()
+        
         // Setup text color
         configureTextColor(cellState)
         
         // Setup Cell text
         DayLabel.text =  cellState.text
-          }
+    }
     
     func configureTextColor(cellState: CellState) {
         if cellState.dateBelongsTo == .ThisMonth {
