@@ -7,40 +7,34 @@
 //
 
 import UIKit
-import JTAppleCalendar
 
-
-class CalendarViewController : UIViewController, JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
-
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
+class CalendarViewController : UIViewController, CalendarViewDelegate {
     
-    override func viewWillAppear(animated: Bool) {
-        
 
-    }
+    @IBOutlet var containerView: UIView!
     
     override func viewDidLoad() {
-        self.calendarView.dataSource = self
-        self.calendarView.delegate = self
-        self.calendarView.registerCellViewXib(fileName: "CellView")
+        super.viewDidLoad()
+        
+        // todays date.
+        let date = NSDate()
+        
+        // create an instance of calendar view with
+        // base date (Calendar shows 12 months range from current base date)
+        // selected date (marked dated in the calendar)
+        let calendarView = CalendarView.instance(date, selectedDate: date)
+        calendarView.delegate = self
+        containerView.addSubview(calendarView)
+        
+        // Constraints for calendar view - Fill the parent view.
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
 
-    }
-    
-    func configureCalendar(calendar: JTAppleCalendarView) -> (startDate: NSDate, endDate: NSDate, numberOfRows: Int, calendar: NSCalendar) {
-        // You can set your date using NSDate() or NSDateFormatter. Your choice.
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
         
-        let firstDate = formatter.dateFromString("2016 01 05")
-        let secondDate = NSDate()
-        let numberOfRows = 6
-        let aCalendar = NSCalendar.currentCalendar() // Properly configure your calendar to your time zone here
-        
-        return (startDate: firstDate!, endDate: secondDate, numberOfRows: numberOfRows, calendar: aCalendar)
     }
     
-    func calendar(calendar: JTAppleCalendarView, isAboutToDisplayCell cell: JTAppleDayCellView, date: NSDate, cellState: CellState) {
-        (cell as! CellView).setupCellBeforeDisplay(cellState, date: date)
+    func didSelectDate(date: NSDate) {
+        print("(date.year)-(date.month)-(date.day)")
     }
-    
+
 }
