@@ -8,14 +8,20 @@
 
 import UIKit
 
-class CalendarViewController : UIViewController, CalendarViewDelegate {
+class CalendarViewController : UIViewController, CalendarViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBOutlet weak var calenderContainerView: UIView!
     
+    @IBOutlet weak var itemTableView: UITableView!
+    
+    var selectedDate : NSDate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        itemTableView.delegate = self
+        itemTableView.dataSource = self
         // todays date.
         let date = NSDate()
         
@@ -33,8 +39,26 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     }
     
+    //delegate function
     func didSelectDate(date: NSDate) {
-        print("(date.year)-(date.month)-(date.day)")
+        selectedDate = date
+        
     }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = itemTableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as UITableViewCell
+        cell.textLabel?.text = "number:" + String(indexPath.row)
+        return cell
+    }
+    
 
 }
