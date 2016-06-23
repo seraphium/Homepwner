@@ -32,9 +32,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         return formatter
     }()
 
-
-    @IBOutlet weak var calenderButton: UIBarButtonItem!
-    
     
     var selectedItem : Item?
     
@@ -48,21 +45,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        //add calendar tool bar button
-        navigationController?.toolbarHidden = false
-        let calendarBarItem = UIBarButtonItem.init(image: UIImage(named: "calendar"), style: .Plain, target: self, action: #selector(calendarBarClicked))
- 
-        //calendarBarItem.tintColor = UIColor.redColor()
-        let calendarBarItemCollection = [calendarBarItem]
-        toolbarItems = calendarBarItemCollection
     }
     
        
     override func viewWillDisappear(animated: Bool) {
         //clear the first responder (keyboard)
         view.endEditing(true)
-        //hide tool bar button if leaving this page
-        navigationController?.toolbarHidden = true
+    
     }
     
     override func viewDidLoad() {
@@ -82,16 +71,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
     }
  
-    
-    func calendarBarClicked(sender: UIBarButtonItem)
-    {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
-        let calendarVC = sb.instantiateViewControllerWithIdentifier("333")
-        
-        navigationController?.pushViewController(calendarVC, animated: true)
-        
-    }
     
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
@@ -390,18 +369,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     //MARK: - other actions
-    @IBAction func addNewItem(sender: AnyObject) {
-
+    func addNewItem() {
+        
         let newItem = self.itemStore.CreateItem(random: false, finished: false)
         
         if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
-                let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
-                self.newRow = indexPath.row
-                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
-            }
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
+            self.newRow = indexPath.row
+            self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+        }
     }
     
+    
+
     
     private func toggleExpand(cell: ItemCell) {
         let indexPath = tableView.indexPathForCell(cell)!

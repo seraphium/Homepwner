@@ -8,12 +8,10 @@
 
 import UIKit
 
-class CalendarViewController : UIViewController, CalendarViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class CalendarViewController : UIViewController, CalendarViewDelegate {
     
 
     @IBOutlet weak var calenderContainerView: UIView!
-    
-    @IBOutlet weak var itemTableView: UITableView!
     
     var itemStore : ItemStore!
 
@@ -21,15 +19,28 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     
     var ItemsForSelectedDate : [Item]?
     
+    @IBOutlet var calendarOutsideView: UIView!
+    
+    @IBOutlet var containerView: UIView!
+    
+    
+    @IBOutlet var calenderViewTopConstraint: NSLayoutConstraint!
+    
+    var tableViewController : ItemsViewController!
+    
+    var tableView : UITableView{
+        return tableViewController.tableView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
         
         navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
         
         itemStore = AppDelegate.itemStore
         
-        itemTableView.delegate = self
-        itemTableView.dataSource = self
         // todays date.
         let date = NSDate()
         
@@ -47,7 +58,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         // Constraints for calendar view - Fill the parent view.
         calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
         calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
-    
+        
     }
     
     func reloadItems(){
@@ -63,7 +74,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         }
         
         ItemsForSelectedDate = items
-        itemTableView.reloadData()
     }
     
     //delegate function
@@ -87,26 +97,37 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let items = ItemsForSelectedDate {
-            return items.count
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ItemViewControllerSegue" {
+            let destVC = segue.destinationViewController as! ItemsViewController
+            tableViewController = destVC
+        }
+    }
+    
+
+    
+    @IBAction func addNewItem(sender: AnyObject) {
+        
+        tableViewController.addNewItem()
+    }
+    
+    @IBAction func calendarBarClicked(sender: UIBarButtonItem)
+    {
+        self.view.layoutIfNeeded()
+        
+        if self.calenderViewTopConstraint.constant == 0{
+            self.calenderViewTopConstraint.constant = -self.calendarOutsideView.bounds.height
         } else {
-            return 0
+            self.calenderViewTopConstraint.constant = 0
+        }
+        
+        UIView.animateWithDuration(0.5) {
+            self.view.layoutIfNeeded()
+   
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = itemTableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as UITableViewCell
-        if let items = ItemsForSelectedDate {
-            cell.textLabel?.text = items[indexPath.row].name
 
-        }
-        return cell
-    }
     
-
+ 
 }
