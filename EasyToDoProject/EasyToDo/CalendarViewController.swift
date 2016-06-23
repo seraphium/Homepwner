@@ -15,10 +15,16 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     
     @IBOutlet weak var itemTableView: UITableView!
     
+    var itemStore : ItemStore!
+
     var selectedDate : NSDate!
+    
+    var ItemsForSelectedDate : [Item]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        itemStore = AppDelegate.itemStore
         
         itemTableView.delegate = self
         itemTableView.dataSource = self
@@ -39,15 +45,33 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     
     }
     
+    func reloadItems(){
+        var items = [Item]()
+        for item in itemStore.allItemsUnDone {
+            if let date = item.dateToNotify {
+                if date.year == selectedDate.year && date.month == selectedDate.month && date.day == selectedDate.day {
+                    items.append(item)
+                }
+            }
+        }
+        
+        ItemsForSelectedDate = items
+        itemTableView.reloadData()
+    }
+    
     //delegate function
     func didSelectDate(date: NSDate) {
         selectedDate = date
-        
+        reloadItems()
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let items = ItemsForSelectedDate {
+            return items.count
+        } else {
+            return 0
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -56,7 +80,10 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = itemTableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel?.text = "number:" + String(indexPath.row)
+        if let items = ItemsForSelectedDate {
+            cell.textLabel?.text = items[indexPath.row].name
+
+        }
         return cell
     }
     
