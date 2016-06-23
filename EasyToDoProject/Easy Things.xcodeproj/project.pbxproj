@@ -26,7 +26,6 @@
 		4B7FBE841D1AEA8400E0CABD /* CalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7FBE791D1AEA8400E0CABD /* CalendarView.xib */; };
 		4B7FBE851D1AEA8400E0CABD /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7A1D1AEA8400E0CABD /* Date.swift */; };
 		4B7FBE861D1AEA8400E0CABD /* DayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7B1D1AEA8400E0CABD /* DayCollectionCell.swift */; };
-		4B7FBE871D1AEA8400E0CABD /* DayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7C1D1AEA8400E0CABD /* DayCollectionCell.xib */; };
 		4B7FBE881D1AEA8400E0CABD /* MonthCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7D1D1AEA8400E0CABD /* MonthCollectionCell.swift */; };
 		4B7FBE891D1AEA8400E0CABD /* MonthCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7E1D1AEA8400E0CABD /* MonthCollectionCell.xib */; };
 		4B7FBE8A1D1AEA8400E0CABD /* NSDateAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE7F1D1AEA8400E0CABD /* NSDateAdditions.swift */; };
@@ -41,6 +40,8 @@
 		4BF144891D011D750033AB71 /* AudioStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF144881D011D750033AB71 /* AudioStore.swift */; };
 		4BF4D6591D1BCD8A0017679F /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4D6581D1BCD8A0017679F /* CalendarViewDelegate.swift */; };
 		4BF4D65B1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4D65A1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift */; };
+		4BF4D6601D1BDAA20017679F /* DayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */; };
+		4BF4D6621D1BDF8E0017679F /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */; };
 		4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +85,6 @@
 		4B7FBE791D1AEA8400E0CABD /* CalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarView.xib; sourceTree = "<group>"; };
 		4B7FBE7A1D1AEA8400E0CABD /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4B7FBE7B1D1AEA8400E0CABD /* DayCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionCell.swift; sourceTree = "<group>"; };
-		4B7FBE7C1D1AEA8400E0CABD /* DayCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCollectionCell.xib; sourceTree = "<group>"; };
 		4B7FBE7D1D1AEA8400E0CABD /* MonthCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionCell.swift; sourceTree = "<group>"; };
 		4B7FBE7E1D1AEA8400E0CABD /* MonthCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthCollectionCell.xib; sourceTree = "<group>"; };
 		4B7FBE7F1D1AEA8400E0CABD /* NSDateAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateAdditions.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		4BF144881D011D750033AB71 /* AudioStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStore.swift; sourceTree = "<group>"; };
 		4BF4D6581D1BCD8A0017679F /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
 		4BF4D65A1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionCellDelegate.swift; sourceTree = "<group>"; };
+		4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCollectionCell.xib; sourceTree = "<group>"; };
+		4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCell.xib; sourceTree = "<group>"; };
 		4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMeteringView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,11 +210,11 @@
 				4B7FBE771D1AEA8400E0CABD /* CalendarLogic.swift */,
 				4B7FBE781D1AEA8400E0CABD /* CalendarView.swift */,
 				4B7FBE791D1AEA8400E0CABD /* CalendarView.xib */,
+				4B7FBE7E1D1AEA8400E0CABD /* MonthCollectionCell.xib */,
 				4B7FBE7A1D1AEA8400E0CABD /* Date.swift */,
 				4B7FBE7B1D1AEA8400E0CABD /* DayCollectionCell.swift */,
-				4B7FBE7C1D1AEA8400E0CABD /* DayCollectionCell.xib */,
+				4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */,
 				4B7FBE7D1D1AEA8400E0CABD /* MonthCollectionCell.swift */,
-				4B7FBE7E1D1AEA8400E0CABD /* MonthCollectionCell.xib */,
 				4B7FBE7F1D1AEA8400E0CABD /* NSDateAdditions.swift */,
 				4B7FBE801D1AEA8400E0CABD /* WeekHeaderView.swift */,
 				4B7FBE811D1AEA8400E0CABD /* WeekHeaderView.xib */,
@@ -225,14 +227,23 @@
 		4B8EB5651CD6400700E9758C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4BF4D65C1D1BD40C0017679F /* Xibs */,
 				4B7159F71D152A0000456B68 /* Info.plist */,
-				4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */,
 				4B3A8DE81C846DDF005B1DE5 /* Main.storyboard */,
 				4B3A8DEB1C846DDF005B1DE5 /* Assets.xcassets */,
 				4B33DF921D1055D500579DA0 /* Localizable.strings */,
 				4B7159F41D15288900456B68 /* InfoPlist.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4BF4D65C1D1BD40C0017679F /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */,
+				4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */,
+			);
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,8 +310,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B7FBE871D1AEA8400E0CABD /* DayCollectionCell.xib in Resources */,
 				4B7FBE8C1D1AEA8400E0CABD /* WeekHeaderView.xib in Resources */,
+				4BF4D6621D1BDF8E0017679F /* CalendarCell.xib in Resources */,
+				4BF4D6601D1BDAA20017679F /* DayCollectionCell.xib in Resources */,
 				4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */,
 				4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */,
 				4B7159F81D152A0000456B68 /* Info.plist in Resources */,

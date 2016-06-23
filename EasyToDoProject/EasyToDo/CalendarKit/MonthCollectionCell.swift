@@ -13,6 +13,10 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
     
     @IBOutlet var collectionView: UICollectionView!
     weak var monthCellDelgate: MonthCollectionCellDelegate?
+
+    var cellXibName : String!
+    
+    var cellIdentifier : String!
     
     var dates = [Date]()
     var previousMonthVisibleDatesCount = 0
@@ -53,12 +57,21 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
         }
     }
     
+    func registerCell(xibName: String, identifier : String)
+    {
+       cellXibName = xibName
+       cellIdentifier = identifier
+        
+        let nib = UINib(nibName: cellXibName, bundle: nil)
+        self.collectionView.registerNib(nib, forCellWithReuseIdentifier: cellIdentifier)
+        
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let nib = UINib(nibName: "DayCollectionCell", bundle: nil)
-        self.collectionView.registerNib(nib, forCellWithReuseIdentifier: "DayCollectionCell")
-        
+
         let headerNib = UINib(nibName: "WeekHeaderView", bundle: nil)
         self.collectionView.registerNib(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "WeekHeaderView")
     }
@@ -70,7 +83,7 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DayCollectionCell", forIndexPath: indexPath) as! DayCollectionCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! DayCollectionCell
         
         let date = dates[indexPath.item]
         

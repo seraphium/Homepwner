@@ -24,6 +24,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
+        
         itemStore = AppDelegate.itemStore
         
         itemTableView.delegate = self
@@ -37,7 +39,10 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         let calendarView = CalendarView.instance(date, selectedDate: date)
         calendarView.delegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
-
+        
+        //register customized cell xib
+        calendarView.RegisterCell("CalendarCell", identifier: "CalendarCell")
+        
         calenderContainerView.addSubview(calendarView)
         // Constraints for calendar view - Fill the parent view.
         calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
@@ -67,8 +72,9 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         reloadItems()
     }
     
+    //delegate to setup cell
     func willDisplayCell(cell: DayCollectionCell, indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.redColor()
+        //cell.backgroundColor = UIColor.redColor()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

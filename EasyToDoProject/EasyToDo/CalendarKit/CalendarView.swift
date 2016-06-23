@@ -20,6 +20,12 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     @IBOutlet var previousButton: UIButton!
     weak var delegate: CalendarViewDelegate?
 
+    
+    var cellXibName : String = "DayCollectionCell"
+    
+    var cellIdentifier : String = "DayCollectionCell"
+    
+    
     private var collectionData = [CalendarLogic]()
     var baseDate: NSDate? {
         didSet {
@@ -76,13 +82,14 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MonthCollectionCell", forIndexPath: indexPath) as! MonthCollectionCell
         
+        cell.registerCell(cellXibName, identifier: cellIdentifier)
+        
         cell.monthCellDelgate = self
         
         cell.logic = collectionData[indexPath.item]
         if cell.logic!.isVisible(selectedDate!) {
             cell.selectedDate = Date(date: selectedDate!)
         }
-        
         return cell
     }
     
@@ -157,6 +164,14 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     
     func willDisplayCell(cell: DayCollectionCell, indexPath: NSIndexPath){
         delegate?.willDisplayCell(cell, indexPath: indexPath)
+    }
+    
+    func RegisterCell(nibName : String, identifier : String)
+    {
+       cellXibName = nibName
+       cellIdentifier = identifier
+
+        
     }
     
     
