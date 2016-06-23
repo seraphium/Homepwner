@@ -11,7 +11,7 @@ import UIKit
 class CalendarViewController : UIViewController, CalendarViewDelegate {
     
 
-    @IBOutlet var containerView: UIView!
+    @IBOutlet weak var calenderContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +24,13 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         // selected date (marked dated in the calendar)
         let calendarView = CalendarView.instance(date, selectedDate: date)
         calendarView.delegate = self
-        containerView.addSubview(calendarView)
-        
-        // Constraints for calendar view - Fill the parent view.
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
 
-        
+        calenderContainerView.addSubview(calendarView)
+        // Constraints for calendar view - Fill the parent view.
+        calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
+        calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
+    
     }
     
     func didSelectDate(date: NSDate) {
