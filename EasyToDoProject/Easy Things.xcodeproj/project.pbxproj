@@ -42,6 +42,7 @@
 		4BF4D65B1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4D65A1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift */; };
 		4BF4D6601D1BDAA20017679F /* DayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */; };
 		4BF4D6621D1BDF8E0017679F /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */; };
+		4BF4D6641D1BE25A0017679F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4D6631D1BE25A0017679F /* CalendarCell.swift */; };
 		4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		4BF4D65A1D1BCDBC0017679F /* MonthCollectionCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionCellDelegate.swift; sourceTree = "<group>"; };
 		4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCollectionCell.xib; sourceTree = "<group>"; };
 		4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCell.xib; sourceTree = "<group>"; };
+		4BF4D6631D1BE25A0017679F /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMeteringView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */,
 				4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */,
 				4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */,
+				4BF4D6631D1BE25A0017679F /* CalendarCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				4B7FBE821D1AEA8400E0CABD /* CalendarLogic.swift in Sources */,
 				4B7FBE8B1D1AEA8400E0CABD /* WeekHeaderView.swift in Sources */,
 				4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */,
+				4BF4D6641D1BE25A0017679F /* CalendarCell.swift in Sources */,
 				4B7FBE881D1AEA8400E0CABD /* MonthCollectionCell.swift in Sources */,
 				4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */,
 				4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */,

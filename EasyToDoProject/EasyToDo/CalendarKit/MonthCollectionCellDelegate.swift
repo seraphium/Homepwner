@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Jackie Zhang. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MonthCollectionCellDelegate: class {
     func didSelect(date: Date)
-    func willDisplayCell(cell: DayCollectionCell, indexPath : NSIndexPath)
+    func willDisplayCell(cell: UICollectionViewCell, indexPath : NSIndexPath,  date: Date)
 }

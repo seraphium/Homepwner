@@ -73,8 +73,18 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
     }
     
     //delegate to setup cell
-    func willDisplayCell(cell: DayCollectionCell, indexPath: NSIndexPath) {
-        //cell.backgroundColor = UIColor.redColor()
+    func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date) {
+        
+        let calendarCell = cell as! CalendarCell
+       // calendarCell.backgroundColor = UIColor.redColor()
+        calendarCell.date = date
+        if let selected = selectedDate {
+            calendarCell.mark = (Date(date: selected) == date)
+
+        }
+        
+      
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

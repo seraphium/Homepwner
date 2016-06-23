@@ -83,18 +83,23 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! DayCollectionCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) 
         
         let date = dates[indexPath.item]
-        
-        cell.date = (indexPath.item < dates.count) ? date : nil
-        cell.mark = (selectedDate == date)
-        
-        cell.disabled = (indexPath.item < previousMonthVisibleDatesCount) ||
-                        (indexPath.item >= previousMonthVisibleDatesCount
-                            + currentMonthVisibleDatesCount)
-        
-        monthCellDelgate?.willDisplayCell(cell, indexPath: indexPath)
+       
+      
+        if let defaultCell = cell as? DayCollectionCell
+        {
+            defaultCell.date = (indexPath.item < dates.count) ? date : nil
+            defaultCell.mark = (selectedDate == date)
+            
+            defaultCell.disabled = (indexPath.item < previousMonthVisibleDatesCount) ||
+                (indexPath.item >= previousMonthVisibleDatesCount
+                    + currentMonthVisibleDatesCount)
+        }
+        else {
+            monthCellDelgate?.willDisplayCell(cell, indexPath: indexPath, date: date)
+        }
         
         return cell
     }
