@@ -49,7 +49,9 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         var items = [Item]()
         for item in itemStore.allItemsUnDone {
             if let date = item.dateToNotify {
-                if date.year == selectedDate.year && date.month == selectedDate.month && date.day == selectedDate.day {
+                if date.year == selectedDate.year &&
+                    date.month == selectedDate.month &&
+                    date.day == selectedDate.day {
                     items.append(item)
                 }
             }
@@ -65,6 +67,9 @@ class CalendarViewController : UIViewController, CalendarViewDelegate, UITableVi
         reloadItems()
     }
     
+    func willDisplayCell(cell: DayCollectionCell, indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.redColor()
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let items = ItemsForSelectedDate {

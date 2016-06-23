@@ -11,9 +11,6 @@ import UIKit
 // 12 months - base date - 12 months
 let kMonthRange = 12
 
-protocol CalendarViewDelegate: class {
-    func didSelectDate(date: NSDate)
-}
 
 class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, MonthCollectionCellDelegate {
     
@@ -157,4 +154,11 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     func didSelect(date: Date) {
         selectedDate = date.nsdate
     }
+    
+    func willDisplayCell(cell: DayCollectionCell, indexPath: NSIndexPath){
+        delegate?.willDisplayCell(cell, indexPath: indexPath)
+    }
+    
+    
+    
 }

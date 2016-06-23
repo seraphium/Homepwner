@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol MonthCollectionCellDelegate: class {
-    func didSelect(date: Date)
-}
 
 class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -83,6 +80,8 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
         cell.disabled = (indexPath.item < previousMonthVisibleDatesCount) ||
                         (indexPath.item >= previousMonthVisibleDatesCount
                             + currentMonthVisibleDatesCount)
+        
+        monthCellDelgate?.willDisplayCell(cell, indexPath: indexPath)
         
         return cell
     }
