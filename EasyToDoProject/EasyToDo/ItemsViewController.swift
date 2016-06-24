@@ -43,7 +43,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         //refresh the table data if changed in detailed view
         tableView.reloadData()
         
-        navigationItem.leftBarButtonItem = editButtonItem()
         
     }
     

@@ -38,7 +38,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
         
         navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
-        
+        navigationItem.leftBarButtonItem = editButtonItem()
+    
         itemStore = AppDelegate.itemStore
         
         // todays date.
@@ -58,6 +59,9 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         // Constraints for calendar view - Fill the parent view.
         calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
         calenderContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[calendarView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["calendarView": calendarView]))
+        
+        calenderContainerView.backgroundColor = UIColor.clearColor()
+        calendarOutsideView.backgroundColor = AppDelegate.backColor
         
     }
     
