@@ -31,5 +31,6 @@
 "ItemListTabTitle" = "列表";
 "CalendarButtonTitle" = "日历";
 "CalendarNavTitle" = "简单事";
-
+"CalenderViewEditBtnTitleEdit" = "编辑";
+"CalenderViewEditBtnTitleDone" = "完成";
 

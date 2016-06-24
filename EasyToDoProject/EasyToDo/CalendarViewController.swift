@@ -26,6 +26,10 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBOutlet var calenderViewTopConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet var editButton: UIBarButtonItem!
+    
+    
     var tableViewController : ItemsViewController!
     
     var tableView : UITableView{
@@ -38,8 +42,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
         
         navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
-        navigationItem.leftBarButtonItem = editButtonItem()
-    
+                
         itemStore = AppDelegate.itemStore
         
         // todays date.
@@ -63,6 +66,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calenderContainerView.backgroundColor = UIColor.clearColor()
         calendarOutsideView.backgroundColor = AppDelegate.backColor
         
+        editButton.title = NSLocalizedString("CalenderViewEditBtnTitleEdit", comment: "")
     }
     
     func reloadItems(){
@@ -113,6 +117,22 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     @IBAction func addNewItem(sender: AnyObject) {
         
         tableViewController.addNewItem()
+    }
+    
+    
+    @IBAction func editButtonClicked(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, animations: {
+            self.tableViewController.editing =
+                !self.tableViewController.editing
+        })
+        
+        if (self.tableViewController.editing){
+            self.editButton.title = NSLocalizedString("CalenderViewEditBtnTitleDone", comment: "")
+        } else{
+            self.editButton.title = NSLocalizedString("CalenderViewEditBtnTitleEdit", comment: "")
+            
+        }
+       
     }
     
     @IBAction func calendarBarClicked(sender: UIBarButtonItem)

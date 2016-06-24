@@ -30,4 +30,5 @@
 "ItemListTabTitle" = "List";
 "CalendarButtonTitle" = "Calendar";
 "CalendarNavTitle" = "Easy Things";
-
+"CalenderViewEditBtnTitleEdit" = "Edit";
+"CalenderViewEditBtnTitleDone" = "Done";

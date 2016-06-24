@@ -542,13 +542,13 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-4i-Z7x">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-4i-Z7x">
                                 <rect key="frame" x="0.0" y="314" width="600" height="242"/>
                                 <connections>
                                     <segue destination="OmN-gi-ltQ" kind="embed" identifier="ItemViewControllerSegue" id="cBf-zJ-Jav"/>
                                 </connections>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="861-AO-yQd">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="861-AO-yQd">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem image="calendar" id="jUB-Cz-7gq">
@@ -583,18 +583,26 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="S1s-dP-y9h">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="fhY-yL-FjB">
+                            <connections>
+                                <action selector="editButtonClicked:" destination="Dg2-TT-fMS" id="Wry-fY-nh8"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="AKp-nf-CPz">
                             <connections>
                                 <action selector="addNewItem:" destination="Dg2-TT-fMS" id="yu6-O0-9Xy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarOutsideView" destination="I6k-Gq-oHo" id="2kd-97-m4b"/>
                         <outlet property="calenderContainerView" destination="CTz-W7-UzP" id="HVE-aq-jpP"/>
                         <outlet property="calenderViewTopConstraint" destination="s3s-La-gvG" id="v7G-7o-oJx"/>
                         <outlet property="containerView" destination="Qsh-4i-Z7x" id="nFL-a3-Nwc"/>
+                        <outlet property="editButton" destination="fhY-yL-FjB" id="pdg-DX-ipc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSE-eT-phI" userLabel="First Responder" sceneMemberID="firstResponder"/>
