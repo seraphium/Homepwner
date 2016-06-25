@@ -169,7 +169,7 @@ class ItemStore  {
     
     //filter
     var selectedUnfinished : [Item] {
-        var items = [Item]()
+        var items = allItemsUnDone
         if let date = selectedDates {
             items =  findItemFromitemStore(date, finished: false)
         }
@@ -178,7 +178,7 @@ class ItemStore  {
     
     var selectedFinished : [Item] {
         
-        var items = [Item]()
+        var items = allItemsDone
         if let date = selectedDates {
             items =  findItemFromitemStore(date, finished: true)
         }

@@ -53,12 +53,15 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     var selectedDate: NSDate? {
         didSet {
             collectionView.reloadData()
-            dispatch_async(dispatch_get_main_queue()){
-                self.moveToSelectedDate(false)
-                if self.delegate != nil {
-                    self.delegate!.didSelectDate(self.selectedDate!)
+            if let date = selectedDate {
+                dispatch_async(dispatch_get_main_queue()){
+                    self.moveToSelectedDate(false)
+                    if self.delegate != nil {
+                        self.delegate!.didSelectDate(date)
+                    }
                 }
             }
+           
         }
     }
     
@@ -67,7 +70,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         self.collectionView.registerNib(nib, forCellWithReuseIdentifier: "MonthCollectionCell")
     }
     
-    class func instance(baseDate: NSDate, selectedDate: NSDate) -> CalendarView {
+    class func instance(baseDate: NSDate, selectedDate: NSDate?) -> CalendarView {
         let calendarView = NSBundle.mainBundle().loadNibNamed("CalendarView", owner: nil, options: nil).first as! CalendarView
         calendarView.selectedDate = selectedDate
         calendarView.baseDate = baseDate
@@ -87,10 +90,13 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         cell.monthCellDelgate = self
         
         cell.logic = collectionData[indexPath.item]
-        if cell.logic!.isVisible(selectedDate!) {
-            cell.selectedDate = Date(date: selectedDate!)
+        if let selected = selectedDate {
+            if cell.logic!.isVisible(selected) {
+                cell.selectedDate = Date(date: selectedDate!)
+            }
+ 
         }
-        return cell
+               return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

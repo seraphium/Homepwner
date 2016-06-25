@@ -15,7 +15,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     var itemStore : ItemStore!
 
-    var selectedDate : NSDate!
+    var selectedDate : NSDate?
     
     @IBOutlet var calendarOutsideView: UIView!
     
@@ -36,9 +36,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     override func awakeFromNib() {
         
-        // todays date.
-        selectedDate = NSDate()
-        
+
         itemStore = AppDelegate.itemStore
         
         
@@ -51,7 +49,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
         // base date (Calendar shows 12 months range from current base date)
         // selected date (marked dated in the calendar)
-        let calendarView = CalendarView.instance(selectedDate, selectedDate: selectedDate)
+        let calendarView = CalendarView.instance(NSDate(), selectedDate: nil)
         calendarView.delegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -75,7 +73,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     //delegate function
     func didSelectDate(date: NSDate) {
         selectedDate = date
-        itemStore.selectedDates = [selectedDate]
+        itemStore.selectedDates = [date]
     }
     
     //delegate to setup cell
@@ -97,7 +95,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         if segue.identifier == "ItemViewControllerSegue" {
             let destVC = segue.destinationViewController as! ItemsViewController
             tableViewController = destVC
-            itemStore.selectedDates = [selectedDate]
+           // itemStore.selectedDates = [selectedDate]
         }
     }
     
