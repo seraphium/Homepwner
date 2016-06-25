@@ -12,6 +12,12 @@ class ItemStore  {
     var allItemsUnDone = [Item]()
     var allItemsDone = [Item]()
     let MaxItemInUndone = 5
+    
+    //filter
+    var selectedUnfinished : [Item]!
+    var selectedFinished : [Item]!
+    
+
     //archive path to save undone items
     let unDoneItemArchiveURL : NSURL = {
         let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -141,6 +147,32 @@ class ItemStore  {
         let res = NSKeyedArchiver.archiveRootObject(allItemsUnDone, toFile: unDoneItemArchiveURL.path!)
         let res2 = NSKeyedArchiver.archiveRootObject(allItemsDone, toFile: doneItemArchiveURL.path!)
         return res && res2
+    }
+
+    
+    var selectedDates : [NSDate]! {
+        didSet {
+            selectedUnfinished = findItemFromitemStore(selectedDates, finished: false)
+            selectedFinished = findItemFromitemStore(selectedDates, finished: true)
+            
+        }
+    }
+    
+    func findItemFromitemStore(selectedDates : [NSDate], finished: Bool) -> [Item] {
+        var items = [Item]()
+        for item in (finished ? allItemsDone:allItemsUnDone) {
+            if let date = item.dateToNotify {
+                for selected in selectedDates {
+                    if date.year == selected.year &&
+                        date.month == selected.month &&
+                        date.day == selected.day {
+                        items.append(item)
+                    }
+                }
+                
+            }
+        }
+        return items
     }
     
 }

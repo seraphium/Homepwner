@@ -35,18 +35,25 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedItem : Item?
     
-    
     // MARK: - view lifecycle
+    override func awakeFromNib() {
+        
+        self.itemStore = AppDelegate.itemStore
+        self.imageStore = AppDelegate.imageStore
+        self.audioStore = AppDelegate.audioStore
+
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         //refresh the table data if changed in detailed view
         tableView.reloadData()
         
-        
+
     }
     
-       
+    
     override func viewWillDisappear(animated: Bool) {
         //clear the first responder (keyboard)
         view.endEditing(true)
@@ -57,9 +64,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         super.viewDidLoad()
  
         
-        self.itemStore = AppDelegate.itemStore
-        self.imageStore = AppDelegate.imageStore
-        self.audioStore = AppDelegate.audioStore
         
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
@@ -75,12 +79,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
         case 0:
-            return itemStore.allItemsUnDone.count
+            return itemStore.selectedUnfinished.count
         case 1:
             if doneClosed {
                 return 0
             } else {
-                return itemStore.allItemsDone.count
+                return itemStore.selectedFinished.count
 
             }
         default:
@@ -117,7 +121,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             view.titleLabel.textColor = AppDelegate.cellInnerColor
             view.headerLabel.textColor = AppDelegate.cellInnerColor
             
-            if itemStore.allItemsUnDone.count > 0 {
+            if itemStore.selectedUnfinished.count > 0 {
                 view.titleLabel.text = unfinishedString
                 view.headerLabel.alpha = 0
                 view.headerButton.alpha = 0
@@ -131,7 +135,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             
             
         } else if section == 1 {
-            if (itemStore.allItemsDone.count > 0) {
+            if (itemStore.selectedFinished.count > 0) {
                 let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
                 view.titleLabel.alpha = 0
                 view.headerLabel.alpha = 0
@@ -163,9 +167,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return itemStore.allItemsUnDone[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
+            return itemStore.selectedUnfinished[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
         case 1:
-            return itemStore.allItemsDone[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
+            return itemStore.selectedFinished[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
         default:
             return 0
         }
@@ -180,7 +184,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         switch indexPath.section {
         case 0:
             var expired = false
-            let item = itemStore.allItemsUnDone[indexPath.row]
+            let item = itemStore.selectedUnfinished[indexPath.row]
             if let date = item.dateToNotify {
                 if date.earlierDate(NSDate()) == item.dateToNotify {
                     expired = true
@@ -213,7 +217,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
            
         case 1:
-            let item = itemStore.allItemsDone[indexPath.row]
+            let item = itemStore.selectedFinished[indexPath.row]
                 //finished items are all expanded
             cell.updateCell(false, finished: true, expired: false)
             cell.textField.text = item.name
@@ -372,7 +376,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         let newItem = self.itemStore.CreateItem(random: false, finished: false)
         
-        if let index = self.itemStore.allItemsUnDone.indexOf(newItem) {
+        if let index = self.itemStore.selectedUnfinished.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
             self.newRow = indexPath.row
@@ -387,7 +391,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let indexPath = tableView.indexPathForCell(cell)!
         switch indexPath.section {
         case 0:
-            selectedItem = itemStore.allItemsUnDone[indexPath.row]
+            selectedItem = itemStore.selectedUnfinished[indexPath.row]
 
             if !((selectedItem?.expanded)!) { // open cell
                 updateWithExpandCell(cell, item: selectedItem!)
@@ -398,7 +402,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                 }
             }
         case 1:
-            selectedItem = itemStore.allItemsDone[indexPath.row]
+            selectedItem = itemStore.selectedFinished[indexPath.row]
 
             if !((selectedItem?.expanded)!)   { // open cell
                 updateWithExpandCell(cell, item: selectedItem!)
@@ -442,7 +446,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         var item : Item
         if (indexPath.section == 0)
         {
-            item = itemStore.allItemsUnDone[indexPath.row]
+            item = itemStore.selectedUnfinished[indexPath.row]
             let deleteString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
             let title = "\(deleteString) \(item.name)"
             let message = NSLocalizedString("ItemCellDeleteConfirm", comment: "")
@@ -456,7 +460,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             ac.addAction(deleteAction)
             presentViewController(ac, animated: true, completion: nil)
         } else {
-            item = itemStore.allItemsDone[indexPath.row]
+            item = itemStore.selectedFinished[indexPath.row]
             self.deleteItemFromTable(item, indexPath: indexPath)
             
         }
@@ -479,7 +483,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let indexPath = self.tableView.indexPathForCell(cell)!
         if (indexPath.section == 0)
         {
-            let item = itemStore.allItemsUnDone[indexPath.row]
+            let item = itemStore.selectedUnfinished[indexPath.row]
 
             //if expired (red), means badgenumber will remains and need reduce
             if cell.expired {
@@ -521,9 +525,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         var item : Item
         if (indexPath.section == 0)
         {
-            item = itemStore.allItemsUnDone[indexPath.row]
+            item = itemStore.selectedUnfinished[indexPath.row]
         } else {
-            item = itemStore.allItemsDone[indexPath.row]
+            item = itemStore.selectedFinished[indexPath.row]
             
         }
         item.name = sender.text!

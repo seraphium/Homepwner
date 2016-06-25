@@ -17,8 +17,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
     var selectedDate : NSDate!
     
-    var ItemsForSelectedDate : [Item]?
-    
     @IBOutlet var calendarOutsideView: UIView!
     
     @IBOutlet var containerView: UIView!
@@ -36,22 +34,24 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         return tableViewController.tableView
     }
     
+    override func awakeFromNib() {
+        
+        // todays date.
+        selectedDate = NSDate()
+        
+        itemStore = AppDelegate.itemStore
+        
+        
+        // create an instance of calendar view with
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
-        
-        navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
-                
-        itemStore = AppDelegate.itemStore
-        
-        // todays date.
-        let date = NSDate()
-        
-        // create an instance of calendar view with
         // base date (Calendar shows 12 months range from current base date)
         // selected date (marked dated in the calendar)
-        let calendarView = CalendarView.instance(date, selectedDate: date)
+        let calendarView = CalendarView.instance(selectedDate, selectedDate: selectedDate)
         calendarView.delegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -67,27 +67,15 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calendarOutsideView.backgroundColor = AppDelegate.backColor
         
         editButton.title = NSLocalizedString("CalenderViewEditBtnTitleEdit", comment: "")
-    }
-    
-    func reloadItems(){
-        var items = [Item]()
-        for item in itemStore.allItemsUnDone {
-            if let date = item.dateToNotify {
-                if date.year == selectedDate.year &&
-                    date.month == selectedDate.month &&
-                    date.day == selectedDate.day {
-                    items.append(item)
-                }
-            }
-        }
-        
-        ItemsForSelectedDate = items
+
+        navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
+
     }
     
     //delegate function
     func didSelectDate(date: NSDate) {
         selectedDate = date
-        reloadItems()
+        itemStore.selectedDates = [selectedDate]
     }
     
     //delegate to setup cell
@@ -109,6 +97,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         if segue.identifier == "ItemViewControllerSegue" {
             let destVC = segue.destinationViewController as! ItemsViewController
             tableViewController = destVC
+            itemStore.selectedDates = [selectedDate]
         }
     }
     
