@@ -145,8 +145,13 @@ class ItemStore  {
     }
 
     
-    var selectedDates : [NSDate]?
-    
+    var selectedDates : [NSDate]? {
+        didSet {
+            if let date = selectedDates {
+                print ("selected:" + String(date[0]))
+            }
+        }
+    }
     
     func findItemFromitemStore(selectedDates : [NSDate], finished: Bool) -> [Item] {
         var items = [Item]()

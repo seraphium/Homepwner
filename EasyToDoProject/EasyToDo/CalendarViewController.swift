@@ -71,16 +71,21 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     }
     
     //delegate function
-    func didSelectDate(date: NSDate) {
+    func didSelectDate(date: NSDate?) {
         selectedDate = date
-        itemStore.selectedDates = [date]
+        if let d = date {
+            itemStore.selectedDates = [d]
+
+        } else {
+            itemStore.selectedDates = nil
+        }
+        tableViewController.tableView.reloadData()
     }
     
     //delegate to setup cell
     func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date) {
         
         let calendarCell = cell as! CalendarCell
-       // calendarCell.backgroundColor = UIColor.redColor()
         calendarCell.date = date
         if let selected = selectedDate {
             calendarCell.mark = (Date(date: selected) == date)
@@ -95,7 +100,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         if segue.identifier == "ItemViewControllerSegue" {
             let destVC = segue.destinationViewController as! ItemsViewController
             tableViewController = destVC
-           // itemStore.selectedDates = [selectedDate]
         }
     }
     

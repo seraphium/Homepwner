@@ -53,15 +53,12 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     var selectedDate: NSDate? {
         didSet {
             collectionView.reloadData()
-            if let date = selectedDate {
                 dispatch_async(dispatch_get_main_queue()){
                     self.moveToSelectedDate(false)
                     if self.delegate != nil {
-                        self.delegate!.didSelectDate(date)
+                        self.delegate!.didSelectDate(self.selectedDate)
                     }
                 }
-            }
-           
         }
     }
     
@@ -147,10 +144,13 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func moveToSelectedDate(animated: Bool) {
+        guard let date = selectedDate else {
+            return
+        }
         var index = -1
         for var i = 0; i < collectionData.count; i += 1  {
             let logic = collectionData[i]
-            if logic.containsDate(selectedDate!) {
+            if logic.containsDate(date) {
                 index = i
                 break
             }
@@ -164,8 +164,25 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     //MARK: Month cell delegate.
-    func didSelect(date: Date) {
-        selectedDate = date.nsdate
+    func didSelect(date: Date?) {
+        if let d = date, selected = selectedDate {
+            if d == Date(date: selected) {
+                selectedDate = nil
+                print("selectedDate = nil")
+            } else {
+                selectedDate = d.nsdate
+                print("selectedDate = " + String(selectedDate))
+            }
+        } else if let d = date{
+                selectedDate = d.nsdate
+                print("selectedDate = " + String(selectedDate))
+
+        } else {
+                selectedDate = nil
+                print("selectedDate = nil")
+
+        }
+        
     }
     
     func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date){
