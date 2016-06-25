@@ -12,11 +12,6 @@ class ItemStore  {
     var allItemsUnDone = [Item]()
     var allItemsDone = [Item]()
     let MaxItemInUndone = 5
-    
-    //filter
-    var selectedUnfinished : [Item]!
-    var selectedFinished : [Item]!
-    
 
     //archive path to save undone items
     let unDoneItemArchiveURL : NSURL = {
@@ -150,13 +145,8 @@ class ItemStore  {
     }
 
     
-    var selectedDates : [NSDate]! {
-        didSet {
-            selectedUnfinished = findItemFromitemStore(selectedDates, finished: false)
-            selectedFinished = findItemFromitemStore(selectedDates, finished: true)
-            
-        }
-    }
+    var selectedDates : [NSDate]?
+    
     
     func findItemFromitemStore(selectedDates : [NSDate], finished: Bool) -> [Item] {
         var items = [Item]()
@@ -174,6 +164,28 @@ class ItemStore  {
         }
         return items
     }
+    
+    
+    
+    //filter
+    var selectedUnfinished : [Item] {
+        var items = [Item]()
+        if let date = selectedDates {
+            items =  findItemFromitemStore(date, finished: false)
+        }
+        return items
+    }
+    
+    var selectedFinished : [Item] {
+        
+        var items = [Item]()
+        if let date = selectedDates {
+            items =  findItemFromitemStore(date, finished: true)
+        }
+        return items
+    }
+    
+
     
 }
 
