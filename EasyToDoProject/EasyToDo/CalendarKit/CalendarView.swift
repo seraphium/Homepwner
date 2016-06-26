@@ -57,7 +57,11 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
             }
                 dispatch_async(dispatch_get_main_queue()){
                     self.collectionView.reloadData()
-                    self.moveToSelectedDate(false)
+                    if let date = self.selectedDate {
+                        self.moveToDate(date, animated: false)
+                    } else {
+                        self.moveToDate(NSDate(), animated: false)
+                    }
             }
         }
     }
@@ -143,14 +147,11 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         collectionView.scrollToItemAtIndexPath(visibleIndexPath, atScrollPosition: .CenteredHorizontally, animated: animate)
     }
     
-    func moveToSelectedDate(animated: Bool) {
-        guard let date = selectedDate else {
-            return
-        }
+    func moveToDate(moveDate: NSDate, animated: Bool) {
         var index = -1
         for var i = 0; i < collectionData.count; i += 1  {
             let logic = collectionData[i]
-            if logic.containsDate(date) {
+            if logic.containsDate(moveDate) {
                 index = i
                 break
             }

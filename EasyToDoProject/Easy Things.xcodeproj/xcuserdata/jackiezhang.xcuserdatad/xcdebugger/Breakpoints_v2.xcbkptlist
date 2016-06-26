@@ -9,46 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "488611167.802921"
+            filePath = "EasyToDo/CalendarKit/CalendarView.swift"
+            timestampString = "488641074.994575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "willDisplayCell(_:indexPath:date:)"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "didSelect(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Easy_Things.CalendarViewController.willDisplayCell (__ObjC.UICollectionViewCell, indexPath : __ObjC.NSIndexPath, date : Easy_Things.Date) -&gt; ()"
-                  moduleName = "Easy Things"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jackiezhang/Develop/Homepwner/EasyToDoProject/EasyToDo/CalendarViewController.swift"
-                  timestampString = "488611628.659708"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "142">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Easy_Things.CalendarViewController.willDisplayCell (__ObjC.UICollectionViewCell, indexPath : __ObjC.NSIndexPath, date : Easy_Things.Date) -&gt; ()"
-                  moduleName = "Easy Things"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jackiezhang/Develop/Homepwner/EasyToDoProject/EasyToDo/CalendarViewController.swift"
-                  timestampString = "488611628.659881"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "181">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "488611526.357581"
+            timestampString = "488566059.975249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "didSelectDate(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EasyToDo/CalendarKit/CalendarView.swift"
+            timestampString = "488641074.994575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "instance(_:selectedDate:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
