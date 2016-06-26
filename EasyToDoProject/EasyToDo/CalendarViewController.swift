@@ -89,7 +89,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calendarCell.date = date
         if let selected = selectedDate {
             calendarCell.mark = (Date(date: selected) == date)
-
+        } else {
+            calendarCell.mark = false
         }
         
       

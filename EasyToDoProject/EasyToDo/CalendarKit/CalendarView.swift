@@ -52,13 +52,13 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     
     var selectedDate: NSDate? {
         didSet {
-            collectionView.reloadData()
+            if self.delegate != nil {
+                self.delegate!.didSelectDate(self.selectedDate)
+            }
                 dispatch_async(dispatch_get_main_queue()){
+                    self.collectionView.reloadData()
                     self.moveToSelectedDate(false)
-                    if self.delegate != nil {
-                        self.delegate!.didSelectDate(self.selectedDate)
-                    }
-                }
+            }
         }
     }
     

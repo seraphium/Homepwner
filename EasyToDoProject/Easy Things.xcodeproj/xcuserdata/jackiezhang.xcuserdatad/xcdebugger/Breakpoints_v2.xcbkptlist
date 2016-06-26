@@ -9,30 +9,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EasyToDo/CalendarKit/CalendarView.swift"
-            timestampString = "488565788.512345"
+            filePath = "EasyToDo/CalendarViewController.swift"
+            timestampString = "488611167.802921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "didSelect(_:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "willDisplayCell(_:indexPath:date:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EasyToDo/CalendarKit/CalendarView.swift"
-            timestampString = "488566123.383217"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "CalendarView"
-            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Easy_Things.CalendarViewController.willDisplayCell (__ObjC.UICollectionViewCell, indexPath : __ObjC.NSIndexPath, date : Easy_Things.Date) -&gt; ()"
+                  moduleName = "Easy Things"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackiezhang/Develop/Homepwner/EasyToDoProject/EasyToDo/CalendarViewController.swift"
+                  timestampString = "488611628.659708"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "142">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Easy_Things.CalendarViewController.willDisplayCell (__ObjC.UICollectionViewCell, indexPath : __ObjC.NSIndexPath, date : Easy_Things.Date) -&gt; ()"
+                  moduleName = "Easy Things"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jackiezhang/Develop/Homepwner/EasyToDoProject/EasyToDo/CalendarViewController.swift"
+                  timestampString = "488611628.659881"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "181">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "488566059.975249"
+            timestampString = "488611526.357581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "didSelectDate(_:)"
             landmarkType = "5">
          </BreakpointContent>
