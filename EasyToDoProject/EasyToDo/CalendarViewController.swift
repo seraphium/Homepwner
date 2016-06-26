@@ -92,8 +92,16 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         } else {
             calendarCell.mark = false
         }
-        
-      
+        //mark current date bold and color
+        let label = calendarCell.label
+        if date == Date(date: NSDate()) {
+            label.font = UIFont.boldSystemFontOfSize(label.font.pointSize)
+            label.textColor = UIColor.redColor()
+        }
+        else {
+            label.font = UIFont.systemFontOfSize(label.font.pointSize)
+            label.textColor = UIColor.blackColor()
+        }
         
     }
     
