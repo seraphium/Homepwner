@@ -46,28 +46,36 @@ class CalendarCell : UICollectionViewCell {
         }
     }
     
-    func initViews() {
-        if hasData {
-            let w = hasDataView.bounds.width
-            let h = hasDataView.bounds.height
-            let minWH = min(w, h)
-            let inset = CGFloat(2.0)
-            let hasDataPath = UIBezierPath(arcCenter: CGPoint(x: w/2, y: h/2), radius: minWH / 2 - inset, startAngle: 0.0, endAngle: CGFloat(2 * M_PI), clockwise: true)
-            hasDataPath.lineWidth = 1
-            hasDataShapeLayer.strokeColor = UIColor.redColor().CGColor
-            hasDataShapeLayer.fillColor = UIColor.clearColor().CGColor
-            hasDataShapeLayer.backgroundColor = UIColor.clearColor().CGColor
-            hasDataShapeLayer.path = hasDataPath.CGPath
-            hasDataView.layer.addSublayer(hasDataShapeLayer)
+    func initHasDataShapeLayer(){
+        hasDataShapeLayer.removeFromSuperlayer()
+        let w = hasDataView.bounds.width
+        let h = hasDataView.bounds.height
+        let minWH = min(w, h)
+        let inset = CGFloat(2.0)
+        let hasDataPath = UIBezierPath(arcCenter: CGPoint(x: w/2, y: h/2), radius: minWH / 2 - inset, startAngle: 0.0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        hasDataPath.lineWidth = 1
+        hasDataShapeLayer.strokeColor = UIColor.redColor().CGColor
+        hasDataShapeLayer.fillColor = UIColor.clearColor().CGColor
+        hasDataShapeLayer.backgroundColor = UIColor.clearColor().CGColor
+        hasDataShapeLayer.path = hasDataPath.CGPath
+        hasDataView.layer.addSublayer(hasDataShapeLayer)
+    }
+    
+    func updateViews() {
 
+        if hasData {
+            hasDataView.hidden = false
+        } else {
+
+            hasDataView.hidden = true
         }
         
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        initViews()
+        initHasDataShapeLayer()
+        updateViews()
     }
 
     
