@@ -77,6 +77,10 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         calendarView.baseDate = baseDate
         return calendarView
     }
+    
+    func reloadData(){
+        self.collectionView.reloadData()
+    }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionData.count

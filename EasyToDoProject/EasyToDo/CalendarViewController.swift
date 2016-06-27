@@ -27,6 +27,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBOutlet var editButton: UIBarButtonItem!
     
+    var calendarView : CalendarView!
     
     var tableViewController : ItemsViewController!
     
@@ -52,6 +53,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         let calendarView = CalendarView.instance(NSDate(), selectedDate: nil)
         calendarView.delegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
+        self.calendarView = calendarView
         
         //register customized cell xib
         calendarView.RegisterCell("CalendarCell", identifier: "CalendarCell")
@@ -87,6 +89,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         
         let calendarCell = cell as! CalendarCell
         calendarCell.date = date
+        //mark selected data
         if let selected = selectedDate {
             calendarCell.mark = (Date(date: selected) == date)
         } else {
@@ -102,6 +105,15 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
             label.font = UIFont.systemFontOfSize(label.font.pointSize)
             label.textColor = UIColor.blackColor()
         }
+        //mark hasData date
+        let result = itemStore.allItemsUnDone.filter {
+            if let d = $0.dateToNotify {
+                return Date(date: d) == date
+            } else {
+                return false
+            }
+        }
+        calendarCell.hasData = (result.count > 0)
         
     }
     
@@ -137,6 +149,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBAction func calendarBarClicked(sender: UIBarButtonItem)
     {
+        calendarView.reloadData()
+        
         self.view.layoutIfNeeded()
         
         if self.calenderViewTopConstraint.constant == 0{
