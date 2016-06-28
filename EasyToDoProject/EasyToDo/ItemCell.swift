@@ -59,6 +59,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
     var expanded : Bool = false
     var datePicker : UIDatePicker!
+    var initializeDate : Date?
     
     //tag if in clear notify date status
     var cleaningItem : Bool = false
@@ -83,10 +84,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         datePicker = UIDatePicker()
         //datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
-        
-        let initialNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))
-        
-        datePicker.date = initialNotifyDate! //initial value
         
         detailTextView.delegate = self
         detailNotifyDate.delegate = self
@@ -266,6 +263,17 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             
             })
         alertController.addAction(UIAlertAction(title: cancelString, style: .Cancel, handler: nil))
+        
+        var beginDate : NSDate
+        if let date = initializeDate {
+            beginDate = date.nsdate
+        } else {
+            beginDate = NSDate()
+        }
+        let initialNotifyDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: beginDate, options: NSCalendarOptions(rawValue: 0))
+        
+        datePicker.date = initialNotifyDate! //initial value
+        
         alertController.view.addSubview(datePicker)
 
         delegate?.presentNotify(alertController);

@@ -57,8 +57,8 @@ class ItemStore  {
         return nil
     }
     
-    func CreateItem(random random: Bool, finished: Bool) -> Item {
-        let newItem = Item(random: random, dateToNotify: nil, repeatInterval: 0,finished: finished)
+    func CreateItem(random random: Bool, finished: Bool, notifyDate: NSDate?) -> Item {
+        let newItem = Item(random: random, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
         if (finished){
             allItemsDone.insert(newItem, atIndex: 0)
         } else {

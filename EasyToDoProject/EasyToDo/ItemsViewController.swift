@@ -35,6 +35,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedItem : Item?
     
+    var selectedDate : Date?
+    
     // MARK: - view lifecycle
     override func awakeFromNib() {
         
@@ -196,6 +198,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             cell.textField.text = item.name
             cell.item = item
             cell.delegate = self
+            cell.initializeDate = selectedDate
             if let dateNotify = item.dateToNotify {
                 cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
                
@@ -373,8 +376,20 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     //MARK: - other actions
     func addNewItem() {
-        
-        let newItem = self.itemStore.CreateItem(random: false, finished: false)
+        let initialDate : NSDate?
+        if let date = selectedDate {
+            initialDate = date.nsdate
+        } else {
+            initialDate = nil
+        }
+        let newItem = self.itemStore.CreateItem(random: false, finished: false, notifyDate: initialDate)
+       // direct scheduling notify if has initial date
+        if let date = initialDate {
+            AppDelegate.scheduleNotifyForDate(date,
+                                              withRepeatInteval: nil,
+                                              onItem: newItem,
+                                              withTitle: newItem.name, withBody: newItem.detail)
+        }
         
         if let index = self.itemStore.selectedUnfinished.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)

@@ -116,6 +116,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         updateHeader()
+
     }
     
     func updateHeader() {

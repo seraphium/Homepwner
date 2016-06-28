@@ -77,9 +77,11 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         selectedDate = date
         if let d = date {
             itemStore.selectedDates = [d]
-
+            tableViewController.selectedDate = Date(date: d)
         } else {
             itemStore.selectedDates = nil
+            tableViewController.selectedDate = nil
+
         }
         tableViewController.tableView.reloadData()
     }

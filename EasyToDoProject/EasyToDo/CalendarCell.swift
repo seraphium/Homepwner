@@ -48,11 +48,12 @@ class CalendarCell : UICollectionViewCell {
     
     func initHasDataShapeLayer(){
         hasDataShapeLayer.removeFromSuperlayer()
-        let w = hasDataView.bounds.width
-        let h = hasDataView.bounds.height
+        let w = hasDataView.frame.width
+        let h = hasDataView.frame.height
+       // print ("\(w):\(h)")
         let minWH = min(w, h)
         let inset = CGFloat(2.0)
-        let hasDataPath = UIBezierPath(arcCenter: CGPoint(x: w/2, y: h/2), radius: minWH / 2 - inset, startAngle: 0.0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        let hasDataPath = UIBezierPath(arcCenter: hasDataView.center, radius: minWH / 2 - inset, startAngle: 0.0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         hasDataPath.lineWidth = 1
         hasDataShapeLayer.strokeColor = UIColor.redColor().CGColor
         hasDataShapeLayer.fillColor = UIColor.clearColor().CGColor
@@ -62,11 +63,10 @@ class CalendarCell : UICollectionViewCell {
     }
     
     func updateViews() {
-
+        hasDataView.backgroundColor = UIColor.clearColor()
         if hasData {
             hasDataView.hidden = false
         } else {
-
             hasDataView.hidden = true
         }
         
@@ -74,7 +74,11 @@ class CalendarCell : UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         initHasDataShapeLayer()
+        hasDataView.layer.zPosition = -100
+        markedView.layer.zPosition = -150
+        
         updateViews()
     }
 
