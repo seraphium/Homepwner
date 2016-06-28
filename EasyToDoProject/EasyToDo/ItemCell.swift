@@ -263,15 +263,8 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             
             })
         alertController.addAction(UIAlertAction(title: cancelString, style: .Cancel, handler: nil))
-        
-        var beginDate : NSDate
-        if let date = item.dateToNotify {
-            beginDate = date
-        } else {
-            beginDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))!
-        }
 
-        datePicker.date = beginDate //initial value
+        datePicker.date = item.dateToNotify ?? NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))!
         
         alertController.view.addSubview(datePicker)
 
