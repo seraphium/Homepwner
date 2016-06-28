@@ -378,7 +378,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     func addNewItem() {
         let initialDate : NSDate?
         if let date = selectedDate {
-            initialDate = date.nsdate
+            //make 08:00 as default notify date for selected date in calendar
+            initialDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Hour, value: 8, toDate: date.nsdate, options: NSCalendarOptions(rawValue: 0))
         } else {
             initialDate = nil
         }

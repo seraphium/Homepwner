@@ -263,7 +263,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             
             })
         alertController.addAction(UIAlertAction(title: cancelString, style: .Cancel, handler: nil))
-
+        //add 30 minutes frm current date as default notify date
         datePicker.date = item.dateToNotify ?? NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Minute, value: 30, toDate: NSDate(), options: NSCalendarOptions(rawValue: 0))!
         
         alertController.view.addSubview(datePicker)
