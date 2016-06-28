@@ -39,10 +39,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var calendarViewController : CalendarViewController!
     
+    
+    var headerView : ItemTableHeaderView!
+    
     // MARK: - view lifecycle
     override func awakeFromNib() {
         
-        setupKVO()
         
         self.itemStore = AppDelegate.itemStore
         self.imageStore = AppDelegate.imageStore
@@ -53,9 +55,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        let fixWrapper = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 40)) // dont remove
+        let header = getUIViewFromBundle("ItemTableHeaderView") as! ItemTableHeaderView
+        fixWrapper.addSubview(header)
+        tableView.tableHeaderView = fixWrapper
+        
         //refresh the table data if changed in detailed view
         tableView.reloadData()
-        
 
     }
     
@@ -66,19 +73,24 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        setupKVO()
+
+        
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
 
-        
+     
+
+
     }
     
-
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
@@ -113,7 +125,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             return ""
         }
     }
-    
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let unfinishedString = NSLocalizedString("ItemViewHeaderNotFinished", comment: "")
