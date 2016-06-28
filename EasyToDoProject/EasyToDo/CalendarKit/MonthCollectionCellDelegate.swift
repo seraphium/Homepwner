@@ -10,5 +10,5 @@ import UIKit
 
 protocol MonthCollectionCellDelegate: class {
     func didSelect(date: Date?)
-    func willDisplayCell(cell: UICollectionViewCell, indexPath : NSIndexPath,  date: Date)
+    func willDisplayCell(cell: UICollectionViewCell, indexPath : NSIndexPath,  date: Date, disabled: Bool)
 }

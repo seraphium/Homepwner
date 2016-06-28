@@ -87,18 +87,20 @@ class MonthCollectionCell: UICollectionViewCell, UICollectionViewDataSource, UIC
         
         let date = dates[indexPath.item]
        
-      
+        //if use default cell xib
+        let disabled = (indexPath.item < previousMonthVisibleDatesCount) ||
+            (indexPath.item >= previousMonthVisibleDatesCount
+                + currentMonthVisibleDatesCount)
+        
         if let defaultCell = cell as? DayCollectionCell
         {
             defaultCell.date = (indexPath.item < dates.count) ? date : nil
             defaultCell.mark = (selectedDate == date)
             
-            defaultCell.disabled = (indexPath.item < previousMonthVisibleDatesCount) ||
-                (indexPath.item >= previousMonthVisibleDatesCount
-                    + currentMonthVisibleDatesCount)
+            defaultCell.disabled = disabled
         }
         else {
-            monthCellDelgate?.willDisplayCell(cell, indexPath: indexPath, date: date)
+            monthCellDelgate?.willDisplayCell(cell, indexPath: indexPath, date: date, disabled: disabled)
         }
         
         return cell

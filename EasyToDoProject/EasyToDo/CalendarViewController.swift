@@ -87,7 +87,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     }
     
     //delegate to setup cell
-    func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date) {
+    func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date, disabled: Bool) {
         
         let calendarCell = cell as! CalendarCell
         calendarCell.date = date
@@ -116,7 +116,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
             }
         }
         calendarCell.hasData = (result.count > 0)
-        
+        calendarCell.disabled = disabled
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

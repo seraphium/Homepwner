@@ -191,8 +191,8 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
     }
     
-    func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date){
-        delegate?.willDisplayCell(cell, indexPath: indexPath, date: date)
+    func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date, disabled: Bool){
+        delegate?.willDisplayCell(cell, indexPath: indexPath, date: date, disabled: disabled)
     }
     
     func RegisterCell(nibName : String, identifier : String)
