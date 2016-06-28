@@ -54,7 +54,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         calendarView.delegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView = calendarView
-        
+        self.calendarView.alpha = 0.0
         //register customized cell xib
         calendarView.RegisterCell("CalendarCell", identifier: "CalendarCell")
         
@@ -157,13 +157,15 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         
         if self.calenderViewTopConstraint.constant == 0{
             self.calenderViewTopConstraint.constant = -self.calendarOutsideView.bounds.height
+           
         } else {
             self.calenderViewTopConstraint.constant = 0
+           
         }
         
         UIView.animateWithDuration(0.5) {
             self.view.layoutIfNeeded()
-   
+            self.calendarView.alpha = self.calendarView.alpha == 0.0 ? 1.0 : 0.0
         }
     }
     
