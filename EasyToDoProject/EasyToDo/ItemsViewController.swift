@@ -37,8 +37,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var selectedDate : Date?
     
+    var calendarViewController : CalendarViewController!
+    
     // MARK: - view lifecycle
     override func awakeFromNib() {
+        
+        setupKVO()
         
         self.itemStore = AppDelegate.itemStore
         self.imageStore = AppDelegate.imageStore
@@ -64,19 +68,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        
-        
+                
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
 
-
+        
     }
- 
     
+
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
@@ -535,6 +537,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
         super.setEditing(editing, animated: animated)
     }
+    
     @IBAction func cellEditingEnd(sender: UITextField) {
         let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
@@ -556,9 +559,49 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
 
-    
+/*
+    func upSwipeFunction(sender : AnyObject){
+        if self.refreshControl!.refreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "swipe to show calendar");
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                self.refreshControl?.endRefreshing()
+                self.calendarViewController.calendarBarClicked(UIBarButtonItem())
+                
+            }
+                
 
+            
+        }
+    }
+    */
     
+    //MARK: -- KVO initialization
+    func setupKVO()
+    {
+        tableView.addObserver(self, forKeyPath: "contentOffset", options: .New , context: nil)
+    }
+
+    deinit {
+        tableView.removeObserver(self, forKeyPath: "contentOffset")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "contentOffset" {
+            if let changeValue = change {
+                let value = changeValue[NSKeyValueChangeNewKey] as! NSValue
+                let y = value.CGPointValue().y
+                if (y < -100) {
+                    print ("swipped")
+                } else {
+                    print ("swipping")
+                }
+                
+
+            }
+            
+        }
+    }
 }
 
 //MARK: - extension

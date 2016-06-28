@@ -123,6 +123,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         if segue.identifier == "ItemViewControllerSegue" {
             let destVC = segue.destinationViewController as! ItemsViewController
             tableViewController = destVC
+            tableViewController.calendarViewController = self
         }
     }
     
