@@ -12,4 +12,8 @@ class ItemTableHeaderView : UIView {
     
     @IBOutlet var headerTitle: UILabel!
     
+    override func awakeFromNib() {
+        headerTitle.text = "swipe to show calendar"
+    }
+    
 }

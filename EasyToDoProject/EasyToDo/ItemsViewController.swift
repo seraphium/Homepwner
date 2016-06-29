@@ -55,12 +55,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         let fixWrapper = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 40)) // dont remove
         let header = getUIViewFromBundle("ItemTableHeaderView") as! ItemTableHeaderView
         fixWrapper.addSubview(header)
         tableView.tableHeaderView = fixWrapper
         tableView.tableHeaderView?.hidden = true
+      
         //refresh the table data if changed in detailed view
         tableView.reloadData()
 
@@ -570,24 +570,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
 
-/*
-    func upSwipeFunction(sender : AnyObject){
-        if self.refreshControl!.refreshing {
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "swipe to show calendar");
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                self.refreshControl?.endRefreshing()
-                self.calendarViewController.calendarBarClicked(UIBarButtonItem())
-                
-            }
-                
-
-            
-        }
-    }
-    */
-    
-    //MARK: -- KVO initialization
+    //MARK:- KVO initialization
     func setupKVO()
     {
         tableView.addObserver(self, forKeyPath: "contentOffset", options: .New , context: nil)
@@ -602,10 +585,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             if let changeValue = change {
                 let value = changeValue[NSKeyValueChangeNewKey] as! NSValue
                 let y = value.CGPointValue().y
-                if (y < -50) {
-                    print ("swipped")
+                if (y < -50 && y > -100) {
                     tableView.tableHeaderView?.hidden = false
-                } else {
+                } else if (y < -100) {
+                    tableView.tableHeaderView?.hidden = true
+                    calendarViewController.calendarBarClicked(nil)
+                    
+                }else {
                     tableView.tableHeaderView?.hidden = true
 
                 }

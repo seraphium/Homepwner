@@ -150,7 +150,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
        
     }
     
-    @IBAction func calendarBarClicked(sender: UIBarButtonItem)
+    @IBAction func calendarBarClicked(sender: AnyObject?)
     {
         calendarView.reloadData()
         
