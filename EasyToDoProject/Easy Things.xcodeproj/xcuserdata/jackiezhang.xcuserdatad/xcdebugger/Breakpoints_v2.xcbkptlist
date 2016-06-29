@@ -41,13 +41,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EasyToDo/ItemsViewController.swift"
-            timestampString = "488878323.09947"
+            filePath = "EasyToDo/ItemTableRefreshView.swift"
+            timestampString = "488910243.945118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
-            landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EasyToDo/ItemTableRefreshView.swift"
+            timestampString = "488910243.945118"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "endRefresh()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EasyToDo/ItemTableRefreshView.swift"
+            timestampString = "488910243.945118"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "beginRefresh()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

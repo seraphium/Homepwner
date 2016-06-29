@@ -18,7 +18,7 @@
 		4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */; };
 		4B3B5F621D19180400576D6E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B5F611D19180400576D6E /* CalendarViewController.swift */; };
 		4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FEB011CC6905900751CF1 /* PictureViewController.swift */; };
-		4B605F5A1D22DA2F00940520 /* ItemTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B605F591D22DA2F00940520 /* ItemTableHeaderView.xib */; };
+		4B605F5A1D22DA2F00940520 /* ItemTableRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B605F591D22DA2F00940520 /* ItemTableRefreshView.xib */; };
 		4B7159F21D15288900456B68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F41D15288900456B68 /* InfoPlist.strings */; };
 		4B7159F81D152A0000456B68 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F71D152A0000456B68 /* Info.plist */; };
 		4B7EB7731CCF6B8E00C90C0E /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */; };
@@ -36,7 +36,7 @@
 		4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */; };
 		4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */; };
 		4BB29B3C1C9A9672006E1BB8 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB29B3B1C9A9672006E1BB8 /* ImageStore.swift */; };
-		4BB98E6C1D22DAE80045C3EC /* ItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB98E6B1D22DAE80045C3EC /* ItemTableHeaderView.swift */; };
+		4BB98E6C1D22DAE80045C3EC /* ItemTableRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB98E6B1D22DAE80045C3EC /* ItemTableRefreshView.swift */; };
 		4BD8CD4D1C8F209200B38916 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD8CD4C1C8F209200B38916 /* ItemCell.swift */; };
 		4BF144871D01192F0033AB71 /* ResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF144861D01192F0033AB71 /* ResourceStore.swift */; };
 		4BF144891D011D750033AB71 /* AudioStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF144881D011D750033AB71 /* AudioStore.swift */; };
@@ -78,7 +78,7 @@
 		4B3A8DFA1C847581005B1DE5 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		4B3B5F611D19180400576D6E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4B5FEB011CC6905900751CF1 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
-		4B605F591D22DA2F00940520 /* ItemTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableHeaderView.xib; sourceTree = "<group>"; };
+		4B605F591D22DA2F00940520 /* ItemTableRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableRefreshView.xib; sourceTree = "<group>"; };
 		4B7159F31D15288900456B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B7159F51D15289100456B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B7159F61D15289200456B68 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSectionHeaderView.xib; sourceTree = "<group>"; };
 		4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSectionHeaderView.swift; sourceTree = "<group>"; };
 		4BB29B3B1C9A9672006E1BB8 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
-		4BB98E6B1D22DAE80045C3EC /* ItemTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableHeaderView.swift; sourceTree = "<group>"; };
+		4BB98E6B1D22DAE80045C3EC /* ItemTableRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableRefreshView.swift; sourceTree = "<group>"; };
 		4BD8CD4C1C8F209200B38916 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		4BF144861D01192F0033AB71 /* ResourceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceStore.swift; sourceTree = "<group>"; };
 		4BF144881D011D750033AB71 /* AudioStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioStore.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				4B8EB5631CD63D0D00E9758C /* ItemSectionHeaderView.swift */,
 				4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */,
 				4BF4D6631D1BE25A0017679F /* CalendarCell.swift */,
-				4BB98E6B1D22DAE80045C3EC /* ItemTableHeaderView.swift */,
+				4BB98E6B1D22DAE80045C3EC /* ItemTableRefreshView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 			children = (
 				4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */,
 				4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */,
-				4B605F591D22DA2F00940520 /* ItemTableHeaderView.xib */,
+				4B605F591D22DA2F00940520 /* ItemTableRefreshView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 				4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */,
 				4B7159F81D152A0000456B68 /* Info.plist in Resources */,
 				4B7FBE891D1AEA8400E0CABD /* MonthCollectionCell.xib in Resources */,
-				4B605F5A1D22DA2F00940520 /* ItemTableHeaderView.xib in Resources */,
+				4B605F5A1D22DA2F00940520 /* ItemTableRefreshView.xib in Resources */,
 				4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */,
 				4B7FBE841D1AEA8400E0CABD /* CalendarView.xib in Resources */,
 				4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */,
@@ -357,7 +357,7 @@
 				4B3A8DFB1C847581005B1DE5 /* ItemStore.swift in Sources */,
 				4B8EB5641CD63D0D00E9758C /* ItemSectionHeaderView.swift in Sources */,
 				4B7FBE8A1D1AEA8400E0CABD /* NSDateAdditions.swift in Sources */,
-				4BB98E6C1D22DAE80045C3EC /* ItemTableHeaderView.swift in Sources */,
+				4BB98E6C1D22DAE80045C3EC /* ItemTableRefreshView.swift in Sources */,
 				4B3A8DE51C846DDF005B1DE5 /* AppDelegate.swift in Sources */,
 				4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */,
 				4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */,

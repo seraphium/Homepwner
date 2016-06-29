@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
+class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol, RefreshDelegate {
     
     internal typealias Completion = ((Bool) -> Void)?
     
@@ -39,8 +39,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var calendarViewController : CalendarViewController!
     
-    
-    var headerView : ItemTableHeaderView!
+    var refreshView : ItemTableRefreshView!
     
     // MARK: - view lifecycle
     override func awakeFromNib() {
@@ -54,43 +53,44 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let fixWrapper = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, 40)) // dont remove
-        let header = getUIViewFromBundle("ItemTableHeaderView") as! ItemTableHeaderView
-        fixWrapper.addSubview(header)
-        tableView.tableHeaderView = fixWrapper
-        tableView.tableHeaderView?.hidden = true
       
         //refresh the table data if changed in detailed view
         tableView.reloadData()
 
+
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         //clear the first responder (keyboard)
         view.endEditing(true)
-    
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupKVO()
-
         
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-
-     
-
-
+    
+        initRefreshView()
     }
     
+    override func viewDidLayoutSubviews() {
+        refreshView.initScrollView(tableView)
+    }
+    
+    func initRefreshView() {
+
+        refreshView = getUIViewFromBundle("ItemTableRefreshView") as! ItemTableRefreshView
+        tableView.addSubview(refreshView)
+        
+        refreshView.delegate = self
+       
+    }
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
@@ -569,37 +569,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         view.endEditing(true)
     }
     
-
-    //MARK:- KVO initialization
-    func setupKVO()
-    {
-        tableView.addObserver(self, forKeyPath: "contentOffset", options: .New , context: nil)
-    }
-
-    deinit {
-        tableView.removeObserver(self, forKeyPath: "contentOffset")
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "contentOffset" {
-            if let changeValue = change {
-                let value = changeValue[NSKeyValueChangeNewKey] as! NSValue
-                let y = value.CGPointValue().y
-                if (y < -50 && y > -100) {
-                    tableView.tableHeaderView?.hidden = false
-                } else if (y < -100) {
-                    tableView.tableHeaderView?.hidden = true
-                    calendarViewController.calendarBarClicked(nil)
-                    
-                }else {
-                    tableView.tableHeaderView?.hidden = true
-
-                }
-                
-
-            }
-            
-        }
+    //MARK:- refresh logic
+    func doRefresh(refreshView: ItemTableRefreshView) {
+        calendarViewController.calendarBarClicked(nil)
+        refreshView.endRefresh()
     }
 }
 
