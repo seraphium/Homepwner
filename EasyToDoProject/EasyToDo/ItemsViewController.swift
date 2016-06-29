@@ -60,7 +60,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let header = getUIViewFromBundle("ItemTableHeaderView") as! ItemTableHeaderView
         fixWrapper.addSubview(header)
         tableView.tableHeaderView = fixWrapper
-        
+        tableView.tableHeaderView?.hidden = true
         //refresh the table data if changed in detailed view
         tableView.reloadData()
 
@@ -602,10 +602,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             if let changeValue = change {
                 let value = changeValue[NSKeyValueChangeNewKey] as! NSValue
                 let y = value.CGPointValue().y
-                if (y < -100) {
+                if (y < -50) {
                     print ("swipped")
+                    tableView.tableHeaderView?.hidden = false
                 } else {
-                    print ("swipping")
+                    tableView.tableHeaderView?.hidden = true
+
                 }
                 
 
