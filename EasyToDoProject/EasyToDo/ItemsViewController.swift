@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol, RefreshDelegate {
+class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNotifyProtocol {
     
     internal typealias Completion = ((Bool) -> Void)?
     
@@ -41,9 +41,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var refreshView : ItemTableRefreshView!
     
+    
+    var progress: CGFloat = 0.0
+    
+    var isRefresh = false
+    
     // MARK: - view lifecycle
     override func awakeFromNib() {
-        
+        super.awakeFromNib()
         
         self.itemStore = AppDelegate.itemStore
         self.imageStore = AppDelegate.imageStore
@@ -61,6 +66,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func viewWillDisappear(animated: Bool) {
+
+        super.viewWillDisappear(animated)
         //clear the first responder (keyboard)
         view.endEditing(true)
     }
@@ -74,23 +81,24 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.backgroundColor = AppDelegate.backColor
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-    
         initRefreshView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        refreshView.initScrollView(tableView)
+        
+        refreshView.initFrame()
     }
-    
+ 
     func initRefreshView() {
 
         refreshView = getUIViewFromBundle("ItemTableRefreshView") as! ItemTableRefreshView
         tableView.addSubview(refreshView)
 
-        refreshView.delegate = self
-       
+        refreshView.scrollView = self.tableView as UIScrollView
+ 
     }
+    
     //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
@@ -569,10 +577,43 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         view.endEditing(true)
     }
     
-    //MARK:- refresh logic
-    func doRefresh(refreshView: ItemTableRefreshView) {
+    //MARK:- scroll delegate logic
+    
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        beginRefresh()
+        
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offY = max(-1*(scrollView.contentOffset.y+scrollView.contentInset.top),0)
+        progress = min(offY / refreshView.frame.size.height , 1.0)
+        print (progress)
+        
+    }
+    
+    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if isRefresh && progress >= 1 {
+            //do refresh work
+            doRefresh()
+        }
+    }
+    
+    func beginRefresh() {
+        isRefresh = true
+        //handling refresh animation
+    }
+    
+    func endRefresh() {
+        isRefresh = false
+        
+        
+    }
+
+    
+    func doRefresh() {
         calendarViewController.calendarBarClicked(nil)
-        refreshView.endRefresh()
+        endRefresh()
     }
 }
 

@@ -8,21 +8,13 @@
 
 import UIKit
 
-protocol RefreshDelegate {
-    func doRefresh(refreshView : ItemTableRefreshView)
-}
-
-class ItemTableRefreshView : UIView, UIScrollViewDelegate {
+class ItemTableRefreshView : UIView {
     
     @IBOutlet var headerTitle: UILabel!
     
     var scrollView : UIScrollView!
     
-    var delegate : RefreshDelegate?
-    
-    var progress: CGFloat = 0.0
-    
-    var isRefresh = false
+    let fixedHeight = CGFloat(80)
     
     override func awakeFromNib() {
         self.alpha = 0.6
@@ -32,49 +24,17 @@ class ItemTableRefreshView : UIView, UIScrollViewDelegate {
         
     }
     
-    func initScrollView(scrollView : UIScrollView) {
-        self.scrollView = scrollView
-        scrollView.delegate = self
-        
+    func initFrame() {
+
         if let sv = scrollView.superview {
-            self.frame = CGRectMake(0, -40, sv.frame.size.width, 40)
+            self.frame = CGRectMake(0, -fixedHeight, sv.frame.size.width, fixedHeight)
         } else {
-            self.frame = CGRectMake(0, -40, scrollView.frame.size.width, 40)
+            self.frame = CGRectMake(0, -fixedHeight, scrollView.frame.size.width, fixedHeight)
             
         }
         
     }
 
-    
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        beginRefresh()
-
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offY = max(-1*(scrollView.contentOffset.y+scrollView.contentInset.top),0)
-        progress = min(offY / self.frame.size.height , 1.0)
-        //print (progress)
-
-    }
-    
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if isRefresh && progress >= 1 {
-            //do refresh work
-            delegate?.doRefresh(self)
-        }
-    }
-    
-    func beginRefresh() {
-        isRefresh = true
-        //handling refresh animation
-    }
-    
-    func endRefresh() {
-        isRefresh = false
-
-
-    }
-    
+      
     
 }
