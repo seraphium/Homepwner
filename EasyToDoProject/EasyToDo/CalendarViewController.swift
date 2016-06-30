@@ -170,6 +170,12 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         }
     }
     
+    //MARK:- swipe gesture for calendar
+    
+    @IBAction func calendarSwiped(sender: UISwipeGestureRecognizer) {
+        
+        calendarBarClicked(nil)
+    }
 
     
  

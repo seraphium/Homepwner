@@ -72,7 +72,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
-
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
     

@@ -50,7 +50,7 @@ class ItemTableRefreshView : UIView, UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offY = max(-1*(scrollView.contentOffset.y+scrollView.contentInset.top),0)
         progress = min(offY / self.frame.size.height , 1.0)
-        print (progress)
+        //print (progress)
 
     }
     
@@ -68,11 +68,7 @@ class ItemTableRefreshView : UIView, UIScrollViewDelegate {
     
     func endRefresh() {
         isRefresh = false
-      //  UIView.animateWithDuration(0.3) {
-       //     var inSet = self.scrollView.contentInset;
-        //    inSet.top -= self.frame.size.height
-         //   self.scrollView.contentInset = inSet
-      //  }
+
 
     }
     
