@@ -79,6 +79,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         refreshView.initScrollView(tableView)
     }
     
@@ -86,7 +87,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
         refreshView = getUIViewFromBundle("ItemTableRefreshView") as! ItemTableRefreshView
         tableView.addSubview(refreshView)
-        
+
         refreshView.delegate = self
        
     }

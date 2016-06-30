@@ -25,7 +25,11 @@ class ItemTableRefreshView : UIView, UIScrollViewDelegate {
     var isRefresh = false
     
     override func awakeFromNib() {
-        headerTitle.text = "swipe to show calendar"
+        self.alpha = 0.6
+        headerTitle.textColor = AppDelegate.cellColor
+        headerTitle.text = NSLocalizedString("CalenderViewSwipeViewTitle", comment: "")
+        self.backgroundColor = AppDelegate.cellInnerColor
+        
     }
     
     func initScrollView(scrollView : UIScrollView) {
