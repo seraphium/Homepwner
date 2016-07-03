@@ -122,7 +122,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         }
         calendarCell.hasData = (result.count > 0)
         calendarCell.disabled = disabled
-        calendarCell.initHasDataShapeLayer()
         calendarCell.updateViews()
     }
     

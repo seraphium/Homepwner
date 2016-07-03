@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,9 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                         <color key="backgroundColor" red="1" green="0.58903654179999998" blue="0.64682779629999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-YN-jXi">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBV-9j-jN8">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="El4-6Q-nf9"/>
+                            <constraint firstAttribute="width" constant="50" id="QO7-K4-lO8"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRF-av-J6F">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -32,22 +36,38 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="mRF-av-J6F" secondAttribute="bottom" id="4C7-D1-Xfb"/>
-                <constraint firstItem="lPa-YN-jXi" firstAttribute="width" secondItem="AxY-Ao-My1" secondAttribute="width" id="6On-mw-zza"/>
                 <constraint firstAttribute="centerX" secondItem="AxY-Ao-My1" secondAttribute="centerX" id="8gg-E6-NFb"/>
-                <constraint firstItem="lPa-YN-jXi" firstAttribute="height" secondItem="AxY-Ao-My1" secondAttribute="height" id="DF6-PW-XLg"/>
-                <constraint firstItem="lPa-YN-jXi" firstAttribute="centerY" secondItem="AxY-Ao-My1" secondAttribute="centerY" id="HZj-i1-9XF"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Nrw-a6-oxV"/>
                 <constraint firstItem="mRF-av-J6F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Nzu-PH-Q1a"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="QBx-fg-Xih"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="WK1-uU-hoZ"/>
                 <constraint firstAttribute="centerY" secondItem="AxY-Ao-My1" secondAttribute="centerY" id="XuK-OZ-oYL"/>
-                <constraint firstItem="lPa-YN-jXi" firstAttribute="centerX" secondItem="AxY-Ao-My1" secondAttribute="centerX" id="dnB-Bq-IT9"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="cff-dr-eek"/>
                 <constraint firstItem="mRF-av-J6F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gSa-yy-6Pa"/>
                 <constraint firstItem="AxY-Ao-My1" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="h5E-qe-cDY"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="iC9-xg-2vw"/>
                 <constraint firstAttribute="trailing" secondItem="mRF-av-J6F" secondAttribute="trailing" id="iev-Ug-bni"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ji1-AI-P0W"/>
                 <constraint firstItem="AxY-Ao-My1" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="ml1-ha-bBj"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="nHf-Uf-Gxs"/>
+                <constraint firstItem="LBV-9j-jN8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tW8-2I-lsc"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="QBx-fg-Xih"/>
+                    <exclude reference="WK1-uU-hoZ"/>
+                    <exclude reference="iC9-xg-2vw"/>
+                    <exclude reference="ji1-AI-P0W"/>
+                    <exclude reference="nHf-Uf-Gxs"/>
+                    <exclude reference="tW8-2I-lsc"/>
+                </mask>
+            </variation>
             <connections>
-                <outlet property="hasDataView" destination="lPa-YN-jXi" id="Z0j-FJ-x6F"/>
+                <outlet property="hasDataView" destination="LBV-9j-jN8" id="jFb-cs-1A6"/>
+                <outlet property="heightConstraint" destination="El4-6Q-nf9" id="rKP-Fa-NUh"/>
                 <outlet property="label" destination="mRF-av-J6F" id="GnU-jG-gqj"/>
                 <outlet property="markedView" destination="AxY-Ao-My1" id="g1Q-3T-wCL"/>
+                <outlet property="widthConstraint" destination="QO7-K4-lO8" id="72W-s3-nTT"/>
             </connections>
         </collectionViewCell>
     </objects>
