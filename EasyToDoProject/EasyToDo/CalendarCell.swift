@@ -60,10 +60,12 @@ class CalendarCell : UICollectionViewCell {
         hasDataShapeLayer.backgroundColor = UIColor.clearColor().CGColor
         hasDataShapeLayer.path = hasDataPath.CGPath
         hasDataView.layer.addSublayer(hasDataShapeLayer)
+        hasDataView.backgroundColor = UIColor.clearColor()
+        
     }
     
     func updateViews() {
-        hasDataView.backgroundColor = UIColor.clearColor()
+        print ("\(date)")
         if hasData {
             hasDataView.hidden = false
         } else {
@@ -72,14 +74,13 @@ class CalendarCell : UICollectionViewCell {
         
     }
     
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        initHasDataShapeLayer()
         hasDataView.layer.zPosition = -100
         markedView.layer.zPosition = -150
         
-        updateViews()
     }
 
     

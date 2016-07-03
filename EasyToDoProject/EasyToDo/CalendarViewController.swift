@@ -115,8 +115,15 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
                 return false
             }
         }
+        let hasData = (result.count > 0)
+        if hasData {
+            print ("cell  : \(indexPath.section): \(indexPath.row) update on hasData \(hasData)")
+
+        }
         calendarCell.hasData = (result.count > 0)
         calendarCell.disabled = disabled
+        calendarCell.initHasDataShapeLayer()
+        calendarCell.updateViews()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
