@@ -101,7 +101,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         let label = calendarCell.label
         if date == Date(date: NSDate()) {
             label.font = UIFont.boldSystemFontOfSize(label.font.pointSize)
-            label.textColor = UIColor.redColor()
+            label.textColor = AppDelegate.cellInnerColor
         }
         else {
             label.font = UIFont.systemFontOfSize(label.font.pointSize)

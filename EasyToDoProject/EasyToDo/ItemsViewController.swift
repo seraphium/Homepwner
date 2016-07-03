@@ -419,6 +419,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             self.newRow = indexPath.row
             self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
         }
+        self.calendarViewController.calendarView.reloadData()
     }
     
     

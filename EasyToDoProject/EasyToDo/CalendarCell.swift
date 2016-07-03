@@ -52,7 +52,6 @@ class CalendarCell : UICollectionViewCell {
     }
 
     func createHasDataShapeLayer(){
-        hasDataShapeLayer.removeFromSuperlayer()
         widthConstraint.constant = self.frame.width
         heightConstraint.constant = self.frame.height
         let w = frame.width
@@ -62,34 +61,26 @@ class CalendarCell : UICollectionViewCell {
         let inset = CGFloat(2.0)
         let hasDataPath = UIBezierPath(arcCenter: CGPoint(x: w / 2, y: h / 2), radius: minWH / 2 - inset, startAngle: 0.0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         hasDataPath.lineWidth = 1
-        hasDataShapeLayer.strokeColor = UIColor.redColor().CGColor
+        hasDataShapeLayer.strokeColor = AppDelegate.cellInnerColor.CGColor
         hasDataShapeLayer.fillColor = UIColor.clearColor().CGColor
         hasDataShapeLayer.backgroundColor = UIColor.clearColor().CGColor
         hasDataShapeLayer.path = hasDataPath.CGPath
-        hasDataView.layer.addSublayer(hasDataShapeLayer)
         hasDataView.backgroundColor = UIColor.clearColor()
+        hasDataView.layer.addSublayer(hasDataShapeLayer)
     }
     
     func updateViews() {
-        
-        createHasDataShapeLayer()
-        if hasData {
-            hasDataView.hidden = false
-        } else {
-            hasDataView.hidden = true
-        }
-        
-    }
-    
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
 
+        //update hasDataView
+        hasDataShapeLayer.removeFromSuperlayer()
+        if hasData {
+            createHasDataShapeLayer()
+        }
+        markedView.backgroundColor = AppDelegate.backColor
         hasDataView.layer.zPosition = -100
         markedView.layer.zPosition = -150
-     
-        
     }
+    
 
     
 }
