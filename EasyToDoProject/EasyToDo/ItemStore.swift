@@ -121,7 +121,7 @@ class ItemStore  {
         } else {
             //not repeat notify
             item.finished = true
-            item.dateToNotify = nil
+           // item.dateToNotify = nil
             //remove related resources
             AppDelegate.imageStore.deleteImageForKey(item.itemKey)
             AppDelegate.audioStore.deleteAudioForKey(item.itemKey)
