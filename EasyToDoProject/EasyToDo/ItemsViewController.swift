@@ -202,8 +202,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
-        //update cell font
-       
+        cell.tableView = self.tableView
+        cell.calendarView = self.calendarViewController.calendarView
         switch indexPath.section {
         case 0:
             var expired = false

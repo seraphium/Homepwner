@@ -39,7 +39,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     @IBOutlet weak var detailNotifyLabel: UILabel!
     
     @IBOutlet weak var detailRepeatLabel: UILabel!
+    
     weak var delegate: PresentNotifyProtocol?
+    
+    weak var tableView: UITableView!
+    weak var calendarView : CalendarView!
     
     var expired : Bool = false
     //indicator
@@ -250,11 +254,20 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
                 startDate: &minuteDate,
                 interval: nil,
                 forDate: date)
-            
+            var oldDate : Date? = nil
+            if let date = self.item.dateToNotify  {
+                oldDate = Date(date: date)
+            }
             self.item.dateToNotify = minuteDate!
             let dateString = self.dateFormatter.stringFromDate(minuteDate!)
             self.detailNotifyDate.text = dateString
             self.notifyDateLabel.text = self.getNotifyFullString(minuteDate!, repeatIndex: self.item.repeatInterval)
+            
+            if Date(date: minuteDate!) != oldDate {  //day is changed, this cell should not show in selected date anymore,  need to reload calendar and table
+                self.calendarView.reloadData()
+                self.tableView.reloadData()
+            }
+            
             AppDelegate.scheduleNotifyForDate(minuteDate!,
                 withRepeatInteval: self.getIntervalFromIndex(self.item.repeatInterval),
                 onItem: self.item,
