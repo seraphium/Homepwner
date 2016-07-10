@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0ECD881D324C0F0045C3A7 /* CalendarNotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0ECD871D324C0F0045C3A7 /* CalendarNotifyView.swift */; };
+		4B0ECD8A1D324C4A0045C3A7 /* CalendarNotifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B0ECD891D324C4A0045C3A7 /* CalendarNotifyView.xib */; };
 		4B18DDAD1D13C3570092AB4F /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B18DDAC1D13C3570092AB4F /* LaunchScreenViewController.swift */; };
 		4B20AB791D007AFA0009442E /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20AB781D007AFA0009442E /* AudioViewController.swift */; };
 		4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B33DF921D1055D500579DA0 /* Localizable.strings */; };
@@ -62,6 +64,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B0ECD871D324C0F0045C3A7 /* CalendarNotifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarNotifyView.swift; sourceTree = "<group>"; };
+		4B0ECD891D324C4A0045C3A7 /* CalendarNotifyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarNotifyView.xib; sourceTree = "<group>"; };
 		4B18DDAC1D13C3570092AB4F /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		4B20AB781D007AFA0009442E /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		4B33DF8B1D10531B00579DA0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */,
 				4BF4D6631D1BE25A0017679F /* CalendarCell.swift */,
 				4BB98E6B1D22DAE80045C3EC /* ItemTableRefreshView.swift */,
+				4B0ECD871D324C0F0045C3A7 /* CalendarNotifyView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				4B8EB55F1CD6271F00E9758C /* ItemSectionHeaderView.xib */,
 				4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */,
 				4B605F591D22DA2F00940520 /* ItemTableRefreshView.xib */,
+				4B0ECD891D324C4A0045C3A7 /* CalendarNotifyView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				4B605F5A1D22DA2F00940520 /* ItemTableRefreshView.xib in Resources */,
 				4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */,
 				4B7FBE841D1AEA8400E0CABD /* CalendarView.xib in Resources */,
+				4B0ECD8A1D324C4A0045C3A7 /* CalendarNotifyView.xib in Resources */,
 				4B3A8DEA1C846DDF005B1DE5 /* Main.storyboard in Resources */,
 				4B7159F21D15288900456B68 /* InfoPlist.strings in Resources */,
 			);
@@ -350,6 +357,7 @@
 				4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */,
 				4B7EB7731CCF6B8E00C90C0E /* ImageScrollView.swift in Sources */,
 				4B7FBE821D1AEA8400E0CABD /* CalendarLogic.swift in Sources */,
+				4B0ECD881D324C0F0045C3A7 /* CalendarNotifyView.swift in Sources */,
 				4B7FBE8B1D1AEA8400E0CABD /* WeekHeaderView.swift in Sources */,
 				4B3A8DF91C8470F2005B1DE5 /* Item.swift in Sources */,
 				4BF4D6641D1BE25A0017679F /* CalendarCell.swift in Sources */,

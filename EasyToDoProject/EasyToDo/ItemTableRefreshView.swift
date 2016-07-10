@@ -25,7 +25,7 @@ class ItemTableRefreshView : UIView {
     }
     
     func initFrame() {
-
+        
         if let sv = scrollView.superview {
             self.frame = CGRectMake(0, -fixedHeight, sv.frame.size.width, fixedHeight)
         } else {

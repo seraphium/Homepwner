@@ -41,6 +41,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var refreshView : ItemTableRefreshView!
     
+    var notifyView : CalendarNotifyView!
     
     var progress: CGFloat = 0.0
     
@@ -65,6 +66,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(2, animations: {
+            self.notifyView.show()
+            }, completion:  { done -> Void in
+                UIView.animateWithDuration(2, animations: {
+                    self.notifyView.hide()
+                })
+        })
+        
+    }
+    
     override func viewWillDisappear(animated: Bool) {
 
         super.viewWillDisappear(animated)
@@ -82,12 +94,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         initRefreshView()
+        initNotifyView()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         refreshView.initFrame()
+        
+        notifyView.initFrame()
     }
  
     func initRefreshView() {
@@ -97,6 +113,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
         refreshView.scrollView = self.tableView as UIScrollView
  
+    }
+    
+    
+    func initNotifyView() {
+        notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
+        tableView.addSubview(notifyView)
+        notifyView.alpha = 0.0
+        notifyView.scrollView = self.tableView as UIScrollView
     }
     
     //MARK: - tableview actions

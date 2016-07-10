@@ -33,3 +33,4 @@
 "CalenderViewEditBtnTitleEdit" = "Edit";
 "CalenderViewEditBtnTitleDone" = "Done";
 "CalenderViewSwipeViewTitle" = "Swipe down to show calendar";
+"CalenderViewNotifyViewTitle" = "Swipe down to show calendar";
