@@ -626,6 +626,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     func beginRefresh() {
         isRefresh = true
+        if calendarViewController.calendarShowed {
+            refreshView.swipeUpRefresh()
+        } else {
+            refreshView.swipeDownRefresh()
+        }
         //handling refresh animation
     }
     

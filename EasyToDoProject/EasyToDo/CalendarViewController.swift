@@ -17,6 +17,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
     var selectedDate : NSDate?
     
+    var calendarShowed : Bool = false
+    
     @IBOutlet var calendarOutsideView: UIView!
     
     @IBOutlet var containerView: UIView!
@@ -164,9 +166,10 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         
         if self.calenderViewTopConstraint.constant == 0{
             self.calenderViewTopConstraint.constant = -self.calendarOutsideView.bounds.height
-           
+            calendarShowed = false
         } else {
             self.calenderViewTopConstraint.constant = 0
+            calendarShowed = true
            
         }
         

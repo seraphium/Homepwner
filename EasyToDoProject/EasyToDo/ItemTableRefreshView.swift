@@ -24,6 +24,15 @@ class ItemTableRefreshView : UIView {
         
     }
     
+    func swipeDownRefresh() {
+        headerTitle.text = NSLocalizedString("CalenderViewSwipeViewTitle", comment: "")
+    }
+    
+    func swipeUpRefresh() {
+        headerTitle.text = NSLocalizedString("CalenderViewSwipeHideTitle", comment: "")
+    }
+    
+    
     func initFrame() {
         
         if let sv = scrollView.superview {
