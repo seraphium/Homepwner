@@ -613,16 +613,21 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offY = max(-1*(scrollView.contentOffset.y+scrollView.contentInset.top),0)
         progress = min(offY / refreshView.frame.size.height , 1.0)
-        print (progress)
+        if isRefresh && progress >= 1 {
+            //do refresh work
+            endRefresh()
+
+            doRefresh()
+        }
         
     }
     
-    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+ /*   override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if isRefresh && progress >= 1 {
             //do refresh work
             doRefresh()
         }
-    }
+    }*/
     
     func beginRefresh() {
         isRefresh = true
@@ -636,14 +641,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     func endRefresh() {
         isRefresh = false
-        
-        
     }
 
     
     func doRefresh() {
         calendarViewController.calendarBarClicked(nil)
-        endRefresh()
     }
 }
 
