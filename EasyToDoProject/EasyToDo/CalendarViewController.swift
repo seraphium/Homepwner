@@ -36,7 +36,13 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     var tableViewController : ItemsViewController!
     
-    
+    let dateFormatter : NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .NoStyle
+        return formatter
+    }()
+
     var tableView : UITableView{
         return tableViewController.tableView
     }
@@ -113,11 +119,17 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         if let d = date {
             itemStore.selectedDates = [d]
             tableViewController.selectedDate = Date(date: d)
+            
+            navigationItem.title = dateFormatter.stringFromDate(d)
+            
         } else {
             itemStore.selectedDates = nil
             tableViewController.selectedDate = nil
+            
+            navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
 
         }
+        
         tableViewController.tableView.reloadData()
     }
     

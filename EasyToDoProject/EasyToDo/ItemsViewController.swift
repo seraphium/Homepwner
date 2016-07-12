@@ -25,13 +25,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     let kUnexpandDuration = 0.7
 
     var newRow : Int?
+    
     let dateFormatter : NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
         formatter.timeStyle = .ShortStyle
         return formatter
     }()
-
     
     var selectedItem : Item?
     
