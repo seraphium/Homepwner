@@ -304,7 +304,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let titleString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
-        let deleteAction = UITableViewRowAction(style: .Default, title: titleString, handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
+        let deleteAction = UITableViewRowAction(style: .Destructive, title: titleString, handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
             self.deleteRow(indexPath)
         })
         deleteAction.backgroundColor =  AppDelegate.backColor

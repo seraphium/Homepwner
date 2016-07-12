@@ -133,6 +133,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         initAudioButtonView()
     }
 
+
     func setCellCornerRadius(expanded: Bool, animated: Bool)
     {
         let cornerRadius = CGFloat(5.0)
@@ -173,7 +174,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
         setupShadow()
         
-
+        // init audio/pic button status
         if let it = item {
             if let _ = AppDelegate.imageStore.imageForKey(it.itemKey) {
                updateButtonLayerStatus(cameraButtonLayer, hasItem: true)
@@ -190,6 +191,13 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             }
         }
         
+        
+        //initialize delete button text color in editing mode
+        for subview in self.subviews {
+            for subview2 in subview.subviews {
+                if let button = subview2 as? UIButton { button.setTitleColor(UIColor.redColor(), forState: .Normal) }
+            }
+        }
         
 
     }
