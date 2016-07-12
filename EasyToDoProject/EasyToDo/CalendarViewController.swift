@@ -17,6 +17,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
     var selectedDate : NSDate?
     
+    var calendarShowed : Bool = false
+    
     @IBOutlet var calendarOutsideView: UIView!
     
     @IBOutlet var containerView: UIView!
@@ -158,22 +160,24 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBAction func calendarBarClicked(sender: AnyObject?)
     {
-        calendarView.reloadData()
         
-        self.view.layoutIfNeeded()
         
         if self.calenderViewTopConstraint.constant == 0{
             self.calenderViewTopConstraint.constant = -self.calendarOutsideView.bounds.height
-           
+            calendarShowed = false
         } else {
             self.calenderViewTopConstraint.constant = 0
-           
+            calendarShowed = true
+            
         }
         
         UIView.animateWithDuration(0.5) {
             self.view.layoutIfNeeded()
             self.calendarView.alpha = self.calendarView.alpha == 0.0 ? 1.0 : 0.0
         }
+        calendarView.reloadData()
+
+
     }
     
     //MARK:- swipe gesture for calendar

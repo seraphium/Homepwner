@@ -34,4 +34,7 @@
 "CalenderViewEditBtnTitleEdit" = "编辑";
 "CalenderViewEditBtnTitleDone" = "完成";
 "CalenderViewSwipeViewTitle" = "下滑显示日历";
+"CalenderViewSwipeHideTitle" = "下滑隐藏日历";
+
+"CalenderViewNotifyViewTitle" = "下滑显示日历";
 

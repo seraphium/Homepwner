@@ -41,6 +41,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var refreshView : ItemTableRefreshView!
     
+    var notifyView : CalendarNotifyView!
     
     var progress: CGFloat = 0.0
     
@@ -65,6 +66,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(2, animations: {
+            self.notifyView.show()
+            }, completion:  { done -> Void in
+                UIView.animateWithDuration(2, animations: {
+                    self.notifyView.hide()
+                })
+        })
+        
+    }
+    
     override func viewWillDisappear(animated: Bool) {
 
         super.viewWillDisappear(animated)
@@ -82,12 +94,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         initRefreshView()
+        initNotifyView()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         refreshView.initFrame()
+        
+        notifyView.initFrame()
     }
  
     func initRefreshView() {
@@ -97,6 +113,14 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
         refreshView.scrollView = self.tableView as UIScrollView
  
+    }
+    
+    
+    func initNotifyView() {
+        notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
+        tableView.addSubview(notifyView)
+        notifyView.alpha = 0.0
+        notifyView.scrollView = self.tableView as UIScrollView
     }
     
     //MARK: - tableview actions
@@ -202,8 +226,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
-        //update cell font
-       
+        cell.tableView = self.tableView
+        cell.calendarView = self.calendarViewController.calendarView
         switch indexPath.section {
         case 0:
             var expired = false
@@ -590,32 +614,39 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offY = max(-1*(scrollView.contentOffset.y+scrollView.contentInset.top),0)
         progress = min(offY / refreshView.frame.size.height , 1.0)
-        print (progress)
+        if isRefresh && progress >= 1 {
+            //do refresh work
+            endRefresh()
+
+            doRefresh()
+        }
         
     }
     
-    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+ /*   override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if isRefresh && progress >= 1 {
             //do refresh work
             doRefresh()
         }
-    }
+    }*/
     
     func beginRefresh() {
         isRefresh = true
+        if calendarViewController.calendarShowed {
+            refreshView.swipeUpRefresh()
+        } else {
+            refreshView.swipeDownRefresh()
+        }
         //handling refresh animation
     }
     
     func endRefresh() {
         isRefresh = false
-        
-        
     }
 
     
     func doRefresh() {
         calendarViewController.calendarBarClicked(nil)
-        endRefresh()
     }
 }
 

@@ -15,6 +15,7 @@ class WeekHeaderView: UICollectionReusableView {
     let formatter = NSDateFormatter()
     
     override func awakeFromNib() {
+        self.backgroundColor = AppDelegate.cellInnerColor
         if labels.count == formatter.shortWeekdaySymbols.count {
             for var i = 0; i < formatter.shortWeekdaySymbols.count; i += 1 {
                 let weekDayString = formatter.shortWeekdaySymbols[i]
