@@ -47,18 +47,6 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                            <rect key="frame" x="20" y="13" width="480" height="15"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                                <rect key="frame" x="20" y="15" width="66" height="15"/>
-                                                            </variation>
-                                                            <connections>
-                                                                <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingDidEnd" id="Qlp-q9-omp"/>
-                                                                <outlet property="delegate" destination="OmN-gi-ltQ" id="xR2-VS-4Td"/>
-                                                            </connections>
-                                                        </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-8y-faD">
                                                             <rect key="frame" x="500" y="20" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -81,12 +69,24 @@
                                                                 <action selector="itemDoneClicked:" destination="OmN-gi-ltQ" eventType="touchUpInside" id="Ixq-NK-1Hq"/>
                                                             </connections>
                                                         </button>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
+                                                            <rect key="frame" x="20" y="12" width="400" height="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                                <rect key="frame" x="20" y="15" width="66" height="15"/>
+                                                            </variation>
+                                                            <connections>
+                                                                <action selector="cellEditingEnd:" destination="OmN-gi-ltQ" eventType="editingDidEnd" id="Qlp-q9-omp"/>
+                                                                <outlet property="delegate" destination="OmN-gi-ltQ" id="xR2-VS-4Td"/>
+                                                            </connections>
+                                                        </textField>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="3Vn-TC-BFE"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="4ok-zq-c8f"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="5BU-ft-25D"/>
-                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="20" id="7t1-oM-UxX"/>
+                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="100" id="7t1-oM-UxX"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
                                                         <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="20" id="GqV-Gs-CFT"/>
