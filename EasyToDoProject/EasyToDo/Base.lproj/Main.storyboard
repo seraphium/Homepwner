@@ -48,7 +48,7 @@
                                                             </variation>
                                                         </view>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                            <rect key="frame" x="20" y="13" width="66" height="15"/>
+                                                            <rect key="frame" x="20" y="13" width="480" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -86,6 +86,7 @@
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="3Vn-TC-BFE"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="4ok-zq-c8f"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="5BU-ft-25D"/>
+                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="20" id="7t1-oM-UxX"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
                                                         <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="20" id="GqV-Gs-CFT"/>
