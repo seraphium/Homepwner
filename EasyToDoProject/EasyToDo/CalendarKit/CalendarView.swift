@@ -69,6 +69,21 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     override func awakeFromNib() {
         let nib = UINib(nibName: "MonthCollectionCell", bundle: nil)
         self.collectionView.registerNib(nib, forCellWithReuseIdentifier: "MonthCollectionCell")
+
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        //create border
+        var border = CALayer()
+        let borderHeight = CGFloat(2)
+        border.backgroundColor = AppDelegate.cellInnerColor.CGColor
+        border.frame = CGRectMake(0, self.frame.height - borderHeight, self.frame.width, borderHeight)
+        border.zPosition = 10000
+        self.layer.addSublayer(border)
+    
     }
     
     class func instance(baseDate: NSDate, selectedDate: NSDate?) -> CalendarView {
