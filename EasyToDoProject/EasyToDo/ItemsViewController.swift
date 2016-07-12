@@ -40,12 +40,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     var calendarViewController : CalendarViewController!
     
     var refreshView : ItemTableRefreshView!
-    
-    var notifyView : CalendarNotifyView!
-    
+
     var progress: CGFloat = 0.0
     
     var isRefresh = false
+    
     
     // MARK: - view lifecycle
     override func awakeFromNib() {
@@ -65,17 +64,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
 
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        UIView.animateWithDuration(2, animations: {
-            self.notifyView.show()
-            }, completion:  { done -> Void in
-                UIView.animateWithDuration(2, animations: {
-                    self.notifyView.hide()
-                })
-        })
-        
-    }
+
     
     override func viewWillDisappear(animated: Bool) {
 
@@ -94,7 +83,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         initRefreshView()
-        initNotifyView()
         
     }
     
@@ -103,7 +91,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         refreshView.initFrame()
         
-        notifyView.initFrame()
     }
  
     func initRefreshView() {
@@ -115,15 +102,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
  
     }
     
-    
-    func initNotifyView() {
-        notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
-        tableView.addSubview(notifyView)
-        notifyView.alpha = 0.0
-        notifyView.scrollView = self.tableView as UIScrollView
-    }
-    
-    //MARK: - tableview actions
+       //MARK: - tableview actions
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
         case 0:

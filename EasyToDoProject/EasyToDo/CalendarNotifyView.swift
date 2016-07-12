@@ -16,8 +16,6 @@ class CalendarNotifyView : UIView {
     var scrollView : UIScrollView!
 
     
-    let fixedHeight = CGFloat(20)
-    
     override func awakeFromNib() {
         self.alpha = 0.0
         notifyLabel.textColor = AppDelegate.cellColor
@@ -34,15 +32,6 @@ class CalendarNotifyView : UIView {
         self.alpha = 0.0
     }
     
-    func initFrame() {
-        
-        if let sv = scrollView.superview {
-            self.frame = CGRectMake(0, 0, sv.frame.size.width, fixedHeight)
-        } else {
-            self.frame = CGRectMake(0, 0, scrollView.frame.size.width, fixedHeight)
-            
-        }
-        
-    }
+
 
 }

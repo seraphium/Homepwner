@@ -26,6 +26,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBOutlet var calenderViewTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var toolbar: UIToolbar!
     
     @IBOutlet var editButton: UIBarButtonItem!
     
@@ -33,10 +34,16 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     var tableViewController : ItemsViewController!
     
+    
     var tableView : UITableView{
         return tableViewController.tableView
     }
     
+    
+    var notifyView : CalendarNotifyView!
+
+    let fixedHeight = CGFloat(30) //height for notify view
+
     override func awakeFromNib() {
         
 
@@ -71,7 +78,33 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         editButton.title = NSLocalizedString("CalenderViewEditBtnTitleEdit", comment: "")
 
         navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
+        
+        initNotifyView()
 
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(2, animations: {
+            self.notifyView.show()
+            }, completion:  { done -> Void in
+                UIView.animateWithDuration(2, animations: {
+                    self.notifyView.hide()
+                })
+        })
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let height = UIScreen.mainScreen().bounds.height - 120
+        if let sv = tableView.superview {
+            notifyView.frame = CGRectMake(0, height - fixedHeight, sv.frame.size.width, fixedHeight)
+        } else {
+            notifyView.frame = CGRectMake(0, height - fixedHeight, tableView.frame.size.width, fixedHeight)
+            
+        }
     }
     
     //delegate function
@@ -179,6 +212,17 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
 
     }
+    
+    
+    func initNotifyView() {
+        notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
+        tableView.addSubview(notifyView)
+        notifyView.alpha = 0.0
+        notifyView.scrollView = self.tableView as UIScrollView
+    }
+    
+
+    
     
     //MARK:- swipe gesture for calendar
     
