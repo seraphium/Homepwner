@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,13 +21,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFL-Wt-ffV">
-                            <rect key="frame" x="8" y="0.0" width="78" height="44"/>
+                            <rect key="frame" x="8" y="6.5" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="78" id="afq-88-tqW"/>
+                                <constraint firstAttribute="height" constant="30" id="0Je-Sz-V1d"/>
+                                <constraint firstAttribute="width" constant="30" id="afq-88-tqW"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Prev">
+                            <state key="normal">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -36,13 +37,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isq-5H-De1">
-                            <rect key="frame" x="229" y="0.0" width="78" height="44"/>
+                            <rect key="frame" x="277" y="7" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="78" id="iIt-aT-eat"/>
+                                <constraint firstAttribute="width" constant="30" id="iIt-aT-eat"/>
+                                <constraint firstAttribute="height" constant="30" id="qme-9c-ZkO"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                            <state key="normal" title="Next">
+                            <state key="normal">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -53,6 +55,8 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="Qka-zX-tRA" secondAttribute="centerY" id="18B-sv-Md6"/>
+                        <constraint firstItem="WFL-Wt-ffV" firstAttribute="centerY" secondItem="zRK-F9-ub2" secondAttribute="centerY" id="57P-KI-lnK"/>
+                        <constraint firstItem="isq-5H-De1" firstAttribute="centerY" secondItem="zRK-F9-ub2" secondAttribute="centerY" id="5DW-hP-znH"/>
                         <constraint firstAttribute="bottom" secondItem="WFL-Wt-ffV" secondAttribute="bottom" id="5es-4t-HWc"/>
                         <constraint firstAttribute="bottom" secondItem="isq-5H-De1" secondAttribute="bottom" id="EX6-yu-Z0h"/>
                         <constraint firstAttribute="centerX" secondItem="Qka-zX-tRA" secondAttribute="centerX" id="Fs1-lf-WqB"/>
@@ -62,6 +66,14 @@
                         <constraint firstItem="isq-5H-De1" firstAttribute="top" secondItem="zRK-F9-ub2" secondAttribute="top" id="f7a-g9-h8Q"/>
                         <constraint firstItem="WFL-Wt-ffV" firstAttribute="leading" secondItem="zRK-F9-ub2" secondAttribute="leading" constant="8" id="qHg-oS-pKG"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5es-4t-HWc"/>
+                            <exclude reference="erf-ie-jlF"/>
+                            <exclude reference="EX6-yu-Z0h"/>
+                            <exclude reference="f7a-g9-h8Q"/>
+                        </mask>
+                    </variation>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Os7-2b-dhF">
                     <rect key="frame" x="0.0" y="44" width="315" height="224"/>

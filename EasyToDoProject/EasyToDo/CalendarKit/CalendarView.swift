@@ -25,6 +25,10 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     
     var cellIdentifier : String = "DayCollectionCell"
     
+    //previous button layer
+    let previousLayer = CAShapeLayer()
+    //next button layer
+    var nextLayer = CAShapeLayer()
     
     private var collectionData = [CalendarLogic]()
     var baseDate: NSDate? {
@@ -84,6 +88,8 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         border.zPosition = 10000
         
         self.layer.addSublayer(border)
+        initPreviousButtonView()
+        initNextButtonView()
     
     }
     
@@ -219,6 +225,85 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
     }
     
+    func initNextButtonView() {
+        
+        let bezierPath = UIBezierPath()
+        bezierPath.moveToPoint(CGPoint(x: 13.34, y: 8.81))
+        bezierPath.addCurveToPoint(CGPoint(x: 12.94, y: 8.81), controlPoint1: CGPoint(x: 13.22, y: 8.69), controlPoint2: CGPoint(x: 13.05, y: 8.69))
+        bezierPath.addLineToPoint(CGPoint(x: 12.54, y: 9.2))
+        bezierPath.addCurveToPoint(CGPoint(x: 12.54, y: 9.6), controlPoint1: CGPoint(x: 12.43, y: 9.32), controlPoint2: CGPoint(x: 12.43, y: 9.49))
+        bezierPath.addLineToPoint(CGPoint(x: 18.32, y: 15.37))
+        bezierPath.addLineToPoint(CGPoint(x: 12.26, y: 21.43))
+        bezierPath.addCurveToPoint(CGPoint(x: 12.26, y: 21.83), controlPoint1: CGPoint(x: 12.15, y: 21.54), controlPoint2: CGPoint(x: 12.15, y: 21.71))
+        bezierPath.addLineToPoint(CGPoint(x: 12.66, y: 22.22))
+        bezierPath.addCurveToPoint(CGPoint(x: 13.05, y: 22.22), controlPoint1: CGPoint(x: 12.77, y: 22.34), controlPoint2: CGPoint(x: 12.94, y: 22.34))
+        bezierPath.addLineToPoint(CGPoint(x: 19.17, y: 16.11))
+        bezierPath.addCurveToPoint(CGPoint(x: 19.28, y: 16.05), controlPoint1: CGPoint(x: 19.22, y: 16.11), controlPoint2: CGPoint(x: 19.28, y: 16.05))
+        bezierPath.addLineToPoint(CGPoint(x: 19.67, y: 15.66))
+        bezierPath.addCurveToPoint(CGPoint(x: 19.67, y: 15.26), controlPoint1: CGPoint(x: 19.79, y: 15.54), controlPoint2: CGPoint(x: 19.79, y: 15.37))
+        bezierPath.addLineToPoint(CGPoint(x: 13.34, y: 8.81))
+        bezierPath.closePath()
+        bezierPath.moveToPoint(CGPoint(x: 15.26, y: 0.26))
+        bezierPath.addCurveToPoint(CGPoint(x: 0.26, y: 15.26), controlPoint1: CGPoint(x: 7, y: 0.26), controlPoint2: CGPoint(x: 0.26, y: 7))
+        bezierPath.addCurveToPoint(CGPoint(x: 15.26, y: 30.26), controlPoint1: CGPoint(x: 0.26, y: 23.52), controlPoint2: CGPoint(x: 7, y: 30.26))
+        bezierPath.addCurveToPoint(CGPoint(x: 30.26, y: 15.26), controlPoint1: CGPoint(x: 23.52, y: 30.26), controlPoint2: CGPoint(x: 30.26, y: 23.52))
+        bezierPath.addCurveToPoint(CGPoint(x: 15.26, y: 0.26), controlPoint1: CGPoint(x: 30.26, y: 7), controlPoint2: CGPoint(x: 23.52, y: 0.26))
+        bezierPath.closePath()
+        bezierPath.moveToPoint(CGPoint(x: 15.26, y: 29.13))
+        bezierPath.addCurveToPoint(CGPoint(x: 1.39, y: 15.26), controlPoint1: CGPoint(x: 7.62, y: 29.13), controlPoint2: CGPoint(x: 1.39, y: 22.9))
+        bezierPath.addCurveToPoint(CGPoint(x: 15.26, y: 1.39), controlPoint1: CGPoint(x: 1.39, y: 7.62), controlPoint2: CGPoint(x: 7.62, y: 1.39))
+        bezierPath.addCurveToPoint(CGPoint(x: 29.13, y: 15.26), controlPoint1: CGPoint(x: 22.9, y: 1.39), controlPoint2: CGPoint(x: 29.13, y: 7.62))
+        bezierPath.addCurveToPoint(CGPoint(x: 15.26, y: 29.13), controlPoint1: CGPoint(x: 29.13, y: 22.9), controlPoint2: CGPoint(x: 22.9, y: 29.13))
+        bezierPath.closePath()
+
+        bezierPath.miterLimit = 4;
+        
+        nextLayer.backgroundColor = UIColor.clearColor().CGColor
+        nextLayer.path = bezierPath.CGPath
+        nextLayer.fillColor = AppDelegate.cellInnerColor.CGColor
+
+        nextButton.layer.addSublayer(nextLayer)
+    }
     
-    
+    func initPreviousButtonView() {
+        
+        let bezierPath = UIBezierPath()
+        bezierPath.moveToPoint(CGPoint(x: 16.92, y: 8.55))
+        bezierPath.addCurveToPoint(CGPoint(x: 17.32, y: 8.55), controlPoint1: CGPoint(x: 17.04, y: 8.43), controlPoint2: CGPoint(x: 17.21, y: 8.43))
+        bezierPath.addLineToPoint(CGPoint(x: 17.72, y: 8.94))
+        bezierPath.addCurveToPoint(CGPoint(x: 17.72, y: 9.34), controlPoint1: CGPoint(x: 17.83, y: 9.06), controlPoint2: CGPoint(x: 17.83, y: 9.23))
+        bezierPath.addLineToPoint(CGPoint(x: 11.94, y: 15.11))
+        bezierPath.addLineToPoint(CGPoint(x: 18, y: 21.17))
+        bezierPath.addCurveToPoint(CGPoint(x: 18, y: 21.57), controlPoint1: CGPoint(x: 18.11, y: 21.28), controlPoint2: CGPoint(x: 18.11, y: 21.45))
+        bezierPath.addLineToPoint(CGPoint(x: 17.6, y: 21.96))
+        bezierPath.addCurveToPoint(CGPoint(x: 17.21, y: 21.96), controlPoint1: CGPoint(x: 17.49, y: 22.08), controlPoint2: CGPoint(x: 17.32, y: 22.08))
+        bezierPath.addLineToPoint(CGPoint(x: 11.09, y: 15.85))
+        bezierPath.addCurveToPoint(CGPoint(x: 10.98, y: 15.79), controlPoint1: CGPoint(x: 11.04, y: 15.85), controlPoint2: CGPoint(x: 10.98, y: 15.79))
+        bezierPath.addLineToPoint(CGPoint(x: 10.58, y: 15.4))
+        bezierPath.addCurveToPoint(CGPoint(x: 10.58, y: 15), controlPoint1: CGPoint(x: 10.47, y: 15.28), controlPoint2: CGPoint(x: 10.47, y: 15.11))
+        bezierPath.addLineToPoint(CGPoint(x: 16.92, y: 8.55))
+        bezierPath.closePath()
+        bezierPath.moveToPoint(CGPoint(x: 15, y: 0))
+        bezierPath.addCurveToPoint(CGPoint(x: 30, y: 15), controlPoint1: CGPoint(x: 23.26, y: 0), controlPoint2: CGPoint(x: 30, y: 6.74))
+        bezierPath.addCurveToPoint(CGPoint(x: 15, y: 30), controlPoint1: CGPoint(x: 30, y: 23.26), controlPoint2: CGPoint(x: 23.26, y: 30))
+        bezierPath.addCurveToPoint(CGPoint(x: 0, y: 15), controlPoint1: CGPoint(x: 6.74, y: 30), controlPoint2: CGPoint(x: 0, y: 23.26))
+        bezierPath.addCurveToPoint(CGPoint(x: 15, y: 0), controlPoint1: CGPoint(x: 0, y: 6.74), controlPoint2: CGPoint(x: 6.74, y: 0))
+        bezierPath.closePath()
+        bezierPath.moveToPoint(CGPoint(x: 15, y: 28.87))
+        bezierPath.addCurveToPoint(CGPoint(x: 28.87, y: 15), controlPoint1: CGPoint(x: 22.64, y: 28.87), controlPoint2: CGPoint(x: 28.87, y: 22.64))
+        bezierPath.addCurveToPoint(CGPoint(x: 15, y: 1.13), controlPoint1: CGPoint(x: 28.87, y: 7.36), controlPoint2: CGPoint(x: 22.64, y: 1.13))
+        bezierPath.addCurveToPoint(CGPoint(x: 1.13, y: 15), controlPoint1: CGPoint(x: 7.36, y: 1.13), controlPoint2: CGPoint(x: 1.13, y: 7.36))
+        bezierPath.addCurveToPoint(CGPoint(x: 15, y: 28.87), controlPoint1: CGPoint(x: 1.13, y: 22.64), controlPoint2: CGPoint(x: 7.36, y: 28.87))
+        bezierPath.closePath()
+
+        bezierPath.miterLimit = 4;
+                
+        previousLayer.backgroundColor = UIColor.clearColor().CGColor
+        previousLayer.path = bezierPath.CGPath
+        previousLayer.fillColor = AppDelegate.cellInnerColor.CGColor
+        previousButton.layer.addSublayer(previousLayer)
+    }
+
+
+
 }
