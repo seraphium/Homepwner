@@ -73,22 +73,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "489981963.4814"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "willDisplayCell(_:indexPath:date:disabled:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "EasyToDo/CalendarCell.swift"
             timestampString = "489245717.19059"
             startingColumnNumber = "9223372036854775807"
@@ -176,22 +160,6 @@
             startingLineNumber = "595"
             endingLineNumber = "595"
             landmarkName = "scrollViewDidScroll(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "489981963.4814"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

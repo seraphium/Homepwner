@@ -19,6 +19,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     var calendarShowed : Bool = false
     
+    var notifyShowed : Bool = false
+    
     @IBOutlet var calendarOutsideView: UIView!
     
     @IBOutlet var containerView: UIView!
@@ -46,11 +48,11 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
     override func awakeFromNib() {
         
-
         itemStore = AppDelegate.itemStore
         
+        //load if already showed notify before
+        notifyShowed = NSUserDefaults.standardUserDefaults().boolForKey("notify")
         
-        // create an instance of calendar view with
     }
     
     override func viewDidLoad() {
@@ -78,34 +80,32 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         editButton.title = NSLocalizedString("CalenderViewEditBtnTitleEdit", comment: "")
 
         navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
-        
-        initNotifyView()
-
 
     }
     
     override func viewDidAppear(animated: Bool) {
-        UIView.animateWithDuration(2, animations: {
-            self.notifyView.show()
-            }, completion:  { done -> Void in
-                UIView.animateWithDuration(2, animations: {
-                    self.notifyView.hide()
-                })
-        })
+        if !notifyShowed { //if already showed before. not show again
+            initNotifyView()
+            UIView.animateWithDuration(2, animations: {
+                self.notifyView.show()
+                }, completion:  { done -> Void in
+                    UIView.animateWithDuration(2, animations: {
+                        self.notifyView.hide()
+                        }, completion: { done -> Void in
+                            self.notifyShowed = true
+                            NSUserDefaults.standardUserDefaults().setBool(self.notifyShowed, forKey: "notify")
+                            
+                    })
+            })
 
+        }
+       
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        let height = UIScreen.mainScreen().bounds.height - 120
-        if let sv = tableView.superview {
-            notifyView.frame = CGRectMake(0, height - fixedHeight, sv.frame.size.width, fixedHeight)
-        } else {
-            notifyView.frame = CGRectMake(0, height - fixedHeight, tableView.frame.size.width, fixedHeight)
-            
-        }
     }
+    
     
     //delegate function
     func didSelectDate(date: NSDate?) {
@@ -216,9 +216,17 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     func initNotifyView() {
         notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
+        if let sv = tableView.superview {
+            notifyView.frame = CGRectMake(0, 10, sv.frame.size.width, fixedHeight)
+        } else {
+            notifyView.frame = CGRectMake(0, 10, tableView.frame.size.width, fixedHeight)
+            
+        }
+
         tableView.addSubview(notifyView)
         notifyView.alpha = 0.0
         notifyView.scrollView = self.tableView as UIScrollView
+        
     }
     
 
