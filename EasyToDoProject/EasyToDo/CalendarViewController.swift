@@ -130,7 +130,7 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
 
         }
         
-        tableViewController.tableView.reloadData()
+        tableView.reloadData()
     }
     
     //delegate to setup cell

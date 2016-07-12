@@ -39,6 +39,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     var calendarViewController : CalendarViewController!
     
+    var calendarView : CalendarView{
+        return calendarViewController.calendarView
+    }
+    
     var refreshView : ItemTableRefreshView!
 
     var progress: CGFloat = 0.0
@@ -206,7 +210,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         cell.tableView = self.tableView
-        cell.calendarView = self.calendarViewController.calendarView
+        cell.calendarView = self.calendarView
         switch indexPath.section {
         case 0:
             var expired = false
@@ -422,7 +426,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             self.newRow = indexPath.row
             self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
         }
-        self.calendarViewController.calendarView.reloadData()
+        self.calendarView.reloadData()
     }
     
     
@@ -517,7 +521,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesInRange: range)
         self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
-        self.calendarViewController.calendarView.reloadData()
+        self.calendarView.reloadData()
     }
     
     @IBAction func itemDoneClicked(sender: UIButton) {
