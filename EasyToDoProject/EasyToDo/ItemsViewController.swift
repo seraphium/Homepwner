@@ -514,6 +514,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesInRange: range)
         self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
+        self.calendarViewController.calendarView.reloadData()
     }
     
     @IBAction func itemDoneClicked(sender: UIButton) {
