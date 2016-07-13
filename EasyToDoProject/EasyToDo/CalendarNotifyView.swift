@@ -25,7 +25,7 @@ class CalendarNotifyView : UIView {
     }
 
     func show() {
-        self.alpha  = 0.6
+        self.alpha  = 1.0
     }
     
     func hide() {
