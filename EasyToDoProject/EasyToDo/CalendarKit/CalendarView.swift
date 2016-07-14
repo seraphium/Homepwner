@@ -14,12 +14,14 @@ let kMonthRange = 12
 
 class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, MonthCollectionCellDelegate {
     
+    @IBOutlet var headerView: UIView!
+    @IBOutlet var headerViewHeightContraint: NSLayoutConstraint!
+    
     @IBOutlet var monthYearLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var previousButton: UIButton!
     weak var delegate: CalendarViewDelegate?
-
     
     var cellXibName : String = "DayCollectionCell"
     
@@ -31,6 +33,18 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     var nextLayer = CAShapeLayer()
     
     private var collectionData = [CalendarLogic]()
+    
+    var showHeader : Bool  = true {
+        didSet {
+            if showHeader {
+                headerViewHeightContraint.constant = 40
+            } else {
+                headerViewHeightContraint.constant = 0
+            }
+        }
+        
+    }
+    
     var baseDate: NSDate? {
         didSet {
             collectionData = [CalendarLogic]()
@@ -73,8 +87,6 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     override func awakeFromNib() {
         let nib = UINib(nibName: "MonthCollectionCell", bundle: nil)
         self.collectionView.registerNib(nib, forCellWithReuseIdentifier: "MonthCollectionCell")
-
-        
     }
     
     override func layoutSubviews() {
@@ -99,6 +111,8 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         calendarView.baseDate = baseDate
         return calendarView
     }
+    
+
     
     func reloadData(){
         self.collectionView.reloadData()
@@ -150,6 +164,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         if collectionData.count > pageNumber {
             let logic = collectionData[pageNumber]
             monthYearLabel.text = logic.currentMonthAndYear as String
+            delegate?.updateHeader(monthYearLabel.text!)
         }
     }
     

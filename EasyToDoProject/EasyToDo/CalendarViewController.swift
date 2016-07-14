@@ -74,6 +74,8 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         self.calendarView.alpha = 0.0
         //register customized cell xib
         calendarView.RegisterCell("CalendarCell", identifier: "CalendarCell")
+        //show month label headr
+        calendarView.showHeader = false
         
         calenderContainerView.addSubview(calendarView)
         // Constraints for calendar view - Fill the parent view.
@@ -206,7 +208,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     @IBAction func calendarBarClicked(sender: AnyObject?)
     {
         
-        
         if self.calenderViewTopConstraint.constant == 0{
             self.calenderViewTopConstraint.constant = -self.calendarOutsideView.bounds.height
             calendarShowed = false
@@ -222,9 +223,22 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         }
         calendarView.reloadData()
 
+        calendarView.updateHeader()
 
     }
     
+    func updateHeader(dateString: String) {
+        if selectedDate == nil{
+            if calendarShowed {
+                navigationItem.title = dateString
+
+            } else {
+                navigationItem.title = NSLocalizedString("CalendarNavTitle", comment: "")
+
+            }
+
+        }
+    }
     
     func initNotifyView() {
         notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView

@@ -11,4 +11,6 @@ import UIKit
 protocol CalendarViewDelegate: class {
     func didSelectDate(date: NSDate?)
     func willDisplayCell(cell: UICollectionViewCell, indexPath: NSIndexPath, date: Date, disabled: Bool)
+    
+    func updateHeader(dateString: String)
 }
