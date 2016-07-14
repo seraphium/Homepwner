@@ -22,7 +22,6 @@
 		4B5FEB021CC6905900751CF1 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5FEB011CC6905900751CF1 /* PictureViewController.swift */; };
 		4B605F5A1D22DA2F00940520 /* ItemTableRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B605F591D22DA2F00940520 /* ItemTableRefreshView.xib */; };
 		4B7159F21D15288900456B68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F41D15288900456B68 /* InfoPlist.strings */; };
-		4B7159F81D152A0000456B68 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7159F71D152A0000456B68 /* Info.plist */; };
 		4B7EB7731CCF6B8E00C90C0E /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7EB7721CCF6B8E00C90C0E /* ImageScrollView.swift */; };
 		4B7FBE821D1AEA8400E0CABD /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE771D1AEA8400E0CABD /* CalendarLogic.swift */; };
 		4B7FBE831D1AEA8400E0CABD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7FBE781D1AEA8400E0CABD /* CalendarView.swift */; };
@@ -330,7 +329,6 @@
 				4BF4D6601D1BDAA20017679F /* DayCollectionCell.xib in Resources */,
 				4B3A8DEC1C846DDF005B1DE5 /* Assets.xcassets in Resources */,
 				4B8EB5601CD6271F00E9758C /* ItemSectionHeaderView.xib in Resources */,
-				4B7159F81D152A0000456B68 /* Info.plist in Resources */,
 				4B7FBE891D1AEA8400E0CABD /* MonthCollectionCell.xib in Resources */,
 				4B605F5A1D22DA2F00940520 /* ItemTableRefreshView.xib in Resources */,
 				4B33DF901D1055D500579DA0 /* Localizable.strings in Resources */,

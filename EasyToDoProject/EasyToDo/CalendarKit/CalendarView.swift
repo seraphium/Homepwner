@@ -39,7 +39,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
                 var set = Set<CalendarLogic>()
                 set.insert(CalendarLogic(date: baseDate!))
                 // advance one year
-                for var i = 0; i < kMonthRange; i += 1 {
+                for _ in [0 ..< kMonthRange] {
                     dateIter1 = dateIter1.firstDayOfFollowingMonth
                     dateIter2 = dateIter2.firstDayOfPreviousMonth
                     
@@ -81,7 +81,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         super.layoutSubviews()
         
         //create border
-        var border = CALayer()
+        let border = CALayer()
         let borderHeight = CGFloat(2)
         border.backgroundColor = AppDelegate.cellInnerColor.colorWithAlphaComponent(0.5).CGColor
         border.frame = CGRectMake(0, self.frame.height - borderHeight, self.frame.width, borderHeight)
@@ -176,7 +176,7 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     
     func moveToDate(moveDate: NSDate, animated: Bool) {
         var index = -1
-        for var i = 0; i < collectionData.count; i += 1  {
+        for i in 0 ..< collectionData.count  {
             let logic = collectionData[i]
             if logic.containsDate(moveDate) {
                 index = i
