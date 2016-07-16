@@ -526,11 +526,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     @IBAction func itemDoneClicked(sender: UIButton) {
         let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
+        let item = itemStore.selectedUnfinished[indexPath.row]
         if (indexPath.section == 0)
         {
-            let item = itemStore.selectedUnfinished[indexPath.row]
-
-            //if expired (red), means badgenumber will remains and need reduce
+                //if expired (red), means badgenumber will remains and need reduce
             if cell.expired {
                 cell.expired = false
                 UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
@@ -540,10 +539,11 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             
             finishItemReload(item)
             
-           // if item.expanded {
-            //    updateWithUnExpandCell(cell, item: item, completion: nil)
-        //}
-        
+            
+        } else { //restore item
+            
+            
+            
         }
     }
 
