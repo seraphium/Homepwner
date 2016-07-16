@@ -128,9 +128,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
         //init customized path layer
         initIndicatorView()
-        initDoneButtonView()
+        initDoneButtonLayer()
         initCameraButtonView()
         initAudioButtonView()
+        
+        setupDoneButton(true)
     }
 
 
@@ -390,7 +392,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
     }
     
-    func initDoneButtonView() {
+    func initDoneButtonLayer() {
         
         //// Bezier Drawing
         doneButtonPath = UIBezierPath()
@@ -431,9 +433,16 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         doneButtonLayer.path = doneButtonPath.CGPath
         doneButtonLayer.fillColor = AppDelegate.backColor.CGColor
         doneButtonLayer.fillRule = kCAFillRuleEvenOdd
-        doneButton.layer.addSublayer(doneButtonLayer)
 
 
+    }
+    
+    func setupDoneButton(done: Bool) {
+        doneButton.layer.sublayers?.removeAll()
+        if done {
+            doneButton.layer.addSublayer(doneButtonLayer)
+
+        }
     }
     
     func initCameraButtonView()
