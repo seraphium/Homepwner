@@ -92,6 +92,11 @@ class ItemStore  {
             //remove item in Done list if items exceed
             if allItemsDone.count >= MaxItemInUndone {
                 allItemsDone.removeAtIndex(0)
+                //remove related resources
+                 AppDelegate.imageStore.deleteImageForKey(item.itemKey)
+                 AppDelegate.audioStore.deleteAudioForKey(item.itemKey)
+                
+                
                 actualToIndex -= 1
                 
             }
@@ -128,11 +133,7 @@ class ItemStore  {
             //not repeat notify
             item.finished = true
             // item.dateToNotify = nil
-            //remove related resources
-            // AppDelegate.imageStore.deleteImageForKey(item.itemKey)
-            //AppDelegate.audioStore.deleteAudioForKey(item.itemKey)
-
-            let destIndexPath = self.allItemsDone.count
+                let destIndexPath = self.allItemsDone.count
             if let source = sourceIndex {
                 self.MoveItemAtIndex(source, toIndex: destIndexPath, finishing: true)
             }

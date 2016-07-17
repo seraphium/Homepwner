@@ -235,6 +235,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             item = itemStore.selectedFinished[indexPath.row]
                 //finished items are all expanded
             cell.updateCell(false, finished: true, expired: false)
+            cell.notifyDateLabel.text = nil
+
 
         default:
             
