@@ -57,8 +57,14 @@ class ItemStore  {
         return nil
     }
     
-    func CreateItem(random random: Bool, finished: Bool, notifyDate: NSDate?) -> Item {
-        let newItem = Item(random: random, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
+    func CreateItem(itemName: String?, itemDetail : String? , finished: Bool, notifyDate: NSDate?) -> Item {
+        let newItem : Item
+        if let name = itemName{
+            newItem = Item(name: name, detail: itemDetail, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
+        } else {
+            newItem = Item(dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
+        }
+
         if (finished){
             allItemsDone.insert(newItem, atIndex: 0)
         } else {
@@ -121,10 +127,10 @@ class ItemStore  {
         } else {
             //not repeat notify
             item.finished = true
-           // item.dateToNotify = nil
+            // item.dateToNotify = nil
             //remove related resources
-            AppDelegate.imageStore.deleteImageForKey(item.itemKey)
-            AppDelegate.audioStore.deleteAudioForKey(item.itemKey)
+            // AppDelegate.imageStore.deleteImageForKey(item.itemKey)
+            //AppDelegate.audioStore.deleteAudioForKey(item.itemKey)
 
             let destIndexPath = self.allItemsDone.count
             if let source = sourceIndex {

@@ -30,24 +30,11 @@ class Item: NSObject, NSCoding {
         super.init()
     }
     
-    convenience init(random : Bool = false, dateToNotify: NSDate?, repeatInterval: Int,finished: Bool) {
-        if random {
-            let adjective = ["Fluffy", "Rusty", "Shiny"]
-            let nouns = ["Bear", "Spork", "Mac"]
-            var idx = arc4random_uniform(UInt32(adjective.count))
-            let randomAdjective = adjective[Int(idx)]
-            idx = arc4random_uniform(UInt32(nouns.count))
-            let randomNouns = nouns[Int(idx)]
-            let randomName = "\(randomAdjective) \(randomNouns)"
-            let randomSerialNumber = NSUUID().UUIDString.componentsSeparatedByString("-").first!
-            
-            self.init(name: randomName, detail: randomSerialNumber, dateToNotify: dateToNotify,repeatInterval: repeatInterval, finished: finished)
-            
-        } else{
+    convenience init(dateToNotify: NSDate?, repeatInterval: Int,finished: Bool) {
             let newItemString = NSLocalizedString("NewItemName", comment: "New item default name")
 
             self.init(name: newItemString, detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
-        }
+        
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

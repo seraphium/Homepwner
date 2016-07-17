@@ -211,58 +211,53 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         cell.tableView = self.tableView
         cell.calendarView = self.calendarView
+        var item : Item!
         switch indexPath.section {
         case 0:
             var expired = false
-            let item = itemStore.selectedUnfinished[indexPath.row]
+            item = itemStore.selectedUnfinished[indexPath.row]
             if let date = item.dateToNotify {
                 if date.earlierDate(NSDate()) == item.dateToNotify {
                     expired = true
                 }
             }
            // print ("index:" + String(indexPath.row) + " expanded:" + String(item.expanded))
-            cell.updateCell(item.expanded, finished: false, expired: expired)
-            cell.textField.text = item.name
-            cell.item = item
-            cell.delegate = self
             cell.initializeDate = selectedDate
+            cell.updateCell(item.expanded, finished: false, expired: expired)
             if let dateNotify = item.dateToNotify {
                 cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
-               
+                
             } else {
                 cell.notifyDateLabel.text = nil
             }
-
-            if let detail = item.detail {
-                cell.detailTextView.text = detail
-            } else {
-                cell.detailTextView.text = nil
-            }
-            if let date = item.dateToNotify {
-                cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
-            }else{
-                cell.detailNotifyDate.text = nil
-            }
-            cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
-
-           
+            
         case 1:
-            let item = itemStore.selectedFinished[indexPath.row]
+            item = itemStore.selectedFinished[indexPath.row]
                 //finished items are all expanded
             cell.updateCell(false, finished: true, expired: false)
-            cell.textField.text = item.name
-            cell.notifyDateLabel.text = ""
-            cell.item = item
-            if let detail = item.detail {
-                cell.detailTextView.text = detail
-            }
-
-            cell.delegate = self
 
         default:
+            
             break;
         }
+        
+        cell.textField.text = item.name
+        if let detail = item.detail {
+            cell.detailTextView.text = detail
+        } else {
+            cell.detailTextView.text = nil
+        }
+        if let date = item.dateToNotify {
+            cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
+        }else{
+            cell.detailNotifyDate.text = nil
+        }
+        cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
 
+        cell.item = item
+        
+        cell.delegate = self
+        
         return cell
        
     }
@@ -308,7 +303,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let titleString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
         let deleteAction = UITableViewRowAction(style: .Destructive, title: titleString, handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
-            self.deleteRow(indexPath)
+            self.deleteRow(indexPath, restore: false)
         })
         deleteAction.backgroundColor =  AppDelegate.backColor
         
@@ -410,7 +405,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         } else {
             initialDate = nil
         }
-        let newItem = self.itemStore.CreateItem(random: false, finished: false, notifyDate: initialDate)
+        let newItem = self.itemStore.CreateItem(nil, itemDetail: nil, finished: false, notifyDate: initialDate)
        // direct scheduling notify if has initial date
         if let date = initialDate {
             AppDelegate.scheduleNotifyForDate(date,
@@ -462,7 +457,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
     }
     
-    private func deleteItemFromTable(item: Item, indexPath: NSIndexPath) {
+    private func deleteItemFromTable(item: Item, indexPath: NSIndexPath, restore: Bool) {
         //remove from notification center if has created notify
         if (item.dateToNotify) != nil && item.finished != true {
             AppDelegate.cancelNotification(item)
@@ -470,9 +465,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         //remove from item store
         self.itemStore.RemoveItem(item)
         //remove the item from image cache
-        self.imageStore.deleteImageForKey(item.itemKey)
-        self.audioStore.deleteAudioForKey(item.itemKey)
-        //delete from tableview
+        //if restore item from finished , not delete
+        if !restore {
+            self.imageStore.deleteImageForKey(item.itemKey)
+            self.audioStore.deleteAudioForKey(item.itemKey)
+
+        }
+                //delete from tableview
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         
         tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: .Automatic)
@@ -486,7 +485,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
-    func deleteRow(indexPath: NSIndexPath) {
+    func deleteRow(indexPath: NSIndexPath, restore: Bool) {
         var item : Item
         if (indexPath.section == 0)
         {
@@ -499,13 +498,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             let cancelAction = UIAlertAction(title: NSLocalizedString("ItemCellDeleteCancel", comment: ""), style: .Cancel, handler: nil)
             ac.addAction(cancelAction)
             let deleteAction = UIAlertAction(title: NSLocalizedString("ItemCellDeleteLabel", comment: ""), style: .Destructive, handler: { (action) -> Void in
-                self.deleteItemFromTable(item, indexPath: indexPath)
+                self.deleteItemFromTable(item, indexPath: indexPath, restore: true)
             })
             ac.addAction(deleteAction)
             presentViewController(ac, animated: true, completion: nil)
         } else {
             item = itemStore.selectedFinished[indexPath.row]
-            self.deleteItemFromTable(item, indexPath: indexPath)
+            self.deleteItemFromTable(item, indexPath: indexPath, restore: restore)
             
         }
         
@@ -526,9 +525,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     @IBAction func itemDoneClicked(sender: UIButton) {
         let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
-        let item = itemStore.selectedUnfinished[indexPath.row]
         if (indexPath.section == 0)
         {
+            let item = itemStore.selectedUnfinished[indexPath.row]
                 //if expired (red), means badgenumber will remains and need reduce
             if cell.expired {
                 cell.expired = false
@@ -541,9 +540,28 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             
             
         } else { //restore item
+        
+            //add new item
+            let item = itemStore.selectedFinished[indexPath.row]
+            let newItem = self.itemStore.CreateItem(item.name, itemDetail: item.detail, finished: false, notifyDate: item.dateToNotify)
+            // direct scheduling notify if has initial date
+            if let date = item.dateToNotify {
+                AppDelegate.scheduleNotifyForDate(date,
+                                                  withRepeatInteval: nil,
+                                                  onItem: newItem,
+                                                  withTitle: newItem.name, withBody: newItem.detail)
+            }
             
-            
-            
+            if let index = self.itemStore.selectedUnfinished.indexOf(newItem) {
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
+                self.newRow = indexPath.row
+                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+            }
+            self.calendarView.reloadData()
+
+            //delete old item
+            deleteRow(indexPath, restore: true)
         }
     }
 
