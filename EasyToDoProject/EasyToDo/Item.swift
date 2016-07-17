@@ -18,22 +18,27 @@ class Item: NSObject, NSCoding {
     let itemKey : String
     var finished: Bool
     var expanded: Bool
-    init(name: String, detail: String?, dateToNotify : NSDate?, repeatInterval: Int,finished: Bool){
+    init(itemkey: String?, name: String, detail: String?, dateToNotify : NSDate?, repeatInterval: Int,finished: Bool){
         self.name = name
         self.detail = detail
         self.dateToNotify = dateToNotify
         self.repeatInterval = repeatInterval
         self.dateCreated = NSDate()
-        self.itemKey = NSUUID().UUIDString
+        if let key = itemkey {
+            self.itemKey = key
+        } else {
+            self.itemKey = NSUUID().UUIDString
+
+        }
         self.finished = finished
         self.expanded = false
         super.init()
     }
     
-    convenience init(dateToNotify: NSDate?, repeatInterval: Int,finished: Bool) {
+    convenience init(itemkey: String?, dateToNotify: NSDate?, repeatInterval: Int,finished: Bool) {
             let newItemString = NSLocalizedString("NewItemName", comment: "New item default name")
 
-            self.init(name: newItemString, detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
+        self.init(itemkey: itemkey, name: newItemString, detail: nil, dateToNotify: dateToNotify, repeatInterval: repeatInterval,finished: finished)
         
     }
     

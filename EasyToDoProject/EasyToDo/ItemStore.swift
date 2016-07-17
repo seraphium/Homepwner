@@ -57,12 +57,12 @@ class ItemStore  {
         return nil
     }
     
-    func CreateItem(itemName: String?, itemDetail : String? , finished: Bool, notifyDate: NSDate?) -> Item {
+    func CreateItem(itemkey: String?, itemName: String?, itemDetail : String? , finished: Bool, notifyDate: NSDate?) -> Item {
         let newItem : Item
         if let name = itemName{
-            newItem = Item(name: name, detail: itemDetail, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
+            newItem = Item(itemkey: itemkey , name: name, detail: itemDetail, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
         } else {
-            newItem = Item(dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
+            newItem = Item(itemkey: itemkey, dateToNotify: notifyDate, repeatInterval: 0,finished: finished)
         }
 
         if (finished){

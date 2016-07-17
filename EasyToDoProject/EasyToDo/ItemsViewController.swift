@@ -405,7 +405,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         } else {
             initialDate = nil
         }
-        let newItem = self.itemStore.CreateItem(nil, itemDetail: nil, finished: false, notifyDate: initialDate)
+        let newItem = self.itemStore.CreateItem(nil, itemName: nil, itemDetail: nil, finished: false, notifyDate: initialDate)
        // direct scheduling notify if has initial date
         if let date = initialDate {
             AppDelegate.scheduleNotifyForDate(date,
@@ -543,7 +543,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
             //add new item
             let item = itemStore.selectedFinished[indexPath.row]
-            let newItem = self.itemStore.CreateItem(item.name, itemDetail: item.detail, finished: false, notifyDate: item.dateToNotify)
+            let newItem = self.itemStore.CreateItem(item.itemKey,itemName: item.name, itemDetail: item.detail, finished: false, notifyDate: item.dateToNotify)
             // direct scheduling notify if has initial date
             if let date = item.dateToNotify {
                 AppDelegate.scheduleNotifyForDate(date,
