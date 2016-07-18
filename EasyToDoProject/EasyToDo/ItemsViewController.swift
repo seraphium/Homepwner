@@ -20,7 +20,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     var doneClosed : Bool = false
     
     let kCloseCellHeight: CGFloat = 50
-    let kOpenCellHeight: CGFloat = 250
+    let kOpenCellHeight: CGFloat = 260
     let kExpandDuration = 0.5
     let kUnexpandDuration = 0.7
 
@@ -211,37 +211,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         cell.tableView = self.tableView
         cell.calendarView = self.calendarView
-        var item : Item!
-        switch indexPath.section {
-        case 0:
-            var expired = false
-            item = itemStore.selectedUnfinished[indexPath.row]
-            if let date = item.dateToNotify {
-                if date.earlierDate(NSDate()) == item.dateToNotify {
-                    expired = true
-                }
-            }
-           // print ("index:" + String(indexPath.row) + " expanded:" + String(item.expanded))
-            cell.initializeDate = selectedDate
-            cell.updateCell(item.expanded, finished: false, expired: expired)
-            if let dateNotify = item.dateToNotify {
-                cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
-                
-            } else {
-                cell.notifyDateLabel.text = nil
-            }
-            
-        case 1:
-            item = itemStore.selectedFinished[indexPath.row]
-                //finished items are all expanded
-            cell.updateCell(false, finished: true, expired: false)
-            cell.notifyDateLabel.text = nil
-
-
-        default:
-            
-            break;
-        }
+        let item = indexPath.section == 0 ? itemStore.selectedUnfinished[indexPath.row] : itemStore.selectedFinished[indexPath.row]
         
         cell.textField.text = item.name
         if let detail = item.detail {
@@ -255,12 +225,38 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             cell.detailNotifyDate.text = nil
         }
         cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
-
+        
         cell.item = item
         
         cell.delegate = self
         
-        return cell
+        switch indexPath.section {
+        case 0:
+            var expired = false
+            if let date = item.dateToNotify {
+                if date.earlierDate(NSDate()) == item.dateToNotify {
+                    expired = true
+                }
+            }
+            cell.initializeDate = selectedDate
+            if let dateNotify = item.dateToNotify {
+                cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
+                
+            } else {
+                cell.notifyDateLabel.text = nil
+            }
+            cell.updateCell(item.expanded, finished: false, expired: expired)
+        case 1:
+                //finished items are all expanded
+            cell.notifyDateLabel.text = nil
+            cell.updateCell(false, finished: true, expired: false)
+
+        default:
+            
+            break;
+        }
+        
+             return cell
        
     }
     
@@ -625,12 +621,6 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
     }
     
- /*   override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if isRefresh && progress >= 1 {
-            //do refresh work
-            doRefresh()
-        }
-    }*/
     
     func beginRefresh() {
         isRefresh = true
