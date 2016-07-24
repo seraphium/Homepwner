@@ -15,6 +15,8 @@
 "ItemListClickToAddLabel" = "点击+添加项目";
 "ItemListShowFinishedLabel" = "显示已完成";
 "ItemListHideFinishedLabel" = "隐藏已完成";
+"ItemListDetailDateNotifyPlaceHolder" = "点击选择提醒时间";
+"ItemListDetailViewPlaceHolder" = "输入详细信息";
 "ItemCellDateSelectorOK" = "确定";
 "ItemCellDateSelectorCancel" = "取消";
 "ItemCellDateAlreadyExpired" = "已过期";

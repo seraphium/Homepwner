@@ -14,6 +14,8 @@
 "ItemListClickToAddLabel" = "Press + To Add New Item";
 "ItemListShowFinishedLabel" = "Show Finished";
 "ItemListHideFinishedLabel" = "Hide Finished";
+"ItemListDetailDateNotifyPlaceHolder" = "Select Notify Time";
+"ItemListDetailViewPlaceHolder" = "Enter detail info";
 "ItemCellDateSelectorOK" = "OK";
 "ItemCellDateSelectorCancel" = "Cancel";
 "ItemCellDateAlreadyExpired" = "Expired";

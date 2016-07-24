@@ -30,6 +30,9 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     //foldview content
     @IBOutlet weak var detailTextView: UITextView!
     
+    
+    @IBOutlet weak var detailTextViewPlaceholderLabel: UILabel!
+    
     @IBOutlet weak var detailNotifyDate: UITextField!
     
     @IBOutlet weak var detailAddPhoto: UIButton!
@@ -92,11 +95,19 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         detailTextView.delegate = self
         detailNotifyDate.delegate = self
 
+        detailNotifyDate.placeholder = NSLocalizedString("ItemListDetailDateNotifyPlaceHolder", comment: "")
         
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
         textField.tintColor = AppDelegate.cellColor
+        
+        detailTextViewPlaceholderLabel.text = NSLocalizedString("ItemListDetailViewPlaceHolder", comment: "")
+        
+        //mimic default placeholder font and size/color
+        detailTextViewPlaceholderLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
+        detailTextViewPlaceholderLabel.textColor = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255, alpha: 1.0)
+        
         
         doneButton.contentHorizontalAlignment = .Fill
         doneButton.contentVerticalAlignment = .Fill
@@ -123,7 +134,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         detailDetailLabel.textColor = foldTextColor
         detailNotifyLabel.textColor = foldTextColor
         detailRepeatLabel.textColor = foldTextColor
-                
+        
         setCellCornerRadius(expanded, animated: false)
 
         //init customized path layer
@@ -221,7 +232,22 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     }
     
     //MARK: - textfield delegate
+    func textViewDidChange(textView: UITextView) {
+        if textView.hasText() {
+            detailTextViewPlaceholderLabel.hidden = true
+        } else {
+            detailTextViewPlaceholderLabel.hidden = false
+        }
+        
+        
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        detailTextViewPlaceholderLabel.hidden = true
 
+    }
+    
     func textViewDidEndEditing(textView: UITextView) {
         if textView.tag == 111 && textView.text != nil {
             item.detail = textView.text!
@@ -638,6 +664,12 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
             self.expired = true
         } else {
             indicatorView.alpha = 0.0
+        }
+        
+        if detailTextView.hasText() {
+            detailTextViewPlaceholderLabel.hidden = true
+        } else {
+            detailTextViewPlaceholderLabel.hidden = false
         }
 
     }

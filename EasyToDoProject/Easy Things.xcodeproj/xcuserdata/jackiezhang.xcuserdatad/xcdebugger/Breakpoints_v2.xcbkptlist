@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemCell.swift"
-            timestampString = "490458174.630446"
+            timestampString = "490505962.371488"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "layoutSubviews()"
+            startingLineNumber = "667"
+            endingLineNumber = "667"
+            landmarkName = "updateCell(_:finished:expired:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
