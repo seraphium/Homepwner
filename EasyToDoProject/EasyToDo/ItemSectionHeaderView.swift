@@ -20,5 +20,11 @@ class ItemSectionHeaderView: UIView {
         // Drawing code
     }
     */
+    override func awakeFromNib() {
+        tintColor = AppDelegate.cellInnerColor
+        titleLabel.textColor = AppDelegate.cellInnerColor
+        headerLabel.textColor = AppDelegate.cellInnerColor
+        
+    }
 
 }

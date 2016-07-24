@@ -144,12 +144,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let unfinishedString = NSLocalizedString("ItemViewHeaderNotFinished", comment: "")
         let addNewString = NSLocalizedString("ItemListClickToAddLabel", comment: "")
+        let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
 
         if section == 0 {
-            let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
-            view.tintColor = AppDelegate.cellInnerColor
-            view.titleLabel.textColor = AppDelegate.cellInnerColor
-            view.headerLabel.textColor = AppDelegate.cellInnerColor
             
             if itemStore.selectedUnfinished.count > 0 {
                 view.titleLabel.text = unfinishedString
