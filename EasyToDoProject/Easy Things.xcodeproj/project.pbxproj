@@ -46,6 +46,7 @@
 		4BF4D6601D1BDAA20017679F /* DayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */; };
 		4BF4D6621D1BDF8E0017679F /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */; };
 		4BF4D6641D1BE25A0017679F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF4D6631D1BE25A0017679F /* CalendarCell.swift */; };
+		4BF9D6AD1D44E72E002B58A1 /* AddNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9D6AC1D44E72E002B58A1 /* AddNewCell.swift */; };
 		4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		4BF4D65F1D1BDAA20017679F /* DayCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCollectionCell.xib; sourceTree = "<group>"; };
 		4BF4D6611D1BDF8E0017679F /* CalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCell.xib; sourceTree = "<group>"; };
 		4BF4D6631D1BE25A0017679F /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		4BF9D6AC1D44E72E002B58A1 /* AddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCell.swift; sourceTree = "<group>"; };
 		4BFACA6E1D123C3E0041435F /* AudioMeteringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMeteringView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			children = (
 				4B82FAE41CED5AC8004F4E76 /* BaseCell.swift */,
 				4BD8CD4C1C8F209200B38916 /* ItemCell.swift */,
+				4BF9D6AC1D44E72E002B58A1 /* AddNewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				4BFACA6F1D123C3E0041435F /* AudioMeteringView.swift in Sources */,
 				4B7FBE831D1AEA8400E0CABD /* CalendarView.swift in Sources */,
 				4BB29B3C1C9A9672006E1BB8 /* ImageStore.swift in Sources */,
+				4BF9D6AD1D44E72E002B58A1 /* AddNewCell.swift in Sources */,
 				4B7FBE861D1AEA8400E0CABD /* DayCollectionCell.swift in Sources */,
 				4B7FBE851D1AEA8400E0CABD /* Date.swift in Sources */,
 				4BF4D6591D1BCD8A0017679F /* CalendarViewDelegate.swift in Sources */,

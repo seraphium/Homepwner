@@ -110,8 +110,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView : UITableView, numberOfRowsInSection section : Int) -> Int{
         switch section {
         case 0:
-            return itemStore.selectedUnfinished.count
+            return 1
         case 1:
+            return itemStore.selectedUnfinished.count
+        case 2:
             if doneClosed {
                 return 0
             } else {
@@ -126,15 +128,17 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let unfinishedTitle = NSLocalizedString("ItemListHeaderNotFinished", comment: "")
         switch section {
         case 0:
-            return unfinishedTitle
+            return ""
         case 1:
+            return unfinishedTitle
+        case 2:
             return ""
         default:
             return ""
@@ -146,13 +150,13 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let addNewString = NSLocalizedString("ItemListClickToAddLabel", comment: "")
         let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
 
-        if section == 0 {
+        if section == 1 || section == 0{
             
             if itemStore.selectedUnfinished.count > 0 {
                 view.titleLabel.text = unfinishedString
                 view.headerLabel.alpha = 0
                 view.headerButton.alpha = 0
-            } else {
+            } else  {
                 view.headerLabel.text = addNewString
                 view.titleLabel.alpha = 0
                 view.headerButton.alpha = 0
@@ -161,7 +165,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             return view
             
             
-        } else if section == 1 {
+        } else if section == 2 {
             if (itemStore.selectedFinished.count > 0) {
                 let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
                 view.titleLabel.alpha = 0
@@ -194,8 +198,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return itemStore.selectedUnfinished[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
+            return kCloseCellHeight
         case 1:
+            return itemStore.selectedUnfinished[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
+        case 2:
             return itemStore.selectedFinished[indexPath.row].expanded ? kOpenCellHeight : kCloseCellHeight
         default:
             return 0
@@ -204,56 +210,68 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
-        cell.tableView = self.tableView
-        cell.calendarView = self.calendarView
-        let item = indexPath.section == 0 ? itemStore.selectedUnfinished[indexPath.row] : itemStore.selectedFinished[indexPath.row]
-        
-        cell.textField.text = item.name
-        if let detail = item.detail {
-            cell.detailTextView.text = detail
-        } else {
-            cell.detailTextView.text = nil
-        }
-        if let date = item.dateToNotify {
-            cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
-        }else{
-            cell.detailNotifyDate.text = nil
-        }
-        cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
-        
-        cell.item = item
-        
-        cell.delegate = self
-        
-        switch indexPath.section {
-        case 0:
-            var expired = false
-            if let date = item.dateToNotify {
-                if date.earlierDate(NSDate()) == item.dateToNotify {
-                    expired = true
-                }
-            }
-            cell.initializeDate = selectedDate
-            if let dateNotify = item.dateToNotify {
-                cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
-                
-            } else {
-                cell.notifyDateLabel.text = nil
-            }
-            cell.updateCell(item.expanded, finished: false, expired: expired)
-        case 1:
-                //finished items are all expanded
-            cell.notifyDateLabel.text = nil
-            cell.updateCell(false, finished: true, expired: false)
-
-        default:
+    
+        var item : Item!
+        if indexPath.section != 0 {
             
-            break;
+            let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
+            cell.tableView = self.tableView
+            cell.calendarView = self.calendarView
+            if indexPath.section == 1 {
+                item = itemStore.selectedUnfinished[indexPath.row]
+            }
+            if indexPath.section == 2{
+                item = itemStore.selectedFinished[indexPath.row]
+            }
+            
+            cell.textField.text = item.name
+            if let detail = item.detail {
+                cell.detailTextView.text = detail
+            } else {
+                cell.detailTextView.text = nil
+            }
+            if let date = item.dateToNotify {
+                cell.detailNotifyDate.text = dateFormatter.stringFromDate(date)
+            }else{
+                cell.detailNotifyDate.text = nil
+            }
+            cell.repeatSelector.selectedSegmentIndex = item.repeatInterval
+            
+            cell.item = item
+            
+            cell.delegate = self
+            
+            if indexPath.section == 1 {
+                var expired = false
+                if let date = item.dateToNotify {
+                    if date.earlierDate(NSDate()) == item.dateToNotify {
+                        expired = true
+                    }
+                }
+                cell.initializeDate = selectedDate
+                if let dateNotify = item.dateToNotify {
+                    cell.notifyDateLabel.text = cell.getNotifyFullString(dateNotify, repeatIndex: item.repeatInterval)
+                    
+                } else {
+                    cell.notifyDateLabel.text = nil
+                }
+                cell.updateCell(item.expanded, finished: false, expired: expired)
+            } else {
+                //finished items are all expanded
+                cell.notifyDateLabel.text = nil
+                cell.updateCell(false, finished: true, expired: false)
+                
+
+            }
+            return cell
+
         }
         
-             return cell
+   
+        let addCell = tableView.dequeueReusableCellWithIdentifier("AddNewCell", forIndexPath: indexPath) as! AddNewCell
+        return addCell
+        
+ 
        
     }
     
@@ -262,8 +280,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //no normal selection
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ItemCell
-        toggleExpand(cell)
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ItemCell {
+            toggleExpand(cell)
+
+        }
 
     }
     
@@ -410,10 +430,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         }
         
         if let index = self.itemStore.selectedUnfinished.indexOf(newItem) {
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            let indexPath = NSIndexPath(forRow: index, inSection: 1)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
             self.newRow = indexPath.row
-            self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+            self.tableView.reloadSections(NSIndexSet(index:1), withRowAnimation: .Fade)
         }
         self.calendarView.reloadData()
     }
@@ -424,7 +444,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     private func toggleExpand(cell: ItemCell) {
         let indexPath = tableView.indexPathForCell(cell)!
         switch indexPath.section {
-        case 0:
+        case 1:
             selectedItem = itemStore.selectedUnfinished[indexPath.row]
 
             if !((selectedItem?.expanded)!) { // open cell
@@ -435,7 +455,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
                     self.selectedItem = nil
                 }
             }
-        case 1:
+        case 2:
             selectedItem = itemStore.selectedFinished[indexPath.row]
 
             if !((selectedItem?.expanded)!)   { // open cell
@@ -482,7 +502,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
     func deleteRow(indexPath: NSIndexPath, restore: Bool) {
         var item : Item
-        if (indexPath.section == 0)
+        if indexPath.section == 1
         {
             item = itemStore.selectedUnfinished[indexPath.row]
             let deleteString = NSLocalizedString("ItemCellDeleteLabel", comment: "")
@@ -497,7 +517,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             })
             ac.addAction(deleteAction)
             presentViewController(ac, animated: true, completion: nil)
-        } else {
+        }
+        else if indexPath.section == 2 {
             item = itemStore.selectedFinished[indexPath.row]
             self.deleteItemFromTable(item, indexPath: indexPath, restore: restore)
             
@@ -520,7 +541,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     @IBAction func itemDoneClicked(sender: UIButton) {
         let cell = sender.superview?.superview?.superview?.superview as! ItemCell
         let indexPath = self.tableView.indexPathForCell(cell)!
-        if (indexPath.section == 0)
+        if (indexPath.section == 1)
         {
             let item = itemStore.selectedUnfinished[indexPath.row]
                 //if expired (red), means badgenumber will remains and need reduce
@@ -534,7 +555,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             finishItemReload(item)
             
             
-        } else { //restore item
+        } else if indexPath.section == 2 { //restore item
         
             //add new item
             let item = itemStore.selectedFinished[indexPath.row]
@@ -548,10 +569,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
             }
             
             if let index = self.itemStore.selectedUnfinished.indexOf(newItem) {
-                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                let indexPath = NSIndexPath(forRow: index, inSection: 1)
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation:.Fade)
                 self.newRow = indexPath.row
-                self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Fade)
+                self.tableView.reloadSections(NSIndexSet(index:1), withRowAnimation: .Fade)
             }
             self.calendarView.reloadData()
 
@@ -579,17 +600,22 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     @IBAction func cellEditingEnd(sender: UITextField) {
-        let cell = sender.superview?.superview?.superview?.superview as! ItemCell
-        let indexPath = self.tableView.indexPathForCell(cell)!
-        var item : Item
-        if (indexPath.section == 0)
-        {
-            item = itemStore.selectedUnfinished[indexPath.row]
-        } else {
-            item = itemStore.selectedFinished[indexPath.row]
-            
+        
+        if let cell = sender.superview?.superview?.superview?.superview as? ItemCell {
+            if let indexPath = self.tableView.indexPathForCell(cell) {
+                if indexPath.section == 1
+                {
+                    let item = itemStore.selectedUnfinished[indexPath.row]
+                    item.name = sender.text!
+                    
+                } else if indexPath.section == 2{
+                    let item = itemStore.selectedFinished[indexPath.row]
+                    item.name = sender.text!
+                }
+
+            }
+          
         }
-        item.name = sender.text!
         sender.resignFirstResponder()
     }
     
