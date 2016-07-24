@@ -147,17 +147,16 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let unfinishedString = NSLocalizedString("ItemViewHeaderNotFinished", comment: "")
-        let addNewString = NSLocalizedString("ItemListClickToAddLabel", comment: "")
         let view = getUIViewFromBundle("ItemSectionHeaderView") as! ItemSectionHeaderView
 
-        if section == 1 || section == 0{
+        if section == 1{
             
             if itemStore.selectedUnfinished.count > 0 {
                 view.titleLabel.text = unfinishedString
                 view.headerLabel.alpha = 0
                 view.headerButton.alpha = 0
             } else  {
-                view.headerLabel.text = addNewString
+                view.headerLabel.text = ""
                 view.titleLabel.alpha = 0
                 view.headerButton.alpha = 0
 
@@ -192,7 +191,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        if section != 0 {
+            return 50
+
+        } else {
+            return 0
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -412,7 +416,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     //MARK: - other actions
-    func addNewItem() {
+    @IBAction func addNewItem(sender: AnyObject) {
         let initialDate : NSDate?
         if let date = selectedDate {
             //make 08:00 as default notify date for selected date in calendar

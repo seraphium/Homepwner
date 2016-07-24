@@ -494,19 +494,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8P-PF-kUi">
-                                            <rect key="frame" x="279" y="14.5" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new item here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqi-mm-jQJ">
+                                            <rect key="frame" x="18" y="10" width="524" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZE-H6-TUW">
+                                            <rect key="frame" x="562" y="14" width="22" height="22"/>
+                                            <connections>
+                                                <action selector="addNewItem:" destination="OmN-gi-ltQ" eventType="touchUpInside" id="b3y-Vk-6bR"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="e8P-PF-kUi" firstAttribute="centerY" secondItem="ZOf-C7-NG4" secondAttribute="centerY" id="lxt-g5-p63"/>
-                                        <constraint firstItem="e8P-PF-kUi" firstAttribute="centerX" secondItem="ZOf-C7-NG4" secondAttribute="centerX" id="mW9-gb-qVz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Pqi-mm-jQJ" secondAttribute="trailing" constant="50" id="BKp-Pn-398"/>
+                                        <constraint firstItem="LZE-H6-TUW" firstAttribute="centerY" secondItem="Pqi-mm-jQJ" secondAttribute="centerY" id="Ng2-Y9-0lG"/>
+                                        <constraint firstItem="Pqi-mm-jQJ" firstAttribute="leading" secondItem="LZE-H6-TUW" secondAttribute="trailing" constant="-200" id="Pjf-F0-9YO"/>
+                                        <constraint firstItem="Pqi-mm-jQJ" firstAttribute="leading" secondItem="ZOf-C7-NG4" secondAttribute="leadingMargin" constant="10" id="U8b-gA-uTD"/>
+                                        <constraint firstItem="LZE-H6-TUW" firstAttribute="leading" secondItem="Pqi-mm-jQJ" secondAttribute="trailing" constant="20" id="bND-kd-1kd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="LZE-H6-TUW" secondAttribute="trailing" constant="5" id="bds-ea-qiP"/>
+                                        <constraint firstItem="Pqi-mm-jQJ" firstAttribute="centerY" secondItem="ZOf-C7-NG4" secondAttribute="centerY" id="eNN-Dt-9F2"/>
+                                        <constraint firstItem="LZE-H6-TUW" firstAttribute="leading" secondItem="Pqi-mm-jQJ" secondAttribute="leading" id="hVh-QN-6fL"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Pjf-F0-9YO"/>
+                                            <exclude reference="bds-ea-qiP"/>
+                                            <exclude reference="hVh-QN-6fL"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <connections>
+                                    <outlet property="addNewItemBtn" destination="LZE-H6-TUW" id="3pj-Ql-bBe"/>
+                                    <outlet property="newItemName" destination="Pqi-mm-jQJ" id="a8X-gf-bGG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -587,21 +609,11 @@
                                 </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-4i-Z7x">
-                                <rect key="frame" x="0.0" y="314" width="600" height="198"/>
+                                <rect key="frame" x="0.0" y="314" width="600" height="242"/>
                                 <connections>
                                     <segue destination="OmN-gi-ltQ" kind="embed" identifier="ItemViewControllerSegue" id="cBf-zJ-Jav"/>
                                 </connections>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="861-AO-yQd">
-                                <rect key="frame" x="0.0" y="512" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem image="calendar" id="jUB-Cz-7gq">
-                                        <connections>
-                                            <action selector="calendarBarClicked:" destination="Dg2-TT-fMS" id="UWe-Dv-QDw"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -610,14 +622,11 @@
                             <constraint firstItem="Qsh-4i-Z7x" firstAttribute="centerY" secondItem="hRP-lf-TYT" secondAttribute="centerY" id="4hD-8K-eBa"/>
                             <constraint firstItem="Qsh-4i-Z7x" firstAttribute="leading" secondItem="hRP-lf-TYT" secondAttribute="leading" id="5i6-gz-huY"/>
                             <constraint firstAttribute="trailing" secondItem="I6k-Gq-oHo" secondAttribute="trailing" id="6Cv-E7-d9j"/>
-                            <constraint firstItem="WzR-Y5-Upr" firstAttribute="top" secondItem="861-AO-yQd" secondAttribute="bottom" id="6bR-Qf-fZr"/>
+                            <constraint firstItem="WzR-Y5-Upr" firstAttribute="top" secondItem="Qsh-4i-Z7x" secondAttribute="bottom" id="6dW-SF-0ha"/>
                             <constraint firstItem="WzR-Y5-Upr" firstAttribute="top" secondItem="Qsh-4i-Z7x" secondAttribute="bottom" id="KEQ-9U-rAL"/>
                             <constraint firstItem="Qsh-4i-Z7x" firstAttribute="top" secondItem="CTz-W7-UzP" secondAttribute="bottom" id="Mku-WT-Oa5"/>
-                            <constraint firstItem="861-AO-yQd" firstAttribute="top" secondItem="Qsh-4i-Z7x" secondAttribute="bottom" id="QE0-2J-gQC"/>
                             <constraint firstItem="I6k-Gq-oHo" firstAttribute="leading" secondItem="hRP-lf-TYT" secondAttribute="leading" id="WeB-aM-mwy"/>
-                            <constraint firstAttribute="trailing" secondItem="861-AO-yQd" secondAttribute="trailing" id="k8J-as-j1F"/>
                             <constraint firstItem="I6k-Gq-oHo" firstAttribute="top" secondItem="eTy-7i-ULT" secondAttribute="bottom" id="s3s-La-gvG"/>
-                            <constraint firstItem="861-AO-yQd" firstAttribute="leading" secondItem="hRP-lf-TYT" secondAttribute="leading" id="t1m-IF-Lgw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -629,14 +638,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="S1s-dP-y9h">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="fhY-yL-FjB">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="fhY-yL-FjB">
                             <connections>
                                 <action selector="editButtonClicked:" destination="Dg2-TT-fMS" id="Wry-fY-nh8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="AKp-nf-CPz">
+                        <barButtonItem key="rightBarButtonItem" image="calendar" id="AKp-nf-CPz">
                             <connections>
-                                <action selector="addNewItem:" destination="Dg2-TT-fMS" id="yu6-O0-9Xy"/>
+                                <action selector="calendarBarClicked:" destination="Dg2-TT-fMS" id="6ad-D0-6bk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -647,7 +656,6 @@
                         <outlet property="calenderViewTopConstraint" destination="s3s-La-gvG" id="v7G-7o-oJx"/>
                         <outlet property="containerView" destination="Qsh-4i-Z7x" id="nFL-a3-Nwc"/>
                         <outlet property="editButton" destination="fhY-yL-FjB" id="pdg-DX-ipc"/>
-                        <outlet property="toolbar" destination="861-AO-yQd" id="o2L-O9-jCM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSE-eT-phI" userLabel="First Responder" sceneMemberID="firstResponder"/>

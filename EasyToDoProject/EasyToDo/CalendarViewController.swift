@@ -28,8 +28,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     
     @IBOutlet var calenderViewTopConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var toolbar: UIToolbar!
-    
     @IBOutlet var editButton: UIBarButtonItem!
     
     var calendarView : CalendarView!
@@ -180,13 +178,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
             tableViewController = destVC
             tableViewController.calendarViewController = self
         }
-    }
-    
-
-    
-    @IBAction func addNewItem(sender: AnyObject) {
-        
-        tableViewController.addNewItem()
     }
     
     
