@@ -418,7 +418,10 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
         let cell = sender.superview!!.superview as! AddNewCell
-        let itemName = cell.newItemName.text
+        var itemName : String? = cell.newItemName.text
+        if itemName == "" {
+            itemName = nil
+        }
         let initialDate : NSDate?
         if let date = selectedDate {
             //make 08:00 as default notify date for selected date in calendar
