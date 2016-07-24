@@ -417,6 +417,8 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
+        let cell = sender.superview!!.superview as! AddNewCell
+        let itemName = cell.newItemName.text
         let initialDate : NSDate?
         if let date = selectedDate {
             //make 08:00 as default notify date for selected date in calendar
@@ -424,7 +426,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         } else {
             initialDate = nil
         }
-        let newItem = self.itemStore.CreateItem(nil, itemName: nil, itemDetail: nil, finished: false, notifyDate: initialDate)
+        let newItem = self.itemStore.CreateItem(nil, itemName: itemName, itemDetail: nil, finished: false, notifyDate: initialDate)
        // direct scheduling notify if has initial date
         if let date = initialDate {
             AppDelegate.scheduleNotifyForDate(date,
