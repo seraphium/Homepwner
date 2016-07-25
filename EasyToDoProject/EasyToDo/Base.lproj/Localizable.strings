@@ -11,7 +11,7 @@
 "NotificationAlertIgnore" = "Ignore";
 "ItemListHeaderNotFinished" = "Unfinished Items";
 "ItemViewHeaderNotFinished" = "Unfinished";
-"ItemListClickToAddLabel" = "Press + To Add New Item";
+"ItemListClickToAddLabel" = "Enter New Item Title";
 "ItemListShowFinishedLabel" = "Show Finished";
 "ItemListHideFinishedLabel" = "Hide Finished";
 "ItemListDetailDateNotifyPlaceHolder" = "Select Notify Time";
@@ -36,5 +36,4 @@
 "CalenderViewEditBtnTitleDone" = "Done";
 "CalenderViewSwipeViewTitle" = "Swipe down to show calendar";
 "CalenderViewSwipeHideTitle" = "Swipe down to hide calendar";
-
 "CalenderViewNotifyViewTitle" = "Swipe down to show calendar";

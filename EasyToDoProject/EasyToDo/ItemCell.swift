@@ -15,6 +15,12 @@ protocol PresentNotifyProtocol : NSObjectProtocol {
 
 class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     
+    @IBOutlet weak var animationView: UIView!
+    //layer for content view
+    var animationLayer : CALayer {
+        return animationView.layer
+    }
+
     @IBOutlet var foregroundView: UIView!
     
     @IBOutlet var foldView: UIView!
@@ -71,7 +77,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     //tag if in clear notify date status
     var cleaningItem : Bool = false
     
-    
     @IBOutlet var repeatSelector: UISegmentedControl!
     
     @IBOutlet var detailAddAudio: UIButton!
@@ -88,6 +93,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     override internal func awakeFromNib() {
         super.awakeFromNib()
         
+        foldView.backgroundColor = AppDelegate.cellColor
         datePicker = UIDatePicker()
         //datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
         datePicker.datePickerMode = .DateAndTime
@@ -120,7 +126,6 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         containerView.addSubview(foldAnimationView)
         
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
-        containerView.backgroundColor = AppDelegate.backColor
         
         let foregroundTextColor = AppDelegate.backColor
         let foldTextColor = AppDelegate.cellInnerColor
@@ -147,19 +152,15 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
     }
 
 
-    func setCellCornerRadius(expanded: Bool, animated: Bool)
+    override func setCellCornerRadius(expanded: Bool, animated: Bool)
     {
-        let cornerRadius = CGFloat(5.0)
+        super.setCellCornerRadius(expanded, animated: animated)
         if (animated) {
             let from = CGFloat(expanded ? cornerRadius : 0)
             let to = CGFloat(expanded ? 0 : cornerRadius)
-            contentView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
-            containerView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
             foregroundView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
             animationView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
         } else {
-            contentView.layer.cornerRadius = cornerRadius
-            containerView.layer.cornerRadius = cornerRadius
             foregroundView.layer.cornerRadius = cornerRadius
             animationView.layer.cornerRadius = cornerRadius
             
@@ -168,23 +169,11 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
     }
     
-    func setupShadow()
-    {
-        
-        //setup Shadow
-        containerView.layer.shadowOffset = CGSizeMake(1, 1)
-        containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
-        containerView.layer.shadowRadius = 5
-        containerView.layer.shadowOpacity = 0.5
-
-        clipsToBounds = false
-
-    }
-    
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        createView(animationLayer)
+
         setupShadow()
         
         // init audio/pic button status

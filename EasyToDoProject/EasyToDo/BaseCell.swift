@@ -10,40 +10,31 @@
 import UIKit
 
 class BaseCell : UITableViewCell {
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var containerView: UIView!    
     
     //layer for content view
     var contentLayer : CALayer {
         return containerView.layer
     }
-    //layer for content view
-    var animationLayer : CALayer {
-        return animationView.layer
-    }
 
-    
+    let cornerRadius = CGFloat(5.0)
+
     internal typealias CompletionHandler = () -> Void
     
-    //MARK: - Init
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clearColor()
-        //  self.backgroundView?.backgroundColor = UIColor.clearColor()
-        
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        InitCellViews()
+
+        self.backgroundColor = AppDelegate.backColor
+
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        InitCellViews()
     }
-
-
-    
     
     func createView(layer: CALayer)
     {
-
         layer.backgroundColor = AppDelegate.cellColor.CGColor
         layer.transform = transform3d()
     }
@@ -51,7 +42,6 @@ class BaseCell : UITableViewCell {
     func InitCellViews(){
         //create content/animation layer apperance
         createView(contentLayer)
-        createView(animationLayer)
     }
     
     //what's for?
@@ -61,5 +51,35 @@ class BaseCell : UITableViewCell {
         return transform
     }
     
+    func setCellCornerRadius(expanded: Bool, animated: Bool)
+    {
+        if (animated) {
+            let from = CGFloat(expanded ? cornerRadius : 0)
+            let to = CGFloat(expanded ? 0 : cornerRadius)
+            contentView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+            containerView.addCornerRadiusAnimation(from, to: to, duration: 0.5)
+             } else {
+            contentView.layer.cornerRadius = cornerRadius
+            containerView.layer.cornerRadius = cornerRadius
+        }
+        
+        
+    }
+
+    
+    
+    func setupShadow()
+    {
+        
+        //setup Shadow
+        containerView.layer.shadowOffset = CGSizeMake(1, 1)
+        containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
+        containerView.layer.shadowRadius = 5
+        containerView.layer.shadowOpacity = 0.5
+        
+        clipsToBounds = false
+        
+    }
+
 
 }

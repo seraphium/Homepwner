@@ -12,7 +12,7 @@
 "NotificationAlertIgnore" = "忽略";
 "ItemListHeaderNotFinished" = "未完成项目";
 "ItemViewHeaderNotFinished" = "未完成";
-"ItemListClickToAddLabel" = "点击+添加项目";
+"ItemListClickToAddLabel" = "输入项目名称";
 "ItemListShowFinishedLabel" = "显示已完成";
 "ItemListHideFinishedLabel" = "隐藏已完成";
 "ItemListDetailDateNotifyPlaceHolder" = "点击选择提醒时间";

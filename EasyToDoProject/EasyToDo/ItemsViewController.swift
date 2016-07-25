@@ -313,7 +313,12 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     }
     
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        if indexPath.section == 0 {
+            return false
+
+        } else {
+            return true
+        }
     }
     
     override func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -417,7 +422,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     //MARK: - other actions
     @IBAction func addNewItem(sender: AnyObject) {
-        let cell = sender.superview!!.superview as! AddNewCell
+        let cell = sender.superview!!.superview!.superview as! AddNewCell
         var itemName : String? = cell.newItemName.text
         if itemName == "" {
             itemName = nil
