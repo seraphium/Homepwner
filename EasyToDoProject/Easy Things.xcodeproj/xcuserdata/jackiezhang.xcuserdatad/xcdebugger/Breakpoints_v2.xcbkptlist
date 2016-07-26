@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemsViewController.swift"
-            timestampString = "491054446.695395"
+            timestampString = "491193039.179516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "491062995.744883"
+            timestampString = "491195504.968083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "didSelectDate(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/CalendarViewController.swift"
-            timestampString = "491063277.550741"
+            timestampString = "491195504.968083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "updateHeader(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -153,8 +153,24 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "EasyToDo/ItemCell.swift"
+            timestampString = "490458174.630446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "layoutSubviews()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemsViewController.swift"
-            timestampString = "491058808.191988"
+            timestampString = "491193039.179516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
@@ -170,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemsViewController.swift"
-            timestampString = "491061683.844616"
+            timestampString = "491193039.179516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "278"
@@ -186,12 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EasyToDo/ItemsViewController.swift"
-            timestampString = "491148253.546842"
+            timestampString = "491193039.179516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
-            landmarkName = "addNewItem(_:)"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
+            landmarkName = "shouldPerformSegueWithIdentifier(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

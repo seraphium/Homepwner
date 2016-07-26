@@ -59,9 +59,10 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+               
         calenderViewTopConstraint.constant = -calendarOutsideView.bounds.height
         // base date (Calendar shows 12 months range from current base date)
         // selected date (marked dated in the calendar)

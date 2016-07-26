@@ -168,6 +168,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //init navigation bar appearance
+        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().barStyle = UIBarStyle.Black
+        UINavigationBar.appearance().barTintColor = AppDelegate.cellInnerColor
+        UINavigationBar.appearance().tintColor = AppDelegate.backColor
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: AppDelegate.cellColor]
+
        // application.applicationIconBadgeNumber = 0;
         if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] {
             showNotificationAlertController(application, forNotification: notification as! UILocalNotification)
@@ -206,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-       
+
         return true
     }
 
@@ -232,6 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         if let navController = window!.rootViewController as? UINavigationController {
+                        
             if let itemsController = navController.topViewController as? ItemsViewController {
                 itemsController.tableView.reloadData()
             }
