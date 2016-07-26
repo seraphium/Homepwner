@@ -70,7 +70,7 @@
                                                             </connections>
                                                         </button>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pI1-lq-X5F">
-                                                            <rect key="frame" x="20" y="12" width="350" height="15"/>
+                                                            <rect key="frame" x="20" y="12" width="400" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -86,7 +86,7 @@
                                                         <constraint firstItem="mOm-8y-faD" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="3Vn-TC-BFE"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="4ok-zq-c8f"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="5BU-ft-25D"/>
-                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="150" id="7t1-oM-UxX"/>
+                                                        <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="pI1-lq-X5F" secondAttribute="trailing" constant="100" id="7t1-oM-UxX"/>
                                                         <constraint firstItem="je1-YY-HQp" firstAttribute="centerY" secondItem="nq1-RY-AG9" secondAttribute="centerY" id="CkS-HJ-yfm"/>
                                                         <constraint firstItem="pI1-lq-X5F" firstAttribute="leading" secondItem="je1-YY-HQp" secondAttribute="trailing" constant="5" id="EJo-gU-XIi"/>
                                                         <constraint firstItem="DyM-aN-Dht" firstAttribute="leading" secondItem="mOm-8y-faD" secondAttribute="trailing" constant="20" id="GqV-Gs-CFT"/>
@@ -498,7 +498,7 @@
                                             <rect key="frame" x="20" y="0.0" width="560" height="40"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqi-mm-jQJ">
-                                                    <rect key="frame" x="20" y="11" width="450" height="17"/>
+                                                    <rect key="frame" x="20" y="11" width="440" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -510,6 +510,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Pqi-mm-jQJ" secondAttribute="trailing" constant="100" id="4U3-74-gjv"/>
                                                 <constraint firstAttribute="trailing" secondItem="Pqi-mm-jQJ" secondAttribute="trailing" constant="100" id="EQy-OU-Jzs"/>
                                                 <constraint firstItem="Pqi-mm-jQJ" firstAttribute="leading" secondItem="LZE-H6-TUW" secondAttribute="trailing" constant="10" id="KAa-Kb-aJK"/>
                                                 <constraint firstItem="Pqi-mm-jQJ" firstAttribute="leading" secondItem="qqg-qQ-8op" secondAttribute="leading" constant="20" id="KsM-MJ-SFa"/>
@@ -523,6 +524,7 @@
                                                 <mask key="constraints">
                                                     <exclude reference="EQy-OU-Jzs"/>
                                                     <exclude reference="KAa-Kb-aJK"/>
+                                                    <exclude reference="nS3-i6-Kwl"/>
                                                     <exclude reference="xKe-Mx-Kb1"/>
                                                 </mask>
                                             </variation>

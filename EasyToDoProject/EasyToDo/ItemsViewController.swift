@@ -440,6 +440,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         if itemName == "" {
             itemName = nil
         }
+        cell.newItemName.text = ""
         let initialDate : NSDate?
         if let date = selectedDate {
             //make 08:00 as default notify date for selected date in calendar

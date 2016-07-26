@@ -37,9 +37,22 @@ class AddNewCell : BaseCell {
         super.layoutSubviews()
         setupShadow()
         setCellCornerRadius(false, animated: false)
-        
+        initTextFieldBottomLine()
 
     }
+    
+    func initTextFieldBottomLine() {
+        //newItemName.layer.sublayers = nil
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = AppDelegate.backColor.CGColor
+        border.frame = CGRect(x: 0, y:newItemName.frame.size.height + width + 1, width:  newItemName.frame.size.width, height: newItemName.frame.size.height)
+        
+        border.borderWidth = width
+        newItemName.layer.addSublayer(border)
+        newItemName.layer.masksToBounds = true
+    }
+    
     
     func initAddButtonLayer(){
         //// Group
@@ -71,7 +84,7 @@ class AddNewCell : BaseCell {
         
         layer.backgroundColor = UIColor.clearColor().CGColor
         layer.path = bezierPath.CGPath
-        layer.fillColor = AppDelegate.backColor.CGColor
+        layer.fillColor = AppDelegate.cellColor.CGColor
         layer.fillRule = kCAFillRuleEvenOdd
 
         addNewItemBtn.layer.addSublayer(layer)

@@ -438,7 +438,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
 
         upButtonLayer.backgroundColor = UIColor.clearColor().CGColor
         upButtonLayer.path = bezierPath.CGPath
-        upButtonLayer.fillColor = AppDelegate.backColor.CGColor
+        upButtonLayer.fillColor = AppDelegate.cellColor.CGColor
         upButtonLayer.fillRule = kCAFillRuleEvenOdd
         
 
@@ -483,7 +483,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         
         doneButtonLayer.backgroundColor = UIColor.clearColor().CGColor
         doneButtonLayer.path = path.CGPath
-        doneButtonLayer.fillColor = AppDelegate.backColor.CGColor
+        doneButtonLayer.fillColor = AppDelegate.cellColor.CGColor
         doneButtonLayer.fillRule = kCAFillRuleEvenOdd
 
 
@@ -638,7 +638,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         if (finished) {
             textField.userInteractionEnabled = false
             foldView.userInteractionEnabled = false
-            contentView.alpha = 0.4
+            contentView.alpha = 0.8
             setupDoneButton(true)
         } else {
             textField.userInteractionEnabled = true
