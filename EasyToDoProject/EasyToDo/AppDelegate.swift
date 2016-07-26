@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = true
         UINavigationBar.appearance().barStyle = UIBarStyle.Black
         UINavigationBar.appearance().barTintColor = AppDelegate.cellInnerColor
-        UINavigationBar.appearance().tintColor = AppDelegate.backColor
+        UINavigationBar.appearance().tintColor = AppDelegate.cellColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: AppDelegate.cellColor]
 
        // application.applicationIconBadgeNumber = 0;

@@ -651,7 +651,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="S1s-dP-y9h">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="compose" id="fhY-yL-FjB">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="fhY-yL-FjB">
                             <connections>
                                 <action selector="editButtonClicked:" destination="Dg2-TT-fMS" id="Wry-fY-nh8"/>
                             </connections>

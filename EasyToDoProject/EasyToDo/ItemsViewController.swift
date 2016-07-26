@@ -81,6 +81,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         //set default background color
         tableView.backgroundColor = AppDelegate.backColor
