@@ -205,7 +205,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section != 0 {
-            return 50
+            return 30
 
         } else {
             return 0

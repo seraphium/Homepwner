@@ -22,9 +22,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-wt-riy">
-                    <rect key="frame" x="211" y="33" width="179" height="50"/>
+                    <rect key="frame" x="211" y="43" width="179" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="htZ-Lz-nCk"/>
+                        <constraint firstAttribute="height" constant="30" id="htZ-Lz-nCk"/>
                     </constraints>
                     <state key="normal" title="HeaderButtonPlaceHolder"/>
                 </button>
