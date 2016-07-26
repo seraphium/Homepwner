@@ -19,24 +19,23 @@ class AddNewCell : BaseCell {
         super.awakeFromNib()
         newItemName.backgroundColor = UIColor.clearColor()
         //update font setting
-        let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        newItemName.font = bodyFont
-        newItemName.textColor = AppDelegate.backColor
-        newItemName.tintColor = AppDelegate.backColor
+        newItemName.font = UIFont(name: "HelveticaNeue", size: 18.0)
+        newItemName.textColor = AppDelegate.cellInnerColor
+        newItemName.tintColor = AppDelegate.cellInnerColor
         newItemName.placeholder = NSLocalizedString("ItemListClickToAddLabel", comment: "")
             
-        newItemName.attributedPlaceholder = NSAttributedString(string:newItemName.placeholder!, attributes:[NSForegroundColorAttributeName: AppDelegate.backColor])
+        newItemName.attributedPlaceholder = NSAttributedString(string:newItemName.placeholder!, attributes:[NSForegroundColorAttributeName: AppDelegate.cellInnerColor])
         
         initAddButtonLayer()
         
-        containerView.backgroundColor = AppDelegate.cellInnerColor
+        containerView.backgroundColor = AppDelegate.backColor
         
         newItemName.delegate = self
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupShadow()
+     //   setupShadow()
       //  setCellCornerRadius(false, animated: false)
         initTextFieldBottomLine()
 
@@ -52,7 +51,7 @@ class AddNewCell : BaseCell {
         //newItemName.layer.sublayers = nil
         let border = CALayer()
         let width = CGFloat(2.0)
-        border.borderColor = AppDelegate.backColor.CGColor
+        border.borderColor = AppDelegate.cellInnerColor.CGColor
         border.frame = CGRect(x: 0, y:newItemName.frame.size.height + width + 1, width:  newItemName.frame.size.width, height: newItemName.frame.size.height)
         
         border.borderWidth = width
@@ -91,7 +90,7 @@ class AddNewCell : BaseCell {
         
         layer.backgroundColor = UIColor.clearColor().CGColor
         layer.path = bezierPath.CGPath
-        layer.fillColor = AppDelegate.cellColor.CGColor
+        layer.fillColor = AppDelegate.cellInnerColor.CGColor
         layer.fillRule = kCAFillRuleEvenOdd
 
         addNewItemBtn.layer.addSublayer(layer)
