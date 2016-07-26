@@ -86,6 +86,9 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.backgroundColor = AppDelegate.backColor
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
+        
+     //   initGradientView()
+        
         initRefreshView()
         
     }
@@ -95,6 +98,15 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
         refreshView.initFrame()
         
+    }
+    
+    func initGradientView() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.frame
+        gradient.colors = [AppDelegate.cellInnerColor.CGColor, AppDelegate.backColor.CGColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.zPosition = -10000
+        self.view.layer.addSublayer(gradient)
     }
  
     func initRefreshView() {
@@ -510,8 +522,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     
     func clickAction(bt: UIButton) -> Void {
         doneClosed = !doneClosed
-        let indexSet = NSIndexSet(index: 1)
-        tableView.reloadSections(indexSet, withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
     func deleteRow(indexPath: NSIndexPath, restore: Bool) {
