@@ -104,7 +104,6 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
                             
                     })
             })
-
         }
        
     }
@@ -235,9 +234,9 @@ class CalendarViewController : UIViewController, CalendarViewDelegate {
     func initNotifyView() {
         notifyView = getUIViewFromBundle("CalendarNotifyView") as! CalendarNotifyView
         if let sv = tableView.superview {
-            notifyView.frame = CGRectMake(0, 10, sv.frame.size.width, fixedHeight)
+            notifyView.frame = CGRectMake(0, 0, sv.frame.size.width, fixedHeight)
         } else {
-            notifyView.frame = CGRectMake(0, 10, tableView.frame.size.width, fixedHeight)
+            notifyView.frame = CGRectMake(0, 0, tableView.frame.size.width, fixedHeight)
             
         }
 

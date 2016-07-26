@@ -30,13 +30,14 @@ class AddNewCell : BaseCell {
         initAddButtonLayer()
         
         containerView.backgroundColor = AppDelegate.cellInnerColor
+        
         newItemName.delegate = self
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setupShadow()
-        setCellCornerRadius(false, animated: false)
+      //  setCellCornerRadius(false, animated: false)
         initTextFieldBottomLine()
 
     }

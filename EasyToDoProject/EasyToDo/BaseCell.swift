@@ -78,10 +78,10 @@ class BaseCell : UITableViewCell, UITextFieldDelegate {
     {
         
         //setup Shadow
-        containerView.layer.shadowOffset = CGSizeMake(1, 1)
+        containerView.layer.shadowOffset = CGSizeMake(0, 2)
         containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
-        containerView.layer.shadowRadius = 5
-        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowRadius = 3
+        containerView.layer.shadowOpacity = 0.7
         
         clipsToBounds = false
         
