@@ -9,7 +9,7 @@
 
 import UIKit
 
-class BaseCell : UITableViewCell {
+class BaseCell : UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var containerView: UIView!    
     
     //layer for content view
@@ -26,12 +26,18 @@ class BaseCell : UITableViewCell {
         InitCellViews()
 
         self.backgroundColor = AppDelegate.backColor
-
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     func createView(layer: CALayer)
     {

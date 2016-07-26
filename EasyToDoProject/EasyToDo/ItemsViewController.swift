@@ -286,6 +286,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         
    
         let addCell = tableView.dequeueReusableCellWithIdentifier("AddNewCell", forIndexPath: indexPath) as! AddNewCell
+        
         return addCell
         
  

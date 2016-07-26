@@ -30,7 +30,7 @@ class AddNewCell : BaseCell {
         initAddButtonLayer()
         
         containerView.backgroundColor = AppDelegate.cellInnerColor
-
+        newItemName.delegate = self
     }
     
     override func layoutSubviews() {
@@ -39,6 +39,12 @@ class AddNewCell : BaseCell {
         setCellCornerRadius(false, animated: false)
         initTextFieldBottomLine()
 
+    }
+    
+    override func textFieldShouldReturn(textField: UITextField) -> Bool {
+        super.textFieldShouldReturn(textField)
+        addNewItemBtn.sendActionsForControlEvents(.TouchUpInside)
+        return true
     }
     
     func initTextFieldBottomLine() {

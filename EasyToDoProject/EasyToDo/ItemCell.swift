@@ -13,7 +13,7 @@ protocol PresentNotifyProtocol : NSObjectProtocol {
     func presentNotify(controller: UIViewController) -> Void;
 }
 
-class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
+class ItemCell : BaseCell , UITextViewDelegate{
     
     @IBOutlet weak var animationView: UIView!
     //layer for content view
@@ -244,11 +244,7 @@ class ItemCell : BaseCell , UITextFieldDelegate, UITextViewDelegate{
         textView.resignFirstResponder()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
+
 
     
     //handling notify date selection
