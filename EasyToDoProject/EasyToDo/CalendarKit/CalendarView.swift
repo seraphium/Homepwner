@@ -93,13 +93,13 @@ class CalendarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         super.layoutSubviews()
         
         //create border
-        let border = CALayer()
+     /*   let border = CALayer()
         let borderHeight = CGFloat(2)
         border.backgroundColor = AppDelegate.cellInnerColor.colorWithAlphaComponent(0.5).CGColor
         border.frame = CGRectMake(0, self.frame.height - borderHeight, self.frame.width, borderHeight)
         border.zPosition = 10000
         
-        self.layer.addSublayer(border)
+        self.layer.addSublayer(border) */
         initPreviousButtonView()
         initNextButtonView()
     

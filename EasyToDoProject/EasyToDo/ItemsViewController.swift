@@ -88,7 +88,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
         
-     //   initGradientView()
+        initGradientView()
         
         initRefreshView()
         
@@ -104,7 +104,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
     func initGradientView() {
         let gradient = CAGradientLayer()
         gradient.frame = self.view.frame
-        gradient.colors = [AppDelegate.cellInnerColor.CGColor, AppDelegate.backColor.CGColor]
+        gradient.colors = [AppDelegate.backColor.CGColor, AppDelegate.cellColor.CGColor]
         gradient.locations = [0.0, 1.0]
         gradient.zPosition = -10000
         self.view.layer.addSublayer(gradient)

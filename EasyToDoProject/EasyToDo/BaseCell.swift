@@ -25,7 +25,7 @@ class BaseCell : UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         InitCellViews()
 
-        self.backgroundColor = AppDelegate.backColor
+        self.backgroundColor = UIColor.clearColor()
         
     }
     
@@ -81,7 +81,7 @@ class BaseCell : UITableViewCell, UITextFieldDelegate {
         containerView.layer.shadowOffset = CGSizeMake(0, 2)
         containerView.layer.shadowColor = AppDelegate.cellInnerColor.CGColor
         containerView.layer.shadowRadius = 3
-        containerView.layer.shadowOpacity = 0.7
+        containerView.layer.shadowOpacity = 0.5
         
         clipsToBounds = false
         

@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let imageStore =  ImageStore()
     static let audioStore = AudioStore()
     
-    static let backColor = UIColor(red: 220.0/255.0, green: 237.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+//    static let backColor = UIColor(red: 220.0/255.0, green: 237.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     static let cellColor = UIColor(red: 253/255.0, green: 254/255.0, blue: 255.0/255.0, alpha: 1.0)
-    static let cellInnerColor = UIColor(red: 34.0/255.0, green: 149.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-    
+//    static let cellInnerColor = UIColor(red: 34.0/255.0, green: 149.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static let backColor = UIColor(red: 165.0/255.0, green: 208.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+    static let cellInnerColor = UIColor(red: 26.0/255.0, green: 118.0/255.0, blue: 235.0/255.0, alpha: 1.0)
+
 
     func finishItemNotification(notification : UILocalNotification) -> Item? {
         var userInfo = notification.userInfo!

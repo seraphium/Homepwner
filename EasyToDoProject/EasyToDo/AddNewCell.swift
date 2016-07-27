@@ -20,22 +20,22 @@ class AddNewCell : BaseCell {
         newItemName.backgroundColor = UIColor.clearColor()
         //update font setting
         newItemName.font = UIFont(name: "HelveticaNeue", size: 18.0)
-        newItemName.textColor = AppDelegate.cellInnerColor
-        newItemName.tintColor = AppDelegate.cellInnerColor
+        newItemName.textColor = AppDelegate.cellColor
+        newItemName.tintColor = AppDelegate.cellColor
         newItemName.placeholder = NSLocalizedString("ItemListClickToAddLabel", comment: "")
             
-        newItemName.attributedPlaceholder = NSAttributedString(string:newItemName.placeholder!, attributes:[NSForegroundColorAttributeName: AppDelegate.cellInnerColor])
+        newItemName.attributedPlaceholder = NSAttributedString(string:newItemName.placeholder!, attributes:[NSForegroundColorAttributeName: AppDelegate.cellColor])
         
         initAddButtonLayer()
         
-        containerView.backgroundColor = AppDelegate.backColor
+        containerView.backgroundColor = AppDelegate.cellInnerColor
         
         newItemName.delegate = self
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-     //   setupShadow()
+        setupShadow()
       //  setCellCornerRadius(false, animated: false)
         initTextFieldBottomLine()
 
@@ -51,7 +51,7 @@ class AddNewCell : BaseCell {
         //newItemName.layer.sublayers = nil
         let border = CALayer()
         let width = CGFloat(2.0)
-        border.borderColor = AppDelegate.cellInnerColor.CGColor
+        border.borderColor = AppDelegate.cellColor.CGColor
         border.frame = CGRect(x: 0, y:newItemName.frame.size.height + width + 1, width:  newItemName.frame.size.width, height: newItemName.frame.size.height)
         
         border.borderWidth = width
@@ -90,7 +90,7 @@ class AddNewCell : BaseCell {
         
         layer.backgroundColor = UIColor.clearColor().CGColor
         layer.path = bezierPath.CGPath
-        layer.fillColor = AppDelegate.cellInnerColor.CGColor
+        layer.fillColor = AppDelegate.cellColor.CGColor
         layer.fillRule = kCAFillRuleEvenOdd
 
         addNewItemBtn.layer.addSublayer(layer)

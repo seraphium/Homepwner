@@ -93,6 +93,9 @@ class ItemCell : BaseCell , UITextViewDelegate{
     override internal func awakeFromNib() {
         super.awakeFromNib()
         
+        let foregroundTextColor = AppDelegate.cellColor
+        let foldTextColor = AppDelegate.cellInnerColor
+        
         foldView.backgroundColor = AppDelegate.cellColor
         datePicker = UIDatePicker()
         //datePicker.locale = NSLocale(localeIdentifier: "zh_CN")
@@ -106,10 +109,10 @@ class ItemCell : BaseCell , UITextViewDelegate{
         //update font setting
         let bodyFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textField.font = bodyFont
-        textField.tintColor = AppDelegate.cellColor
-        
+        textField.tintColor = foregroundTextColor
+        textField.textColor = foregroundTextColor
+
         detailTextViewPlaceholderLabel.text = NSLocalizedString("ItemListDetailViewPlaceHolder", comment: "")
-        
         //mimic default placeholder font and size/color
         detailTextViewPlaceholderLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
         detailTextViewPlaceholderLabel.textColor = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255, alpha: 1.0)
@@ -127,11 +130,8 @@ class ItemCell : BaseCell , UITextViewDelegate{
         
         foregroundView.backgroundColor = AppDelegate.cellInnerColor
         
-        let foregroundTextColor = AppDelegate.backColor
-        let foldTextColor = AppDelegate.cellInnerColor
-        contentView.tintColor = foldTextColor
+         contentView.tintColor = foldTextColor
         
-        textField.textColor = foregroundTextColor
         notifyDateLabel.textColor = foregroundTextColor
         
         detailTextView.textColor = foldTextColor
