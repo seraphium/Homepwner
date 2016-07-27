@@ -28,7 +28,7 @@ class AddNewCell : BaseCell {
         
         initAddButtonLayer()
         
-        containerView.backgroundColor = AppDelegate.cellInnerColor
+        containerView.backgroundColor = AppDelegate.darkColor
         
         newItemName.delegate = self
     }
@@ -37,7 +37,7 @@ class AddNewCell : BaseCell {
         super.layoutSubviews()
         setupShadow()
       //  setCellCornerRadius(false, animated: false)
-        initTextFieldBottomLine()
+     //   initTextFieldBottomLine()
 
     }
     
