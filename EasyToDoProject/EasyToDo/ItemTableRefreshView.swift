@@ -17,7 +17,7 @@ class ItemTableRefreshView : UIView {
     let fixedHeight = CGFloat(80)
     
     override func awakeFromNib() {
-        self.alpha = 0.6
+        self.alpha = 1.0
         headerTitle.textColor = AppDelegate.cellColor
         headerTitle.text = NSLocalizedString("CalenderViewSwipeViewTitle", comment: "")
         self.backgroundColor = AppDelegate.cellInnerColor
