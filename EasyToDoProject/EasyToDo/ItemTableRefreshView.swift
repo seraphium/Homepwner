@@ -20,7 +20,7 @@ class ItemTableRefreshView : UIView {
         self.alpha = 1.0
         headerTitle.textColor = AppDelegate.cellColor
         headerTitle.text = NSLocalizedString("CalenderViewSwipeViewTitle", comment: "")
-        self.backgroundColor = AppDelegate.cellInnerColor
+        self.backgroundColor = AppDelegate.calendarColor
         
     }
     

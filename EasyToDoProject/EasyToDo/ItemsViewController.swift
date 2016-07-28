@@ -343,7 +343,7 @@ class ItemsViewController : UITableViewController,UITextFieldDelegate, PresentNo
         let deleteAction = UITableViewRowAction(style: .Destructive, title: titleString, handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) in
             self.deleteRow(indexPath, restore: false)
         })
-        deleteAction.backgroundColor =  AppDelegate.backColor
+        deleteAction.backgroundColor =  UIColor.clearColor()
         
         return [deleteAction]
     }

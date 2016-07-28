@@ -20,7 +20,7 @@ class CalendarNotifyView : UIView {
         self.alpha = 0.0
         notifyLabel.textColor = AppDelegate.cellColor
         notifyLabel.text = NSLocalizedString("CalenderViewNotifyViewTitle", comment: "")
-        self.backgroundColor = AppDelegate.cellInnerColor
+        self.backgroundColor = AppDelegate.calendarColor
 
     }
 

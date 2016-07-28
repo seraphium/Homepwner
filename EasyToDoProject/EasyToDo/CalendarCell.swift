@@ -76,7 +76,7 @@ class CalendarCell : UICollectionViewCell {
         if hasData {
             createHasDataShapeLayer()
         }
-        markedView.backgroundColor = AppDelegate.backColor
+        markedView.backgroundColor = AppDelegate.calendarColor
         hasDataView.layer.zPosition = -100
         markedView.layer.zPosition = -150
     }
