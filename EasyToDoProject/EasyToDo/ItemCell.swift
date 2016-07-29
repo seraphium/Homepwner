@@ -476,7 +476,9 @@ class ItemCell : BaseCell , UITextViewDelegate{
         path.addLineToPoint(CGPoint(x: 22.03, y: 10.52))
         path.closePath()
         path.miterLimit = 4;
-        
+        path.applyTransform(CGAffineTransformMakeScale(CGFloat(0.9), CGFloat(0.9)))
+        doneButtonLayer.bounds = CGPathGetPathBoundingBox(path.CGPath)
+        doneButtonLayer.position = CGPoint(x: CGRectGetMidX(doneButton.bounds), y: CGRectGetMidY(doneButton.bounds))
         doneButtonLayer.backgroundColor = UIColor.clearColor().CGColor
         doneButtonLayer.path = path.CGPath
         doneButtonLayer.fillColor = AppDelegate.cellColor.CGColor
