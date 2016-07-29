@@ -86,13 +86,15 @@ class AddNewCell : BaseCell {
         bezierPath.miterLimit = 4;
         bezierPath.fill()
         
+        //common part to resize and position the shape layer
+        bezierPath.applyTransform(CGAffineTransformMakeScale(CGFloat(0.8), CGFloat(0.8)))
         let layer = CAShapeLayer()
-        
         layer.backgroundColor = UIColor.clearColor().CGColor
         layer.path = bezierPath.CGPath
         layer.fillColor = AppDelegate.cellColor.CGColor
         layer.fillRule = kCAFillRuleEvenOdd
-
+        layer.bounds = CGPathGetPathBoundingBox(bezierPath.CGPath)
+        layer.position = CGPoint(x: CGRectGetMidX(addNewItemBtn.bounds), y: CGRectGetMidY(addNewItemBtn.bounds))
         addNewItemBtn.layer.addSublayer(layer)
 
         
