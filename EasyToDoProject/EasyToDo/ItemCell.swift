@@ -157,7 +157,7 @@ class ItemCell : BaseCell , UITextViewDelegate{
     func initFoldViewSeperateLine() {
         //newItemName.layer.sublayers = nil
         let border = CALayer()
-        let width = CGFloat(1.0)
+        let width = CGFloat(2.0)
         border.borderColor = AppDelegate.cellInnerColor.colorWithAlphaComponent(CGFloat(0.6)).CGColor
         border.frame = CGRect(x: 0, y:foldView.frame.size.height - 35, width:  foldView.frame.size.width, height: width)
         
