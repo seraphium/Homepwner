@@ -431,7 +431,9 @@ class ItemCell : BaseCell , UITextViewDelegate{
         bezierPath.addCurveToPoint(CGPoint(x: 30.06, y: 16.3), controlPoint1: CGPoint(x: 30.06, y: 15.25), controlPoint2: CGPoint(x: 30.06, y: 15.25))
         bezierPath.closePath()
         bezierPath.miterLimit = 4;
-
+        bezierPath.applyTransform(CGAffineTransformMakeScale(CGFloat(0.8), CGFloat(0.8)))
+        upButtonLayer.bounds = CGPathGetPathBoundingBox(bezierPath.CGPath)
+        upButtonLayer.position = CGPoint(x: CGRectGetMidX(doneButton.bounds), y: CGRectGetMidY(doneButton.bounds))
         upButtonLayer.backgroundColor = UIColor.clearColor().CGColor
         upButtonLayer.path = bezierPath.CGPath
         upButtonLayer.fillColor = AppDelegate.cellColor.CGColor
