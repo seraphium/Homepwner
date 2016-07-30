@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static let cellInnerColor = UIColor(red: 26.0/255.0, green: 118.0/255.0, blue: 235.0/255.0, alpha: 1.0)
     static let darkColor = UIColor(red: 136.2/255.0, green: 181.1/255.0, blue: 232.3/255.0, alpha: 1.0)
-    static let calendarColor = UIColor(red: 253.2/255.0, green: 206.1/255.0, blue: 59.3/255.0, alpha: 1.0)
+    //static let calendarColor = UIColor(red: 253.2/255.0, green: 206.1/255.0, blue: 59.3/255.0, alpha: 1.0)
    // static let calendarColor = UIColor(red: 255.0/255.0, green: 215.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-
+    static let calendarColor = darkColor
     
     func finishItemNotification(notification : UILocalNotification) -> Item? {
         var userInfo = notification.userInfo!
