@@ -11,7 +11,7 @@
 "NotificationAlertIgnore" = "Ignore";
 "ItemListHeaderNotFinished" = "Unfinished Items";
 "ItemViewHeaderNotFinished" = "Unfinished";
-"ItemListClickToAddLabel" = "Enter New Item Title";
+"ItemListClickToAddLabel" = "New item name here...";
 "ItemListShowFinishedLabel" = "Show Finished";
 "ItemListHideFinishedLabel" = "Hide Finished";
 "ItemListDetailDateNotifyPlaceHolder" = "Select Notify Time";
